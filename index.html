@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guia Completo de Anúncios Digitais + GA4</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --meta:    #1877F2;
+    --google:  #EA4335;
+    --tiktok:  #333333;
+    --youtube: #FF0000;
+    --linkedin:#0A66C2;
+    --ga4:     #E37400;
+    --conv:    #2D7D0A;
+    --leads:   #6B35D9;
+    --traffic: #0B5EA8;
+    --brand:   #A05C00;
+    --bg:      #F5F3EE;
+    --ink:     #1A1A2E;
+    --card:    #FFFFFF;
+    --radius:  16px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; overflow-x: hidden; }
+
+  /* HERO */
+  .hero { background: var(--ink); min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 60px 24px; position: relative; overflow: hidden; }
+  .hero-blobs { position: absolute; inset: 0; pointer-events: none; }
+  .blob { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.35; }
+  .blob-1 { width:460px;height:460px;background:var(--meta);top:-120px;left:-100px; }
+  .blob-2 { width:380px;height:380px;background:var(--leads);top:40px;right:-80px; }
+  .blob-3 { width:320px;height:320px;background:var(--google);bottom:-80px;left:20%; }
+  .blob-4 { width:260px;height:260px;background:var(--youtube);bottom:30px;right:15%; }
+  .blob-5 { width:200px;height:200px;background:var(--ga4);top:50%;left:50%;transform:translate(-50%,-50%); }
+  .hero-badge { display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:99px;padding:6px 16px;font-size:12px;font-weight:500;color:rgba(255,255,255,0.7);letter-spacing:.06em;text-transform:uppercase;margin-bottom:32px;backdrop-filter:blur(8px);animation:fadeUp .6s ease both; }
+  .hero-badge span { display:inline-block;width:6px;height:6px;border-radius:50%;background:#4ade80; }
+  .hero h1 { font-family:'Montserrat',sans-serif;font-size:clamp(36px,7vw,80px);font-weight:800;line-height:1.0;color:#fff;animation:fadeUp .7s .1s ease both;max-width:900px; }
+  .hero h1 em { font-style:normal;background:linear-gradient(135deg,#60a5fa,#a78bfa,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
+  .hero-sub { margin-top:24px;font-size:17px;color:rgba(255,255,255,0.55);max-width:560px;line-height:1.7;animation:fadeUp .7s .2s ease both; }
+  .platform-pills { display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:40px;animation:fadeUp .7s .3s ease both; }
+  .pill { display:flex;align-items:center;gap:8px;padding:8px 18px;border-radius:99px;font-size:13px;font-weight:500;color:#fff;cursor:pointer;transition:transform .2s,box-shadow .2s; }
+  .pill:hover { transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.3); }
+  .pill-meta{background:var(--meta)}.pill-google{background:var(--google)}.pill-tiktok{background:#333;border:1px solid #666}.pill-youtube{background:var(--youtube)}.pill-linkedin{background:var(--linkedin)}.pill-ga4{background:var(--ga4)}
+  .scroll-hint { position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,.4);font-size:11px;letter-spacing:.08em;text-transform:uppercase;animation:fadeUp .7s .5s ease both; }
+  .scroll-arrow { width:20px;height:20px;border-right:2px solid;border-bottom:2px solid;transform:rotate(45deg);animation:bounce 1.4s infinite; }
+
+  /* NAV */
+  .sticky-nav { position:sticky;top:0;z-index:100;background:rgba(245,243,238,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.08);padding:0 24px; }
+  .nav-inner { max-width:1200px;margin:0 auto;display:flex;align-items:center;overflow-x:auto;scrollbar-width:none; }
+  .nav-inner::-webkit-scrollbar { display:none; }
+  .nav-tab { flex-shrink:0;padding:16px 18px;font-size:13px;font-weight:500;color:#666;cursor:pointer;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;white-space:nowrap;background:none;border-top:none;border-left:none;border-right:none;font-family:'DM Sans',sans-serif; }
+  .nav-tab.active,.nav-tab:hover{color:var(--ink)}.nav-tab.active{border-bottom-color:var(--ink)}
+
+  /* LAYOUT */
+  .section { max-width:1200px;margin:0 auto;padding:80px 24px; }
+  .section-label { font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#999;margin-bottom:12px; }
+  .section-title { font-family:'Montserrat',sans-serif;font-size:clamp(26px,4vw,42px);font-weight:800;line-height:1.15;margin-bottom:48px; }
+  .divider { height:1px;background:#e8e8e8;margin:0 24px; }
+
+  /* PLATFORM GRID */
+  .platform-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px; }
+  .platform-card { border-radius:var(--radius);padding:28px 24px;color:#fff;cursor:pointer;transition:transform .25s,box-shadow .25s;position:relative;overflow:hidden; }
+  .platform-card::before { content:'';position:absolute;inset:0;background:rgba(255,255,255,0.08);opacity:0;transition:opacity .2s; }
+  .platform-card:hover { transform:translateY(-4px);box-shadow:0 20px 48px rgba(0,0,0,.18); }
+  .platform-card:hover::before { opacity:1; }
+  .platform-card.meta{background:linear-gradient(135deg,#1877F2,#0856c4)}.platform-card.google{background:linear-gradient(135deg,#EA4335,#c5281c)}.platform-card.tiktok{background:linear-gradient(135deg,#2d2d2d,#111)}.platform-card.youtube{background:linear-gradient(135deg,#FF0000,#c40000)}.platform-card.linkedin{background:linear-gradient(135deg,#0A66C2,#064a8e)}.platform-card.ga4{background:linear-gradient(135deg,#E37400,#b85c00)}
+  .platform-icon { font-size:34px;margin-bottom:14px;display:block; }
+  .platform-name { font-family:'Montserrat',sans-serif;font-size:18px;font-weight:700;margin-bottom:8px; }
+  .platform-desc { font-size:12px;opacity:.75;line-height:1.5; }
+  .platform-kpis { margin-top:14px;display:flex;flex-wrap:wrap;gap:5px; }
+  .platform-kpis span { font-size:10px;font-weight:600;letter-spacing:.04em;background:rgba(255,255,255,.15);border-radius:4px;padding:3px 8px; }
+
+  /* OBJECTIVES */
+  .obj-strip { display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-bottom:64px; }
+  .obj-card { border-radius:var(--radius);padding:28px 24px;background:var(--card);border:1.5px solid;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s; }
+  .obj-card:hover { transform:translateY(-3px);box-shadow:0 12px 36px rgba(0,0,0,.1); }
+  .obj-card::after { content:'';position:absolute;top:0;left:0;right:0;height:4px; }
+  .obj-card.conv{border-color:#c8e6b2}.obj-card.conv::after{background:var(--conv)}
+  .obj-card.leads{border-color:#ddd0f5}.obj-card.leads::after{background:var(--leads)}
+  .obj-card.traffic{border-color:#b8d4f0}.obj-card.traffic::after{background:var(--traffic)}
+  .obj-card.brand{border-color:#f5dec8}.obj-card.brand::after{background:var(--brand)}
+  .obj-emoji { font-size:32px;margin-bottom:12px;display:block; }
+  .obj-name { font-family:'Montserrat',sans-serif;font-size:17px;font-weight:700;margin-bottom:8px; }
+  .obj-desc { font-size:13px;color:#666;line-height:1.6; }
+
+  /* MODE / FILTER TABS */
+  .mode-tabs { display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px; }
+  .mode-btn { padding:10px 24px;border-radius:99px;font-size:14px;font-weight:500;cursor:pointer;border:1.5px solid #ddd;background:var(--card);color:#666;font-family:'DM Sans',sans-serif;transition:all .2s; }
+  .mode-btn.active { background:var(--ink);border-color:var(--ink);color:#fff; }
+  .mode-btn:hover:not(.active){border-color:#999;color:var(--ink)}
+  .filter-row { display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px; }
+  .filter-btn { padding:7px 16px;border-radius:99px;font-size:12px;font-weight:500;cursor:pointer;border:1.5px solid #e0e0e0;background:var(--card);color:#666;font-family:'DM Sans',sans-serif;transition:all .2s; }
+  .phases-row { display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px; }
+  .phase-chip { padding:6px 14px;border-radius:8px;font-size:12px;font-weight:500;cursor:pointer;border:1px solid #e0e0e0;background:var(--card);color:#888;font-family:'DM Sans',sans-serif;transition:all .2s; }
+  .phase-chip.active { background:var(--ink);border-color:var(--ink);color:#fff; }
+  .phase-chip:hover:not(.active){border-color:#999;color:var(--ink)}
+
+  /* ALL-PHASES VIEW */
+  .phase-block { margin-bottom: 40px; }
+  .phase-block:last-child { margin-bottom: 0; }
+  .phase-heading {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 16px; padding-bottom: 12px; border-bottom: 2px solid;
+  }
+  .phase-heading-num {
+    width: 28px; height: 28px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px; font-weight: 800; color: #fff; flex-shrink: 0;
+  }
+  .phase-heading-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase;
+  }
+
+  /* STEPS */
+  .steps-list { display:flex;flex-direction:column;gap:14px; }
+  .step { background:var(--card);border-radius:var(--radius);padding:22px 24px;display:flex;gap:18px;border:1px solid #eee;animation:fadeUp .4s ease both;transition:box-shadow .2s; }
+  .step:hover { box-shadow:0 6px 24px rgba(0,0,0,.07); }
+  .step-num { width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;color:#fff; }
+  .step-body { flex:1; }
+  .step-title { font-family:'Montserrat',sans-serif;font-size:15px;font-weight:700;margin-bottom:6px; }
+  .step-desc { font-size:13px;color:#555;line-height:1.65; }
+  .step-tip { margin-top:10px;font-size:12px;padding:8px 12px;border-radius:8px;border-left:3px solid;line-height:1.55; }
+
+  /* GA4 SECTION */
+  .ga4-section { background:linear-gradient(135deg,#FFF8F0,#FFF3E0);border:2px solid #F5A623;border-radius:24px;padding:48px;margin:0; }
+  .ga4-section .section-label { color:var(--ga4); }
+  .ga4-tabs { display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px; }
+  .ga4-tab { padding:8px 20px;border-radius:99px;font-size:13px;font-weight:500;cursor:pointer;border:1.5px solid #f0c070;background:#fff;color:#b86000;font-family:'DM Sans',sans-serif;transition:all .2s; }
+  .ga4-tab.active { background:var(--ga4);border-color:var(--ga4);color:#fff; }
+  .ga4-tab:hover:not(.active){border-color:var(--ga4);color:var(--ga4)}
+  .ga4-phases { display:flex;gap:6px;flex-wrap:wrap;margin-bottom:24px; }
+  .ga4-phase { padding:5px 14px;border-radius:8px;font-size:12px;font-weight:500;cursor:pointer;border:1px solid #f0c070;background:#fff;color:#b86000;font-family:'DM Sans',sans-serif;transition:all .2s; }
+  .ga4-phase.active { background:var(--ga4);border-color:var(--ga4);color:#fff; }
+  .ga4-step { background:#fff;border-radius:14px;padding:20px 22px;display:flex;gap:16px;border:1px solid #f5ddb0;animation:fadeUp .4s ease both;transition:box-shadow .2s; }
+  .ga4-step:hover { box-shadow:0 6px 20px rgba(227,116,0,.1); }
+  .ga4-num { width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;color:#fff;background:var(--ga4); }
+
+  /* KPI DARK */
+  .kpi-section { background:var(--ink);border-radius:24px;padding:48px;margin:64px 0;color:#fff; }
+  .kpi-section h3 { font-family:'Montserrat',sans-serif;font-size:26px;font-weight:800;margin-bottom:32px; }
+  .kpi-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:16px; }
+  .kpi-card { background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:20px;transition:background .2s; }
+  .kpi-card:hover { background:rgba(255,255,255,.12); }
+  .kpi-platform { font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px; }
+  .kpi-tags { display:flex;flex-wrap:wrap;gap:6px; }
+  .kpi-tag { font-size:11px;font-weight:500;padding:3px 9px;border-radius:6px;background:rgba(255,255,255,.1);color:rgba(255,255,255,.8); }
+
+  /* TIPS */
+  .tips-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:20px; }
+  .tip-card { border-radius:var(--radius);padding:28px;background:var(--card);border:1px solid #eee;transition:transform .2s,box-shadow .2s; }
+  .tip-card:hover { transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.09); }
+  .tip-num { width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-size:16px;font-weight:800;color:#fff;margin-bottom:16px; }
+  .tip-title { font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;margin-bottom:8px; }
+  .tip-body { font-size:13px;color:#666;line-height:1.65; }
+
+  /* FOOTER */
+  .footer { background:var(--ink);color:rgba(255,255,255,.5);text-align:center;padding:40px 24px;font-size:13px; }
+  .footer strong { color:#fff; }
+
+  @keyframes fadeUp { from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)} }
+  @keyframes bounce { 0%,100%{transform:rotate(45deg) translateY(0)}50%{transform:rotate(45deg) translateY(6px)} }
+  @media(max-width:600px){.kpi-section,.ga4-section{padding:24px 16px}.section{padding:48px 16px}}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-blobs">
+    <div class="blob blob-1"></div><div class="blob blob-2"></div>
+    <div class="blob blob-3"></div><div class="blob blob-4"></div><div class="blob blob-5"></div>
+  </div>
+  <div class="hero-badge"><span></span> 6 Plataformas · 4 Objetivos · Criação + Remarketing + Otimização + GA4</div>
+  <h1>Roteiro de<br><em>Anúncios Digitais</em></h1>
+  <p class="hero-sub">Guia completo para Meta, Google, TikTok, YouTube, LinkedIn Ads e Google Analytics 4.</p>
+  <div class="platform-pills">
+    <div class="pill pill-meta">🔵 Meta Ads</div>
+    <div class="pill pill-google">🔴 Google Ads</div>
+    <div class="pill pill-tiktok">⚫ TikTok Ads</div>
+    <div class="pill pill-youtube">▶ YouTube Ads</div>
+    <div class="pill pill-linkedin">🔷 LinkedIn Ads</div>
+    <div class="pill pill-ga4">📊 Google Analytics 4</div>
+  </div>
+  <div class="scroll-hint"><span>Explore</span><div class="scroll-arrow"></div></div>
+</header>
+
+<!-- NAV -->
+<nav class="sticky-nav">
+  <div class="nav-inner">
+    <button class="nav-tab active" onclick="navTo('plataformas',this)">Plataformas</button>
+    <button class="nav-tab" onclick="navTo('objetivos',this)">Objetivos</button>
+    <button class="nav-tab" onclick="navTo('roteiro',this)">Roteiro de Anúncios</button>
+    <button class="nav-tab" onclick="navTo('ga4',this)">GA4</button>
+    <button class="nav-tab" onclick="navTo('kpis',this)">KPIs</button>
+    <button class="nav-tab" onclick="navTo('dicas',this)">Dicas de Ouro</button>
+  </div>
+</nav>
+
+<!-- PLATAFORMAS -->
+<div id="plataformas"><div class="section">
+  <div class="section-label">Plataformas</div>
+  <h2 class="section-title">6 plataformas,<br>uma estratégia integrada</h2>
+  <div class="platform-grid">
+    <div class="platform-card meta">
+      <span class="platform-icon">🔵</span>
+      <div class="platform-name">Meta Ads</div>
+      <div class="platform-desc">Facebook e Instagram. Alcance massivo, segmentação comportamental e Creative Testing avançado.</div>
+      <div class="platform-kpis"><span>CBO</span><span>Pixel</span><span>Lookalike</span><span>Advantage+</span></div>
+    </div>
+    <div class="platform-card google">
+      <span class="platform-icon">🔴</span>
+      <div class="platform-name">Google Ads</div>
+      <div class="platform-desc">Captura de demanda via Pesquisa, Display e Performance Max com Smart Bidding.</div>
+      <div class="platform-kpis"><span>RLSA</span><span>PMax</span><span>tCPA</span><span>Quality Score</span></div>
+    </div>
+    <div class="platform-card tiktok">
+      <span class="platform-icon">⚫</span>
+      <div class="platform-name">TikTok Ads</div>
+      <div class="platform-desc">Conteúdo nativo em vídeo vertical. Algoritmo poderoso que encontra o público pelo criativo.</div>
+      <div class="platform-kpis"><span>Spark Ads</span><span>UGC</span><span>TopView</span><span>API Conv.</span></div>
+    </div>
+    <div class="platform-card youtube">
+      <span class="platform-icon">▶</span>
+      <div class="platform-name">YouTube Ads</div>
+      <div class="platform-desc">Vídeo com intenção. TrueView, Bumper Ads e sequências para branding e conversão.</div>
+      <div class="platform-kpis"><span>Bumper</span><span>TrueView</span><span>Sequencing</span><span>Brand Lift</span></div>
+    </div>
+    <div class="platform-card linkedin">
+      <span class="platform-icon">🔷</span>
+      <div class="platform-name">LinkedIn Ads</div>
+      <div class="platform-desc">Único canal com segmentação por cargo, empresa e setor. Ideal para B2B e ABM.</div>
+      <div class="platform-kpis"><span>Lead Gen Forms</span><span>ABM</span><span>InMail</span><span>Insight Tag</span></div>
+    </div>
+    <div class="platform-card ga4">
+      <span class="platform-icon">📊</span>
+      <div class="platform-name">Google Analytics 4</div>
+      <div class="platform-desc">Central de inteligência de dados. Mede a performance real de todos os canais e mapeia o comportamento do usuário.</div>
+      <div class="platform-kpis"><span>Eventos</span><span>Funis</span><span>Attribution</span><span>Audiences</span></div>
+    </div>
+  </div>
+</div></div>
+
+<div class="divider"></div>
+
+<!-- OBJETIVOS -->
+<div id="objetivos"><div class="section">
+  <div class="section-label">Objetivos</div>
+  <h2 class="section-title">4 objetivos,<br>estratégias distintas</h2>
+  <div class="obj-strip">
+    <div class="obj-card conv"><span class="obj-emoji">🛒</span><div class="obj-name">Vendas / Conversões</div><div class="obj-desc">Campanhas otimizadas para gerar compras e ações de alto valor. Foco em ROAS e CPA.</div></div>
+    <div class="obj-card leads"><span class="obj-emoji">📋</span><div class="obj-name">Geração de Leads</div><div class="obj-desc">Captura de dados de contato qualificados. Foco em CPL e taxa de qualificação (MQL Rate).</div></div>
+    <div class="obj-card traffic"><span class="obj-emoji">🌐</span><div class="obj-name">Tráfego para o Site</div><div class="obj-desc">Atrair visitantes qualificados. Foco em CPC, CTR e qualidade da sessão via GA4.</div></div>
+    <div class="obj-card brand"><span class="obj-emoji">✨</span><div class="obj-name">Reconhecimento de Marca</div><div class="obj-desc">Maximizar alcance único e frequência controlada. Foco em CPM, Ad Recall e Brand Lift.</div></div>
+  </div>
+</div></div>
+
+<div class="divider"></div>
+
+<!-- ROTEIRO INTERATIVO (Anúncios) -->
+<div id="roteiro"><div class="section">
+  <div class="section-label">Roteiro de Anúncios</div>
+  <h2 class="section-title">Passo a passo<br>por plataforma e objetivo</h2>
+  <div class="mode-tabs">
+    <button class="mode-btn active" onclick="setMode('Criação',this)">🚀 Criação</button>
+    <button class="mode-btn" onclick="setMode('Remarketing',this)">🔁 Remarketing</button>
+    <button class="mode-btn" onclick="setMode('Otimização',this)">⚡ Otimização</button>
+  </div>
+  <div class="filter-row" id="plat-filter">
+    <button class="filter-btn" data-plat="meta" onclick="setPlat('meta',this)">Meta</button>
+    <button class="filter-btn" data-plat="google" onclick="setPlat('google',this)">Google</button>
+    <button class="filter-btn" data-plat="tiktok" onclick="setPlat('tiktok',this)">TikTok</button>
+    <button class="filter-btn" data-plat="youtube" onclick="setPlat('youtube',this)">YouTube</button>
+    <button class="filter-btn" data-plat="linkedin" onclick="setPlat('linkedin',this)">LinkedIn</button>
+  </div>
+  <div class="filter-row" id="obj-filter">
+    <button class="filter-btn" data-obj="conversoes" onclick="setObj('conversoes',this)">Vendas/Conversões</button>
+    <button class="filter-btn" data-obj="leads" onclick="setObj('leads',this)">Geração de Leads</button>
+    <button class="filter-btn" data-obj="trafego" onclick="setObj('trafego',this)">Tráfego</button>
+    <button class="filter-btn" data-obj="marca" onclick="setObj('marca',this)">Reconhecimento</button>
+  </div>
+  <div id="all-phases"></div>
+</div></div>
+
+<div class="divider"></div>
+
+<!-- GA4 SECTION -->
+<div id="ga4"><div class="section">
+  <div class="section-label" style="color:var(--ga4)">Google Analytics 4</div>
+  <h2 class="section-title">Passo a passo<br>completo do GA4</h2>
+
+  <div class="ga4-section">
+    <div class="ga4-tabs" id="ga4-tabs"></div>
+    <div class="ga4-phases" id="ga4-phases"></div>
+    <div class="steps-list" id="ga4-steps"></div>
+  </div>
+</div></div>
+
+<div class="divider"></div>
+
+<!-- KPIs -->
+<div id="kpis"><div class="section">
+  <div class="section-label">KPIs</div>
+  <h2 class="section-title">Métricas essenciais<br>por plataforma</h2>
+  <div class="kpi-section">
+    <h3>O que monitorar em cada canal</h3>
+    <div class="kpi-grid">
+      <div class="kpi-card"><div class="kpi-platform" style="color:#60a5fa">🔵 Meta Ads</div><div class="kpi-tags"><span class="kpi-tag">ROAS</span><span class="kpi-tag">CPA</span><span class="kpi-tag">CPL</span><span class="kpi-tag">CTR</span><span class="kpi-tag">Frequência</span><span class="kpi-tag">CPM</span><span class="kpi-tag">Ad Recall Lift</span></div></div>
+      <div class="kpi-card"><div class="kpi-platform" style="color:#f87171">🔴 Google Ads</div><div class="kpi-tags"><span class="kpi-tag">ROAS</span><span class="kpi-tag">CPA</span><span class="kpi-tag">Quality Score</span><span class="kpi-tag">CTR</span><span class="kpi-tag">Parcela Impressões</span><span class="kpi-tag">CPL</span></div></div>
+      <div class="kpi-card"><div class="kpi-platform" style="color:#d1d5db">⚫ TikTok Ads</div><div class="kpi-tags"><span class="kpi-tag">ROAS</span><span class="kpi-tag">CPA</span><span class="kpi-tag">CPL</span><span class="kpi-tag">CTR</span><span class="kpi-tag">Taxa Visualização</span><span class="kpi-tag">CPM</span></div></div>
+      <div class="kpi-card"><div class="kpi-platform" style="color:#fca5a5">▶ YouTube Ads</div><div class="kpi-tags"><span class="kpi-tag">ROAS</span><span class="kpi-tag">CPA</span><span class="kpi-tag">CPV</span><span class="kpi-tag">CTR</span><span class="kpi-tag">View-through Rate</span><span class="kpi-tag">Ad Recall</span></div></div>
+      <div class="kpi-card"><div class="kpi-platform" style="color:#93c5fd">🔷 LinkedIn Ads</div><div class="kpi-tags"><span class="kpi-tag">CPL</span><span class="kpi-tag">MQL Rate</span><span class="kpi-tag">CTR</span><span class="kpi-tag">CPM</span><span class="kpi-tag">Pipeline Gerado</span><span class="kpi-tag">ROAS</span></div></div>
+      <div class="kpi-card"><div class="kpi-platform" style="color:#fcd34d">📊 Google Analytics 4</div><div class="kpi-tags"><span class="kpi-tag">Sessões</span><span class="kpi-tag">Taxa Engajamento</span><span class="kpi-tag">Conversões</span><span class="kpi-tag">ROAS</span><span class="kpi-tag">LTV</span><span class="kpi-tag">Funil</span><span class="kpi-tag">Atribuição</span></div></div>
+    </div>
+  </div>
+</div></div>
+
+<div class="divider"></div>
+
+<!-- DICAS -->
+<div id="dicas"><div class="section">
+  <div class="section-label">Dicas de Ouro</div>
+  <h2 class="section-title">Princípios que valem<br>para todas as plataformas</h2>
+  <div class="tips-grid">
+    <div class="tip-card"><div class="tip-num" style="background:var(--meta)">01</div><div class="tip-title">Rastreamento primeiro, sempre</div><div class="tip-body">80% dos problemas de performance começam em rastreamento quebrado. Valide pixel, tags e eventos antes de qualquer otimização.</div></div>
+    <div class="tip-card"><div class="tip-num" style="background:var(--leads)">02</div><div class="tip-title">Respeite o período de aprendizado</div><div class="tip-body">Algoritmos precisam de dados para aprender. Intervenções prematuras reiniciam o aprendizado e aumentam o CPA. Aguarde 7–14 dias.</div></div>
+    <div class="tip-card"><div class="tip-num" style="background:var(--google)">03</div><div class="tip-title">Escale gradualmente</div><div class="tip-body">Aumentos de orçamento acima de 20% de uma vez podem reiniciar o aprendizado. Escale em incrementos de 10–15% a cada 2–3 dias.</div></div>
+    <div class="tip-card"><div class="tip-num" style="background:var(--conv)">04</div><div class="tip-title">Criativo é rei no TikTok</div><div class="tip-body">No TikTok, o criativo é a segmentação. Conteúdo nativo performa muito melhor. Renove criativos a cada 7–10 dias.</div></div>
+    <div class="tip-card"><div class="tip-num" style="background:var(--youtube)">05</div><div class="tip-title">Primeiros 5 segundos no YouTube</div><div class="tip-body">Logo e mensagem principal antes do botão "Pular". Usuários que pulam ainda recebem impressão de marca com visual forte.</div></div>
+    <div class="tip-card"><div class="tip-num" style="background:var(--linkedin)">06</div><div class="tip-title">LinkedIn: CPL alto, lead de qualidade</div><div class="tip-body">Avalie pelo custo por lead qualificado (MQL), não pelo CPL bruto. O LTV dos clientes B2B justifica o investimento.</div></div>
+    <div class="tip-card"><div class="tip-num" style="background:var(--ga4)">07</div><div class="tip-title">GA4 é a fonte da verdade</div><div class="tip-body">Cada plataforma reporta seus próprios números otimistamente. Use o GA4 com atribuição baseada em dados como árbitro neutro de performance.</div></div>
+    <div class="tip-card"><div class="tip-num" style="background:#059669">08</div><div class="tip-title">Exclusões são tão importantes quanto inclusões</div><div class="tip-body">Anunciar produto para quem já comprou gera irritação e aumenta o custo. Sempre exclua públicos convertidos dos conjuntos de aquisição.</div></div>
+    <div class="tip-card"><div class="tip-num" style="background:#d97706">09</div><div class="tip-title">Frequência precisa de controle ativo</div><div class="tip-body">Acima de 5–7 impressões por semana na maioria das plataformas, o anúncio começa a gerar rejeição em vez de conversão.</div></div>
+    <div class="tip-card"><div class="tip-num" style="background:#7c3aed">10</div><div class="tip-title">CPL qualificado, não volume</div><div class="tip-body">Configure feedback de qualidade do CRM de volta às plataformas via API de Conversões para otimizar por leads reais.</div></div>
+    <div class="tip-card"><div class="tip-num" style="background:#0891b2">11</div><div class="tip-title">Sinergia entre canais multiplica resultados</div><div class="tip-body">Usuários expostos a branding têm CPA 15–30% menor em conversão. Meça o impacto holístico via GA4.</div></div>
+    <div class="tip-card"><div class="tip-num" style="background:#be123c">12</div><div class="tip-title">ABM é o superpoder do LinkedIn</div><div class="tip-body">Nenhuma outra plataforma permite anunciar para funcionários de empresas específicas + segmentação de cargo simultaneamente.</div></div>
+  </div>
+</div></div>
+
+<footer class="footer">
+  <strong>Guia de Anúncios Digitais + GA4</strong> · 6 Plataformas · 4 Objetivos · Criação, Remarketing e Otimização
+</footer>
+
+<script>
+// ─────────────────────────────────────────────
+// PLATFORM ROTEIRO DATA (Ads)
+// ─────────────────────────────────────────────
+const PLATFORMS = {
+  meta:{name:'Meta Ads',color:'#1877F2'},
+  google:{name:'Google Ads',color:'#EA4335'},
+  tiktok:{name:'TikTok Ads',color:'#333333'},
+  youtube:{name:'YouTube Ads',color:'#FF0000'},
+  linkedin:{name:'LinkedIn Ads',color:'#0A66C2'},
+};
+const OBJS = {
+  conversoes:{name:'Vendas/Conversões',color:'#2D7D0A'},
+  leads:{name:'Geração de Leads',color:'#6B35D9'},
+  trafego:{name:'Tráfego',color:'#0B5EA8'},
+  marca:{name:'Reconhecimento',color:'#A05C00'},
+};
+const AD_PHASES = {
+  'Criação':['Pré-requisitos','Campanha','Público','Criativos','Lance & Budget','Publicação'],
+  'Remarketing':['Rastreamento','Públicos','Campanha','Criativos','Lances','Monitoramento'],
+  'Otimização':['Diagnóstico','Estrutura','Criativos','Lances & Budget','Público','Escala'],
+};
+
+// Generic step builder for non-linkedin platforms
+function genericSteps(platName,platColor,objName,objColor,mode,phase){
+  const byMode = {
+    'Criação':{
+      'Pré-requisitos':[
+        {t:`Instale a tag de rastreamento do ${platName}`,d:`Instale o pixel/tag via GTM ou código direto. Valide todos os eventos de conversão antes de criar qualquer campanha.`,tip:'Rastreamento correto é a base de toda otimização. Problemas aqui invalidam todo o aprendizado do algoritmo.',tc:platColor},
+        {t:'Defina o orçamento mínimo de teste',d:`Para campanhas de ${objName}, estabeleça um orçamento diário mínimo que permita dados suficientes para o período de aprendizado.`,tip:null},
+        {t:'Configure o objetivo de conversão correto',d:'Selecione o evento de maior valor com volume suficiente. Hierarquia: Compra → Checkout → AddToCart → ViewContent.',tip:null},
+      ],
+      'Campanha':[
+        {t:`Crie campanha com objetivo ${objName}`,d:`Acesse o gerenciador do ${platName} e crie uma nova campanha com o objetivo correto para ${objName}.`,tip:null},
+        {t:'Configure os parâmetros básicos',d:'Defina datas, orçamento, estratégia de lance e posicionamentos adequados ao objetivo.',tip:null},
+        {t:'Vincule o rastreamento à campanha',d:'Garanta que o pixel/tag está vinculado e que o evento de conversão correto está selecionado como meta de otimização.',tip:'Sem esse vínculo, o algoritmo não tem dados para otimizar e o aprendizado não acontece.',tc:platColor},
+      ],
+      'Público':[
+        {t:'Defina a segmentação principal',d:`Configure o público-alvo com base nos dados demográficos, interesses e comportamentos alinhados ao perfil do cliente ideal para ${objName}.`,tip:null},
+        {t:'Crie públicos Lookalike de alta qualidade',d:'Use sua lista de melhores clientes (mín. 100–300 pessoas) como semente para criar Lookalike. Público 1% tem melhor qualidade.',tip:'Lookalike de compradores com maior LTV converte melhor do que Lookalike da base geral.',tc:objColor},
+        {t:'Configure exclusões de público',d:'Exclua clientes recentes das campanhas de aquisição. Sobreposição entre remarketing e prospecção encarece os dois.',tip:null},
+      ],
+      'Criativos':[
+        {t:'Produza ao menos 3 variações de formato',d:'Inclua vídeo curto (15s), imagem estática e formato nativo da plataforma. Formatos diferentes alcançam momentos de atenção distintos.',tip:null},
+        {t:'Otimize o gancho dos primeiros 3 segundos',d:'O início do criativo determina se o usuário continua ou passa. Comece com o problema, o resultado ou algo visualmente impactante.',tip:'Taxa de retenção abaixo de 50% nos primeiros 3s = gancho fraco. Teste diferentes aberturas.',tc:platColor},
+        {t:'Inclua CTA claro e específico',d:`Para ${objName}, use CTAs diretos e específicos alinhados à ação esperada. Evite CTAs genéricos.`,tip:null},
+      ],
+      'Lance & Budget':[
+        {t:'Inicie com estratégia de aprendizado',d:'Use Custo menor ou Maximizar conversões nos primeiros 14 dias para maximizar o aprendizado do algoritmo antes de definir CPAs.',tip:null},
+        {t:'Aumente o orçamento gradualmente',d:'Incremente em até 20% a cada 2–3 dias. Aumentos bruscos reiniciam o aprendizado e podem dobrar o CPA temporariamente.',tip:'Paciência na fase de escala é uma das habilidades mais valiosas em mídia paga.',tc:platColor},
+      ],
+      'Publicação':[
+        {t:'Faça checklist final antes de publicar',d:'Confirme: rastreamento ativo, evento de conversão selecionado, URL com UTM, criativos aprovados pelas políticas.',tip:null},
+        {t:'Monitore as primeiras 72 horas',d:'Acompanhe impressões, cliques e primeiros eventos. Não faça otimizações significativas nos primeiros 7 dias de aprendizado.',tip:'O período de aprendizado é sagrado. Intervenções prematuras prolongam o custo e reduzem a eficiência.',tc:platColor},
+      ],
+    },
+    'Remarketing':{
+      'Rastreamento':[
+        {t:'Valide eventos granulares no funil',d:'Confirme que cada etapa do funil está sendo rastreada: visualização → consideração → intenção → conversão.',tip:'Sem eventos granulares, o remarketing fica limitado a "todos os visitantes". Segmentação por comportamento é muito mais eficaz.',tc:platColor},
+        {t:'Crie públicos segmentados por estágio',d:'Configure públicos separados por etapa: visitantes gerais (60d), engajadores de alto valor (14d), abandonadores (7d), compradores (30d).',tip:null},
+      ],
+      'Públicos':[
+        {t:'Segmente por temperatura de intenção',d:'Público frio (visitou uma vez), morno (visitou múltiplas vezes ou adicionou ao carrinho) e quente (iniciou checkout). Cada um recebe mensagem diferente.',tip:null},
+        {t:'Configure exclusões entre segmentos',d:'Cada segmento de remarketing deve excluir os segmentos de maior intenção (ex: abandonadores de carrinho excluem os que já compraram).',tip:'Exclusões cruzadas evitam que você mostre mensagens erradas para o momento errado do usuário.',tc:platColor},
+        {t:'Crie Lookalike de compradores para prospecção paralela',d:'Com lista de compradores (mín. 100–300 pessoas), crie Lookalike para rodar em paralelo ao remarketing.',tip:null},
+      ],
+      'Campanha':[
+        {t:'Crie campanha de remarketing separada',d:'Nunca misture remarketing com prospecção na mesma campanha. Mantenha separados para analisar e otimizar individualmente.',tip:null},
+        {t:'Defina mensagem específica por segmento',d:`Para ${objName}: abandono = urgência + produto; visitante = benefícios; comprador = upsell ou cross-sell.`,tip:null},
+      ],
+      'Criativos':[
+        {t:'Criativo por estágio do funil',d:'Abandono de carrinho: lembre o produto + urgência. Visitante geral: benefícios + prova social. Comprador anterior: novidade + exclusividade.',tip:null},
+        {t:'Configure sequência temporal',d:'Dias 1–3: lembrete neutro. Dias 4–7: incentivo (desconto, frete grátis). Dias 8–14: urgência máxima. Após 14 dias sem conversão: pausa ou nova oferta.',tip:null},
+      ],
+      'Lances':[
+        {t:'Use CPA desejado com histórico de dados',d:'Com histórico de conversões de remarketing, defina CPA desejado 20% acima do CPA atual para estabilidade e escala gradual.',tip:null},
+        {t:'Lance maior para públicos de maior intenção',d:'Abandonadores de checkout merecem lance 30–50% maior que visitantes gerais. O valor potencial justifica o custo maior.',tip:null},
+      ],
+      'Monitoramento':[
+        {t:'Monitore ROAS e CPA separadamente por segmento',d:'Remarketing deve ter ROAS significativamente maior que prospecção. Se não, revise a segmentação ou os criativos.',tip:null},
+        {t:'Controle a frequência rigorosamente',d:'Frequência acima de 5–7x/semana em remarketing indica saturação. Atualize criativos ou expanda o público.',tip:'Alta frequência + CPA crescente = público saturado. Renove o criativo antes de pausar o público.',tc:platColor},
+      ],
+    },
+    'Otimização':{
+      'Diagnóstico':[
+        {t:'Audite o rastreamento antes de qualquer mudança',d:'Verifique se o pixel/tag está disparando corretamente. Use as ferramentas de diagnóstico da plataforma.',tip:'80% dos problemas de performance começam em rastreamento quebrado. Resolva isso antes de qualquer outra otimização.',tc:'#EA4335'},
+        {t:'Identifique campanhas em período de aprendizado',d:'Campanhas em aprendizado têm métricas instáveis. Aguarde ao menos 7 dias antes de avaliar performance.',tip:null},
+        {t:'Segmente a análise por nível',d:'Campanha → Conjunto/Grupo → Anúncio. Não avalie performance agregada. Desça até o criativo individual para identificar o problema.',tip:null},
+      ],
+      'Estrutura':[
+        {t:'Consolide campanhas fragmentadas',d:'Muitas campanhas com orçamentos pequenos competem entre si e impedem o aprendizado. Funda campanhas similares.',tip:'Use ferramentas de diagnóstico de sobreposição para identificar campanhas disputando o mesmo público.',tc:objColor},
+        {t:'Revise exclusões de público',d:'Confirme que compradores recentes estão excluídos das campanhas de aquisição. Sobreposição entre remarketing e prospecção encarece os dois.',tip:null},
+        {t:'Simplifique a estrutura para facilitar o aprendizado',d:'Menos campanhas com mais budget cada uma = aprendizado mais rápido = melhores resultados. Simplicidade vence complexidade na mídia paga moderna.',tip:null},
+      ],
+      'Criativos':[
+        {t:'Identifique o criativo campeão',d:'Ordene anúncios por CPA ou ROAS. Pause os 20% mais caros. Duplique e itere os 20% com melhor desempenho.',tip:null},
+        {t:'Otimize o gancho dos primeiros 3 segundos',d:'Taxa de retenção abaixo de 60% nos 3 primeiros segundos = gancho fraco. Refaça a abertura sem alterar o restante.',tip:null},
+        {t:'Estabeleça cadência de renovação de criativos',d:'Atualize criativos a cada 7–14 dias para públicos quentes, 3–4 semanas para públicos frios. Monitore frequência como gatilho.',tip:'Criativo cansado é a causa mais comum de CPA crescente em campanhas que já funcionaram bem.',tc:platColor},
+      ],
+      'Lances & Budget':[
+        {t:'Ajuste o orçamento gradualmente (máx. 20% por vez)',d:'Incrementos maiores reiniciam o aprendizado. Aumente 10–15% a cada 2–3 dias para escalar com eficiência.',tip:null},
+        {t:'Use regras automatizadas para controle',d:'Configure regras: pausar se CPA > X em 3 dias; aumentar budget 15% se CPA < Y por 2 dias consecutivos.',tip:'Use janelas de 3–7 dias nas regras. Dados de 1 dia têm variância alta e geram ações desnecessárias.',tc:platColor},
+        {t:'Calcule o CPA máximo sustentável',d:'CPA máximo = Ticket médio × Margem × Taxa de conversão. Use esse número como teto nas estratégias de lance.',tip:null},
+      ],
+      'Público':[
+        {t:'Expanda públicos que esgotaram o alcance',d:'Frequência alta + CPM crescente = público saturado. Expanda faixa etária, adicione interesses ou teste público amplo.',tip:null},
+        {t:'Teste três abordagens em paralelo',d:'Público de interesse vs. Lookalike vs. Público amplo (com bons criativos). Compare CPA por 7–14 dias e concentre budget no vencedor.',tip:null},
+      ],
+      'Escala':[
+        {t:'Escale horizontalmente antes de verticalmente',d:'Duplique conjuntos vencedores com novos públicos antes de aumentar orçamento nos existentes. Evita saturação do público original.',tip:null},
+        {t:'Monitore o CPA de aquisição vs. LTV ao escalar',d:'Ao escalar, o CPA tende a subir. Calcule se o LTV dos novos clientes sustenta o CPA maior.',tip:'Use cohorts no GA4 para medir LTV por origem de campanha e justificar CPAs maiores em escala.',tc:objColor},
+        {t:'Diversifique formatos para ampliar o alcance',d:'Formatos diferentes (vídeo, imagem, carrossel, documento) alcançam públicos e momentos de atenção distintos. Não dependa de um único formato.',tip:null},
+      ],
+    },
+  };
+  return (byMode[mode]||{})[phase] || [];
+}
+
+// LinkedIn full data (abbreviated — same as before)
+const linkedinSteps = {
+  conversoes:{
+    'Criação':{
+      'Pré-requisitos':[
+        {t:'Instale o LinkedIn Insight Tag',d:'Adicione o script via GTM ou direto no código. Obrigatório para rastreamento de conversões, remarketing e dados de audiência.',tip:'Verifique em Campaign Manager → Ativos de conta → Insight Tag. Ícone verde = ativo.',tc:'#0A66C2'},
+        {t:'Crie uma Página de Empresa completa',d:'Campanhas exigem uma Página de Empresa vinculada. Complete com logo, descrição e URL do site.',tip:null},
+        {t:'Configure eventos de conversão',d:'Campaign Manager → Ativos de conta → Conversões → + Criar. Configure para Compras, Inscrições ou outros eventos de alto valor.',tip:'LinkedIn Conversions API (server-side) recomendado para maior precisão pós-cookies.',tc:'#2D7D0A'},
+        {t:'Defina o orçamento mínimo viável',d:'CPCs e CPMs mais altos que outras plataformas. Budget mínimo recomendado: R$150–300/dia por campanha.',tip:'CPM no LinkedIn pode ser 3–5x maior que Meta, mas a qualidade do lead B2B justifica.',tc:'#EA4335'},
+      ],
+      'Campanha':[
+        {t:'Acesse o Campaign Manager',d:'linkedin.com/campaignmanager → selecione a conta → + Criar campanha.',tip:null},
+        {t:"Selecione 'Conversões no site'",d:'O algoritmo otimizará para usuários com maior probabilidade de converter na ação configurada.',tip:null},
+        {t:'Escolha o formato de anúncio',d:'Single Image Ad (mais comum), Video Ad, Carousel ou Document Ad. Comece com Single Image para validar.',tip:'Single Image tem melhor equilíbrio entre alcance e custo para conversões no início.',tc:'#185FA5'},
+      ],
+      'Público':[
+        {t:'Use segmentação profissional como diferencial',d:'LinkedIn: cargo, função, senioridade, setor, tamanho de empresa, habilidades. Combine 2–3 critérios.',tip:'Público mínimo recomendado: 50.000 pessoas. Abaixo disso, o CPM sobe demais.',tc:'#0A66C2'},
+        {t:'Priorize cargo + senioridade para B2B',d:'Segmente por cargos de decisão (Diretor, VP, C-Level) + função + setor da empresa.',tip:null},
+        {t:'Use Matched Audiences para ABM',d:'Upload de lista de contas-alvo ou e-mails de prospects do CRM. Permite ABM preciso com mensagem personalizada por conta.',tip:'Company Targeting: anuncie apenas para pessoas nas empresas que você quer atingir.',tc:'#6B35D9'},
+      ],
+      'Criativos':[
+        {t:'Adapte o criativo para o contexto profissional',d:'No LinkedIn, o usuário está em modo profissional. Fale sobre crescimento de negócio, resultados e desafios profissionais.',tip:'Evite tom casual. Proposta de valor clara, dados e autoridade convertem muito melhor.',tc:'#A05C00'},
+        {t:'Use dado ou estatística impactante no headline',d:"Headlines com números concretos performam melhor: 'Reduza 40% do tempo de onboarding', 'Aumente o pipeline em 3x'.",tip:null},
+        {t:'Imagens de pessoas reais em contexto profissional',d:'Fotos de profissionais reais têm CTR muito superior a imagens de banco de imagem.',tip:'Rosto humano olhando para a câmera tem CTR 30% maior no LinkedIn.',tc:'#0A66C2'},
+      ],
+      'Lance & Budget':[
+        {t:'Comece com CPC Manual para controle',d:'Use CPC manual próximo ao CPC sugerido (dentro de 20%). Muito abaixo = entrega reduzida.',tip:'Lance muito abaixo do sugerido reduz drasticamente a entrega da campanha.',tc:'#185FA5'},
+        {t:'Migre para otimização por conversão após 100 eventos',d:'Com histórico de 100+ conversões, ative Custo máximo por conversão para otimização automática.',tip:null},
+        {t:'Configure orçamento diário com teto total',d:'Defina orçamento diário e orçamento total da campanha como teto para controle de gastos.',tip:null},
+      ],
+      'Publicação':[
+        {t:'Faça checklist final antes de publicar',d:'Confirme: Insight Tag ativo, evento de conversão selecionado, público mínimo 50k, URL com UTM.',tip:null},
+        {t:'Configure UTMs na URL de destino',d:'utm_source=linkedin&utm_medium=paid-social&utm_campaign=nome&utm_content=criativo em todas as URLs.',tip:null},
+        {t:'Aguarde moderação (até 24h)',d:'LinkedIn revisa anúncios em até 24 horas. Monitore impressões e cliques nas primeiras 48h.',tip:'Se não passar na moderação: revise promessas enganosas, dados pessoais ou conteúdo sensível.',tc:'#0A66C2'},
+      ],
+    },
+    'Remarketing':{
+      'Rastreamento':[{t:'Confirme o Insight Tag ativo',d:'Verifique em Campaign Manager → Ativos de conta → Insight Tag que o status está verde.',tip:null},{t:'Configure eventos granulares',d:'Além de PageView, configure ViewContent, CompleteRegistration, Purchase para segmentar por comportamento no funil.',tip:'Sem eventos granulares, seu remarketing se limita a todos os visitantes.',tc:'#0A66C2'},{t:'Aguarde volume mínimo de 300 membros',d:'LinkedIn exige mínimo de 300 membros correspondidos para ativar retargeting. Com tráfego baixo, combine com Matched Audiences.',tip:'Combine retargeting com Matched Audiences do CRM para atingir o mínimo mais rápido.',tc:'#EA4335'}],
+      'Públicos':[{t:'Crie público de visitantes por URL',d:'Ativos de conta → Públicos de retargeting: visitantes gerais, página de produto, página de conversão.',tip:null},{t:'Matched Audiences com CRM',d:'Upload de contas e e-mails de prospects. Remarketing preciso mesmo sem histórico de visita ao site.',tip:'Aceita listas de e-mail e listas de empresas por domínio. Poderoso para ABM.',tc:'#6B35D9'},{t:'Públicos de engajamento com a Página',d:'Adicione quem interagiu com sua Página de Empresa, abriu Lead Gen Forms ou interagiu com anúncios.',tip:null}],
+      'Campanha':[{t:'Crie campanha de remarketing separada',d:'Configure campanha separada. Exclua convertidos recentes dos públicos.',tip:'Exclua compradores dos últimos 30 dias. Crie campanha separada de upsell para eles.',tc:'#2D7D0A'},{t:'Personalize a mensagem por estágio',d:'Visitantes de produto: benefícios + CTA. Visitantes de checkout: urgência + garantia + suporte.',tip:null},{t:'Sponsored InMail para remarketing direto',d:'Message Ads chegam na caixa de entrada. Taxa de abertura de 50%+ para visitantes de alto valor.',tip:'Message Ads cobrados por envio. Alta taxa de conversão para audiences quentes.',tc:'#0A66C2'}],
+      'Criativos':[{t:'Criativos específicos por segmento',d:'Visitante geral: benefícios + prova social. Visualizou produto: mencione diretamente. Checkout: urgência + garantia.',tip:null},{t:'Document Ads para mais contexto',d:'Para visitantes que consumiram conteúdo mas não converteram, Document Ads aprofundam o relacionamento antes do CTA.',tip:'Document Ads têm CPL menor para públicos mornos — qualifica o lead antes de falar com vendas.',tc:'#185FA5'}],
+      'Lances':[{t:'CPM para branding, CPC para conversão',d:'Remarketing de branding: CPM. Remarketing de conversão direta: CPC ou custo por conversão.',tip:null},{t:'Lance maior para alta intenção',d:'Visitantes de checkout merecem lance 30–50% maior que visitantes gerais.',tip:'A diferença de qualidade entre públicos por estágio do funil é enorme no LinkedIn.',tc:'#0A66C2'}],
+      'Monitoramento':[{t:'Conversões por segmento de público',d:'Separe relatórios por tipo de público. Compare taxa de conversão e CPA para alocar budget.',tip:null},{t:'Integre leads ao CRM imediatamente',d:'Configure integração automática via LinkedIn nativo, Zapier ou HubSpot.',tip:'Leads B2B têm ciclo longo. Configure nurturing de e-mail em paralelo para nutrir ao longo do tempo.',tc:'#6B35D9'}],
+    },
+    'Otimização':{
+      'Diagnóstico':[{t:'Audite o Insight Tag e conversões',d:'Confirme que o Insight Tag está ativo e eventos de conversão disparando corretamente.',tip:'LinkedIn tem menor volume de dados. Problemas de rastreamento afetam desproporcionalmente o aprendizado.',tc:'#EA4335'},{t:'CTR muito abaixo da média',d:'CTR médio no LinkedIn: 0,4–0,6% para Single Image. Abaixo de 0,2% indica problema de criativo ou público.',tip:'LinkedIn tem CTR estruturalmente menor que Meta — o usuário está em modo de trabalho, não de entretenimento.',tc:'#185FA5'}],
+      'Estrutura':[{t:'Consolide campanhas com públicos sobrepostos',d:'Campanhas com segmentações similares competem no leilão e encarecem o CPM mutuamente.',tip:null},{t:'Separe por segmento estratégico',d:'Campanhas separadas por: tamanho de empresa, senioridade (Gestores vs. C-Level), função.',tip:'Cada segmento tem proposta de valor diferente. Mensagem genérica não ressoa com nenhum.',tc:'#0A66C2'}],
+      'Criativos':[{t:'Diferentes ângulos por segmento de cargo',d:'CMO: ROI e resultados. Gerente: eficiência operacional. C-Level: crescimento estratégico.',tip:'O maior erro é usar a mesma mensagem para todos os cargos. CTR e CPL melhoram com personalização.',tc:'#0A66C2'},{t:'Pause CTR < 0,2% após 5.000 impressões',d:'Criativo não gerando interesse. Teste novo ângulo ou imagem completamente diferente.',tip:null},{t:'Teste Carousel e Document Ads',d:'Se Single Image estagnado: Carousel (narrativa) e Document Ads (conteúdo para download).',tip:'Document Ads têm CPL 40–60% menor para públicos mornos. Excelente para nutrir decisores B2B.',tc:'#6B35D9'}],
+      'Lances & Budget':[{t:'Lance baseado no valor real do lead',d:'LinkedIn tem CPC alto (R$20–80 em B2B). Calcule o CPC máximo pelo ticket médio e margem.',tip:'CPC máximo = Ticket × Margem × Taxa de conversão. Use como teto no CPC manual.',tc:'#2D7D0A'},{t:'Configure janela de conversão adequada ao B2B',d:'Use janela de 60–90 dias no Campaign Manager. Em B2B, a conversão pode levar semanas ou meses.',tip:'Janela de 7 dias subestima gravemente o impacto de campanhas LinkedIn em ciclos longos.',tc:'#185FA5'}],
+      'Público':[{t:'Refine com Audience Insights',d:'Audience Insights mostra o perfil real de quem clicou. Use para refinar e excluir segmentos de baixo desempenho.',tip:null},{t:'Teste ABM com lista de contas',d:'Para vendas enterprise, Company Targeting com lista de contas-alvo + segmentação de cargo.',tip:'ABM no LinkedIn: nenhuma outra plataforma permite essa combinação de empresa + cargo simultaneamente.',tc:'#0A66C2'},{t:'Segmente por Skills para nichos técnicos',d:'Para produtos técnicos: habilidades + senioridade + setor. Combinação poderosa para SaaS B2B.',tip:null}],
+      'Escala':[{t:'Expanda segmentação gradualmente',d:'Adicione um critério de cada vez e monitore CPA por 7 dias antes de continuar expandindo.',tip:null},{t:'Diversifique formatos ao escalar',d:'Se Single Image saturou: Video Ads e Document Ads em grupos separados para alcançar momentos diferentes.',tip:null},{t:'Combine com Employee Advocacy',d:'Colaboradores que compartilham conteúdo multiplicam o alcance sem custo adicional.',tip:'50 colaboradores ativos = 25.000–150.000 profissionais alcançados organicamente.',tc:'#2D7D0A'}],
+    },
+  },
+  leads:{
+    'Criação':{
+      'Pré-requisitos':[
+        {t:'Instale Insight Tag e configure evento de Lead',d:'Instale o Insight Tag e configure o evento de conversão para Lead (disparo após envio de formulário).',tip:null},
+        {t:'Prepare a oferta de geração de lead',d:'Lead Gen Forms funcionam melhor com: e-book, white paper, webinar, diagnóstico gratuito ou trial.',tip:'Oferta genérica tem CPL 3–5x maior que oferta de conteúdo específico. Invista no material.',tc:'#6B35D9'},
+        {t:'Construa o Lead Gen Form antes da campanha',d:'Ativos de conta → Lead Gen Forms → + Criar. LinkedIn preenche automaticamente nome, e-mail, empresa e cargo do perfil.',tip:'Preenchimento automático reduz o atrito e aumenta a taxa de conclusão para 10–20%.',tc:'#0A66C2'},
+        {t:'Configure integração com CRM',d:'Integração direta com HubSpot, Salesforce, Marketo ou Zapier. Lead sem integração = lead que esfria.',tip:'Lead contactado em até 5 minutos tem 9x mais chance de converter. Automatize o contato inicial.',tc:'#2D7D0A'},
+      ],
+      'Campanha':[{t:'Crie campanha Geração de leads',d:'Campaign Manager → + Criar → Objetivo: Geração de leads.',tip:null},{t:'Selecione formato Lead Gen Form',d:'Single Image + Lead Gen Form ou Video + Lead Gen Form. Formulário nativo maximiza a taxa de conclusão.',tip:'Sponsored InMail com Lead Gen Form tem taxa de conclusão ainda maior para Matched Audiences quentes.',tc:'#6B35D9'}],
+      'Público':[{t:'Segmente por cargo e senioridade (ICP)',d:'Defina o Ideal Customer Profile. Para SaaS B2B: Diretor/VP de TI, Marketing ou Operações.',tip:'Seja específico pelo ICP. Cada tipo de negócio tem o decisor certo.',tc:'#0A66C2'},{t:'Filtre por tamanho de empresa',d:'PME: 11–200 funcionários. Enterprise: 201–10.000+. Misturar dilui a mensagem e encarece o CPL.',tip:null},{t:'Matched Audience de contas-alvo',d:'Company Targeting com lista de empresas + segmentação de cargo. Uso mais poderoso do LinkedIn Ads.',tip:'ABM tem taxa de conversão de lead para oportunidade 3–5x maior que campanhas genéricas.',tc:'#6B35D9'}],
+      'Criativos':[{t:'Destaque o valor do material no criativo',d:'Mostre a capa do e-book ou preview do webinar. O usuário precisa entender o valor antes de fornecer dados.',tip:'Criativos que mostram o material têm CTR 40–60% maior que criativos genéricos de lead.',tc:'#0A66C2'},{t:'Personalize por segmento de cargo',d:'C-Level: impacto estratégico e ROI. Gerente: eficiência operacional. Analista: ferramentas práticas.',tip:'Campanhas com criativo por cargo têm CPL 30–50% menor. A personalização compensa o custo de produção.',tc:'#6B35D9'}],
+      'Lance & Budget':[{t:'CPL desejado após histórico',d:'Inicie com Maximizar leads por 14 dias. Com 30+ leads, mude para CPL desejado 20% acima do atual.',tip:null},{t:'Orçamento mínimo de R$150/dia',d:'Abaixo disso, o algoritmo tem budget insuficiente. LinkedIn tem leilões mais caros que outras plataformas.',tip:'CPL médio no LinkedIn B2B: R$80 a R$400. Planeje o budget pelos leads necessários × CPL esperado.',tc:'#185FA5'}],
+      'Publicação':[{t:'Teste o formulário antes de publicar',d:'Preencha o próprio formulário como usuário para verificar campos, política de privacidade e mensagem de agradecimento.',tip:null},{t:'Configure alertas de novos leads no CRM',d:'Garanta que a equipe de vendas recebe notificação imediata de novo lead.',tip:'Crie fluxo automático de boas-vindas que dispara imediatamente após o preenchimento.',tc:'#2D7D0A'}],
+    },
+    'Remarketing':{
+      'Rastreamento':[{t:'Configure eventos de lead e engajamento',d:'Além do Insight Tag básico: LeadFormOpen e LeadFormSubmit para segmentar quem abriu mas não enviou.',tip:'Quem abriu o Lead Gen Form e não enviou é seu público mais quente. Muito mais barato de converter.',tc:'#6B35D9'},{t:'Importe lista de leads do CRM',d:'Faça upload de leads do CRM que não avançaram no funil como Matched Audience para nurturing.',tip:null}],
+      'Públicos':[{t:'Por estágio no funil de conversão',d:'Visitantes da LP (30d), abriram o form mas não enviaram, leads capturados (exclusão ou nurturing).',tip:null},{t:'Matched Audiences de prospects em negociação',d:'Prospects que o time de vendas está negociando como Matched Audience. Anúncio durante o ciclo reforça o processo.',tip:'Prospect avaliando seu produto que vê anúncios = muito mais confiança no fechamento.',tc:'#0A66C2'}],
+      'Campanha':[{t:'Remarketing com conteúdo de nurturing',d:'Para leads frios: Document Ads (white papers, estudos de caso) ou Thought Leadership Ads.',tip:'Thought Leadership Ads: posts de executivos amplificados. Alta credibilidade para decisores B2B.',tc:'#0A66C2'},{t:'Message Ads para abordagem direta',d:'Para prospects quentes, Message Ads têm taxa de resposta 3–5x maior que e-mail frio.',tip:null}],
+      'Criativos':[{t:'Estudos de caso específicos por setor',d:'Para remarketing: cases de clientes similares ao segmento. Especificidade do case é crucial para credibilidade.',tip:"'Como empresa X do setor Y reduziu Z%' converte muito mais que case genérico.",tc:'#6B35D9'},{t:'Thought Leadership para autoridade',d:'Amplificação de posts de liderança (CEO, VP) cria conexão humana e reforça autoridade de mercado.',tip:null}],
+      'Lances':[{t:'Lance maior para quem abriu o form',d:'Quem abriu o Lead Gen Form e não enviou merece lance 50–80% maior que visitantes gerais.',tip:null},{t:'CPM para nurturing durante ciclo longo',d:'Para manter presença durante o ciclo de venda B2B longo, CPM maximiza impressões por R$ gasto.',tip:'Em B2B com ciclo longo, o objetivo não é o clique — é a presença constante de marca.',tc:'#0A66C2'}],
+      'Monitoramento':[{t:'Progressão de leads no funil',d:'Além do CPL: taxa de MQL, SQL, proposta e fechamento por campanha de remarketing.',tip:null},{t:'Velocity do ciclo de venda',d:'Oportunidades com remarketing LinkedIn fecham mais rápido? Meça o tempo médio de fechamento.',tip:'Se fecham 20% mais rápido, isso representa ROI real mesmo com CPL aparentemente alto.',tc:'#2D7D0A'}],
+    },
+    'Otimização':{
+      'Diagnóstico':[{t:'Analise o funil completo',d:'Impressão → clique → form aberto → form enviado → MQL → SQL → cliente. Identifique onde está o gargalo.',tip:'Taxa conclusão < 5%: problema no formulário. Taxa MQL < 10%: problema de segmentação ou oferta.',tc:'#6B35D9'},{t:'CPL bruto vs. CPL qualificado',d:'CPL R$80 com 30% MQL = R$267 por MQL. CPL R$150 com 60% MQL = R$250. A segunda é melhor.',tip:'CPL bruto é a métrica errada para B2B. Decida sempre pelo custo por lead qualificado.',tc:'#0A66C2'}],
+      'Estrutura':[{t:'Campanha separada por segmento de ICP',d:'Cada segmento (tamanho de empresa, setor, cargo) deve ter campanha com criativo e oferta específicos.',tip:null},{t:'Revise o Lead Gen Form regularmente',d:'Formulários com mais de 5 campos têm abandono crescente. Remova campos que o time de vendas não usa.',tip:null}],
+      'Criativos':[{t:'Teste diferentes ofertas (mesmo público)',d:'E-book vs. webinar vs. diagnóstico vs. trial. A oferta é a maior variável de CPL em LinkedIn.',tip:'C-Level: diagnóstico grátis tem CPL maior mas qualidade superior. Técnicos: conteúdo aprofundado.',tc:'#6B35D9'},{t:'Prova social específica por setor',d:"Mencione empresas conhecidas pelo público-alvo no setor deles. 'Usado por X e Y do setor financeiro' converte mais.",tip:null}],
+      'Lances & Budget':[{t:'CPL máximo pelo valor do cliente',d:'CPL máximo = LTV × Margem × Taxa de conversão. Para LTV R$20k e 10% conversão: max R$2.000 × margem.',tip:'LinkedIn tem CPL maior, mas LTV dos clientes B2B é proporcionalmente maior. Calcule o ROI correto.',tc:'#185FA5'},{t:'Sazonalidade B2B',d:'Set–nov e mar–jun têm mais atividade B2B. Jul–ago e dez têm menos. Ajuste o budget conforme.',tip:'CPL 20–30% menor de set a nov vs. jan ou jul. Planeje o budget pela sazonalidade profissional.',tc:'#2D7D0A'}],
+      'Público':[{t:'Predictive Audiences para expansão',d:'Com 100+ conversões históricas, ative Predictive Audiences. IA encontra usuários similares ao seu histórico.',tip:'Requer volume histórico adequado mas entrega qualidade superior ao targeting manual.',tc:'#0A66C2'},{t:'Expanda cargos adjacentes ao ICP',d:'Diretores funcionando? Teste Gerentes Sênior e VP. Cargos adjacentes têm CPL menor com qualidade similar.',tip:null}],
+      'Escala':[{t:'ABM em escala (Tiers)',d:'Tier 1: 20 contas estratégicas, orçamento alto. Tier 2: 100 contas, médio. Tier 3: 500 contas, automático.',tip:null},{t:'Triple Touch: LinkedIn + Email + SDR',d:'Leads expostos a LinkedIn Ads + e-mail nurturing + SDR outreach convertem 3–4x mais.',tip:'A combinação dos três canais transforma o pipeline gerado pelo LinkedIn.',tc:'#6B35D9'},{t:'Ative feedback de qualidade via API',d:'Envie eventos de Lead Qualificado do CRM de volta ao LinkedIn. O algoritmo passa a otimizar por leads reais.',tip:'Este é o maior diferencial competitivo disponível. Quem faz tem vantagem enorme.',tc:'#533AB7'}],
+    },
+  },
+  trafego:{
+    'Criação':{'Pré-requisitos':[{t:'Insight Tag para rastreamento de visitantes',d:'Obrigatório para retargeting e métricas de qualidade de tráfego no Campaign Manager.',tip:null},{t:'Defina a página de destino e o objetivo da visita',d:'LinkedIn gera tráfego mais caro. Defina qual página recebe o tráfego e qual ação o visitante deve tomar.',tip:'LPs com conteúdo de alto valor têm rejeição menor. O usuário do LinkedIn está em modo de aprendizado.',tc:'#185FA5'}],'Campanha':[{t:"Objetivo 'Visitas ao site'",d:'Campaign Manager → + Criar → Objetivo: Visitas ao site.',tip:null},{t:'Formato Document Ad para conteúdo',d:'Document Ad com preview do conteúdo e redirect para o artigo completo tem CTR superior ao Single Image.',tip:null}],'Público':[{t:'Segmente por função e setor do conteúdo',d:'O tráfego de LinkedIn é mais valioso quando altamente relevante ao conteúdo da LP.',tip:'Para artigo sobre gestão de vendas: Diretores/Gerentes de Vendas + empresas 50–500 funcionários.',tc:'#0A66C2'}],'Criativos':[{t:'Headline orientado ao benefício do conteúdo',d:"'5 estratégias que triplicam o pipeline [Artigo]'. O usuário precisa saber o que vai encontrar ao clicar.",tip:null},{t:'Imagens de dados e gráficos',d:'Gráficos, infográficos e screenshots têm CTR maior para conteúdo B2B que fotos genéricas.',tip:null}],'Lance & Budget':[{t:'CPC manual para controle de custo',d:'CPC máximo aceitável baseado no valor de cada visita para o negócio.',tip:'CPC no LinkedIn B2B: R$15 a R$60+. Alto, mas visitas de decisores têm valor desproporcional.',tc:'#185FA5'}],'Publicação':[{t:'Monitore CTR nas primeiras 48h',d:'CTR esperado Single Image: 0,4–0,8%. Abaixo de 0,2% após 2.000 impressões: problema de criativo.',tip:null}]},
+    'Remarketing':{'Rastreamento':[{t:'Públicos de visitantes por URL',d:'Ativos de conta → Públicos de retargeting → Visitas ao site. Segmente por seção visitada.',tip:null}],'Públicos':[{t:'Visitantes por seção do site',d:'Blog, produto, preços, sobre. Cada segmento recebe mensagem com conteúdo relacionado.',tip:null},{t:'Engajamento com LinkedIn como sinal',d:'Pessoas que interagiram com sua Página como segmento de remarketing de tráfego.',tip:'Seguidores da página que visitaram o site são o público de maior afinidade disponível.',tc:'#0A66C2'}],'Campanha':[{t:'Conteúdo complementar ao visitado',d:'Leu artigo A → anuncie artigo B relacionado. Visitou produto → anuncie caso de uso ou webinar.',tip:'Remarketing de tráfego no LinkedIn deve aprofundar o relacionamento com conteúdo, não repetir o mesmo.',tc:'#185FA5'}],'Criativos':[{t:'Reference ao conteúdo visitado',d:"'Você leu sobre X — aqui está o guia completo'. Personalização = relevância = CTR maior.",tip:null}],'Lances':[{t:'CPM para presença de marca',d:'Para remarketing de tráfego com objetivo de visibilidade de marca, CPM maximiza impressões.',tip:null}],'Monitoramento':[{t:'Progressão de visitantes no funil',d:'No GA4, visitantes de remarketing LinkedIn estão avançando para páginas de maior valor?',tip:null}]},
+    'Otimização':{'Diagnóstico':[{t:'Qualidade do tráfego no GA4',d:'Com UTMs, veja taxa de engajamento, duração e páginas por sessão por campanha de LinkedIn.',tip:null}],'Estrutura':[{t:'Campanhas por tipo de conteúdo',d:'Blog, produto e ferramenta têm públicos e mensagens diferentes. Mantenha em campanhas separadas.',tip:null}],'Criativos':[{t:'Headline 100% claro sobre o conteúdo',d:'Ambiguidade reduz CTR e aumenta rejeição. Especificidade converte muito melhor.',tip:"'Guia: Como reduzir 40% do onboarding [15 páginas, gratuito]' tem CTR 2–3x maior que genérico.",tc:'#0A66C2'}],'Lances & Budget':[{t:'Reduza CPC gradualmente',d:'Reduza 10% por semana que o volume se mantiver estável. Encontre o piso eficiente.',tip:null}],'Público':[{t:'Refine com Audience Insights',d:'Campaign Manager mostra quem clicou (cargo, setor, empresa). Use para refinar a segmentação.',tip:null}],'Escala':[{t:'Thought Leadership para escalar com credibilidade',d:'Posts de executivos amplificados têm CPM menor e muito mais credibilidade para B2B.',tip:'Funcionalidade mais subutilizada e com maior potencial de diferenciação no LinkedIn Ads.',tc:'#0A66C2'},{t:'LinkedIn + Google Search = sinergia B2B',d:'LinkedIn cria consciência; Google Search captura a intenção gerada. Combine os dois canais.',tip:null}]},
+  },
+  marca:{
+    'Criação':{'Pré-requisitos':[{t:'Página de Empresa completa e ativa',d:'Logo, imagem de capa, descrição. Postagem semanal orgânica reduz o CPM dos anúncios pagos.',tip:'Marcas com 3+ posts/semana têm CPM 15–25% menor. O algoritmo favorece marcas ativas.',tc:'#0A66C2'}],'Campanha':[{t:"Objetivo 'Reconhecimento de marca'",d:'Campaign Manager → + Criar → Objetivo: Reconhecimento. Maximiza impressões ao menor CPM.',tip:null},{t:'Video Ads para maior impacto de marca',d:'CPM menor que Single Image e impacto de marca muito superior. Use 15–30s com branding nos primeiros 3s.',tip:'Vídeo é o formato mais eficiente para branding no LinkedIn: CPM 20–30% menor.',tc:'#0A66C2'}],'Público':[{t:'Segmentação ampla por setor',d:'Para reconhecimento, público amplo por setor maximiza o alcance único dentro do público relevante.',tip:null},{t:'Todos os níveis de senioridade',d:'O Analista de hoje é o Diretor de amanhã. Branding com profissionais em início de carreira tem ROI de longo prazo.',tip:'Construir reconhecimento com profissionais em ascensão tem ROI de longo prazo significativo.',tc:'#A05C00'}],'Criativos':[{t:'Logo nos primeiros 2–3 segundos do vídeo',d:'Para branding em vídeo, logo deve aparecer no início. Quem não assiste o vídeo completo ainda recebe a impressão.',tip:null},{t:'Storytelling, não apresentação de produto',d:'Impacto humano, cultura e histórias de clientes têm muito mais impacto de marca que apresentações corporativas.',tip:'Storytelling emocional em contexto profissional ressoa profundamente com o público do LinkedIn.',tc:'#A05C00'}],'Lance & Budget':[{t:'CPM para maximizar impressões',d:'CPM garante previsibilidade de custo por impressão. Objetivo é alcançar o maior número de profissionais.',tip:null}],'Publicação':[{t:'Configure limite de frequência',d:'Máximo 4–5 impressões por membro por mês. Sem limite, o LinkedIn concentra nos mais acessíveis.',tip:null},{t:'Monitore seguidores como KPI auxiliar',d:'Branding eficaz aumenta seguidores organicamente. Cada seguidor tem valor de alcance recorrente.',tip:'Cada seguidor representa contato que optou por receber conteúdo orgânico da marca.',tc:'#0A66C2'}]},
+    'Remarketing':{'Rastreamento':[{t:'Públicos de engajamento com a marca',d:'Seguidores, curtidas/comentários, visualizadores de vídeo (25%, 50%, 75%).',tip:null},{t:'Visualizadores de vídeo como remarketing',d:'75%+ de visualização = interesse suficiente para receber próxima mensagem da sequência.',tip:'Sequência: Apresentação (todos) → Proposta de valor (50%+) → Case/prova social (75%+).',tc:'#A05C00'}],'Públicos':[{t:'Por profundidade de engajamento',d:'Nível 1: visitaram o site. Nível 2: seguem + visitaram. Nível 3: interagiram + assistiram vídeos.',tip:null}],'Campanha':[{t:'Video Sequencing para narrativa de marca',d:'Sequência: quem viu 25% do Vídeo 1 recebe Vídeo 2. Aprofunda a história progressivamente.',tip:null},{t:'Thought Leadership para reforço de autoridade',d:'Posts de executivos para público que já conhece a marca. Credibilidade muito superior a anúncios corporativos.',tip:'Posts de fundadores têm engajamento 3–4x maior que posts corporativos. Ideal para remarketing de marca.',tc:'#0A66C2'}],'Criativos':[{t:'Depoimentos específicos de clientes reais',d:'Para público que conhece a marca: depoimentos com resultado específico têm o maior impacto de credibilidade.',tip:"'Como empresa X do setor Y alcançou resultado Z' transforma percepção. Específico sempre ganha.",tc:'#6B35D9'}],'Lances':[{t:'CPM para impressões de marca',d:'Branding em remarketing usa CPM para frequência de exposição controlada.',tip:null}],'Monitoramento':[{t:'Crescimento de seguidores como KPI',d:'Branding eficaz aumenta seguidores. Monitore correlação com exposição aos anúncios.',tip:null},{t:'Brand Lift Study para impacto real',d:'Para campanhas maiores, mede Ad Recall, consideração e familiaridade antes e depois.',tip:'Brand Lift Study é a forma mais confiável de medir ROI real de branding B2B.',tc:'#0A66C2'}]},
+    'Otimização':{'Diagnóstico':[{t:'CPM e alcance único por segmento',d:'CPM alto: saturação, público restrito ou qualidade de criativo baixa penalizada pelo leilão.',tip:null},{t:'Taxa de engajamento dos anúncios',d:'Alto engajamento reduz CPM ao longo do tempo. Responda aos comentários nos anúncios.',tip:'Responder comentários nos anúncios aumenta o engajamento e reduz o CPM pelo algoritmo.',tc:'#0A66C2'}],'Estrutura':[{t:'Video Sequencing para narrativa progressiva',d:'Sequências de 3 vídeos têm Ad Recall 3x maior do que um único vídeo repetido.',tip:null}],'Criativos':[{t:'Thought Leadership Ads para autoridade',d:'Menor CPM, maior engajamento, mais credibilidade. Funcionalidade mais eficiente para branding B2B.',tip:'Líderes com 10k+ seguidores têm alcance orgânico que reduz custo dos anúncios pagos.',tc:'#0A66C2'}],'Lances & Budget':[{t:'Concentre budget nos picos de atividade B2B',d:'Set–nov e mar–mai: maior atividade profissional. Concentre o budget de branding nesses períodos.',tip:'Reduzir em jul–ago e dez e concentrar nos picos aumenta eficiência sem reduzir impacto anual.',tc:'#2D7D0A'}],'Público':[{t:'Company Targeting para branding de contas',d:'Anúncios para funcionários de empresas estratégicas. Prepara o terreno para conversão futura.',tip:'Prospects que conhecem a marca antes da abordagem comercial fecham 2x mais rápido.',tc:'#0A66C2'}],'Escala':[{t:'Orgânico + Pago: a sinergia mais eficiente',d:'3+ posts orgânicos/semana → CPM 15–25% menor nas campanhas pagas. Invista no orgânico.',tip:'O algoritmo favorece marcas que engajam o feed organicamente.',tc:'#0A66C2'},{t:'Employee Advocacy como alavanca de escala',d:'50 colaboradores ativos = 25.000–150.000 profissionais alcançados organicamente.',tip:null}]},
+  },
+};
+
+function getAdsSteps(plat,obj,mode,phase){
+  if(plat==='linkedin') return (linkedinSteps[obj]?.[mode]?.[phase]) || [];
+  return genericSteps(PLATFORMS[plat].name, PLATFORMS[plat].color, OBJS[obj].name, OBJS[obj].color, mode, phase);
+}
+
+// ─────────────────────────────────────────────
+// GA4 DATA
+// ─────────────────────────────────────────────
+const GA4_TABS = {
+  'Configuração Inicial': {
+    'Conta & Propriedade': [
+      {t:'Crie ou acesse sua conta no GA4',d:'Acesse analytics.google.com → Administrador → + Criar conta (se nova) ou selecione a propriedade existente. Cada domínio deve ter uma propriedade GA4 própria.',tip:'Se ainda usa Universal Analytics (GA3), migre imediatamente. O GA3 foi descontinuado em julho de 2023. Dados históricos do GA3 não são importados para o GA4.',tc:'#EA4335'},
+      {t:'Crie uma Propriedade GA4',d:'Administrador → + Criar propriedade → Nome, fuso horário (Brasília, GMT-3), moeda (BRL). O fuso horário afeta todos os relatórios — defina corretamente desde o início.',tip:'Use o mesmo fuso horário em GA4, Google Ads e todas as plataformas de anúncios. Inconsistências geram discrepâncias de dados difíceis de diagnosticar.',tc:'#E37400'},
+      {t:'Configure um Fluxo de Dados Web',d:'Administrador → Fluxos de dados → + Adicionar fluxo → Web → insira a URL do site → ative Medição aprimorada. O fluxo gera o ID de medição (G-XXXXXXXXXX).',tip:'Ative todas as opções de Medição aprimorada: rolagem de página, cliques de saída, pesquisa no site, engajamento com vídeo e downloads de arquivo. São eventos automáticos gratuitos.',tc:'#E37400'},
+      {t:'Instale o tag via Google Tag Manager (recomendado)',d:'No GTM: + Nova tag → Google Analytics: GA4 → Configuração → Insira o ID G-XXXXXXXXXX → Acionador: All Pages. Publique o contêiner.',tip:'GTM é o método mais recomendado. Permite adicionar e editar tags sem mexer no código do site, reduz dependência do dev e facilita testes.',tc:'#0A66C2'},
+      {t:'Valide a instalação com o Relatório em Tempo Real',d:'No GA4: Relatórios → Tempo real. Acesse o site em outra aba e veja se sua visita aparece. Se aparecer, a tag está funcionando.',tip:'Use também a extensão Google Analytics Debugger no Chrome para validar eventos específicos disparando corretamente.',tc:'#E37400'},
+    ],
+    'Configurações da Conta': [
+      {t:'Configure as propriedades de dados',d:'Administrador → Propriedade → Configurações de dados: ative retenção de dados por 14 meses (máximo no plano gratuito), desative tráfego de Googlebots e configure filtros de IP interno.',tip:'Filtrar o IP do seu escritório é obrigatório. Visitas da sua equipe distorcem as métricas de comportamento real dos usuários. Configure em Filtros de IP → + Criar.',tc:'#EA4335'},
+      {t:'Defina grupos de canais personalizados',d:'Administrador → Propriedade → Configurações de dados → Grupos de canais. Configure canais alinhados com sua estratégia: Paid Meta, Paid Google, Paid TikTok, Paid LinkedIn, Organic, Email.',tip:null},
+      {t:'Configure o Google Signals',d:'Administrador → Coleta de dados → Google Signals: ative para coletar dados de usuários que aceitaram personalização de anúncios. Melhora relatórios demográficos e audiências.',tip:'Google Signals permite criar audiências para remarketing diretamente no GA4 e exportar para Google Ads. Essencial para campanhas avançadas.',tc:'#E37400'},
+      {t:'Vincule com Google Ads',d:'Administrador → Associações → Google Ads → + Associar. Isso permite importar conversões do GA4 para o Google Ads e exportar audiências do GA4 para campanhas.',tip:'A vinculação GA4 + Google Ads é uma das integrações mais importantes. Após vincular, importe as conversões no Google Ads em vez de usar a tag de conversão avulsa.',tc:'#2D7D0A'},
+      {t:'Configure acesso de usuários',d:'Administrador → Gerenciamento de conta → Gerenciamento de acesso. Configure: Administrador (equipe técnica), Editor (analistas), Visualizador (clientes/gestores).',tip:null},
+    ],
+  },
+  'Eventos & Conversões': {
+    'Eventos Automáticos': [
+      {t:'Entenda os eventos coletados automaticamente',d:'O GA4 coleta automaticamente: page_view, first_visit, session_start, user_engagement. Com Medição aprimorada ativa: scroll, click, file_download, video_start, video_complete.',tip:'Verifique quais eventos automáticos estão ativos em Administrador → Fluxos de dados → seu fluxo → Medição aprimorada.',tc:'#E37400'},
+      {t:'Monitore eventos no Relatório em Tempo Real',d:'Relatórios → Tempo real → rolar para baixo → Contagem de eventos por nome. Acesse o site e verifique se os eventos aparecem conforme o esperado.',tip:null},
+      {t:'Use o DebugView para validação detalhada',d:'Administrador → DebugView (ou ative no Tag Assistant). Mostra todos os eventos disparando em tempo real com parâmetros completos. Essencial para diagnóstico.',tip:'DebugView é a ferramenta mais poderosa para validar implementação de GA4. Use antes de qualquer relatório para garantir que os dados estão corretos.',tc:'#EA4335'},
+    ],
+    'Eventos Customizados': [
+      {t:'Crie eventos customizados via GTM',d:'Para ações importantes não capturadas automaticamente: clique em botão específico, envio de formulário, início de chat, tempo na página > 3 minutos. Crie tags de evento no GTM.',tip:'Nomenclatura padronizada para eventos: use snake_case, seja descritivo. Ex: form_submit_contact, button_click_cta_header, chat_initiated.',tc:'#E37400'},
+      {t:'Configure parâmetros de evento para contexto',d:'Cada evento pode ter parâmetros adicionais: event_category, event_label, value, currency. Parâmetros enriquecem os dados e permitem segmentação mais detalhada nos relatórios.',tip:'Ex: para evento purchase, inclua: transaction_id, value, currency, items (array de produtos). Isso alimenta os relatórios de e-commerce do GA4.',tc:'#0A66C2'},
+      {t:'Crie eventos a partir de outros eventos (no GA4)',d:'GA4 → Configurar → Eventos → + Criar evento. Permite criar novos eventos baseados em condições de eventos existentes sem tocar no código.',tip:"Ex: criar o evento 'lead_qualificado' que dispara quando scroll_depth > 80% E session_duration > 120s na página de preços. Tudo sem código.",tc:'#E37400'},
+      {t:'Configure eventos de e-commerce aprimorado',d:'Para e-commerce: implemente os eventos view_item, add_to_cart, begin_checkout, purchase com o array items completo (item_id, item_name, price, quantity). Alimenta os relatórios de monetização.',tip:'E-commerce aprimorado no GA4 requer implementação correta do array items em todos os eventos de funil. Sem isso, os relatórios de produto e funil de compra ficam incompletos.',tc:'#EA4335'},
+    ],
+    'Conversões': [
+      {t:'Marque eventos-chave como Conversões',d:'GA4 → Configurar → Conversões → + Nova conversão. Adicione os eventos de maior valor: purchase, generate_lead, form_submit, phone_call. Esses aparecem nos relatórios de conversão e podem ser importados para Google Ads.',tip:'Marque como conversão apenas eventos de alto valor. Micro-conversões (scroll, clique) devem ser eventos comuns, não conversões — caso contrário, distorcem os relatórios.',tc:'#EA4335'},
+      {t:'Configure o valor de conversão',d:'Para eventos de conversão, inclua o parâmetro value com o valor monetário real (ex: purchase com value = preço da compra) ou estimado (ex: generate_lead com value = ticket médio × taxa de fechamento).',tip:'Conversões com valor configurado permitem calcular ROAS diretamente no GA4 e no Google Ads. Sem o valor, os relatórios de retorno ficam incompletos.',tc:'#E37400'},
+      {t:'Importe conversões do GA4 para o Google Ads',d:'No Google Ads: Ferramentas → Conversões → + Nova → Importar → Google Analytics 4 → selecione as conversões desejadas. Isso centraliza o rastreamento no GA4 como fonte da verdade.',tip:'Importar conversões do GA4 para o Google Ads é mais preciso do que usar tags de conversão separadas. Evita duplicidade e garante consistência entre plataformas.',tc:'#2D7D0A'},
+      {t:'Valide as conversões com dados reais',d:'Faça uma compra de teste (ou simule um formulário de lead) e verifique: evento aparece no DebugView, conversão registra no Relatório em Tempo Real, valor correto, e dados aparecem no relatório de conversões em 24–48h.',tip:null},
+    ],
+  },
+  'Relatórios & Análise': {
+    'Relatórios Padrão': [
+      {t:'Entenda a estrutura dos relatórios',d:'GA4 tem 4 seções principais: Tempo real (dados ao vivo), Ciclo de vida (Aquisição → Engajamento → Monetização → Retenção), Usuário (demografias e tecnologia) e Exploração (análises customizadas).',tip:'O GA4 foi redesenhado para mostrar o ciclo completo do usuário, não apenas a sessão. Pense em usuários e eventos, não em visitas e pageviews.',tc:'#E37400'},
+      {t:'Aquisição: analise suas fontes de tráfego',d:'Relatórios → Ciclo de vida → Aquisição → Aquisição de tráfego. Veja sessões, usuários engajados, conversões e receita por canal (Source/Medium). Compare o desempenho de cada canal pago.',tip:'Filtre por canal específico para ver os detalhes. Use a dimensão "Grupo de canais padrão" para visão consolidada ou "Source/Medium" para granularidade.',tc:'#E37400'},
+      {t:'Engajamento: entenda o comportamento do usuário',d:'Relatórios → Ciclo de vida → Engajamento → Páginas e telas. Veja quais páginas recebem mais tráfego, qual a taxa de engajamento (substitui taxa de rejeição no GA4) e tempo médio de engajamento.',tip:'Taxa de engajamento = sessões com engajamento ÷ total de sessões. Sessão engajada: durou mais de 10s OU teve 2+ pageviews OU gerou uma conversão. Meta: >60%.',tc:'#E37400'},
+      {t:'Monetização: monitore conversões e receita',d:'Relatórios → Ciclo de vida → Monetização → Visão geral. Para e-commerce: receita, itens mais vendidos, taxa de conversão de compra e funil de checkout.',tip:'O relatório de funil de compra mostra onde os usuários abandonam o processo. Com dados corretos de e-commerce aprimorado, você vê exatamente em qual etapa ocorre o maior abandono.',tc:'#2D7D0A'},
+      {t:'Retenção: meça a fidelização de usuários',d:'Relatórios → Ciclo de vida → Retenção → Visão geral. Veja a taxa de retorno de usuários por coorte, taxa de churn e lifetime value por canal de aquisição.',tip:'Canais de aquisição com usuários que retornam mais e têm maior LTV são mais valiosos do que canais com alto volume e baixa retenção. O GA4 é a melhor ferramenta para medir isso.',tc:'#E37400'},
+    ],
+    'Exploração (Análises Avançadas)': [
+      {t:'Crie Análises de Funil customizadas',d:'Exploração → Funil. Configure as etapas do seu funil de conversão (ex: Página de produto → Carrinho → Checkout → Compra). Veja onde há maior abandono e calcule a taxa de conversão de cada etapa.',tip:'Funis de exploração permitem visualizar o funil com ou sem usuários que abandonaram e retornaram (funil aberto vs. fechado). Use aberto para análise de comportamento real.',tc:'#E37400'},
+      {t:'Use Análise de Coorte para medir retenção',d:'Exploração → Coorte. Agrupe usuários por semana/mês de aquisição e acompanhe o comportamento deles ao longo do tempo. Identifique quais canais geram usuários com maior retenção.',tip:'Análise de coorte é essencial para medir LTV real por canal. Um canal com CPA mais alto que gera usuários com 3x mais retenção é mais eficiente que um canal barato com usuários que nunca voltam.',tc:'#2D7D0A'},
+      {t:'Crie Análise de Caminho do usuário',d:'Exploração → Exploração de caminho. Visualize o fluxo de navegação dos usuários: de onde chegam, onde vão, onde saem. Identifique os caminhos mais comuns para a conversão e os gargalos de abandono.',tip:null},
+      {t:'Use Segmentos em todas as Explorações',d:'Em qualquer Exploração, adicione Segmentos para comparar comportamentos. Ex: "Usuários que compraram" vs. "Usuários que não compraram". Ou "Tráfego de Paid Meta" vs. "Tráfego de Paid Google".',tip:'Segmentos são a ferramenta mais poderosa do GA4. Com segmentos, você pode responder qualquer pergunta sobre comportamento de usuário específico.',tc:'#E37400'},
+      {t:'Crie relatórios customizados no Painel do Ciclo de Vida',d:'Relatórios → Biblioteca → + Criar relatório detalhado. Configure dimensões e métricas customizadas para seus KPIs específicos. Salve e adicione ao menu de Relatórios.',tip:'Dashboards customizados economizam horas de análise toda semana. Configure uma vez e compartilhe com o time.',tc:'#E37400'},
+    ],
+    'Atribuição': [
+      {t:'Entenda os modelos de atribuição do GA4',d:'GA4 usa por padrão atribuição baseada em dados (data-driven) para conversões. Analisa os padrões de todos os touchpoints e distribui o crédito proporcionalmente ao impacto real de cada canal.',tip:'Atribuição baseada em dados é muito mais precisa que Last Click. Um canal que aparece no meio da jornada pode ter impacto enorme que Last Click não captura.',tc:'#E37400'},
+      {t:'Compare modelos de atribuição em Exploração',d:'Exploração → + Em branco → use dimensão "Canal de sessão" e métrica "Conversões" com diferentes modelos de atribuição. Veja como o crédito muda entre Last Click, First Click, Linear e Data-driven.',tip:'Comparar modelos revela quais canais são subestimados ou superestimados pelo Last Click. Canais de topo de funil (YouTube, TikTok) geralmente ganham muito crédito com Data-driven.',tc:'#E37400'},
+      {t:'Configure o relatório de caminhos de conversão',d:'Relatórios → Ciclo de vida → Monetização → Caminhos de conversão. Veja os touchpoints mais comuns antes de uma conversão: quantos passos, quais canais aparecem no início, meio e fim da jornada.',tip:'Caminhos de conversão são essenciais para justificar investimento em canais de topo de funil como YouTube Ads e LinkedIn Ads, que raramente aparecem no Last Click.',tc:'#2D7D0A'},
+      {t:'Use GA4 como árbitro entre plataformas',d:'Cada plataforma (Meta, Google, TikTok) reporta conversões otimisticamente com seus próprios modelos. Use o GA4 como fonte neutra de verdade para comparar o desempenho real de cada canal.',tip:'Nunca compare ROAS entre plataformas usando os dados das próprias plataformas. Elas usam janelas de atribuição e modelos diferentes. O GA4 é o único árbitro neutro.',tc:'#EA4335'},
+    ],
+  },
+  'Audiências & Integrações': {
+    'Criação de Audiências': [
+      {t:'Crie audiências baseadas em comportamento',d:'GA4 → Configurar → Audiências → + Nova audiência. Crie segmentos de usuários baseados em eventos, conversões, parâmetros e sequências de comportamento para usar em campanhas do Google Ads.',tip:'Exemplos de audiências poderosas: usuários que visitaram a página de preços mas não compraram; usuários que assistiram 75%+ de um vídeo; usuários que compraram mais de 2x nos últimos 30 dias.',tc:'#E37400'},
+      {t:'Crie audiência de Compradores de alto valor',d:'Configure a condição: evento purchase com value > R$X nos últimos 30 dias. Use como Lookalike no Google Ads para encontrar usuários similares aos seus melhores clientes.',tip:'Audiência de top 25% de compradores por valor (LTV) é a melhor semente para Lookalike no Google Ads. Converte muito melhor que Lookalike da base geral.',tc:'#2D7D0A'},
+      {t:'Exporte audiências para Google Ads e DV360',d:'Audiências criadas no GA4 ficam disponíveis automaticamente no Google Ads (após vinculação) em Audiências → Gerenciador de audiências → Segmentos de seus dados.',tip:'Audiências do GA4 no Google Ads são muito mais ricas que as criadas diretamente no Google Ads, porque usam comportamento real do site com todos os eventos configurados.',tc:'#E37400'},
+      {t:'Configure audiências preditivas',d:'GA4 (com dados suficientes) oferece audiências preditivas automáticas: Provável de comprar em 7 dias, Provável de abandonar em 7 dias, e Previsto de gerar alta receita.',tip:'Audiências preditivas exigem pelo menos 1.000 usuários com eventos relevantes nos últimos 28 dias. Com volume suficiente, são as audiências com maior taxa de conversão disponíveis.',tc:'#E37400'},
+    ],
+    'Integrações com Plataformas de Anúncios': [
+      {t:'Google Ads: importe conversões do GA4',d:'Google Ads → Ferramentas → Conversões → Importar → Google Analytics 4. Selecione as conversões configuradas no GA4. Isso garante que o Google Ads otimiza pelas mesmas conversões que você monitora no GA4.',tip:'Centralizar o rastreamento de conversão no GA4 e importar para o Google Ads é uma das melhores práticas de configuração. Elimina duplicidade e garante consistência.',tc:'#2D7D0A'},
+      {t:'Meta Ads: configure a Conversions API com GA4',d:'A Conversions API do Meta (server-side) pode ser alimentada com dados de eventos do GA4 via GTM server-side ou integração direta. Isso melhora a precisão do rastreamento pós-iOS 14.',tip:'A combinação Meta Pixel (client-side) + Conversions API (server-side) com desduplicação via event_id é a configuração mais precisa disponível para Meta Ads.',tc:'#1877F2'},
+      {t:'Configure UTMs padronizados para todos os canais',d:'Todo tráfego pago deve ter UTMs: utm_source, utm_medium, utm_campaign, utm_content. O GA4 usa UTMs para atribuir sessões aos canais corretos no relatório de Aquisição.',tip:'Modelo padrão: utm_source=meta&utm_medium=paid-social&utm_campaign={nome}&utm_content={criativo}. Documente e siga o mesmo padrão em todos os canais. Inconsistência = dados incorretos.',tc:'#E37400'},
+      {t:'Integre com BigQuery para análises avançadas',d:'Administrador → Associações → BigQuery → + Associar. Exporta todos os dados brutos do GA4 para o BigQuery diariamente. Permite análises SQL avançadas que não são possíveis na interface do GA4.',tip:'A exportação para BigQuery é gratuita e é uma das melhores funcionalidades do GA4. Com BigQuery você pode calcular LTV real, análises de coorte customizadas e conectar com dados de CRM.',tc:'#0A66C2'},
+      {t:'Configure painéis no Looker Studio (Google Data Studio)',d:'Conecte o GA4 ao Looker Studio para criar dashboards automáticos e compartilháveis com stakeholders. Visualize KPIs de todos os canais em um único painel atualizado automaticamente.',tip:'Looker Studio é gratuito e permite consolidar dados de GA4, Google Ads, Meta Ads (via conectores) em um único dashboard. Ideal para relatórios executivos e de clientes.',tc:'#E37400'},
+    ],
+  },
+  'Análise de Campanhas Pagas': {
+    'Performance por Canal': [
+      {t:'Compare canais pagos por custo por sessão qualificada',d:'Relatórios → Aquisição → Aquisição de tráfego → Filtrar por Paid channels. Compare: sessões, taxa de engajamento, conversões e receita. Calcule o custo por sessão qualificada cruzando com dados de gasto das plataformas.',tip:'CPC bruto é uma métrica enganosa. Um canal com CPC R$0,50 e 80% de rejeição tem custo por sessão qualificada de R$2,50. Um canal com CPC R$2,00 e 20% de rejeição custa R$2,50 também — mas sessões muito diferentes.',tc:'#E37400'},
+      {t:'Configure grupos de canais customizados para ads',d:'Administrador → Grupos de canais → + Criar grupo. Configure: Paid Meta (utm_source contains "meta" OR "facebook" OR "instagram"), Paid Google, Paid TikTok, Paid LinkedIn, Paid YouTube.',tip:'Com grupos de canais customizados, você vê o desempenho de cada plataforma de anúncios separadamente no relatório de Aquisição, sem precisar filtrar manualmente.',tc:'#E37400'},
+      {t:'Analise o funil de conversão por canal pago',d:'Exploração → Funil → Segmentos por canal. Compare as taxas de conversão em cada etapa do funil para Meta vs. Google vs. TikTok. Identifique em qual etapa cada canal perde mais usuários.',tip:'Canais diferentes têm comportamentos de funil distintos. Google Ads (Pesquisa) geralmente tem taxa de conversão mais alta no fundo. Meta e TikTok têm mais abandono no topo mas grande volume.',tc:'#E37400'},
+      {t:'Calcule o ROAS real por canal com dados do GA4',d:'No Exploração, use dimensão "Grupo de canais" e métrica "Receita de eventos" (ou "Receita total" para e-commerce). Divida pela receita de anúncios de cada plataforma para calcular o ROAS real no GA4.',tip:'O ROAS do GA4 (fonte neutra) é sempre diferente do ROAS reportado pelas plataformas. Use o GA4 para comparações entre canais e planejamento de budget.',tc:'#2D7D0A'},
+    ],
+    'Otimização com GA4': [
+      {t:'Identifique páginas de alta saída no funil pago',d:'Relatórios → Engajamento → Páginas e telas → Filtre por usuários vindos de canais pagos. Veja quais páginas têm maior taxa de saída. Essas são as landing pages que precisam de otimização urgente.',tip:'Uma melhoria de 10% na taxa de conversão da landing page tem o mesmo efeito no custo por conversão que reduzir o CPM em 10%. A LP é parte da campanha.',tc:'#E37400'},
+      {t:'Crie audiências de remarketing baseadas em comportamento de saída',d:'Usuários que visitaram a página de checkout mas não compraram (sessão com evento begin_checkout sem purchase). Configure como audiência e exporte para Google Ads e Meta Ads.',tip:'Estas são as audiências de maior intenção. Criar campanhas específicas de remarketing para elas no Google Ads e Meta Ads geralmente tem ROAS 3–5x maior que remarketing genérico.',tc:'#E37400'},
+      {t:'Analise o impacto do tempo no funil de conversão',d:'Exploração → Caminhos de conversão. Veja quantos dias e touchpoints são necessários em média para uma conversão. Isso define a janela de atribuição adequada para cada campanha.',tip:'Se 60% das conversões acontecem depois do dia 7 após o primeiro toque, uma janela de atribuição de 7 dias subestima gravemente o impacto de campanhas de topo de funil.',tc:'#E37400'},
+      {t:'Use o Relatório de Caminhos para defender o YouTube e LinkedIn',d:'Relatórios → Monetização → Caminhos de conversão. Filtre por conversões que passaram por YouTube ou LinkedIn em qualquer touchpoint. Veja quantas conversões esses canais influenciaram mesmo sem ser o último clique.',tip:'YouTube e LinkedIn raramente aparecem como último clique, mas frequentemente estão no início da jornada. O relatório de caminhos é o argumento mais forte para justificar investimento nesses canais.',tc:'#2D7D0A'},
+      {t:'Configure alertas automáticos para anomalias',d:'GA4 → Exploração → Criar uma exploração com KPIs principais → Compartilhe com o time via e-mail. Para alertas automáticos, use o Google Data Studio com alertas ou configure via Google Analytics Admin API.',tip:'Quedas súbitas em conversões muitas vezes indicam problema técnico (pixel quebrado, página fora do ar) e não queda de performance de campanha. Alertas permitem identificar rapidamente.',tc:'#EA4335'},
+    ],
+  },
+};
+
+// ─────────────────────────────────────────────
+// STATE
+// ─────────────────────────────────────────────
+let adState = { mode:'Criação', plat:'meta', obj:'conversoes' };
+let ga4State = { tab: Object.keys(GA4_TABS)[0], phase: Object.keys(Object.values(GA4_TABS)[0])[0] };
+
+// ─────────────────────────────────────────────
+// ADS RENDER
+// ─────────────────────────────────────────────
+function renderAds(){
+  const col = PLATFORMS[adState.plat].color;
+  const phases = AD_PHASES[adState.mode] || [];
+  const container = document.getElementById('all-phases');
+  container.innerHTML = '';
+
+  phases.forEach((phase, phIdx) => {
+    const steps = getAdsSteps(adState.plat, adState.obj, adState.mode, phase);
+    if(!steps.length) return;
+
+    // Phase block
+    const block = document.createElement('div');
+    block.className = 'phase-block';
+    block.style.animationDelay = (phIdx * 0.06) + 's';
+
+    // Phase heading
+    const heading = document.createElement('div');
+    heading.className = 'phase-heading';
+    heading.style.borderColor = col + '33';
+    heading.innerHTML = `
+      <div class="phase-heading-num" style="background:${col}">${phIdx+1}</div>
+      <div class="phase-heading-label" style="color:${col}">${phase}</div>`;
+    block.appendChild(heading);
+
+    // Steps list
+    const stepsList = document.createElement('div');
+    stepsList.className = 'steps-list';
+    steps.forEach((s,i) => {
+      const d = document.createElement('div');
+      d.className = 'step';
+      d.style.animationDelay = (phIdx * 0.06 + i * 0.04) + 's';
+      d.innerHTML = `<div class="step-num" style="background:${col}">${i+1}</div>
+        <div class="step-body">
+          <div class="step-title">${s.t}</div>
+          <div class="step-desc">${s.d}</div>
+          ${s.tip?`<div class="step-tip" style="border-color:${s.tc||col};background:${(s.tc||col)}14;color:#333">💡 ${s.tip}</div>`:''}
+        </div>`;
+      stepsList.appendChild(d);
+    });
+    block.appendChild(stepsList);
+    container.appendChild(block);
+  });
+
+  // Platform filter colors
+  document.querySelectorAll('#plat-filter .filter-btn').forEach(btn => {
+    const p = btn.getAttribute('data-plat');
+    if(p===adState.plat){ btn.style.background=PLATFORMS[p].color; btn.style.color='#fff'; btn.style.borderColor='transparent'; }
+    else{ btn.style.background='#fff'; btn.style.color='#666'; btn.style.borderColor='#e0e0e0'; }
+  });
+  // Obj filter colors
+  document.querySelectorAll('#obj-filter .filter-btn').forEach(btn => {
+    const o = btn.getAttribute('data-obj');
+    if(o===adState.obj){ btn.style.background=OBJS[o].color; btn.style.color='#fff'; btn.style.borderColor='transparent'; }
+    else{ btn.style.background='#fff'; btn.style.color='#666'; btn.style.borderColor='#e0e0e0'; }
+  });
+}
+
+function setMode(mode,btn){
+  adState.mode=mode;
+  adState.phase=AD_PHASES[mode][0];
+  document.querySelectorAll('.mode-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderAds();
+}
+function setPlat(plat){ adState.plat=plat; renderAds(); }
+function setObj(obj){ adState.obj=obj; renderAds(); }
+
+// ─────────────────────────────────────────────
+// GA4 RENDER
+// ─────────────────────────────────────────────
+function renderGA4(){
+  const GA4_COLOR = '#E37400';
+  // Tabs
+  const tc = document.getElementById('ga4-tabs');
+  tc.innerHTML = '';
+  Object.keys(GA4_TABS).forEach(tab => {
+    const b = document.createElement('button');
+    b.className = 'ga4-tab' + (tab===ga4State.tab?' active':'');
+    b.textContent = tab;
+    b.onclick = () => {
+      ga4State.tab = tab;
+      ga4State.phase = Object.keys(GA4_TABS[tab])[0];
+      renderGA4();
+    };
+    tc.appendChild(b);
+  });
+
+  // Phases
+  const pc = document.getElementById('ga4-phases');
+  pc.innerHTML = '';
+  const phases = Object.keys(GA4_TABS[ga4State.tab] || {});
+  phases.forEach(ph => {
+    const b = document.createElement('button');
+    b.className = 'ga4-phase' + (ph===ga4State.phase?' active':'');
+    b.textContent = ph;
+    b.onclick = () => { ga4State.phase=ph; renderGA4(); };
+    pc.appendChild(b);
+  });
+
+  // Steps
+  const sc = document.getElementById('ga4-steps');
+  sc.innerHTML = '';
+  const steps = (GA4_TABS[ga4State.tab]?.[ga4State.phase]) || [];
+  steps.forEach((s,i) => {
+    const d = document.createElement('div');
+    d.className = 'ga4-step';
+    d.style.animationDelay = (i*0.05)+'s';
+    d.innerHTML = `<div class="ga4-num">${i+1}</div>
+      <div class="step-body">
+        <div class="step-title">${s.t}</div>
+        <div class="step-desc">${s.d}</div>
+        ${s.tip?`<div class="step-tip" style="border-color:${s.tc||GA4_COLOR};background:${(s.tc||GA4_COLOR)}14;color:#333">💡 ${s.tip}</div>`:''}
+      </div>`;
+    sc.appendChild(d);
+  });
+}
+
+// ─────────────────────────────────────────────
+// NAV
+// ─────────────────────────────────────────────
+function navTo(id,btn){
+  document.getElementById(id)?.scrollIntoView({behavior:'smooth'});
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+// ─────────────────────────────────────────────
+// INIT
+// ─────────────────────────────────────────────
+renderAds();
+renderGA4();
+</script>
+</body>
+</html>
