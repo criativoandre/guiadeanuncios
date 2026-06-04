@@ -161,6 +161,141 @@
   .footer { background:var(--ink);color:rgba(255,255,255,.5);text-align:center;padding:40px 24px;font-size:13px; }
   .footer strong { color:#fff; }
 
+  
+  /* UPDATE BUTTON */
+  .update-fab {
+    position: fixed; bottom: 28px; right: 28px; z-index: 999;
+    display: flex; align-items: center; gap: 10px;
+    background: linear-gradient(135deg, #6B35D9, #4f28a8);
+    color: #fff; border: none; border-radius: 99px;
+    padding: 14px 22px; font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 600; cursor: pointer;
+    box-shadow: 0 8px 32px rgba(107,53,217,0.45);
+    transition: transform .2s, box-shadow .2s;
+    animation: fadeUp .6s 1s ease both;
+  }
+  .update-fab:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(107,53,217,0.55); }
+  .update-fab .fab-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #4ade80; flex-shrink: 0;
+    box-shadow: 0 0 0 3px rgba(74,222,128,.3);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { box-shadow: 0 0 0 3px rgba(74,222,128,.3); }
+    50%      { box-shadow: 0 0 0 7px rgba(74,222,128,.1); }
+  }
+  .fab-badge {
+    background: #f43f5e; color: #fff; border-radius: 99px;
+    font-size: 10px; font-weight: 800;
+    padding: 2px 7px; margin-left: 2px;
+  }
+
+  /* OVERLAY */
+  .update-overlay {
+    position: fixed; inset: 0; z-index: 1000;
+    background: rgba(10,10,30,0.6);
+    backdrop-filter: blur(6px);
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+    opacity: 0; pointer-events: none;
+    transition: opacity .25s;
+  }
+  .update-overlay.open { opacity: 1; pointer-events: all; }
+
+  /* MODAL */
+  .update-modal {
+    background: #fff; border-radius: 24px;
+    width: 100%; max-width: 620px;
+    max-height: 85vh; overflow-y: auto;
+    box-shadow: 0 32px 80px rgba(0,0,0,.25);
+    transform: translateY(24px) scale(.97);
+    transition: transform .25s;
+    position: relative;
+  }
+  .update-overlay.open .update-modal { transform: translateY(0) scale(1); }
+  .modal-header {
+    position: sticky; top: 0; z-index: 2;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 24px 28px 20px;
+    background: #fff;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .modal-header-left { display: flex; align-items: center; gap: 12px; }
+  .modal-icon {
+    width: 42px; height: 42px; border-radius: 12px;
+    background: linear-gradient(135deg,#6B35D9,#4f28a8);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+  }
+  .modal-title { font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 800; }
+  .modal-subtitle { font-size: 12px; color: #999; margin-top: 2px; }
+  .modal-close {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: #f5f5f5; border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; color: #666; transition: background .15s, color .15s;
+    flex-shrink: 0;
+  }
+  .modal-close:hover { background: #fee2e2; color: #ef4444; }
+  .modal-body { padding: 24px 28px 32px; }
+
+  /* UPDATE ITEMS */
+  .update-item {
+    border-radius: 14px; border: 1.5px solid #f0f0f0;
+    margin-bottom: 16px; overflow: hidden;
+    transition: border-color .2s, box-shadow .2s;
+  }
+  .update-item:last-child { margin-bottom: 0; }
+  .update-item:hover { border-color: #ddd; box-shadow: 0 4px 16px rgba(0,0,0,.06); }
+  .update-item-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 20px; cursor: pointer; gap: 12px;
+  }
+  .update-item-left { display: flex; align-items: center; gap: 12px; }
+  .update-plat-dot {
+    width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+  }
+  .update-item-title { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; }
+  .update-item-meta { font-size: 11px; color: #999; margin-top: 2px; }
+  .update-tag {
+    font-size: 10px; font-weight: 700; letter-spacing: .05em;
+    text-transform: uppercase; padding: 3px 10px; border-radius: 99px;
+    flex-shrink: 0; white-space: nowrap;
+  }
+  .tag-new     { background: #dcfce7; color: #15803d; }
+  .tag-change  { background: #dbeafe; color: #1d4ed8; }
+  .tag-deprec  { background: #fef9c3; color: #a16207; }
+  .tag-critical{ background: #fee2e2; color: #b91c1c; }
+  .update-chevron { font-size: 12px; color: #bbb; transition: transform .2s; margin-left: 4px; flex-shrink: 0; }
+  .update-item.expanded .update-chevron { transform: rotate(180deg); }
+  .update-item-body {
+    max-height: 0; overflow: hidden; transition: max-height .3s ease;
+    padding: 0 20px;
+  }
+  .update-item.expanded .update-item-body { max-height: 400px; }
+  .update-item-content {
+    padding-bottom: 18px;
+    font-size: 13px; color: #555; line-height: 1.7;
+    border-top: 1px solid #f5f5f5; padding-top: 14px;
+  }
+  .update-item-content ul { padding-left: 18px; }
+  .update-item-content li { margin-bottom: 6px; }
+  .update-item-content strong { color: #222; }
+
+  /* MARK ALL READ */
+  .modal-footer {
+    padding: 0 28px 24px;
+    display: flex; justify-content: flex-end;
+  }
+  .btn-mark-read {
+    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+    color: #6B35D9; background: none; border: 1.5px solid #ddd;
+    border-radius: 99px; padding: 8px 20px; cursor: pointer;
+    transition: all .2s;
+  }
+  .btn-mark-read:hover { background: #6B35D9; color: #fff; border-color: #6B35D9; }
+
   @keyframes fadeUp { from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)} }
   @keyframes bounce { 0%,100%{transform:rotate(45deg) translateY(0)}50%{transform:rotate(45deg) translateY(6px)} }
   @media(max-width:600px){.kpi-section,.ga4-section{padding:24px 16px}.section{padding:48px 16px}}
@@ -796,6 +931,183 @@ function navTo(id,btn){
 // ─────────────────────────────────────────────
 renderAds();
 renderGA4();
+</script>
+
+<!-- UPDATE FAB -->
+<button class="update-fab" onclick="openUpdates()" id="update-fab">
+  <div class="fab-dot"></div>
+  Novidades &amp; Atualizações
+  <span class="fab-badge" id="fab-badge">5</span>
+</button>
+
+<!-- UPDATE MODAL -->
+<div class="update-overlay" id="update-overlay" onclick="handleOverlayClick(event)">
+  <div class="update-modal" id="update-modal">
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <div class="modal-icon">🔔</div>
+        <div>
+          <div class="modal-title">Novidades &amp; Atualizações</div>
+          <div class="modal-subtitle">Últimas mudanças nas plataformas de anúncios</div>
+        </div>
+      </div>
+      <button class="modal-close" onclick="closeUpdates()" title="Fechar">✕</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-footer">
+      <button class="btn-mark-read" onclick="markAllRead()">Marcar tudo como lido</button>
+    </div>
+  </div>
+</div>
+
+<script>
+
+// ─────────────────────────────────────────────
+// UPDATES DATA
+// ─────────────────────────────────────────────
+const UPDATES = [
+  {
+    id: 'meta-advantage-plus-2025',
+    plat: 'Meta Ads', color: '#1877F2',
+    title: 'Advantage+ Shopping agora suporta catálogos dinâmicos por segmento',
+    date: 'Jun 2025', tag: 'new', tagLabel: 'Novo',
+    content: `<p>O Meta expandiu o <strong>Advantage+ Shopping Campaigns (ASC)</strong> para suportar segmentação dinâmica de catálogo por público. Agora é possível:</p>
+    <ul>
+      <li>Exibir produtos diferentes para segmentos de público distintos dentro da mesma campanha</li>
+      <li>Combinar Dynamic Ads com a otimização automática do ASC</li>
+      <li>Usar sinais de CRM para personalizar o catálogo exibido por cliente</li>
+    </ul>
+    <p style="margin-top:10px;color:#888;font-size:12px">Fonte: Meta Business Help Center, Jun 2025</p>`
+  },
+  {
+    id: 'google-pmax-search-terms',
+    plat: 'Google Ads', color: '#EA4335',
+    title: 'Performance Max agora mostra termos de busca individuais',
+    date: 'Mai 2025', tag: 'change', tagLabel: 'Mudança',
+    content: `<p>O Google liberou o relatório de <strong>Termos de pesquisa individuais</strong> para campanhas Performance Max, após anos de pressão do mercado. Agora você pode:</p>
+    <ul>
+      <li>Ver quais pesquisas exatas acionaram seus anúncios PMax</li>
+      <li>Adicionar termos indesejados como palavras-chave negativas</li>
+      <li>Analisar a qualidade do tráfego gerado pela campanha</li>
+    </ul>
+    <p style="margin-top:10px;color:#888;font-size:12px">Fonte: Google Ads Help, Mai 2025</p>`
+  },
+  {
+    id: 'tiktok-shop-brasil',
+    plat: 'TikTok Ads', color: '#333333',
+    title: 'TikTok Shop lançado oficialmente no Brasil',
+    date: 'Abr 2025', tag: 'new', tagLabel: 'Novo',
+    content: `<p>O <strong>TikTok Shop</strong> chegou ao Brasil, permitindo compras diretamente dentro do app. Impactos para anunciantes:</p>
+    <ul>
+      <li>Novo formato <strong>Shopping Ads</strong> com checkout nativo no TikTok</li>
+      <li>Eliminação do atrito de redirecionamento para site externo</li>
+      <li>Comissão de vendas entre 2–5% para o TikTok nas transações</li>
+      <li>Integração com plataformas como Shopify, VTEX e WooCommerce</li>
+    </ul>
+    <p style="margin-top:10px;color:#888;font-size:12px">Fonte: TikTok for Business Brasil, Abr 2025</p>`
+  },
+  {
+    id: 'linkedin-thought-leadership',
+    plat: 'LinkedIn Ads', color: '#0A66C2',
+    title: 'Thought Leadership Ads: novos formatos de carrossel e documento',
+    date: 'Mar 2025', tag: 'new', tagLabel: 'Novo',
+    content: `<p>O LinkedIn expandiu os <strong>Thought Leadership Ads</strong> para incluir Carrossel e Document Ads amplificados diretamente de perfis de executivos. Agora é possível:</p>
+    <ul>
+      <li>Amplificar posts em carrossel de líderes como anúncios pagos</li>
+      <li>Usar documentos (PDFs, white papers) publicados por executivos como anúncios</li>
+      <li>Combinar alcance orgânico do perfil com distribuição paga segmentada</li>
+    </ul>
+    <p style="margin-top:10px;color:#888;font-size:12px">Fonte: LinkedIn Marketing Blog, Mar 2025</p>`
+  },
+  {
+    id: 'ga4-looker-integration',
+    plat: 'Google Analytics 4', color: '#E37400',
+    title: 'GA4 integra nativamente com Looker Studio sem conector externo',
+    date: 'Fev 2025', tag: 'change', tagLabel: 'Mudança',
+    content: `<p>O GA4 passou a oferecer <strong>integração nativa direta com o Looker Studio</strong>, sem necessidade de conector de terceiros. Benefícios:</p>
+    <ul>
+      <li>Conexão mais rápida e estável com dados atualizados a cada 4 horas</li>
+      <li>Acesso a dimensões e métricas customizadas diretamente no Looker Studio</li>
+      <li>Templates pré-prontos de dashboard de performance de anúncios disponíveis na galeria</li>
+      <li>Suporte a múltiplas propriedades GA4 em um único relatório</li>
+    </ul>
+    <p style="margin-top:10px;color:#888;font-size:12px">Fonte: Google Analytics Help, Fev 2025</p>`
+  },
+];
+
+let readUpdates = JSON.parse(localStorage.getItem('readUpdates') || '[]');
+
+function openUpdates() {
+  renderUpdates();
+  document.getElementById('update-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeUpdates() {
+  document.getElementById('update-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function handleOverlayClick(e) {
+  if(e.target === document.getElementById('update-overlay')) closeUpdates();
+}
+
+function toggleItem(id) {
+  const el = document.getElementById('ui-' + id);
+  el.classList.toggle('expanded');
+  // Mark as read when opened
+  if(el.classList.contains('expanded') && !readUpdates.includes(id)) {
+    readUpdates.push(id);
+    try { localStorage.setItem('readUpdates', JSON.stringify(readUpdates)); } catch(e){}
+    updateBadge();
+  }
+}
+
+function markAllRead() {
+  readUpdates = UPDATES.map(u => u.id);
+  try { localStorage.setItem('readUpdates', JSON.stringify(readUpdates)); } catch(e){}
+  updateBadge();
+  renderUpdates();
+}
+
+function updateBadge() {
+  const unread = UPDATES.filter(u => !readUpdates.includes(u.id)).length;
+  const badge = document.getElementById('fab-badge');
+  if(unread > 0) { badge.textContent = unread; badge.style.display = 'inline'; }
+  else { badge.style.display = 'none'; }
+}
+
+function renderUpdates() {
+  const body = document.getElementById('modal-body');
+  body.innerHTML = '';
+  UPDATES.forEach(u => {
+    const isRead = readUpdates.includes(u.id);
+    const tagClass = { new:'tag-new', change:'tag-change', deprec:'tag-deprec', critical:'tag-critical' }[u.tag] || 'tag-change';
+    const item = document.createElement('div');
+    item.className = 'update-item' + (isRead ? ' read' : '');
+    item.id = 'ui-' + u.id;
+    item.innerHTML = `
+      <div class="update-item-header" onclick="toggleItem('${u.id}')">
+        <div class="update-item-left">
+          <div class="update-plat-dot" style="background:${u.color}"></div>
+          <div>
+            <div class="update-item-title" style="${isRead?'opacity:.6':''}">${u.title}</div>
+            <div class="update-item-meta">${u.plat} · ${u.date}${isRead ? ' · <span style=\"color:#4ade80;font-weight:600\">✓ Lido</span>' : ''}</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span class="update-tag ${tagClass}">${u.tagLabel}</span>
+          <span class="update-chevron">▼</span>
+        </div>
+      </div>
+      <div class="update-item-body">
+        <div class="update-item-content">${u.content}</div>
+      </div>`;
+    body.appendChild(item);
+  });
+}
+
+// Init badge on load
+updateBadge();
+
 </script>
 </body>
 </html>
