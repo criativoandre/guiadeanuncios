@@ -464,6 +464,17 @@
   }
   .btn-news-read:hover { background: #0f172a; color: #fff; border-color: #0f172a; }
 
+  /* Mobile: coloca o botão "Notícias do Mercado" acima de "Novidades & Atualizações" */
+@media (max-width: 768px) {
+  .news-fab {
+    bottom: 88px !important;
+  }
+
+  .update-fab {
+    bottom: 20px !important;
+  }
+}
+
   @keyframes fadeUp { from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)} }
   @keyframes bounce { 0%,100%{transform:rotate(45deg) translateY(0)}50%{transform:rotate(45deg) translateY(6px)} }
   @media(max-width:600px){.kpi-section,.ga4-section{padding:24px 16px}.section{padding:48px 16px}}
