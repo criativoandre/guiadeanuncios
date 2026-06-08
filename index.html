@@ -464,16 +464,86 @@
   }
   .btn-news-read:hover { background: #0f172a; color: #fff; border-color: #0f172a; }
 
-  /* Mobile: coloca o botão "Notícias do Mercado" acima de "Novidades & Atualizações" */
-@media (max-width: 768px) {
-  .news-fab {
-    bottom: 88px !important;
+
+  /* ── MOBILE RESPONSIVE ── */
+  @media (max-width: 768px) {
+    /* Stack FABs on mobile: news above update */
+    .update-fab {
+      bottom: 28px;
+      right: 28px;
+    }
+    .news-fab {
+      bottom: 84px;
+      right: 28px;
+      left: auto;
+    }
+
+    /* Hamburger nav */
+    .sticky-nav {
+      padding: 0;
+    }
+    .nav-inner {
+      display: none;
+      flex-direction: column;
+      padding: 8px 0 16px;
+      border-top: 1px solid rgba(0,0,0,.06);
+    }
+    .nav-inner.open {
+      display: flex;
+    }
+    .nav-tab {
+      padding: 12px 20px;
+      border-bottom: none;
+      border-left: 3px solid transparent;
+      text-align: left;
+    }
+    .nav-tab.active {
+      border-bottom: none;
+      border-left-color: var(--ink);
+      background: #f9f9f9;
+    }
+    .nav-hamburger {
+      display: flex;
+    }
   }
 
-  .update-fab {
-    bottom: 20px !important;
+  /* Hamburger button — hidden on desktop */
+  .nav-hamburger {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    height: 52px;
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
   }
-}
+  .nav-hamburger-left {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 14px; font-weight: 600; color: var(--ink);
+  }
+  .nav-hamburger-logo {
+    font-size: 18px;
+  }
+  .hamburger-icon {
+    display: flex; flex-direction: column; gap: 5px;
+    width: 22px;
+  }
+  .hamburger-icon span {
+    display: block; height: 2px; background: var(--ink);
+    border-radius: 2px; transition: all .25s;
+  }
+  .nav-hamburger.open .hamburger-icon span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .nav-hamburger.open .hamburger-icon span:nth-child(2) {
+    opacity: 0;
+  }
+  .nav-hamburger.open .hamburger-icon span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
 
   @keyframes fadeUp { from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)} }
   @keyframes bounce { 0%,100%{transform:rotate(45deg) translateY(0)}50%{transform:rotate(45deg) translateY(6px)} }
@@ -504,7 +574,16 @@
 
 <!-- NAV -->
 <nav class="sticky-nav">
-  <div class="nav-inner">
+  <button class="nav-hamburger" id="nav-hamburger" onclick="toggleHamburger()">
+    <div class="nav-hamburger-left">
+      <span class="nav-hamburger-logo">📣</span>
+      Guia de Anúncios
+    </div>
+    <div class="hamburger-icon">
+      <span></span><span></span><span></span>
+    </div>
+  </button>
+  <div class="nav-inner" id="nav-inner">
     <button class="nav-tab active" onclick="navTo('plataformas',this)">Plataformas</button>
     <button class="nav-tab" onclick="navTo('objetivos',this)">Objetivos</button>
     <button class="nav-tab" onclick="navTo('roteiro',this)">Roteiro de Anúncios</button>
@@ -1289,19 +1368,6 @@ updateBadge();
 
 </script>
 
-<style>
-/* Mobile: coloca o botão "Notícias do Mercado" acima de "Novidades & Atualizações" */
-@media (max-width: 768px) {
-  .news-fab {
-    bottom: 88px !important;
-  }
-
-  .update-fab {
-    bottom: 20px !important;
-  }
-}
-</style>
-
 <!-- NEWS FAB -->
 <button class="news-fab" onclick="openNews()" id="news-fab">
   <span class="news-fab-icon">📰</span>
@@ -1578,6 +1644,30 @@ function renderNewsList() {
 
 // Init on load
 updateNewsBadge();
+
+
+// ── HAMBURGER NAV ──────────────────────────────
+function toggleHamburger() {
+  const btn = document.getElementById('nav-hamburger');
+  const inner = document.getElementById('nav-inner');
+  btn.classList.toggle('open');
+  inner.classList.toggle('open');
+}
+
+// Close hamburger when a nav link is clicked
+const origNavTo = navTo;
+function navTo(id, btn) {
+  // close hamburger if open
+  const hamburger = document.getElementById('nav-hamburger');
+  const inner = document.getElementById('nav-inner');
+  if(hamburger && inner) {
+    hamburger.classList.remove('open');
+    inner.classList.remove('open');
+  }
+  document.getElementById(id)?.scrollIntoView({behavior:'smooth'});
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+}
 
 </script>
 </body>
