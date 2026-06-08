@@ -1278,6 +1278,19 @@ updateBadge();
 
 </script>
 
+<style>
+/* Mobile: coloca o botão "Notícias do Mercado" acima de "Novidades & Atualizações" */
+@media (max-width: 768px) {
+  .news-fab {
+    bottom: 88px !important;
+  }
+
+  .update-fab {
+    bottom: 20px !important;
+  }
+}
+</style>
+
 <!-- NEWS FAB -->
 <button class="news-fab" onclick="openNews()" id="news-fab">
   <span class="news-fab-icon">📰</span>
