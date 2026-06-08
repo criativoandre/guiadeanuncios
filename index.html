@@ -2,9 +2,9 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="/app/favicon.ico" type="image/x-icon">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Guia Completo de Anúncios Digitais + GA4</title>
-<link rel="icon" href="/app/favicon.ico" type="image/x-icon">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -21,8 +21,6 @@
     --bg:      #F5F3EE;
     --ink:     #1A1A2E;
     --card:    #FFFFFF;
-    --accent:  #38bdf8;
-    --accent-light: #dbf3fd;
     --radius:  16px;
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -38,9 +36,9 @@
   .blob-4 { width:260px;height:260px;background:var(--youtube);bottom:30px;right:15%; }
   .blob-5 { width:200px;height:200px;background:var(--ga4);top:50%;left:50%;transform:translate(-50%,-50%); }
   .hero-badge { display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:99px;padding:6px 16px;font-size:12px;font-weight:500;color:rgba(255,255,255,0.7);letter-spacing:.06em;text-transform:uppercase;margin-bottom:32px;backdrop-filter:blur(8px);animation:fadeUp .6s ease both; }
-  .hero-badge span { display:inline-block;width:6px;height:6px;border-radius:50%;background:#38bdf8; }
+  .hero-badge span { display:inline-block;width:6px;height:6px;border-radius:50%;background:#4ade80; }
   .hero h1 { font-family:'Montserrat',sans-serif;font-size:clamp(36px,7vw,80px);font-weight:800;line-height:1.0;color:#fff;animation:fadeUp .7s .1s ease both;max-width:900px; }
-  .hero h1 em { font-style:normal;background:linear-gradient(135deg,#38bdf8,#67e8f9,#a5f3fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
+  .hero h1 em { font-style:normal;background:linear-gradient(135deg,#60a5fa,#a78bfa,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
   .hero-sub { margin-top:24px;font-size:17px;color:rgba(255,255,255,0.55);max-width:560px;line-height:1.7;animation:fadeUp .7s .2s ease both; }
   .platform-pills { display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:40px;animation:fadeUp .7s .3s ease both; }
   .pill { display:flex;align-items:center;gap:8px;padding:8px 18px;border-radius:99px;font-size:13px;font-weight:500;color:#fff;cursor:pointer;transition:transform .2s,box-shadow .2s; }
@@ -54,7 +52,7 @@
   .nav-inner { max-width:1200px;margin:0 auto;display:flex;align-items:center;overflow-x:auto;scrollbar-width:none; }
   .nav-inner::-webkit-scrollbar { display:none; }
   .nav-tab { flex-shrink:0;padding:16px 18px;font-size:13px;font-weight:500;color:#666;cursor:pointer;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;white-space:nowrap;background:none;border-top:none;border-left:none;border-right:none;font-family:'DM Sans',sans-serif; }
-  .nav-tab.active,.nav-tab:hover{color:var(--ink)}.nav-tab.active{border-bottom-color:var(--accent)}
+  .nav-tab.active,.nav-tab:hover{color:var(--ink)}.nav-tab.active{border-bottom-color:var(--ink)}
 
   /* LAYOUT */
   .section { max-width:1200px;margin:0 auto;padding:80px 24px; }
@@ -91,13 +89,13 @@
   /* MODE / FILTER TABS */
   .mode-tabs { display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px; }
   .mode-btn { padding:10px 24px;border-radius:99px;font-size:14px;font-weight:500;cursor:pointer;border:1.5px solid #ddd;background:var(--card);color:#666;font-family:'DM Sans',sans-serif;transition:all .2s; }
-  .mode-btn.active { background:var(--accent);border-color:var(--accent);color:#fff; }
+  .mode-btn.active { background:var(--ink);border-color:var(--ink);color:#fff; }
   .mode-btn:hover:not(.active){border-color:#999;color:var(--ink)}
   .filter-row { display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px; }
   .filter-btn { padding:7px 16px;border-radius:99px;font-size:12px;font-weight:500;cursor:pointer;border:1.5px solid #e0e0e0;background:var(--card);color:#666;font-family:'DM Sans',sans-serif;transition:all .2s; }
   .phases-row { display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px; }
   .phase-chip { padding:6px 14px;border-radius:8px;font-size:12px;font-weight:500;cursor:pointer;border:1px solid #e0e0e0;background:var(--card);color:#888;font-family:'DM Sans',sans-serif;transition:all .2s; }
-  .phase-chip.active { background:var(--accent);border-color:var(--accent);color:#fff; }
+  .phase-chip.active { background:var(--ink);border-color:var(--ink);color:#fff; }
   .phase-chip:hover:not(.active){border-color:#999;color:var(--ink)}
 
   /* ALL-PHASES VIEW */
@@ -169,7 +167,7 @@
   .update-fab {
     position: fixed; bottom: 28px; right: 28px; z-index: 999;
     display: flex; align-items: center; gap: 10px;
-    background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+    background: linear-gradient(135deg, #6B35D9, #4f28a8);
     color: #fff; border: none; border-radius: 99px;
     padding: 14px 22px; font-family: 'DM Sans', sans-serif;
     font-size: 14px; font-weight: 600; cursor: pointer;
@@ -267,7 +265,7 @@
     flex-shrink: 0; white-space: nowrap;
   }
   .tag-new     { background: #dcfce7; color: #15803d; }
-  .tag-change  { background: #dbf3fd; color: #0ea5e9; }
+  .tag-change  { background: #dbeafe; color: #1d4ed8; }
   .tag-deprec  { background: #fef9c3; color: #a16207; }
   .tag-critical{ background: #fee2e2; color: #b91c1c; }
   .update-chevron { font-size: 12px; color: #bbb; transition: transform .2s; margin-left: 4px; flex-shrink: 0; }
@@ -298,6 +296,173 @@
     transition: all .2s;
   }
   .btn-mark-read:hover { background: #6B35D9; color: #fff; border-color: #6B35D9; }
+
+  
+  /* NEWS BUTTON */
+  .news-fab {
+    position: fixed; bottom: 28px; left: 28px; z-index: 999;
+    display: flex; align-items: center; gap: 10px;
+    background: linear-gradient(135deg, #0f172a, #1e3a5f);
+    color: #fff; border: none; border-radius: 99px;
+    padding: 14px 22px; font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 600; cursor: pointer;
+    box-shadow: 0 8px 32px rgba(15,23,42,0.45);
+    transition: transform .2s, box-shadow .2s;
+    animation: fadeUp .6s 1.1s ease both;
+  }
+  .news-fab:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(15,23,42,0.55); }
+  .news-fab-icon { font-size: 16px; }
+  .news-badge {
+    background: #f97316; color: #fff; border-radius: 99px;
+    font-size: 10px; font-weight: 800; padding: 2px 7px; margin-left: 2px;
+  }
+
+  /* NEWS OVERLAY */
+  .news-overlay {
+    position: fixed; inset: 0; z-index: 1001;
+    background: rgba(10,10,30,0.6);
+    backdrop-filter: blur(6px);
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+    opacity: 0; pointer-events: none;
+    transition: opacity .25s;
+  }
+  .news-overlay.open { opacity: 1; pointer-events: all; }
+
+  /* NEWS MODAL */
+  .news-modal {
+    background: #fff; border-radius: 24px;
+    width: 100%; max-width: 680px;
+    max-height: 88vh; overflow-y: auto;
+    box-shadow: 0 32px 80px rgba(0,0,0,.28);
+    transform: translateY(24px) scale(.97);
+    transition: transform .25s;
+    position: relative;
+  }
+  .news-overlay.open .news-modal { transform: translateY(0) scale(1); }
+  .news-modal-header {
+    position: sticky; top: 0; z-index: 2;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 24px 28px 20px;
+    background: #fff;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .news-modal-header-left { display: flex; align-items: center; gap: 14px; }
+  .news-modal-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: linear-gradient(135deg,#0f172a,#1e3a5f);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; flex-shrink: 0;
+  }
+  .news-modal-title { font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 800; }
+  .news-modal-subtitle { font-size: 12px; color: #999; margin-top: 3px; }
+  .news-modal-close {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: #f5f5f5; border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; color: #666; transition: background .15s, color .15s; flex-shrink: 0;
+  }
+  .news-modal-close:hover { background: #fee2e2; color: #ef4444; }
+  .news-modal-body { padding: 20px 28px 32px; }
+
+  /* FILTER BAR */
+  .news-filter-bar {
+    display: flex; gap: 8px; flex-wrap: wrap;
+    margin-bottom: 20px; padding-bottom: 16px;
+    border-bottom: 1px solid #f3f3f3;
+  }
+  .news-filter-chip {
+    padding: 5px 14px; border-radius: 99px; font-size: 12px; font-weight: 500;
+    cursor: pointer; border: 1.5px solid #e5e7eb; background: #fff; color: #555;
+    font-family: 'DM Sans', sans-serif; transition: all .15s; white-space: nowrap;
+  }
+  .news-filter-chip.active { color: #fff; border-color: transparent; }
+  .news-filter-chip:hover:not(.active) { border-color: #999; color: #222; }
+
+  /* NEWS CARD */
+  .news-card {
+    border-radius: 14px; border: 1.5px solid #f0f0f0;
+    margin-bottom: 14px; overflow: hidden;
+    transition: border-color .2s, box-shadow .2s;
+  }
+  .news-card:last-child { margin-bottom: 0; }
+  .news-card:hover { border-color: #ddd; box-shadow: 0 4px 20px rgba(0,0,0,.07); }
+  .news-card-header {
+    display: flex; gap: 14px;
+    padding: 16px 18px; cursor: pointer;
+  }
+  .news-card-plat-bar {
+    width: 4px; border-radius: 4px; flex-shrink: 0; align-self: stretch; min-height: 40px;
+  }
+  .news-card-main { flex: 1; min-width: 0; }
+  .news-card-top {
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 10px;
+    margin-bottom: 6px;
+  }
+  .news-card-title {
+    font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700;
+    line-height: 1.35; flex: 1;
+  }
+  .news-card-tags { display: flex; gap: 6px; flex-shrink: 0; align-items: flex-start; }
+  .news-tag {
+    font-size: 10px; font-weight: 700; letter-spacing: .05em;
+    text-transform: uppercase; padding: 3px 9px; border-radius: 99px; white-space: nowrap;
+  }
+  .ntag-new       { background: #dcfce7; color: #15803d; }
+  .ntag-change    { background: #dbeafe; color: #1d4ed8; }
+  .ntag-warning   { background: #fef9c3; color: #a16207; }
+  .ntag-critical  { background: #fee2e2; color: #b91c1c; }
+  .news-card-meta {
+    font-size: 11px; color: #aaa;
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  }
+  .news-card-plat-label { font-weight: 600; }
+  .news-card-chevron {
+    font-size: 11px; color: #ccc; transition: transform .2s; flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .news-card.expanded .news-card-chevron { transform: rotate(180deg); }
+  .news-card-body {
+    max-height: 0; overflow: hidden; transition: max-height .3s ease;
+    padding: 0 18px 0 36px;
+  }
+  .news-card.expanded .news-card-body { max-height: 500px; }
+  .news-card-content {
+    padding: 0 0 18px;
+    font-size: 13px; color: #444; line-height: 1.75;
+    border-top: 1px solid #f5f5f5; padding-top: 14px;
+  }
+  .news-card-content p { margin-bottom: 10px; }
+  .news-card-content p:last-child { margin-bottom: 0; }
+  .news-card-content ul { padding-left: 18px; margin: 8px 0; }
+  .news-card-content li { margin-bottom: 5px; }
+  .news-card-content strong { color: #111; }
+  .news-source {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: 12px; font-size: 11px; color: #999;
+    background: #f9f9f9; padding: 5px 12px; border-radius: 6px;
+  }
+  .news-source a { color: #666; text-decoration: none; }
+  .news-source a:hover { color: #222; text-decoration: underline; }
+
+  /* EMPTY STATE */
+  .news-empty {
+    text-align: center; padding: 48px 24px;
+    color: #aaa; font-size: 14px;
+  }
+  .news-empty div { font-size: 36px; margin-bottom: 12px; }
+
+  /* MARK ALL READ */
+  .news-modal-footer {
+    padding: 0 28px 24px;
+    display: flex; justify-content: flex-end;
+  }
+  .btn-news-read {
+    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+    color: #0f172a; background: none; border: 1.5px solid #ddd;
+    border-radius: 99px; padding: 8px 20px; cursor: pointer; transition: all .2s;
+  }
+  .btn-news-read:hover { background: #0f172a; color: #fff; border-color: #0f172a; }
 
   @keyframes fadeUp { from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)} }
   @keyframes bounce { 0%,100%{transform:rotate(45deg) translateY(0)}50%{transform:rotate(45deg) translateY(6px)} }
@@ -1110,6 +1275,285 @@ function renderUpdates() {
 
 // Init badge on load
 updateBadge();
+
+</script>
+
+<!-- NEWS FAB -->
+<button class="news-fab" onclick="openNews()" id="news-fab">
+  <span class="news-fab-icon">📰</span>
+  Notícias do Mercado
+  <span class="news-badge" id="news-badge">8</span>
+</button>
+
+<!-- NEWS MODAL -->
+<div class="news-overlay" id="news-overlay" onclick="handleNewsOverlay(event)">
+  <div class="news-modal" id="news-modal">
+    <div class="news-modal-header">
+      <div class="news-modal-header-left">
+        <div class="news-modal-icon">📰</div>
+        <div>
+          <div class="news-modal-title">Notícias do Mercado</div>
+          <div class="news-modal-subtitle">Notícias reais e validadas sobre as plataformas de anúncios · 2025–2026</div>
+        </div>
+      </div>
+      <button class="news-modal-close" onclick="closeNews()" title="Fechar">✕</button>
+    </div>
+    <div class="news-modal-body">
+      <div class="news-filter-bar" id="news-filter-bar"></div>
+      <div id="news-list"></div>
+    </div>
+    <div class="news-modal-footer">
+      <button class="btn-news-read" onclick="markAllNewsRead()">Marcar tudo como lido</button>
+    </div>
+  </div>
+</div>
+
+<script>
+
+// ─────────────────────────────────────────────
+// NEWS DATA (Notícias reais e validadas 2025–2026)
+// ─────────────────────────────────────────────
+const NEWS = [
+  {
+    id: 'google-dsa-deprecated-aimax-2026',
+    plat: 'Google Ads', color: '#EA4335',
+    title: 'Google encerra Dynamic Search Ads e migra tudo para AI Max em setembro de 2026',
+    date: 'Abr 2026', tag: 'critical', tagLabel: '⚠ Urgente',
+    summary: 'Todos os anunciantes com DSA serão migrados automaticamente para AI Max for Search em setembro.',
+    content: `<p>O Google confirmou em 15 de abril de 2026 que vai <strong>descontinuar os Dynamic Search Ads (DSA)</strong> como formato independente. A partir de setembro de 2026:</p>
+    <ul>
+      <li>Todos os grupos de anúncios dinâmicos serão migrados para AI Max for Search automaticamente</li>
+      <li>Não será mais possível criar campanhas DSA pelo Google Ads, Google Ads Editor ou API</li>
+      <li>Anúncios de DSA, Ativos Criados Automaticamente (ACA) e Correspondência Ampla em nível de campanha serão convertidos para AI Max</li>
+    </ul>
+    <p><strong>O que fazer agora:</strong> Acesse sua conta e use o botão de upgrade voluntário, disponível já em maio, para migrar com controle total antes da migração forçada. Configure Text Guidelines para proteger a identidade de marca.</p>
+    <p>Dados internos do Google indicam 7% mais conversões com AI Max completo vs. apenas search term matching.</p>
+    <div class="news-source">🔗 Fonte: <a href="https://blog.google/products/ads-commerce/dsa-upgrade-to-ai-max-2026/" target="_blank">Google Blog Oficial, Abr 2026</a></div>`,
+  },
+  {
+    id: 'google-aimax-shopping-2026',
+    plat: 'Google Ads', color: '#EA4335',
+    title: 'AI Max chega ao Google Shopping: anúncios dinâmicos por intenção conversacional',
+    date: 'Abr 2026', tag: 'new', tagLabel: '✦ Novo',
+    summary: 'AI Max for Shopping usa feeds do Merchant Center para gerar anúncios dinâmicos que respondem a consultas conversacionais.',
+    content: `<p>O Google anunciou a expansão do <strong>AI Max para campanhas de Shopping</strong>. A novidade usa os feeds do Google Merchant Center para criar anúncios dinâmicos capazes de responder a buscas conversacionais, antes da intenção de compra explícita.</p>
+    <ul>
+      <li>Dados do Merchant Center são transformados automaticamente em anúncios que respondem perguntas como "qual é o melhor notebook para edição de vídeo até R$5.000"</li>
+      <li>O recurso também será lançado em campanhas Performance Max</li>
+      <li>Anunciantes de varejo ganham cobertura em queries que antes não existiam nas campanhas manuais</li>
+    </ul>
+    <p><strong>O que muda na prática:</strong> O feed do Merchant Center precisa estar completo, com atributos de produto bem preenchidos (título, descrição, categoria, imagens). Feeds incompletos limitam a capacidade do AI Max de gerar variações de anúncio relevantes.</p>
+    <div class="news-source">🔗 Fonte: <a href="https://blog.google/products/ads-commerce/ai-max-new-features/" target="_blank">Google Blog Oficial, Abr 2026</a></div>`,
+  },
+  {
+    id: 'meta-andromeda-gem-2025',
+    plat: 'Meta Ads', color: '#1877F2',
+    title: 'Meta lança sistema Andromeda e modelo GEM: ROAS sobe 22% com Advantage+',
+    date: 'Nov 2025', tag: 'new', tagLabel: '✦ Novo',
+    summary: 'O modelo GEM elevou conversões no Instagram em 5% e no Facebook Feed em 3%. Com Andromeda e Lattice juntos, ROAS com Advantage+ Creative subiu 22%.',
+    content: `<p>Em novembro de 2025, a Meta introduziu dois sistemas que mudaram fundamentalmente como os anúncios são entregues:</p>
+    <ul>
+      <li><strong>Andromeda</strong> é o novo sistema de recuperação de anúncios — decide quais anúncios entram no leilão antes da etapa de ranqueamento. O sistema anterior não suportava a escala de variações geradas pelo Advantage+ Creative</li>
+      <li><strong>Meta GEM (Generative Recommendation Model)</strong> aumentou conversões no Instagram Feed em 5% e no Facebook Feed em 3%</li>
+      <li>Combinados com o Meta Lattice, os três sistemas geraram um aumento de 22% no ROAS para anunciantes usando Advantage+ Creative</li>
+    </ul>
+    <p><strong>O que fazer:</strong> Ative o Advantage+ Creative em campanhas existentes. Garanta que a conta tem pelo menos 5 variações de criativo ativas. Alimente o sistema com imagens, vídeos e headlines diversificados para que o Andromeda tenha combinações suficientes para otimizar.</p>
+    <div class="news-source">🔗 Fonte: <a href="https://www.adamigo.ai/blog/best-ai-tools-meta-ads" target="_blank">Meta / AdAmigo.ai, Nov 2025</a></div>`,
+  },
+  {
+    id: 'meta-attribution-model-2026',
+    plat: 'Meta Ads', color: '#1877F2',
+    title: 'Meta muda modelo de atribuição: vídeo de 5s conta como touchpoint e engage-through é separado',
+    date: 'Jan 2026', tag: 'change', tagLabel: '⟳ Mudança',
+    summary: 'Novo modelo separa cliques de link de outras interações (reações, saves, compartilhamentos). Vídeo passa a contar como touchpoint a partir de 5 segundos (antes eram 10s).',
+    content: `<p>A Meta implementou mudanças importantes no modelo de atribuição em 2026:</p>
+    <ul>
+      <li><strong>Atribuição por clique</strong> agora conta apenas cliques de link reais que levam ao site ou app. Reações, saves e compartilhamentos são rastreados separadamente como "engage-through attribution"</li>
+      <li><strong>Vídeo</strong>: o limiar para uma visualização contar como touchpoint caiu de 10 segundos para <strong>5 segundos</strong>. Isso aumenta o pool de touchpoints atribuídos e explica o crescimento de 24% nas conversões incrementais reportado pela Meta</li>
+      <li>Dois novos objetivos Advantage+ foram lançados: <strong>App Retention Optimization</strong> e <strong>Value-Based Audiences</strong></li>
+    </ul>
+    <p><strong>Impacto prático:</strong> O número de conversões reportado pelo Meta Ads pode aumentar com o novo modelo, mas isso não significa crescimento real de resultados. Compare sempre com dados do GA4 para validar o impacto real.</p>
+    <div class="news-source">🔗 Fonte: <a href="https://gezar.dk/en/blog/meta-ads-changes-2026" target="_blank">Gezar / Meta Business, Jan 2026</a></div>`,
+  },
+  {
+    id: 'meta-advantage-plus-default-2026',
+    plat: 'Meta Ads', color: '#1877F2',
+    title: 'Advantage+ é o novo padrão do Ads Manager: campanhas manuais vão sendo descontinuadas',
+    date: 'Out 2025', tag: 'warning', tagLabel: '! Atenção',
+    summary: 'O Meta Ads Manager passou a definir Advantage+ como opção padrão para novas campanhas. Advantage+ Sales substituiu o Advantage+ Shopping como nomenclatura principal.',
+    content: `<p>A Meta tornou o Advantage+ a configuração padrão ao criar novas campanhas no Ads Manager. As mudanças incluem:</p>
+    <ul>
+      <li><strong>Advantage+ Sales</strong> substituiu o Advantage+ Shopping como nomenclatura principal, sinalizando expansão além do e-commerce</li>
+      <li>A estrutura de campanha manual com conjuntos de anúncios altamente segmentados está sendo gradualmente eliminada — o sistema empurra fortemente para automação de públicos, posicionamentos e budget</li>
+      <li><strong>Value Rules</strong> (lançadas em 2025) permitem que anunciantes influenciem a entrega sem desabilitar o Advantage+. Ex.: "vale mais uma compra acima de R$500 do que uma abaixo de R$100"</li>
+      <li>Opportunity Score avalia a saúde da campanha e sugere ajustes práticos em criativo, sinal e público</li>
+    </ul>
+    <p><strong>O que fazer:</strong> Adote o Value Rules para manter influência estratégica dentro do sistema automatizado. Invista em variedade de criativos — é o principal input que o anunciante ainda controla plenamente.</p>
+    <div class="news-source">🔗 Fonte: <a href="https://giovanniperilli.com/en/blog/meta-ads-updates-what-really-changed-in-2025-and-how-to-prepare-for-2026/" target="_blank">Meta Business / Giovanni Perilli, Out 2025</a></div>`,
+  },
+  {
+    id: 'tiktok-symphony-seedance-2026',
+    plat: 'TikTok Ads', color: '#333333',
+    title: 'TikTok Symphony integra Seedance 2.0: geração de vídeo de anúncio por IA a partir de texto',
+    date: 'Mai 2026', tag: 'new', tagLabel: '✦ Novo',
+    summary: 'O TikTok adicionou o modelo Seedance 2.0 ao TikTok Symphony Ad Suite, permitindo gerar vídeos completos de anúncio a partir de prompt de texto.',
+    content: `<p>O <strong>TikTok Symphony Ad Suite</strong> recebeu integração com o modelo de geração de vídeo <strong>Seedance 2.0</strong> (ByteDance). Com isso, anunciantes podem:</p>
+    <ul>
+      <li>Gerar vídeos completos de anúncio a partir de um prompt de texto, sem precisar de gravação ou edição</li>
+      <li>Criar variações automáticas de criativos existentes com diferentes estilos visuais e narrações</li>
+      <li>Integrar os vídeos gerados diretamente às campanhas do TikTok Ads Manager</li>
+    </ul>
+    <p><strong>Contexto:</strong> O TikTok já permite criar textos de anúncio completos via IA. Com o Seedance 2.0, a geração passa a incluir o vídeo em si — o principal formato da plataforma. Isso reduz a barreira de produção criativa para pequenas e médias empresas.</p>
+    <p><strong>Atenção:</strong> Vídeos gerados por IA têm menor autenticidade percebida pelo público do TikTok. Combine com UGC e Spark Ads para manter credibilidade.</p>
+    <div class="news-source">🔗 Fonte: <a href="https://socialbee.com/blog/tiktok-updates/" target="_blank">SocialBee / TikTok for Business, Mai 2026</a></div>`,
+  },
+  {
+    id: 'linkedin-reserved-ads-brandlink-2025',
+    plat: 'LinkedIn Ads', color: '#0A66C2',
+    title: 'LinkedIn lança Reserved Ads, BrandLink e expande CTV Ads para B2B',
+    date: 'Dez 2025', tag: 'new', tagLabel: '✦ Novo',
+    summary: 'Três novos formatos de alto impacto para marcas B2B: Reserved Ads garantem posição no topo do feed, BrandLink associa marca a criadores, CTV expande para novas regiões.',
+    content: `<p>Em dezembro de 2025, o LinkedIn lançou três novos produtos de mídia relevantes para anunciantes B2B:</p>
+    <ul>
+      <li><strong>Reserved Ads</strong>: compra garantida de posição no topo do feed para datas e públicos específicos. Funciona como um "takeover" planejado — ideal para lançamentos de produto e eventos B2B</li>
+      <li><strong>BrandLink</strong>: permite que marcas associem seus anúncios de vídeo a criadores e publishers selecionados no LinkedIn. Similar ao YouTube BrandConnect, mas para contexto profissional</li>
+      <li><strong>CTV Ads (Connected TV)</strong>: expandidos para novas regiões, incluindo mercados da América Latina. Permite atingir profissionais em dispositivos de streaming com segmentação baseada em perfil do LinkedIn</li>
+    </ul>
+    <p>Além disso, o LinkedIn renomeou a estrutura de campanhas no Campaign Manager: <strong>Campaign Groups → Campaigns</strong> e <strong>Campaigns → Ad Sets</strong>. A mudança é apenas de nomenclatura e não altera a funcionalidade.</p>
+    <div class="news-source">🔗 Fonte: <a href="https://web.swipeinsight.app/topics/linkedin-ads" target="_blank">LinkedIn Marketing Blog / SwipeInsight, Dez 2025</a></div>`,
+  },
+  {
+    id: 'linkedin-ai-variants-flexible-2025',
+    plat: 'LinkedIn Ads', color: '#0A66C2',
+    title: 'LinkedIn lança AI Ad Variants e Flexible Ad Creation para otimização automática de criativos',
+    date: 'Dez 2025', tag: 'new', tagLabel: '✦ Novo',
+    summary: 'AI Ad Variants gera múltiplas versões de anúncio a partir de um único input. Flexible Ad Creation (chegando em 2026) combina ativos automaticamente para maximizar performance.',
+    content: `<p>O LinkedIn expandiu suas capacidades de IA para criação de anúncios com dois novos recursos:</p>
+    <ul>
+      <li><strong>AI Ad Variants</strong>: gera automaticamente múltiplas variações de um anúncio (textos, headlines, imagens) a partir de um único input. Reduz o tempo de produção criativa e aumenta o volume de testes A/B</li>
+      <li><strong>Flexible Ad Creation</strong> (lançamento previsto para 2026): combina automaticamente ativos de texto, imagem e vídeo para encontrar a composição de maior performance por segmento de público</li>
+      <li><strong>Ad Personalization</strong>: personaliza mensagens de anúncio usando dados do perfil do usuário (cargo, empresa, setor) automaticamente</li>
+    </ul>
+    <p><strong>Para anunciantes:</strong> O AI Ad Variants é especialmente valioso para equipes com poucos recursos criativos. Combine com segmentação por cargo e setor para que a personalização automática seja contextualmente relevante.</p>
+    <div class="news-source">🔗 Fonte: <a href="https://web.swipeinsight.app/topics/linkedin-ads" target="_blank">LinkedIn Marketing Blog, Dez 2025</a></div>`,
+  },
+];
+
+const NEWS_PLATS = ['Todos', 'Google Ads', 'Meta Ads', 'TikTok Ads', 'LinkedIn Ads'];
+
+let newsReadIds = [];
+try { newsReadIds = JSON.parse(localStorage.getItem('newsReadIds') || '[]'); } catch(e){}
+let newsFilter = 'Todos';
+
+function openNews() {
+  renderNewsFilters();
+  renderNewsList();
+  document.getElementById('news-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeNews() {
+  document.getElementById('news-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function handleNewsOverlay(e) {
+  if(e.target === document.getElementById('news-overlay')) closeNews();
+}
+
+function toggleNewsCard(id) {
+  const el = document.getElementById('nc-' + id);
+  el.classList.toggle('expanded');
+  if(el.classList.contains('expanded') && !newsReadIds.includes(id)) {
+    newsReadIds.push(id);
+    try { localStorage.setItem('newsReadIds', JSON.stringify(newsReadIds)); } catch(e){}
+    updateNewsBadge();
+    // Re-render just the meta line
+    const meta = el.querySelector('.news-card-meta');
+    if(meta) meta.innerHTML = meta.innerHTML.replace('|  lida','') + ' · <span style="color:#22c55e;font-weight:600">✓ Lida</span>';
+  }
+}
+
+function setNewsFilter(plat) {
+  newsFilter = plat;
+  renderNewsFilters();
+  renderNewsList();
+}
+
+function markAllNewsRead() {
+  newsReadIds = NEWS.map(n => n.id);
+  try { localStorage.setItem('newsReadIds', JSON.stringify(newsReadIds)); } catch(e){}
+  updateNewsBadge();
+  renderNewsList();
+}
+
+function updateNewsBadge() {
+  const unread = NEWS.filter(n => !newsReadIds.includes(n.id)).length;
+  const badge = document.getElementById('news-badge');
+  if(unread > 0) { badge.textContent = unread; badge.style.display = 'inline'; }
+  else { badge.style.display = 'none'; }
+}
+
+function renderNewsFilters() {
+  const bar = document.getElementById('news-filter-bar');
+  bar.innerHTML = '';
+  const platColors = {
+    'Todos':'#0f172a','Google Ads':'#EA4335','Meta Ads':'#1877F2',
+    'TikTok Ads':'#333','LinkedIn Ads':'#0A66C2'
+  };
+  NEWS_PLATS.forEach(p => {
+    const chip = document.createElement('button');
+    chip.className = 'news-filter-chip' + (p === newsFilter ? ' active' : '');
+    chip.textContent = p;
+    if(p === newsFilter) chip.style.background = platColors[p] || '#0f172a';
+    chip.onclick = () => setNewsFilter(p);
+    bar.appendChild(chip);
+  });
+}
+
+function renderNewsList() {
+  const list = document.getElementById('news-list');
+  const filtered = newsFilter === 'Todos' ? NEWS : NEWS.filter(n => n.plat === newsFilter);
+  list.innerHTML = '';
+
+  if(!filtered.length) {
+    list.innerHTML = '<div class="news-empty"><div>🔍</div>Nenhuma notícia para este filtro ainda.</div>';
+    return;
+  }
+
+  const tagClass = { new:'ntag-new', change:'ntag-change', warning:'ntag-warning', critical:'ntag-critical' };
+
+  filtered.forEach(n => {
+    const isRead = newsReadIds.includes(n.id);
+    const card = document.createElement('div');
+    card.className = 'news-card';
+    card.id = 'nc-' + n.id;
+    card.innerHTML = `
+      <div class="news-card-header" onclick="toggleNewsCard('${n.id}')">
+        <div class="news-card-plat-bar" style="background:${n.color}"></div>
+        <div class="news-card-main">
+          <div class="news-card-top">
+            <div class="news-card-title" style="${isRead?'opacity:.6':''}">${n.title}</div>
+            <div class="news-card-tags">
+              <span class="news-tag ${tagClass[n.tag]||'ntag-change'}">${n.tagLabel}</span>
+              <span class="news-card-chevron">▼</span>
+            </div>
+          </div>
+          <div class="news-card-meta">
+            <span class="news-card-plat-label" style="color:${n.color}">${n.plat}</span>
+            · ${n.date}
+            · ${n.summary}
+            ${isRead ? ' · <span style="color:#22c55e;font-weight:600">✓ Lida</span>' : ''}
+          </div>
+        </div>
+      </div>
+      <div class="news-card-body">
+        <div class="news-card-content">${n.content}</div>
+      </div>`;
+    list.appendChild(card);
+  });
+}
+
+// Init on load
+updateNewsBadge();
 
 </script>
 </body>
