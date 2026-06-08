@@ -2,7 +2,6 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<link rel="icon" href="/app/favicon.ico" type="image/x-icon">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Guia Completo de Anúncios Digitais + GA4</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
@@ -464,6 +463,110 @@
   }
   .btn-news-read:hover { background: #0f172a; color: #fff; border-color: #0f172a; }
 
+
+  /* ── MOBILE RESPONSIVE ── */
+  @media (max-width: 768px) {
+    /* Stack FABs on mobile: news above update */
+    .update-fab {
+      bottom: 28px;
+      right: 28px;
+    }
+    .news-fab {
+      bottom: 84px;
+      right: 28px;
+      left: auto;
+    }
+
+    /* Hamburger nav */
+    .sticky-nav {
+      padding: 0;
+    }
+    .nav-inner {
+      display: none;
+      flex-direction: column;
+      padding: 8px 0 16px;
+      border-top: 1px solid rgba(0,0,0,.06);
+    }
+    .nav-inner.open {
+      display: flex;
+    }
+    .nav-tab {
+      padding: 12px 20px;
+      border-bottom: none;
+      border-left: 3px solid transparent;
+      text-align: left;
+    }
+    .nav-tab.active {
+      border-bottom: none;
+      border-left-color: var(--ink);
+      background: #f9f9f9;
+    }
+    .nav-hamburger {
+      display: flex;
+    }
+  }
+
+  /* Hamburger button — hidden on desktop */
+  .nav-hamburger {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    height: 52px;
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .nav-hamburger-left {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 14px; font-weight: 600; color: var(--ink);
+  }
+  .nav-hamburger-logo {
+    font-size: 18px;
+  }
+  .hamburger-icon {
+    display: flex; flex-direction: column; gap: 5px;
+    width: 22px;
+  }
+  .hamburger-icon span {
+    display: block; height: 2px; background: var(--ink);
+    border-radius: 2px; transition: all .25s;
+  }
+  .nav-hamburger.open .hamburger-icon span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .nav-hamburger.open .hamburger-icon span:nth-child(2) {
+    opacity: 0;
+  }
+  .nav-hamburger.open .hamburger-icon span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+
+  /* JSON FETCH LOADING STATES */
+  .data-loading {
+    text-align: center; padding: 40px 24px; color: #bbb;
+    font-size: 13px; display: flex; flex-direction: column; align-items: center; gap: 12px;
+  }
+  .spinner {
+    width: 28px; height: 28px; border: 3px solid #eee;
+    border-top-color: #6B35D9; border-radius: 50%;
+    animation: spin .7s linear infinite;
+  }
+  .spinner-orange { border-top-color: #E37400; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .data-error {
+    text-align: center; padding: 32px 24px; color: #ef4444; font-size: 13px;
+    background: #fff5f5; border-radius: 12px; margin: 8px 0;
+  }
+  .json-hint {
+    display: flex; align-items: center; gap: 8px;
+    background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 10px;
+    padding: 10px 16px; font-size: 12px; color: #166534; margin-bottom: 16px;
+  }
+  .json-hint strong { font-weight: 600; }
   @keyframes fadeUp { from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)} }
   @keyframes bounce { 0%,100%{transform:rotate(45deg) translateY(0)}50%{transform:rotate(45deg) translateY(6px)} }
   @media(max-width:600px){.kpi-section,.ga4-section{padding:24px 16px}.section{padding:48px 16px}}
@@ -493,7 +596,16 @@
 
 <!-- NAV -->
 <nav class="sticky-nav">
-  <div class="nav-inner">
+  <button class="nav-hamburger" id="nav-hamburger" onclick="toggleHamburger()">
+    <div class="nav-hamburger-left">
+      <span class="nav-hamburger-logo">📣</span>
+      Guia de Anúncios
+    </div>
+    <div class="hamburger-icon">
+      <span></span><span></span><span></span>
+    </div>
+  </button>
+  <div class="nav-inner" id="nav-inner">
     <button class="nav-tab active" onclick="navTo('plataformas',this)">Plataformas</button>
     <button class="nav-tab" onclick="navTo('objetivos',this)">Objetivos</button>
     <button class="nav-tab" onclick="navTo('roteiro',this)">Roteiro de Anúncios</button>
@@ -1104,8 +1216,8 @@ renderGA4();
 <!-- UPDATE FAB -->
 <button class="update-fab" onclick="openUpdates()" id="update-fab">
   <div class="fab-dot"></div>
-  Novidades &amp; Atualizações
-  <span class="fab-badge" id="fab-badge">5</span>
+  Novidades &amp; Atualizações (BETA)
+  <span class="fab-badge" id="fab-badge">8</span>
 </button>
 
 <!-- UPDATE MODAL -->
@@ -1115,13 +1227,15 @@ renderGA4();
       <div class="modal-header-left">
         <div class="modal-icon">🔔</div>
         <div>
-          <div class="modal-title">Novidades &amp; Atualizações</div>
+          <div class="modal-title">Novidades &amp; Atualizações  (BETA)</div>
           <div class="modal-subtitle">Últimas mudanças nas plataformas de anúncios</div>
         </div>
       </div>
       <button class="modal-close" onclick="closeUpdates()" title="Fechar">✕</button>
     </div>
-    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-body" id="modal-body">
+    <div class="json-hint">📄 <span>Dados carregados de <strong>noticias.json</strong> — edite o arquivo para adicionar novas entradas</span></div>
+  </div>
     <div class="modal-footer">
       <button class="btn-mark-read" onclick="markAllRead()">Marcar tudo como lido</button>
     </div>
@@ -1133,82 +1247,67 @@ renderGA4();
 // ─────────────────────────────────────────────
 // UPDATES DATA
 // ─────────────────────────────────────────────
-const UPDATES = [
-  {
-    id: 'meta-advantage-plus-2025',
-    plat: 'Meta Ads', color: '#1877F2',
-    title: 'Advantage+ Shopping agora suporta catálogos dinâmicos por segmento',
-    date: 'Jun 2025', tag: 'new', tagLabel: 'Novo',
-    content: `<p>O Meta expandiu o <strong>Advantage+ Shopping Campaigns (ASC)</strong> para suportar segmentação dinâmica de catálogo por público. Agora é possível:</p>
-    <ul>
-      <li>Exibir produtos diferentes para segmentos de público distintos dentro da mesma campanha</li>
-      <li>Combinar Dynamic Ads com a otimização automática do ASC</li>
-      <li>Usar sinais de CRM para personalizar o catálogo exibido por cliente</li>
-    </ul>
-    <p style="margin-top:10px;color:#888;font-size:12px">Fonte: Meta Business Help Center, Jun 2025</p>`
-  },
-  {
-    id: 'google-pmax-search-terms',
-    plat: 'Google Ads', color: '#EA4335',
-    title: 'Performance Max agora mostra termos de busca individuais',
-    date: 'Mai 2025', tag: 'change', tagLabel: 'Mudança',
-    content: `<p>O Google liberou o relatório de <strong>Termos de pesquisa individuais</strong> para campanhas Performance Max, após anos de pressão do mercado. Agora você pode:</p>
-    <ul>
-      <li>Ver quais pesquisas exatas acionaram seus anúncios PMax</li>
-      <li>Adicionar termos indesejados como palavras-chave negativas</li>
-      <li>Analisar a qualidade do tráfego gerado pela campanha</li>
-    </ul>
-    <p style="margin-top:10px;color:#888;font-size:12px">Fonte: Google Ads Help, Mai 2025</p>`
-  },
-  {
-    id: 'tiktok-shop-brasil',
-    plat: 'TikTok Ads', color: '#333333',
-    title: 'TikTok Shop lançado oficialmente no Brasil',
-    date: 'Abr 2025', tag: 'new', tagLabel: 'Novo',
-    content: `<p>O <strong>TikTok Shop</strong> chegou ao Brasil, permitindo compras diretamente dentro do app. Impactos para anunciantes:</p>
-    <ul>
-      <li>Novo formato <strong>Shopping Ads</strong> com checkout nativo no TikTok</li>
-      <li>Eliminação do atrito de redirecionamento para site externo</li>
-      <li>Comissão de vendas entre 2–5% para o TikTok nas transações</li>
-      <li>Integração com plataformas como Shopify, VTEX e WooCommerce</li>
-    </ul>
-    <p style="margin-top:10px;color:#888;font-size:12px">Fonte: TikTok for Business Brasil, Abr 2025</p>`
-  },
-  {
-    id: 'linkedin-thought-leadership',
-    plat: 'LinkedIn Ads', color: '#0A66C2',
-    title: 'Thought Leadership Ads: novos formatos de carrossel e documento',
-    date: 'Mar 2025', tag: 'new', tagLabel: 'Novo',
-    content: `<p>O LinkedIn expandiu os <strong>Thought Leadership Ads</strong> para incluir Carrossel e Document Ads amplificados diretamente de perfis de executivos. Agora é possível:</p>
-    <ul>
-      <li>Amplificar posts em carrossel de líderes como anúncios pagos</li>
-      <li>Usar documentos (PDFs, white papers) publicados por executivos como anúncios</li>
-      <li>Combinar alcance orgânico do perfil com distribuição paga segmentada</li>
-    </ul>
-    <p style="margin-top:10px;color:#888;font-size:12px">Fonte: LinkedIn Marketing Blog, Mar 2025</p>`
-  },
-  {
-    id: 'ga4-looker-integration',
-    plat: 'Google Analytics 4', color: '#E37400',
-    title: 'GA4 integra nativamente com Looker Studio sem conector externo',
-    date: 'Fev 2025', tag: 'change', tagLabel: 'Mudança',
-    content: `<p>O GA4 passou a oferecer <strong>integração nativa direta com o Looker Studio</strong>, sem necessidade de conector de terceiros. Benefícios:</p>
-    <ul>
-      <li>Conexão mais rápida e estável com dados atualizados a cada 4 horas</li>
-      <li>Acesso a dimensões e métricas customizadas diretamente no Looker Studio</li>
-      <li>Templates pré-prontos de dashboard de performance de anúncios disponíveis na galeria</li>
-      <li>Suporte a múltiplas propriedades GA4 em um único relatório</li>
-    </ul>
-    <p style="margin-top:10px;color:#888;font-size:12px">Fonte: Google Analytics Help, Fev 2025</p>`
-  },
-];
+
+// ─────────────────────────────────────────────
+// DYNAMIC DATA — loaded from noticias.json
+// ─────────────────────────────────────────────
+let UPDATES = [];
+let NEWS = [];
+let DATA_LOADED = false;
+let DATA_ERROR = false;
+
+const JSON_URL = 'noticias.json';
+const CACHE_KEY = 'noticias_cache';
+const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
+
+async function loadData() {
+  // Try cache first (5-minute TTL)
+  try {
+    const cached = localStorage.getItem(CACHE_KEY);
+    if (cached) {
+      const { ts, data } = JSON.parse(cached);
+      if (Date.now() - ts < CACHE_TTL) {
+        UPDATES = data.updates || [];
+        NEWS    = data.news    || [];
+        DATA_LOADED = true;
+        return;
+      }
+    }
+  } catch(e) {}
+
+  try {
+    const res = await fetch(JSON_URL + '?v=' + Date.now());
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    UPDATES = data.updates || [];
+    NEWS    = data.news    || [];
+    DATA_LOADED = true;
+    DATA_ERROR  = false;
+    // Store in cache
+    try {
+      localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data }));
+    } catch(e) {}
+  } catch(err) {
+    console.warn('noticias.json not found — using empty arrays.', err.message);
+    DATA_ERROR  = true;
+    DATA_LOADED = true;
+  }
+}
+
 
 let readUpdates = JSON.parse(localStorage.getItem('readUpdates') || '[]');
 
-function openUpdates() {
-  renderUpdates();
+async function openUpdates() {
+  showUpdatesLoading();
   document.getElementById('update-overlay').classList.add('open');
   document.body.style.overflow = 'hidden';
+  if (!DATA_LOADED) await loadData();
+  renderUpdates();
+}
+
+function showUpdatesLoading() {
+  const body = document.getElementById('modal-body');
+  if(body) body.innerHTML = '<div class="data-loading"><div class="spinner"></div>Carregando atualizações...</div>';
 }
 function closeUpdates() {
   document.getElementById('update-overlay').classList.remove('open');
@@ -1230,7 +1329,7 @@ function toggleItem(id) {
 }
 
 function markAllRead() {
-  readUpdates = UPDATES.map(u => u.id);
+  readUpdates = (UPDATES || []).map(u => u.id);
   try { localStorage.setItem('readUpdates', JSON.stringify(readUpdates)); } catch(e){}
   updateBadge();
   renderUpdates();
@@ -1246,6 +1345,14 @@ function updateBadge() {
 function renderUpdates() {
   const body = document.getElementById('modal-body');
   body.innerHTML = '';
+  if(DATA_ERROR) {
+    body.innerHTML = '<div class="data-error">⚠ Não foi possível carregar <strong>noticias.json</strong>.<br>Verifique se o arquivo está no mesmo diretório que o HTML.</div>';
+    return;
+  }
+  if(!UPDATES.length) {
+    body.innerHTML = '<div class="data-loading" style="color:#aaa">Nenhuma atualização disponível.</div>';
+    return;
+  }
   UPDATES.forEach(u => {
     const isRead = readUpdates.includes(u.id);
     const tagClass = { new:'tag-new', change:'tag-change', deprec:'tag-deprec', critical:'tag-critical' }[u.tag] || 'tag-change';
@@ -1273,15 +1380,14 @@ function renderUpdates() {
   });
 }
 
-// Init badge on load
-updateBadge();
+// Badge init handled by async IIFE above
 
 </script>
 
 <!-- NEWS FAB -->
 <button class="news-fab" onclick="openNews()" id="news-fab">
   <span class="news-fab-icon">📰</span>
-  Notícias do Mercado
+  Notícias do Mercado  (BETA)
   <span class="news-badge" id="news-badge">8</span>
 </button>
 
@@ -1292,13 +1398,14 @@ updateBadge();
       <div class="news-modal-header-left">
         <div class="news-modal-icon">📰</div>
         <div>
-          <div class="news-modal-title">Notícias do Mercado</div>
+          <div class="news-modal-title">Notícias do Mercado  (BETA)</div>
           <div class="news-modal-subtitle">Notícias reais e validadas sobre as plataformas de anúncios · 2025–2026</div>
         </div>
       </div>
       <button class="news-modal-close" onclick="closeNews()" title="Fechar">✕</button>
     </div>
     <div class="news-modal-body">
+      <div class="json-hint">📄 <span>Dados carregados de <strong>noticias.json</strong> — edite o arquivo para adicionar novas entradas</span></div>
       <div class="news-filter-bar" id="news-filter-bar"></div>
       <div id="news-list"></div>
     </div>
@@ -1313,131 +1420,7 @@ updateBadge();
 // ─────────────────────────────────────────────
 // NEWS DATA (Notícias reais e validadas 2025–2026)
 // ─────────────────────────────────────────────
-const NEWS = [
-  {
-    id: 'google-dsa-deprecated-aimax-2026',
-    plat: 'Google Ads', color: '#EA4335',
-    title: 'Google encerra Dynamic Search Ads e migra tudo para AI Max em setembro de 2026',
-    date: 'Abr 2026', tag: 'critical', tagLabel: '⚠ Urgente',
-    summary: 'Todos os anunciantes com DSA serão migrados automaticamente para AI Max for Search em setembro.',
-    content: `<p>O Google confirmou em 15 de abril de 2026 que vai <strong>descontinuar os Dynamic Search Ads (DSA)</strong> como formato independente. A partir de setembro de 2026:</p>
-    <ul>
-      <li>Todos os grupos de anúncios dinâmicos serão migrados para AI Max for Search automaticamente</li>
-      <li>Não será mais possível criar campanhas DSA pelo Google Ads, Google Ads Editor ou API</li>
-      <li>Anúncios de DSA, Ativos Criados Automaticamente (ACA) e Correspondência Ampla em nível de campanha serão convertidos para AI Max</li>
-    </ul>
-    <p><strong>O que fazer agora:</strong> Acesse sua conta e use o botão de upgrade voluntário, disponível já em maio, para migrar com controle total antes da migração forçada. Configure Text Guidelines para proteger a identidade de marca.</p>
-    <p>Dados internos do Google indicam 7% mais conversões com AI Max completo vs. apenas search term matching.</p>
-    <div class="news-source">🔗 Fonte: <a href="https://blog.google/products/ads-commerce/dsa-upgrade-to-ai-max-2026/" target="_blank">Google Blog Oficial, Abr 2026</a></div>`,
-  },
-  {
-    id: 'google-aimax-shopping-2026',
-    plat: 'Google Ads', color: '#EA4335',
-    title: 'AI Max chega ao Google Shopping: anúncios dinâmicos por intenção conversacional',
-    date: 'Abr 2026', tag: 'new', tagLabel: '✦ Novo',
-    summary: 'AI Max for Shopping usa feeds do Merchant Center para gerar anúncios dinâmicos que respondem a consultas conversacionais.',
-    content: `<p>O Google anunciou a expansão do <strong>AI Max para campanhas de Shopping</strong>. A novidade usa os feeds do Google Merchant Center para criar anúncios dinâmicos capazes de responder a buscas conversacionais, antes da intenção de compra explícita.</p>
-    <ul>
-      <li>Dados do Merchant Center são transformados automaticamente em anúncios que respondem perguntas como "qual é o melhor notebook para edição de vídeo até R$5.000"</li>
-      <li>O recurso também será lançado em campanhas Performance Max</li>
-      <li>Anunciantes de varejo ganham cobertura em queries que antes não existiam nas campanhas manuais</li>
-    </ul>
-    <p><strong>O que muda na prática:</strong> O feed do Merchant Center precisa estar completo, com atributos de produto bem preenchidos (título, descrição, categoria, imagens). Feeds incompletos limitam a capacidade do AI Max de gerar variações de anúncio relevantes.</p>
-    <div class="news-source">🔗 Fonte: <a href="https://blog.google/products/ads-commerce/ai-max-new-features/" target="_blank">Google Blog Oficial, Abr 2026</a></div>`,
-  },
-  {
-    id: 'meta-andromeda-gem-2025',
-    plat: 'Meta Ads', color: '#1877F2',
-    title: 'Meta lança sistema Andromeda e modelo GEM: ROAS sobe 22% com Advantage+',
-    date: 'Nov 2025', tag: 'new', tagLabel: '✦ Novo',
-    summary: 'O modelo GEM elevou conversões no Instagram em 5% e no Facebook Feed em 3%. Com Andromeda e Lattice juntos, ROAS com Advantage+ Creative subiu 22%.',
-    content: `<p>Em novembro de 2025, a Meta introduziu dois sistemas que mudaram fundamentalmente como os anúncios são entregues:</p>
-    <ul>
-      <li><strong>Andromeda</strong> é o novo sistema de recuperação de anúncios — decide quais anúncios entram no leilão antes da etapa de ranqueamento. O sistema anterior não suportava a escala de variações geradas pelo Advantage+ Creative</li>
-      <li><strong>Meta GEM (Generative Recommendation Model)</strong> aumentou conversões no Instagram Feed em 5% e no Facebook Feed em 3%</li>
-      <li>Combinados com o Meta Lattice, os três sistemas geraram um aumento de 22% no ROAS para anunciantes usando Advantage+ Creative</li>
-    </ul>
-    <p><strong>O que fazer:</strong> Ative o Advantage+ Creative em campanhas existentes. Garanta que a conta tem pelo menos 5 variações de criativo ativas. Alimente o sistema com imagens, vídeos e headlines diversificados para que o Andromeda tenha combinações suficientes para otimizar.</p>
-    <div class="news-source">🔗 Fonte: <a href="https://www.adamigo.ai/blog/best-ai-tools-meta-ads" target="_blank">Meta / AdAmigo.ai, Nov 2025</a></div>`,
-  },
-  {
-    id: 'meta-attribution-model-2026',
-    plat: 'Meta Ads', color: '#1877F2',
-    title: 'Meta muda modelo de atribuição: vídeo de 5s conta como touchpoint e engage-through é separado',
-    date: 'Jan 2026', tag: 'change', tagLabel: '⟳ Mudança',
-    summary: 'Novo modelo separa cliques de link de outras interações (reações, saves, compartilhamentos). Vídeo passa a contar como touchpoint a partir de 5 segundos (antes eram 10s).',
-    content: `<p>A Meta implementou mudanças importantes no modelo de atribuição em 2026:</p>
-    <ul>
-      <li><strong>Atribuição por clique</strong> agora conta apenas cliques de link reais que levam ao site ou app. Reações, saves e compartilhamentos são rastreados separadamente como "engage-through attribution"</li>
-      <li><strong>Vídeo</strong>: o limiar para uma visualização contar como touchpoint caiu de 10 segundos para <strong>5 segundos</strong>. Isso aumenta o pool de touchpoints atribuídos e explica o crescimento de 24% nas conversões incrementais reportado pela Meta</li>
-      <li>Dois novos objetivos Advantage+ foram lançados: <strong>App Retention Optimization</strong> e <strong>Value-Based Audiences</strong></li>
-    </ul>
-    <p><strong>Impacto prático:</strong> O número de conversões reportado pelo Meta Ads pode aumentar com o novo modelo, mas isso não significa crescimento real de resultados. Compare sempre com dados do GA4 para validar o impacto real.</p>
-    <div class="news-source">🔗 Fonte: <a href="https://gezar.dk/en/blog/meta-ads-changes-2026" target="_blank">Gezar / Meta Business, Jan 2026</a></div>`,
-  },
-  {
-    id: 'meta-advantage-plus-default-2026',
-    plat: 'Meta Ads', color: '#1877F2',
-    title: 'Advantage+ é o novo padrão do Ads Manager: campanhas manuais vão sendo descontinuadas',
-    date: 'Out 2025', tag: 'warning', tagLabel: '! Atenção',
-    summary: 'O Meta Ads Manager passou a definir Advantage+ como opção padrão para novas campanhas. Advantage+ Sales substituiu o Advantage+ Shopping como nomenclatura principal.',
-    content: `<p>A Meta tornou o Advantage+ a configuração padrão ao criar novas campanhas no Ads Manager. As mudanças incluem:</p>
-    <ul>
-      <li><strong>Advantage+ Sales</strong> substituiu o Advantage+ Shopping como nomenclatura principal, sinalizando expansão além do e-commerce</li>
-      <li>A estrutura de campanha manual com conjuntos de anúncios altamente segmentados está sendo gradualmente eliminada — o sistema empurra fortemente para automação de públicos, posicionamentos e budget</li>
-      <li><strong>Value Rules</strong> (lançadas em 2025) permitem que anunciantes influenciem a entrega sem desabilitar o Advantage+. Ex.: "vale mais uma compra acima de R$500 do que uma abaixo de R$100"</li>
-      <li>Opportunity Score avalia a saúde da campanha e sugere ajustes práticos em criativo, sinal e público</li>
-    </ul>
-    <p><strong>O que fazer:</strong> Adote o Value Rules para manter influência estratégica dentro do sistema automatizado. Invista em variedade de criativos — é o principal input que o anunciante ainda controla plenamente.</p>
-    <div class="news-source">🔗 Fonte: <a href="https://giovanniperilli.com/en/blog/meta-ads-updates-what-really-changed-in-2025-and-how-to-prepare-for-2026/" target="_blank">Meta Business / Giovanni Perilli, Out 2025</a></div>`,
-  },
-  {
-    id: 'tiktok-symphony-seedance-2026',
-    plat: 'TikTok Ads', color: '#333333',
-    title: 'TikTok Symphony integra Seedance 2.0: geração de vídeo de anúncio por IA a partir de texto',
-    date: 'Mai 2026', tag: 'new', tagLabel: '✦ Novo',
-    summary: 'O TikTok adicionou o modelo Seedance 2.0 ao TikTok Symphony Ad Suite, permitindo gerar vídeos completos de anúncio a partir de prompt de texto.',
-    content: `<p>O <strong>TikTok Symphony Ad Suite</strong> recebeu integração com o modelo de geração de vídeo <strong>Seedance 2.0</strong> (ByteDance). Com isso, anunciantes podem:</p>
-    <ul>
-      <li>Gerar vídeos completos de anúncio a partir de um prompt de texto, sem precisar de gravação ou edição</li>
-      <li>Criar variações automáticas de criativos existentes com diferentes estilos visuais e narrações</li>
-      <li>Integrar os vídeos gerados diretamente às campanhas do TikTok Ads Manager</li>
-    </ul>
-    <p><strong>Contexto:</strong> O TikTok já permite criar textos de anúncio completos via IA. Com o Seedance 2.0, a geração passa a incluir o vídeo em si — o principal formato da plataforma. Isso reduz a barreira de produção criativa para pequenas e médias empresas.</p>
-    <p><strong>Atenção:</strong> Vídeos gerados por IA têm menor autenticidade percebida pelo público do TikTok. Combine com UGC e Spark Ads para manter credibilidade.</p>
-    <div class="news-source">🔗 Fonte: <a href="https://socialbee.com/blog/tiktok-updates/" target="_blank">SocialBee / TikTok for Business, Mai 2026</a></div>`,
-  },
-  {
-    id: 'linkedin-reserved-ads-brandlink-2025',
-    plat: 'LinkedIn Ads', color: '#0A66C2',
-    title: 'LinkedIn lança Reserved Ads, BrandLink e expande CTV Ads para B2B',
-    date: 'Dez 2025', tag: 'new', tagLabel: '✦ Novo',
-    summary: 'Três novos formatos de alto impacto para marcas B2B: Reserved Ads garantem posição no topo do feed, BrandLink associa marca a criadores, CTV expande para novas regiões.',
-    content: `<p>Em dezembro de 2025, o LinkedIn lançou três novos produtos de mídia relevantes para anunciantes B2B:</p>
-    <ul>
-      <li><strong>Reserved Ads</strong>: compra garantida de posição no topo do feed para datas e públicos específicos. Funciona como um "takeover" planejado — ideal para lançamentos de produto e eventos B2B</li>
-      <li><strong>BrandLink</strong>: permite que marcas associem seus anúncios de vídeo a criadores e publishers selecionados no LinkedIn. Similar ao YouTube BrandConnect, mas para contexto profissional</li>
-      <li><strong>CTV Ads (Connected TV)</strong>: expandidos para novas regiões, incluindo mercados da América Latina. Permite atingir profissionais em dispositivos de streaming com segmentação baseada em perfil do LinkedIn</li>
-    </ul>
-    <p>Além disso, o LinkedIn renomeou a estrutura de campanhas no Campaign Manager: <strong>Campaign Groups → Campaigns</strong> e <strong>Campaigns → Ad Sets</strong>. A mudança é apenas de nomenclatura e não altera a funcionalidade.</p>
-    <div class="news-source">🔗 Fonte: <a href="https://web.swipeinsight.app/topics/linkedin-ads" target="_blank">LinkedIn Marketing Blog / SwipeInsight, Dez 2025</a></div>`,
-  },
-  {
-    id: 'linkedin-ai-variants-flexible-2025',
-    plat: 'LinkedIn Ads', color: '#0A66C2',
-    title: 'LinkedIn lança AI Ad Variants e Flexible Ad Creation para otimização automática de criativos',
-    date: 'Dez 2025', tag: 'new', tagLabel: '✦ Novo',
-    summary: 'AI Ad Variants gera múltiplas versões de anúncio a partir de um único input. Flexible Ad Creation (chegando em 2026) combina ativos automaticamente para maximizar performance.',
-    content: `<p>O LinkedIn expandiu suas capacidades de IA para criação de anúncios com dois novos recursos:</p>
-    <ul>
-      <li><strong>AI Ad Variants</strong>: gera automaticamente múltiplas variações de um anúncio (textos, headlines, imagens) a partir de um único input. Reduz o tempo de produção criativa e aumenta o volume de testes A/B</li>
-      <li><strong>Flexible Ad Creation</strong> (lançamento previsto para 2026): combina automaticamente ativos de texto, imagem e vídeo para encontrar a composição de maior performance por segmento de público</li>
-      <li><strong>Ad Personalization</strong>: personaliza mensagens de anúncio usando dados do perfil do usuário (cargo, empresa, setor) automaticamente</li>
-    </ul>
-    <p><strong>Para anunciantes:</strong> O AI Ad Variants é especialmente valioso para equipes com poucos recursos criativos. Combine com segmentação por cargo e setor para que a personalização automática seja contextualmente relevante.</p>
-    <div class="news-source">🔗 Fonte: <a href="https://web.swipeinsight.app/topics/linkedin-ads" target="_blank">LinkedIn Marketing Blog, Dez 2025</a></div>`,
-  },
-];
+
 
 const NEWS_PLATS = ['Todos', 'Google Ads', 'Meta Ads', 'TikTok Ads', 'LinkedIn Ads'];
 
@@ -1445,11 +1428,20 @@ let newsReadIds = [];
 try { newsReadIds = JSON.parse(localStorage.getItem('newsReadIds') || '[]'); } catch(e){}
 let newsFilter = 'Todos';
 
-function openNews() {
-  renderNewsFilters();
-  renderNewsList();
+async function openNews() {
+  showNewsLoading();
   document.getElementById('news-overlay').classList.add('open');
   document.body.style.overflow = 'hidden';
+  if (!DATA_LOADED) await loadData();
+  renderNewsFilters();
+  renderNewsList();
+}
+
+function showNewsLoading() {
+  const list = document.getElementById('news-list');
+  const bar  = document.getElementById('news-filter-bar');
+  if(bar)  bar.innerHTML  = '';
+  if(list) list.innerHTML = '<div class="data-loading"><div class="spinner spinner-orange"></div>Carregando notícias...</div>';
 }
 function closeNews() {
   document.getElementById('news-overlay').classList.remove('open');
@@ -1479,7 +1471,7 @@ function setNewsFilter(plat) {
 }
 
 function markAllNewsRead() {
-  newsReadIds = NEWS.map(n => n.id);
+  newsReadIds = (NEWS || []).map(n => n.id);
   try { localStorage.setItem('newsReadIds', JSON.stringify(newsReadIds)); } catch(e){}
   updateNewsBadge();
   renderNewsList();
@@ -1514,6 +1506,10 @@ function renderNewsList() {
   const filtered = newsFilter === 'Todos' ? NEWS : NEWS.filter(n => n.plat === newsFilter);
   list.innerHTML = '';
 
+  if(DATA_ERROR) {
+    list.innerHTML = '<div class="data-error">⚠ Não foi possível carregar <strong>noticias.json</strong>.<br>Verifique se o arquivo está no mesmo diretório que o HTML.</div>';
+    return;
+  }
   if(!filtered.length) {
     list.innerHTML = '<div class="news-empty"><div>🔍</div>Nenhuma notícia para este filtro ainda.</div>';
     return;
@@ -1554,6 +1550,37 @@ function renderNewsList() {
 
 // Init on load
 updateNewsBadge();
+
+
+// ── HAMBURGER NAV ──────────────────────────────
+function toggleHamburger() {
+  const btn = document.getElementById('nav-hamburger');
+  const inner = document.getElementById('nav-inner');
+  btn.classList.toggle('open');
+  inner.classList.toggle('open');
+}
+
+// Close hamburger when a nav link is clicked
+const origNavTo = navTo;
+function navTo(id, btn) {
+  // close hamburger if open
+  const hamburger = document.getElementById('nav-hamburger');
+  const inner = document.getElementById('nav-inner');
+  if(hamburger && inner) {
+    hamburger.classList.remove('open');
+    inner.classList.remove('open');
+  }
+  document.getElementById(id)?.scrollIntoView({behavior:'smooth'});
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+}
+// ── INIT ──────────────────────────────────────
+async function initData() {
+  await loadData();
+  updateBadge();
+  updateNewsBadge();
+}
+initData();
 
 </script>
 </body>

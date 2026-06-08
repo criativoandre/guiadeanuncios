@@ -1,0 +1,194 @@
+{
+  "meta": {
+    "version": "2026-06-08",
+    "description": "Edite este arquivo para adicionar novas notícias e atualizações. A página carrega automaticamente ao abrir."
+  },
+  "updates": [
+    {
+      "id": "meta-attribution-2026",
+      "plat": "Meta Ads",
+      "color": "#1877F2",
+      "title": "Novo modelo de atribuição: vídeo de 5s conta como touchpoint e cliques são separados de reações",
+      "date": "Jan 2026",
+      "tag": "change",
+      "tagLabel": "Mudança",
+      "content": "<p>A Meta reformulou o modelo de atribuição em janeiro de 2026 com duas mudanças que afetam diretamente os relatórios de performance:</p><ul><li><strong>Clique-through</strong> agora conta apenas cliques de link reais. Reações, saves e compartilhamentos são rastreados separadamente como \"engage-through attribution\"</li><li><strong>Vídeo:</strong> o limiar para contar como touchpoint caiu de 10 segundos para <strong>5 segundos</strong>, ampliando o pool de conversões atribuídas (Meta reporta +24% em conversões incrementais medidas)</li><li>Dois novos objetivos Advantage+ foram lançados: <strong>App Retention Optimization</strong> e <strong>Value-Based Audiences</strong></li></ul><p><strong>O que fazer:</strong> Adicione uma anotação em seus dashboards em 3 de março de 2026 para separar comparações pré e pós-mudança. Compare sempre com GA4 para validar o impacto real nos seus resultados.</p><p style=\"margin-top:10px;color:#888;font-size:12px\">Fonte: Gezar / Meta Business, Jan 2026</p>"
+    },
+    {
+      "id": "meta-threads-ads-2026",
+      "plat": "Meta Ads",
+      "color": "#1877F2",
+      "title": "Threads se torna canal de mídia paga: anúncios no feed oficialmente lançados",
+      "date": "Mar 2026",
+      "tag": "new",
+      "tagLabel": "Novo",
+      "content": "<p>Em março de 2026, a Meta tornou os anúncios no Threads disponíveis como canal oficial de mídia paga dentro do Ads Manager.</p><ul><li>Campanhas e budgets gerenciados junto com Facebook e Instagram no mesmo Ads Manager</li><li>Posicionamento disponível via <strong>Advantage+ Placements</strong></li><li>Nível de competição ainda baixo: CPMs menores que Facebook e Instagram na fase inicial</li></ul><p><strong>O que fazer:</strong> Ative o posicionamento Threads em campanhas de awareness e tráfego. Use UTMs separados para monitorar qualidade no GA4.</p><p style=\"margin-top:10px;color:#888;font-size:12px\">Fonte: AdManage.ai / Meta Business Blog, Mar 2026</p>"
+    },
+    {
+      "id": "meta-capi-oneclicke-2026",
+      "plat": "Meta Ads",
+      "color": "#1877F2",
+      "title": "Meta lança Conversions API com setup em 1 clique sem necessidade de código",
+      "date": "Mai 2026",
+      "tag": "new",
+      "tagLabel": "Novo",
+      "content": "<p>A Meta simplificou radicalmente a implementação da <strong>Conversions API (CAPI)</strong> com um setup de 1 clique que não exige conhecimento técnico.</p><ul><li>O novo Meta Pixel com IA adiciona automaticamente informações de produto e empresa ao rastreamento</li><li>Setup da CAPI agora disponível sem código diretamente no Ads Manager</li><li>Combinado com o Pixel client-side, garante cobertura máxima de rastreamento pós-iOS</li></ul><p><strong>O que fazer:</strong> Se ainda não implementou a CAPI, o processo agora é simples e o impacto na qualidade dos dados é significativo.</p><p style=\"margin-top:10px;color:#888;font-size:12px\">Fonte: SwipeInsight / Meta Business, Mai 2026</p>"
+    },
+    {
+      "id": "google-dsa-aimax-2026",
+      "plat": "Google Ads",
+      "color": "#EA4335",
+      "title": "⚠ URGENTE: Dynamic Search Ads encerrado — migração forçada para AI Max em setembro de 2026",
+      "date": "Abr 2026",
+      "tag": "critical",
+      "tagLabel": "Urgente",
+      "content": "<p>O Google confirmou em 15 de abril de 2026 a descontinuação dos Dynamic Search Ads (DSA). A partir de <strong>setembro de 2026</strong>:</p><ul><li>Todos os grupos de anúncios dinâmicos serão <strong>migrados automaticamente</strong> para AI Max for Search</li><li>Não será mais possível criar campanhas DSA pelo Google Ads, Google Ads Editor ou API</li><li>ACA e Correspondência Ampla em nível de campanha também migram para AI Max</li></ul><p><strong>O que fazer agora:</strong> Use o botão de upgrade voluntário disponível no Ads Manager para migrar com controle total antes da migração forçada. Configure <strong>Text Guidelines</strong> para proteger headlines de marca.</p><p style=\"margin-top:10px;color:#888;font-size:12px\">Fonte: Google Blog Oficial / Google Ads Help Center, Abr 2026</p>"
+    },
+    {
+      "id": "google-marketing-live-2026",
+      "plat": "Google Ads",
+      "color": "#EA4335",
+      "title": "Google Marketing Live 2026: Demand Gen no YouTube, Asset Studio com Gemini e agentic commerce",
+      "date": "Mai 2026",
+      "tag": "new",
+      "tagLabel": "Novo",
+      "content": "<p>O Google Marketing Live 2026 anunciou atualizações que consolidam o YouTube como canal de performance:</p><ul><li><strong>Demand Gen no YouTube</strong> ganhou integração com Google Maps, creator partnerships via Gemini e product feeds com checkout links</li><li><strong>Asset Studio com Gemini</strong>: criação multimodal de assets a partir de brand guidelines</li><li><strong>Universal Commerce Protocol (UCP)</strong> avança o conceito de agentic commerce</li><li>Novos <strong>bidding e budgeting com IA</strong> para gerenciar orçamentos em tempo real</li></ul><p style=\"margin-top:10px;color:#888;font-size:12px\">Fonte: Google Blog Oficial / Google Marketing Live, Mai 2026</p>"
+    },
+    {
+      "id": "tiktok-seedance-symphony-2026",
+      "plat": "TikTok Ads",
+      "color": "#333333",
+      "title": "TikTok Symphony integra Seedance 2.0: geração de vídeo de anúncio completo por IA",
+      "date": "Mai 2026",
+      "tag": "new",
+      "tagLabel": "Novo",
+      "content": "<p>O <strong>TikTok Symphony Ad Suite</strong> recebeu integração com o modelo de geração de vídeo <strong>Seedance 2.0</strong> da ByteDance.</p><ul><li>Geração de vídeos completos de anúncio a partir de um prompt de texto</li><li>Criação de variações automáticas de criativos existentes com diferentes estilos e narrações</li><li>Vídeos gerados integram diretamente ao TikTok Ads Manager</li></ul><p><strong>Atenção:</strong> Combine com UGC e Spark Ads reais para manter credibilidade.</p><p style=\"margin-top:10px;color:#888;font-size:12px\">Fonte: SocialBee / TikTok for Business, Mai 2026</p>"
+    },
+    {
+      "id": "linkedin-amazon-ctv-2026",
+      "plat": "LinkedIn Ads",
+      "color": "#0A66C2",
+      "title": "LinkedIn + Amazon DSP: segmentação profissional B2B chega ao CTV e streaming",
+      "date": "Abr 2026",
+      "tag": "new",
+      "tagLabel": "Novo",
+      "content": "<p>O LinkedIn anunciou parceria com o Amazon DSP que leva a segmentação profissional para campanhas de <strong>Connected TV (CTV)</strong>.</p><ul><li>Dados de cargo, empresa e setor do LinkedIn para segmentar audiências de CTV no Amazon DSP</li><li>LinkedIn afirma que CTV Ads alcançam B2B <strong>2,2x mais efetivamente</strong> que outras plataformas CTV e <strong>4,3x mais</strong> que TV linear</li></ul><p><strong>O que fazer:</strong> Para budget de branding B2B, configure via Amazon DSP com segmento LinkedIn exportado.</p><p style=\"margin-top:10px;color:#888;font-size:12px\">Fonte: Ignite Visibility / LinkedIn Blog, Abr 2026</p>"
+    },
+    {
+      "id": "linkedin-livestream-encerrado-2026",
+      "plat": "LinkedIn Ads",
+      "color": "#0A66C2",
+      "title": "LinkedIn encerra lives nativas a partir de 22 de junho de 2026",
+      "date": "Mai 2026",
+      "tag": "warning",
+      "tagLabel": "Atenção",
+      "content": "<p>O LinkedIn anunciou o encerramento do suporte a <strong>livestreams nativos</strong> a partir de 22 de junho de 2026.</p><ul><li>Não será mais possível realizar transmissões ao vivo diretamente pelo LinkedIn após essa data</li><li>Alternativa: transmitir via ferramentas externas (StreamYard, Restream) e compartilhar o link no feed</li><li><strong>LinkedIn Live Event Ads</strong> também será afetado — verifique campanhas ativas com esse formato</li></ul><p><strong>O que fazer:</strong> Migre para webinars com landing page e formulário externo para manter a geração de leads.</p><p style=\"margin-top:10px;color:#888;font-size:12px\">Fonte: HeyOrca / LinkedIn Newsroom, Mai 2026</p>"
+    }
+  ],
+  "news": [
+    {
+      "id": "meta-threads-ads-2026-news",
+      "plat": "Meta Ads",
+      "color": "#1877F2",
+      "title": "Threads vira canal oficial de anúncios pagos — CPMs menores que Facebook e Instagram",
+      "date": "Mar 2026",
+      "tag": "new",
+      "tagLabel": "✦ Novo",
+      "summary": "Anúncios no Threads agora disponíveis no Ads Manager. Fase inicial com baixa competição e CPMs atrativos.",
+      "content": "<p>Em março de 2026, a Meta abriu os anúncios no Threads como canal oficial dentro do Ads Manager.</p><ul><li>Campanhas e budgets gerenciados junto com Facebook e Instagram no mesmo Ads Manager</li><li>Posicionamento ativável via <strong>Advantage+ Placements</strong> sem configuração extra</li><li>Nível de competição ainda baixo na fase inicial: CPMs menores que Facebook e Instagram</li></ul><p><strong>O que fazer:</strong> Ative o posicionamento Threads em campanhas de awareness e tráfego. Use UTMs separados (utm_source=threads) para monitorar qualidade no GA4.</p>",
+      "source_label": "AdManage.ai / Meta Business, Mar 2026",
+      "source_url": "https://admanage.ai/blog/meta-ads-update"
+    },
+    {
+      "id": "meta-capi-oneclicke-2026-news",
+      "plat": "Meta Ads",
+      "color": "#1877F2",
+      "title": "Conversions API agora tem setup em 1 clique sem código — sem mais desculpas para não implementar",
+      "date": "Mai 2026",
+      "tag": "new",
+      "tagLabel": "✦ Novo",
+      "summary": "Meta eliminou a barreira técnica da CAPI. O novo setup não exige desenvolvedor e leva menos de 5 minutos.",
+      "content": "<p>A Meta lançou em maio de 2026 a implementação simplificada da <strong>Conversions API (CAPI)</strong> diretamente no Ads Manager.</p><ul><li>Setup de 1 clique sem necessidade de código ou desenvolvedor</li><li>O novo Meta Pixel com IA adiciona automaticamente dados de produto e negócio ao rastreamento</li><li>CAPI + Pixel client-side juntos garantem cobertura máxima de rastreamento pós-iOS</li></ul><p><strong>O que fazer:</strong> Acesse Gerenciador de Eventos → Configurações → Conversions API → Setup automático. Leva menos de 5 minutos.</p>",
+      "source_label": "SwipeInsight / Meta Business, Mai 2026",
+      "source_url": "https://web.swipeinsight.app/topics/meta-ads"
+    },
+    {
+      "id": "google-dsa-aimax-2026-news",
+      "plat": "Google Ads",
+      "color": "#EA4335",
+      "title": "⚠ Dynamic Search Ads encerrado: migração forçada para AI Max em setembro de 2026",
+      "date": "Abr 2026",
+      "tag": "critical",
+      "tagLabel": "⚠ Urgente",
+      "summary": "Google confirmou: todos os DSA, ACA e Broad Match por campanha migram automaticamente para AI Max em setembro. Upgrade voluntário disponível agora.",
+      "content": "<p>O Google anunciou oficialmente em 15 de abril de 2026 a descontinuação dos Dynamic Search Ads. Cronograma confirmado:</p><ul><li><strong>Agora:</strong> Botão de upgrade voluntário disponível no Ads Manager para migração controlada</li><li><strong>Setembro de 2026:</strong> Migração automática forçada de todos os DSA, ACA e Broad Match por campanha para AI Max</li><li>Não será mais possível criar campanhas DSA pelo Ads Manager, Editor ou API após setembro</li></ul><p><strong>Atenção:</strong> Testes independentes com 250+ campanhas mostraram ROAS 35% menor com AI Max. Use o teste A/B nativo antes de migrar definitivamente.</p>",
+      "source_label": "Google Blog Oficial, Abr 2026",
+      "source_url": "https://blog.google/products/ads-commerce/dsa-upgrade-to-ai-max-2026/"
+    },
+    {
+      "id": "google-marketing-live-2026-news",
+      "plat": "Google Ads",
+      "color": "#EA4335",
+      "title": "Google Marketing Live 2026: Demand Gen no YouTube, Asset Studio com Gemini e agentic commerce",
+      "date": "Mai 2026",
+      "tag": "new",
+      "tagLabel": "✦ Novo",
+      "summary": "GML 2026 consolidou o YouTube como canal de performance com creator tools, product feeds e checkout links. Asset Studio com Gemini gera criativos a partir de brand guidelines.",
+      "content": "<p>O Google Marketing Live 2026 trouxe atualizações que consolidam o YouTube como canal de performance:</p><ul><li><strong>Demand Gen no YouTube:</strong> Google Maps, creator partnerships via Gemini, product feeds com checkout links diretos</li><li><strong>Asset Studio com Gemini:</strong> brand guidelines → criativos de alto desempenho para Search, Display e YouTube automaticamente</li><li><strong>Bidding e budgeting com IA:</strong> novos modelos de lance que ajustam orçamento em tempo real</li><li><strong>Universal Commerce Protocol (UCP):</strong> avanço em direção ao agentic commerce</li></ul>",
+      "source_label": "Google Blog Oficial / GML, Mai 2026",
+      "source_url": "https://blog.google/products/ads-commerce/google-marketing-live-2026-collection/"
+    },
+    {
+      "id": "tiktok-seedance-2026-news",
+      "plat": "TikTok Ads",
+      "color": "#333333",
+      "title": "TikTok Symphony + Seedance 2.0: vídeos de anúncio gerados completamente por IA",
+      "date": "Mai 2026",
+      "tag": "new",
+      "tagLabel": "✦ Novo",
+      "summary": "Seedance 2.0 integrado ao Symphony Ad Suite permite gerar vídeos completos de anúncio a partir de texto. Atenção: autenticidade pode ser comprometida.",
+      "content": "<p>O <strong>TikTok Symphony Ad Suite</strong> recebeu integração com o modelo de geração de vídeo <strong>Seedance 2.0</strong> em maio de 2026:</p><ul><li>Geração de vídeos completos de anúncio a partir de um prompt de texto</li><li>Variações automáticas de criativos com diferentes estilos visuais e narrações</li><li>Integração direta ao TikTok Ads Manager para publicação imediata</li></ul><p><strong>Atenção prática:</strong> Use Seedance 2.0 para testes rápidos e variações — não como substituto do UGC e Spark Ads reais.</p>",
+      "source_label": "SocialBee / TikTok for Business, Mai 2026",
+      "source_url": "https://socialbee.com/blog/tiktok-updates/"
+    },
+    {
+      "id": "youtube-shorts-comments-2026-news",
+      "plat": "YouTube Ads",
+      "color": "#FF0000",
+      "title": "YouTube Shorts Ads ganha engajamento por Comentários e Veo 3 Fast para geração de vídeo por IA",
+      "date": "Mai 2026",
+      "tag": "new",
+      "tagLabel": "✦ Novo",
+      "summary": "YouTube adicionou Comments como novo tipo de engajamento para Shorts Ads. YouTube Create integra Veo 3 Fast para geração de vídeo por IA no app.",
+      "content": "<p>O YouTube trouxe duas atualizações relevantes para anunciantes em maio de 2026:</p><ul><li><strong>Shorts Ads — Comments:</strong> novo tipo de engajamento disponível. Vídeos que geram comentários têm alcance orgânico amplificado pelo algoritmo</li><li><strong>YouTube Create + Veo 3 Fast:</strong> geração de vídeo por IA diretamente pelo smartphone via app YouTube Create para Android</li><li><strong>Demand Gen 2026:</strong> consolidação do YouTube como canal de performance com creator tools e checkout links</li></ul>",
+      "source_label": "SocialBee / YouTube Blog, Mai 2026",
+      "source_url": "https://socialbee.com/blog/youtube-updates/"
+    },
+    {
+      "id": "linkedin-amazon-ctv-2026-news",
+      "plat": "LinkedIn Ads",
+      "color": "#0A66C2",
+      "title": "LinkedIn + Amazon DSP: segmentação profissional B2B chega ao CTV com eficiência 4,3x maior que TV linear",
+      "date": "Abr 2026",
+      "tag": "new",
+      "tagLabel": "✦ Novo",
+      "summary": "Parceria LinkedIn + Amazon DSP leva dados profissionais (cargo, empresa, setor) para segmentação em campanhas de CTV e streaming via Amazon.",
+      "content": "<p>O LinkedIn anunciou em abril de 2026 parceria com o <strong>Amazon DSP</strong> que leva a segmentação profissional para o mundo do CTV:</p><ul><li>Dados de cargo, empresa, setor e senioridade do LinkedIn para segmentar CTV no Amazon DSP</li><li>LinkedIn afirma que CTV Ads alcançam B2B <strong>2,2x mais efetivamente</strong> que outras plataformas CTV e <strong>4,3x mais</strong> que TV linear</li></ul><p><strong>O que fazer:</strong> Para budget de branding B2B acima de R$30k/mês, configure via Amazon DSP com segmento LinkedIn exportado.</p>",
+      "source_label": "Ignite Visibility / LinkedIn Blog, Abr 2026",
+      "source_url": "https://ignitevisibility.com/digital-marketing-news/"
+    },
+    {
+      "id": "linkedin-live-encerrado-2026-news",
+      "plat": "LinkedIn Ads",
+      "color": "#0A66C2",
+      "title": "LinkedIn encerra lives nativas em 22 de junho de 2026 — impacto em LinkedIn Live Event Ads",
+      "date": "Mai 2026",
+      "tag": "warning",
+      "tagLabel": "! Atenção",
+      "summary": "Lives nativas no LinkedIn são descontinuadas. LinkedIn Live Event Ads também afetados. Transmissões via ferramentas externas continuam funcionando.",
+      "content": "<p>O LinkedIn confirmou o encerramento do suporte a <strong>livestreams nativos</strong> a partir de 22 de junho de 2026:</p><ul><li>Transmissões ao vivo diretamente pelo LinkedIn não serão mais possíveis após essa data</li><li><strong>LinkedIn Live Event Ads</strong> também será afetado — verifique campanhas ativas antes de 22 de junho</li><li>Alternativa: transmitir via StreamYard, Restream ou YouTube Live e compartilhar o link no feed</li></ul><p><strong>O que fazer:</strong> Migre para webinars com registro via landing page externa para manter captura de leads.</p>",
+      "source_label": "HeyOrca / LinkedIn Newsroom, Mai 2026",
+      "source_url": "https://www.heyorca.com/blog/linkedin-social-news"
+    }
+  ]
+}
