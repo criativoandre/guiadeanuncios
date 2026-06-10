@@ -2,8 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<link rel="icon" href="/app/favicon.ico" type="image/x-icon">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Guia Completo de Anúncios Digitais + GA4</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
@@ -24,6 +23,17 @@
     --radius:  16px;
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* MOBILE OVERFLOW PREVENTION */
+  pre, code, .lesson-step-code {
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  * { box-sizing: border-box; }
+  .lesson-step-code pre { margin: 0; white-space: pre; }
+
+  html { overflow-x: hidden; }
   body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; overflow-x: hidden; }
 
   /* HERO */
@@ -161,323 +171,19 @@
   /* FOOTER */
   .footer { background:var(--ink);color:rgba(255,255,255,.5);text-align:center;padding:40px 24px;font-size:13px; }
   .footer strong { color:#fff; }
-
-  
-  /* UPDATE BUTTON */
-  .update-fab {
-    position: fixed; bottom: 28px; right: 28px; z-index: 999;
-    display: flex; align-items: center; gap: 10px;
-    background: linear-gradient(135deg, #6B35D9, #4f28a8);
-    color: #fff; border: none; border-radius: 99px;
-    padding: 14px 22px; font-family: 'DM Sans', sans-serif;
-    font-size: 14px; font-weight: 600; cursor: pointer;
-    box-shadow: 0 8px 32px rgba(107,53,217,0.45);
-    transition: transform .2s, box-shadow .2s;
-    animation: fadeUp .6s 1s ease both;
-  }
-  .update-fab:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(107,53,217,0.55); }
-  .update-fab .fab-dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    background: #4ade80; flex-shrink: 0;
-    box-shadow: 0 0 0 3px rgba(74,222,128,.3);
-    animation: pulse 2s infinite;
-  }
   @keyframes pulse {
     0%,100% { box-shadow: 0 0 0 3px rgba(74,222,128,.3); }
     50%      { box-shadow: 0 0 0 7px rgba(74,222,128,.1); }
-  }
-  .fab-badge {
-    background: #f43f5e; color: #fff; border-radius: 99px;
-    font-size: 10px; font-weight: 800;
-    padding: 2px 7px; margin-left: 2px;
-  }
-
-  /* OVERLAY */
-  .update-overlay {
-    position: fixed; inset: 0; z-index: 1000;
-    background: rgba(10,10,30,0.6);
-    backdrop-filter: blur(6px);
-    display: flex; align-items: center; justify-content: center;
-    padding: 24px;
-    opacity: 0; pointer-events: none;
-    transition: opacity .25s;
-  }
-  .update-overlay.open { opacity: 1; pointer-events: all; }
-
-  /* MODAL */
-  .update-modal {
-    background: #fff; border-radius: 24px;
-    width: 100%; max-width: 620px;
-    max-height: 85vh; overflow-y: auto;
-    box-shadow: 0 32px 80px rgba(0,0,0,.25);
-    transform: translateY(24px) scale(.97);
-    transition: transform .25s;
-    position: relative;
-  }
-  .update-overlay.open .update-modal { transform: translateY(0) scale(1); }
-  .modal-header {
-    position: sticky; top: 0; z-index: 2;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 24px 28px 20px;
-    background: #fff;
-    border-bottom: 1px solid #f0f0f0;
-  }
-  .modal-header-left { display: flex; align-items: center; gap: 12px; }
-  .modal-icon {
-    width: 42px; height: 42px; border-radius: 12px;
-    background: linear-gradient(135deg,#6B35D9,#4f28a8);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 20px; flex-shrink: 0;
-  }
-  .modal-title { font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 800; }
-  .modal-subtitle { font-size: 12px; color: #999; margin-top: 2px; }
-  .modal-close {
-    width: 36px; height: 36px; border-radius: 50%;
-    background: #f5f5f5; border: none; cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px; color: #666; transition: background .15s, color .15s;
-    flex-shrink: 0;
-  }
-  .modal-close:hover { background: #fee2e2; color: #ef4444; }
-  .modal-body { padding: 24px 28px 32px; }
-
-  /* UPDATE ITEMS */
-  .update-item {
-    border-radius: 14px; border: 1.5px solid #f0f0f0;
-    margin-bottom: 16px; overflow: hidden;
-    transition: border-color .2s, box-shadow .2s;
-  }
-  .update-item:last-child { margin-bottom: 0; }
-  .update-item:hover { border-color: #ddd; box-shadow: 0 4px 16px rgba(0,0,0,.06); }
-  .update-item-header {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 16px 20px; cursor: pointer; gap: 12px;
-  }
-  .update-item-left { display: flex; align-items: center; gap: 12px; }
-  .update-plat-dot {
-    width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
-  }
-  .update-item-title { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; }
-  .update-item-meta { font-size: 11px; color: #999; margin-top: 2px; }
-  .update-tag {
-    font-size: 10px; font-weight: 700; letter-spacing: .05em;
-    text-transform: uppercase; padding: 3px 10px; border-radius: 99px;
-    flex-shrink: 0; white-space: nowrap;
-  }
-  .tag-new     { background: #dcfce7; color: #15803d; }
-  .tag-change  { background: #dbeafe; color: #1d4ed8; }
-  .tag-deprec  { background: #fef9c3; color: #a16207; }
-  .tag-critical{ background: #fee2e2; color: #b91c1c; }
-  .update-chevron { font-size: 12px; color: #bbb; transition: transform .2s; margin-left: 4px; flex-shrink: 0; }
-  .update-item.expanded .update-chevron { transform: rotate(180deg); }
-  .update-item-body {
-    max-height: 0; overflow: hidden; transition: max-height .3s ease;
-    padding: 0 20px;
-  }
-  .update-item.expanded .update-item-body { max-height: 400px; }
-  .update-item-content {
-    padding-bottom: 18px;
-    font-size: 13px; color: #555; line-height: 1.7;
-    border-top: 1px solid #f5f5f5; padding-top: 14px;
   }
   .update-item-content ul { padding-left: 18px; }
   .update-item-content li { margin-bottom: 6px; }
   .update-item-content strong { color: #222; }
 
-  /* MARK ALL READ */
-  .modal-footer {
-    padding: 0 28px 24px;
-    display: flex; justify-content: flex-end;
-  }
-  .btn-mark-read {
-    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
-    color: #6B35D9; background: none; border: 1.5px solid #ddd;
-    border-radius: 99px; padding: 8px 20px; cursor: pointer;
-    transition: all .2s;
-  }
-  .btn-mark-read:hover { background: #6B35D9; color: #fff; border-color: #6B35D9; }
-
-  
-  /* NEWS BUTTON */
-  .news-fab {
-    position: fixed; bottom: 28px; left: 28px; z-index: 999;
-    display: flex; align-items: center; gap: 10px;
-    background: linear-gradient(135deg, #0f172a, #1e3a5f);
-    color: #fff; border: none; border-radius: 99px;
-    padding: 14px 22px; font-family: 'DM Sans', sans-serif;
-    font-size: 14px; font-weight: 600; cursor: pointer;
-    box-shadow: 0 8px 32px rgba(15,23,42,0.45);
-    transition: transform .2s, box-shadow .2s;
-    animation: fadeUp .6s 1.1s ease both;
-  }
-  .news-fab:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(15,23,42,0.55); }
-  .news-fab-icon { font-size: 16px; }
-  .news-badge {
-    background: #f97316; color: #fff; border-radius: 99px;
-    font-size: 10px; font-weight: 800; padding: 2px 7px; margin-left: 2px;
-  }
-
-  /* NEWS OVERLAY */
-  .news-overlay {
-    position: fixed; inset: 0; z-index: 1001;
-    background: rgba(10,10,30,0.6);
-    backdrop-filter: blur(6px);
-    display: flex; align-items: center; justify-content: center;
-    padding: 24px;
-    opacity: 0; pointer-events: none;
-    transition: opacity .25s;
-  }
-  .news-overlay.open { opacity: 1; pointer-events: all; }
-
-  /* NEWS MODAL */
-  .news-modal {
-    background: #fff; border-radius: 24px;
-    width: 100%; max-width: 680px;
-    max-height: 88vh; overflow-y: auto;
-    box-shadow: 0 32px 80px rgba(0,0,0,.28);
-    transform: translateY(24px) scale(.97);
-    transition: transform .25s;
-    position: relative;
-  }
-  .news-overlay.open .news-modal { transform: translateY(0) scale(1); }
-  .news-modal-header {
-    position: sticky; top: 0; z-index: 2;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 24px 28px 20px;
-    background: #fff;
-    border-bottom: 1px solid #f0f0f0;
-  }
-  .news-modal-header-left { display: flex; align-items: center; gap: 14px; }
-  .news-modal-icon {
-    width: 44px; height: 44px; border-radius: 12px;
-    background: linear-gradient(135deg,#0f172a,#1e3a5f);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 22px; flex-shrink: 0;
-  }
-  .news-modal-title { font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 800; }
-  .news-modal-subtitle { font-size: 12px; color: #999; margin-top: 3px; }
-  .news-modal-close {
-    width: 36px; height: 36px; border-radius: 50%;
-    background: #f5f5f5; border: none; cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px; color: #666; transition: background .15s, color .15s; flex-shrink: 0;
-  }
-  .news-modal-close:hover { background: #fee2e2; color: #ef4444; }
-  .news-modal-body { padding: 20px 28px 32px; }
-
-  /* FILTER BAR */
-  .news-filter-bar {
-    display: flex; gap: 8px; flex-wrap: wrap;
-    margin-bottom: 20px; padding-bottom: 16px;
-    border-bottom: 1px solid #f3f3f3;
-  }
-  .news-filter-chip {
-    padding: 5px 14px; border-radius: 99px; font-size: 12px; font-weight: 500;
-    cursor: pointer; border: 1.5px solid #e5e7eb; background: #fff; color: #555;
-    font-family: 'DM Sans', sans-serif; transition: all .15s; white-space: nowrap;
-  }
-  .news-filter-chip.active { color: #fff; border-color: transparent; }
-  .news-filter-chip:hover:not(.active) { border-color: #999; color: #222; }
-
-  /* NEWS CARD */
-  .news-card {
-    border-radius: 14px; border: 1.5px solid #f0f0f0;
-    margin-bottom: 14px; overflow: hidden;
-    transition: border-color .2s, box-shadow .2s;
-  }
-  .news-card:last-child { margin-bottom: 0; }
-  .news-card:hover { border-color: #ddd; box-shadow: 0 4px 20px rgba(0,0,0,.07); }
-  .news-card-header {
-    display: flex; gap: 14px;
-    padding: 16px 18px; cursor: pointer;
-  }
-  .news-card-plat-bar {
-    width: 4px; border-radius: 4px; flex-shrink: 0; align-self: stretch; min-height: 40px;
-  }
-  .news-card-main { flex: 1; min-width: 0; }
-  .news-card-top {
-    display: flex; align-items: flex-start; justify-content: space-between; gap: 10px;
-    margin-bottom: 6px;
-  }
-  .news-card-title {
-    font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700;
-    line-height: 1.35; flex: 1;
-  }
-  .news-card-tags { display: flex; gap: 6px; flex-shrink: 0; align-items: flex-start; }
-  .news-tag {
-    font-size: 10px; font-weight: 700; letter-spacing: .05em;
-    text-transform: uppercase; padding: 3px 9px; border-radius: 99px; white-space: nowrap;
-  }
-  .ntag-new       { background: #dcfce7; color: #15803d; }
-  .ntag-change    { background: #dbeafe; color: #1d4ed8; }
-  .ntag-warning   { background: #fef9c3; color: #a16207; }
-  .ntag-critical  { background: #fee2e2; color: #b91c1c; }
-  .news-card-meta {
-    font-size: 11px; color: #aaa;
-    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
-  }
-  .news-card-plat-label { font-weight: 600; }
-  .news-card-chevron {
-    font-size: 11px; color: #ccc; transition: transform .2s; flex-shrink: 0;
-    margin-top: 2px;
-  }
-  .news-card.expanded .news-card-chevron { transform: rotate(180deg); }
-  .news-card-body {
-    max-height: 0; overflow: hidden; transition: max-height .3s ease;
-    padding: 0 18px 0 36px;
-  }
-  .news-card.expanded .news-card-body { max-height: 500px; }
-  .news-card-content {
-    padding: 0 0 18px;
-    font-size: 13px; color: #444; line-height: 1.75;
-    border-top: 1px solid #f5f5f5; padding-top: 14px;
-  }
-  .news-card-content p { margin-bottom: 10px; }
-  .news-card-content p:last-child { margin-bottom: 0; }
-  .news-card-content ul { padding-left: 18px; margin: 8px 0; }
-  .news-card-content li { margin-bottom: 5px; }
-  .news-card-content strong { color: #111; }
-  .news-source {
-    display: inline-flex; align-items: center; gap: 6px;
-    margin-top: 12px; font-size: 11px; color: #999;
-    background: #f9f9f9; padding: 5px 12px; border-radius: 6px;
-  }
-  .news-source a { color: #666; text-decoration: none; }
-  .news-source a:hover { color: #222; text-decoration: underline; }
-
-  /* EMPTY STATE */
-  .news-empty {
-    text-align: center; padding: 48px 24px;
-    color: #aaa; font-size: 14px;
-  }
-  .news-empty div { font-size: 36px; margin-bottom: 12px; }
-
-  /* MARK ALL READ */
-  .news-modal-footer {
-    padding: 0 28px 24px;
-    display: flex; justify-content: flex-end;
-  }
-  .btn-news-read {
-    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
-    color: #0f172a; background: none; border: 1.5px solid #ddd;
-    border-radius: 99px; padding: 8px 20px; cursor: pointer; transition: all .2s;
-  }
-  .btn-news-read:hover { background: #0f172a; color: #fff; border-color: #0f172a; }
 
 
   /* ── MOBILE RESPONSIVE ── */
   @media (max-width: 768px) {
     /* Stack FABs on mobile: news above update */
-    .update-fab {
-      bottom: 28px;
-      right: 28px;
-    }
-    .news-fab {
-      bottom: 84px;
-      right: 28px;
-      left: auto;
-    }
-
     /* Hamburger nav */
     .sticky-nav {
       padding: 0;
@@ -568,9 +274,344 @@
     padding: 10px 16px; font-size: 12px; color: #166534; margin-bottom: 16px;
   }
   .json-hint strong { font-weight: 600; }
+
+  /* AI-POWERED FETCH UI */
+  .ai-status-bar {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; margin-bottom: 16px;
+    padding: 10px 14px; border-radius: 10px;
+    background: #f0fdf4; border: 1px solid #bbf7d0; font-size: 12px;
+  }
+  .ai-status-bar.loading { background: #eff6ff; border-color: #bfdbfe; }
+  .ai-status-bar.error   { background: #fff7ed; border-color: #fed7aa; }
+  .ai-status-bar.cached  { background: #fafafa; border-color: #e5e7eb; }
+  .ai-status-left { display: flex; align-items: center; gap: 8px; color: #166534; font-weight: 500; }
+  .ai-status-bar.loading .ai-status-left { color: #1d4ed8; }
+  .ai-status-bar.error   .ai-status-left { color: #c2410c; }
+  .ai-status-bar.cached  .ai-status-left { color: #6b7280; }
+  .ai-refresh-btn {
+    display: flex; align-items: center; gap: 5px;
+    font-size: 11px; font-weight: 600; padding: 4px 10px;
+    border-radius: 99px; border: 1px solid #d1fae5;
+    background: #fff; color: #059669; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; transition: all .15s; white-space: nowrap;
+  }
+  .ai-refresh-btn:hover { background: #059669; color: #fff; }
+  .ai-refresh-btn:disabled { opacity: .5; cursor: not-allowed; }
+  .spin-icon { display: inline-block; animation: spin .7s linear infinite; }
+
+  .ai-powered-badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 10px; font-weight: 700; letter-spacing: .04em;
+    text-transform: uppercase; padding: 2px 8px; border-radius: 99px;
+    background: linear-gradient(135deg, #6B35D9, #a855f7);
+    color: #fff; margin-left: 6px;
+  }
+
+  /* ═══════════════════════════════════════════
+     ESPAÇO EDUCACIONAL
+  ═══════════════════════════════════════════ */
+  .edu-hero {
+    background: linear-gradient(135deg, #1A1A2E 0%, #16213E 50%, #0F3460 100%);
+    border-radius: 24px; padding: 48px; margin-bottom: 40px; color: #fff;
+    position: relative; overflow: hidden;
+  }
+  .edu-hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(circle at 80% 50%, rgba(107,53,217,.3) 0%, transparent 60%);
+  }
+  .edu-hero-content { position: relative; z-index: 1; }
+  .edu-hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
+    border-radius: 99px; padding: 5px 14px; font-size: 11px; font-weight: 600;
+    letter-spacing: .06em; text-transform: uppercase; color: rgba(255,255,255,.8);
+    margin-bottom: 20px;
+  }
+  .edu-hero h3 {
+    font-family: 'Montserrat', sans-serif; font-size: clamp(24px, 3.5vw, 38px);
+    font-weight: 800; line-height: 1.15; margin-bottom: 14px;
+  }
+  .edu-hero h3 em {
+    font-style: normal;
+    background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .edu-hero p { font-size: 15px; color: rgba(255,255,255,.6); max-width: 520px; line-height: 1.7; }
+  .edu-stats { display: flex; gap: 32px; margin-top: 28px; flex-wrap: wrap; }
+  .edu-stat-num { font-family: 'Montserrat', sans-serif; font-size: 28px; font-weight: 800; }
+  .edu-stat-lbl { font-size: 12px; color: rgba(255,255,255,.5); margin-top: 2px; }
+
+  /* SEARCH */
+  .edu-search-wrap { position: relative; margin-bottom: 32px; }
+  .edu-search {
+    width: 100%; padding: 14px 20px 14px 48px;
+    border-radius: 12px; border: 1.5px solid #e5e7eb;
+    font-size: 14px; font-family: 'DM Sans', sans-serif;
+    background: #fff; color: var(--ink); outline: none;
+    transition: border-color .2s, box-shadow .2s;
+  }
+  .edu-search:focus { border-color: #6B35D9; box-shadow: 0 0 0 3px rgba(107,53,217,.1); }
+  .edu-search-icon {
+    position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+    font-size: 17px; pointer-events: none;
+  }
+  .edu-search-clear {
+    position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+    background: #f0f0f0; border: none; border-radius: 50%;
+    width: 22px; height: 22px; cursor: pointer; font-size: 13px;
+    display: none; align-items: center; justify-content: center; color: #666;
+    transition: background .15s;
+  }
+  .edu-search-clear:hover { background: #ddd; }
+  .edu-search-clear.show { display: flex; }
+
+  /* CATEGORY FILTER */
+  .edu-cats { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px; }
+  .edu-cat {
+    display: flex; align-items: center; gap: 7px;
+    padding: 7px 16px; border-radius: 99px; font-size: 12px; font-weight: 500;
+    cursor: pointer; border: 1.5px solid #e5e7eb; background: #fff;
+    color: #555; font-family: 'DM Sans', sans-serif; transition: all .18s;
+    white-space: nowrap;
+  }
+  .edu-cat.active { border-color: transparent; color: #fff; }
+  .edu-cat:hover:not(.active) { border-color: #999; color: var(--ink); }
+  .edu-cat-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+  /* LESSON GRID */
+  .edu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 18px;
+  }
+  .lesson-card {
+    background: var(--card); border-radius: 18px;
+    border: 1.5px solid #f0f0f0;
+    overflow: hidden; cursor: pointer;
+    transition: transform .22s, box-shadow .22s, border-color .2s;
+    position: relative;
+  }
+  .lesson-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,.1); border-color: #e0e0e0; }
+  .lesson-card-top {
+    padding: 20px 20px 16px;
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 10px;
+  }
+  .lesson-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+  }
+  .lesson-meta { flex: 1; }
+  .lesson-plat {
+    font-size: 10px; font-weight: 700; letter-spacing: .07em;
+    text-transform: uppercase; margin-bottom: 6px;
+  }
+  .lesson-title {
+    font-family: 'Montserrat', sans-serif; font-size: 15px;
+    font-weight: 700; line-height: 1.3; color: var(--ink);
+  }
+  .lesson-card-bottom {
+    padding: 0 20px 18px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .lesson-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .lesson-tag {
+    font-size: 10px; font-weight: 600; letter-spacing: .04em;
+    padding: 3px 9px; border-radius: 6px; background: #f5f5f5; color: #666;
+  }
+  .lesson-level {
+    font-size: 11px; font-weight: 600; padding: 4px 10px;
+    border-radius: 99px; flex-shrink: 0;
+  }
+  .level-init  { background: #dcfce7; color: #15803d; }
+  .level-inter { background: #dbeafe; color: #1d4ed8; }
+  .level-adv   { background: #fef9c3; color: #a16207; }
+  .lesson-desc {
+    padding: 0 20px 18px; font-size: 13px; color: #666; line-height: 1.6;
+  }
+  .lesson-bar { height: 3px; }
+  .edu-empty {
+    grid-column: 1/-1; text-align: center; padding: 60px 24px;
+    color: #aaa; font-size: 14px;
+  }
+  .edu-empty div { font-size: 40px; margin-bottom: 14px; }
+
+  /* LESSON MODAL */
+  .lesson-overlay {
+    position: fixed; inset: 0; z-index: 1002;
+    background: rgba(10,10,30,.65); backdrop-filter: blur(8px);
+    display: flex; align-items: flex-start; justify-content: center;
+    padding: 12px; overflow-y: auto; overflow-x: hidden;
+    opacity: 0; pointer-events: none; transition: opacity .25s;
+  }
+  .lesson-overlay.open { opacity: 1; pointer-events: all; }
+  .lesson-modal {
+    background: #fff; border-radius: 24px; width: 100%; max-width: 760px;
+    box-shadow: 0 40px 100px rgba(0,0,0,.3);
+    transform: translateY(28px) scale(.97); transition: transform .25s;
+    margin: auto; position: relative;
+    overflow: hidden;
+  }
+  .lesson-overlay.open .lesson-modal { transform: translateY(0) scale(1); }
+  .lesson-modal-header {
+    padding: 28px 32px 24px; border-bottom: 1px solid #f0f0f0;
+    display: flex; align-items: flex-start; gap: 18px;
+  }
+  .lesson-modal-icon {
+    width: 52px; height: 52px; border-radius: 14px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; font-size: 24px;
+  }
+  .lesson-modal-meta { flex: 1; }
+  .lesson-modal-plat { font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; margin-bottom: 6px; }
+  .lesson-modal-title { font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 800; line-height: 1.25; margin-bottom: 8px; }
+  .lesson-modal-badges { display: flex; gap: 8px; flex-wrap: wrap; }
+  .lesson-modal-close {
+    width: 38px; height: 38px; border-radius: 50%; background: #f5f5f5;
+    border: none; cursor: pointer; font-size: 18px; color: #666;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .15s, color .15s; flex-shrink: 0;
+  }
+  .lesson-modal-close:hover { background: #fee2e2; color: #ef4444; }
+  .lesson-modal-body { padding: 28px 32px 36px; overflow-x: hidden; }
+
+  /* LESSON STEPS */
+  .lesson-steps { display: flex; flex-direction: column; gap: 0; }
+  .lesson-step-item {
+    display: flex; gap: 0; position: relative;
+  }
+  .lesson-step-left {
+    display: flex; flex-direction: column; align-items: center; width: 44px; flex-shrink: 0;
+  }
+  .lesson-step-num {
+    width: 32px; height: 32px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 800;
+    color: #fff; flex-shrink: 0; z-index: 1;
+  }
+  .lesson-step-line {
+    width: 2px; flex: 1; background: #f0f0f0; margin: 4px 0;
+    min-height: 20px;
+  }
+  .lesson-step-last .lesson-step-line { display: none; }
+  .lesson-step-content {
+    padding: 0 0 28px 16px; flex: 1;
+    min-width: 0; overflow-wrap: break-word; word-wrap: break-word;
+  }
+  .lesson-step-title {
+    font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700;
+    margin-bottom: 8px; margin-top: 4px; line-height: 1.3;
+  }
+  .lesson-step-desc { font-size: 13px; color: #555; line-height: 1.7; margin-bottom: 10px; }
+  .lesson-step-tip {
+    background: #f8faff; border: 1px solid #e0e9ff; border-radius: 10px;
+    padding: 10px 14px; font-size: 12px; color: #2d4a8a; line-height: 1.6;
+    margin-top: 8px;
+  }
+  .lesson-step-tip strong { color: #1a3a7a; }
+  .lesson-step-warn {
+    background: #fff8f0; border: 1px solid #fde68a; border-radius: 10px;
+    padding: 10px 14px; font-size: 12px; color: #92400e; line-height: 1.6; margin-top: 8px;
+  }
+  .lesson-step-code {
+    background: #1e1e2e; border-radius: 10px; padding: 14px 16px;
+    font-family: monospace; font-size: 11px; color: #cdd6f4;
+    line-height: 1.7; margin-top: 10px;
+    overflow-x: auto; overflow-y: hidden;
+    white-space: pre; position: relative;
+    max-width: 100%; box-sizing: border-box;
+    word-break: break-all;
+    -webkit-overflow-scrolling: touch;
+  }
+  .copy-code-btn {
+    position: absolute; top: 10px; right: 10px;
+    background: rgba(255,255,255,.1); border: none; border-radius: 6px;
+    padding: 4px 10px; font-size: 11px; color: #cdd6f4; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; transition: background .15s;
+  }
+  .copy-code-btn:hover { background: rgba(255,255,255,.2); }
+  .lesson-resources {
+    margin-top: 24px; padding-top: 20px; border-top: 1px solid #f0f0f0;
+  }
+  .lesson-resources h4 {
+    font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700;
+    color: #999; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 12px;
+  }
+  .lesson-link {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 14px; border-radius: 10px; background: #fafafa;
+    border: 1px solid #f0f0f0; text-decoration: none; color: var(--ink);
+    font-size: 13px; margin-bottom: 8px; transition: background .15s, border-color .15s;
+  }
+  .lesson-link:hover { background: #f5f5f5; border-color: #e0e0e0; }
+  .lesson-link-icon { font-size: 16px; flex-shrink: 0; }
+  .progress-bar-wrap {
+    background: #f0f0f0; border-radius: 99px; height: 4px; margin: 20px 0 4px;
+    overflow: hidden;
+  }
+  .progress-bar-fill { height: 100%; border-radius: 99px; transition: width .4s; }
+  .progress-label { font-size: 11px; color: #aaa; text-align: right; }
+
+  @media (max-width: 600px) {
+    .lesson-modal-header { padding: 20px; }
+    .lesson-modal-body { padding: 16px; }
+    .edu-hero { padding: 28px 20px; }
+    .edu-stats { gap: 20px; }
+    .lesson-step-code { font-size: 10px; padding: 12px; }
+    .lesson-step-title { font-size: 14px; }
+    .lesson-step-desc { font-size: 12px; }
+    .lesson-modal-title { font-size: 18px; }
+    .lesson-step-item { gap: 0; }
+    .step-desc, .step-body p { word-break: break-word; }
+    .step-card { padding: 14px 12px; }
+    .step { overflow: hidden; }
+  }
   @keyframes fadeUp { from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)} }
   @keyframes bounce { 0%,100%{transform:rotate(45deg) translateY(0)}50%{transform:rotate(45deg) translateY(6px)} }
   @media(max-width:600px){.kpi-section,.ga4-section{padding:24px 16px}.section{padding:48px 16px}}
+
+  /* ADDITIONAL MOBILE OVERFLOW FIXES */
+  @media (max-width: 768px) {
+    /* Prevent any element from exceeding viewport */
+    .lesson-modal { border-radius: 16px; margin: 0; width: 100%; }
+    .lesson-modal-header { padding: 16px; gap: 12px; }
+    .lesson-modal-icon { width: 40px; height: 40px; font-size: 20px; }
+    .lesson-modal-title { font-size: 16px; }
+    .lesson-modal-body { padding: 16px 14px 24px; }
+    .lesson-step-left { width: 36px; }
+    .lesson-step-num { width: 28px; height: 28px; font-size: 11px; }
+    .lesson-step-content { padding: 0 0 22px 12px; }
+    .lesson-step-code {
+      font-size: 10px !important;
+      padding: 10px 12px !important;
+      border-radius: 8px;
+      overflow-x: scroll !important;
+      white-space: pre !important;
+      display: block;
+      max-width: calc(100vw - 80px);
+    }
+    .lesson-step-tip, .lesson-step-warn {
+      font-size: 11px; padding: 8px 10px;
+      overflow-wrap: break-word; word-break: break-word;
+    }
+    /* Roteiro step cards */
+    .step { padding: 14px 12px; gap: 12px; overflow: hidden; }
+    .step-desc, .step-body p { 
+      word-break: break-word; overflow-wrap: break-word;
+      overflow: hidden;
+    }
+    .step-tip { word-break: break-word; }
+    /* Update and news modals */
+    .update-modal, 
+    .modal-body, 
+    .update-item-content, 
+    /* Section overflow */
+    .section { padding: 40px 16px; overflow-x: hidden; }
+    .kpi-section { padding: 24px 16px; }
+    .edu-grid { grid-template-columns: 1fr; }
+    .lesson-card { border-radius: 14px; }
+  }
+
 </style>
 </head>
 <body>
@@ -613,6 +654,7 @@
     <button class="nav-tab" onclick="navTo('ga4',this)">GA4</button>
     <button class="nav-tab" onclick="navTo('kpis',this)">KPIs</button>
     <button class="nav-tab" onclick="navTo('dicas',this)">Dicas de Ouro</button>
+    <button class="nav-tab" onclick="navTo('aprenda',this)">📚 Aprenda</button>
   </div>
 </nav>
 
@@ -756,6 +798,50 @@
   </div>
 </div></div>
 
+
+<div class="divider"></div>
+
+<!-- ESPAÇO EDUCACIONAL -->
+<div id="aprenda"><div class="section">
+  <div class="section-label">Espaço Educacional</div>
+  <h2 class="section-title">Aprenda na prática,<br>passo a passo</h2>
+
+  <!-- Hero card -->
+  <div class="edu-hero">
+    <div class="edu-hero-content">
+      <div class="edu-hero-badge">📚 Tutoriais práticos</div>
+      <h3>Do pixel ao anúncio:<br><em>guias que realmente ensinam</em></h3>
+      <p>Tutoriais detalhados com passo a passo, dicas e armadilhas a evitar para as tarefas mais importantes do dia a dia em mídia paga.</p>
+      <div class="edu-stats">
+        <div><div class="edu-stat-num" id="edu-count-total">28</div><div class="edu-stat-lbl">tutoriais</div></div>
+        <div><div class="edu-stat-num">5</div><div class="edu-stat-lbl">plataformas</div></div>
+        <div><div class="edu-stat-num">3</div><div class="edu-stat-lbl">níveis</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search -->
+  <div class="edu-search-wrap">
+    <span class="edu-search-icon">🔍</span>
+    <input class="edu-search" id="edu-search" type="text" placeholder="Buscar tutorial... ex: pixel, remarketing, conversão, whatsapp">
+    <button class="edu-search-clear" id="edu-search-clear" onclick="clearEduSearch()">✕</button>
+  </div>
+
+  <!-- Category filter -->
+  <div class="edu-cats" id="edu-cats"></div>
+
+  <!-- Lesson grid -->
+  <div class="edu-grid" id="edu-grid"></div>
+</div></div>
+
+<!-- LESSON MODAL -->
+<div class="lesson-overlay" id="lesson-overlay" onclick="handleLessonOverlay(event)">
+  <div class="lesson-modal" id="lesson-modal">
+    <div class="lesson-modal-header" id="lesson-modal-header"></div>
+    <div class="lesson-modal-body" id="lesson-modal-body"></div>
+  </div>
+</div>
+
 <footer class="footer">
   <strong>Guia de Anúncios Digitais + GA4</strong> · 6 Plataformas · 4 Objetivos · Criação, Remarketing e Otimização
 </footer>
@@ -799,7 +885,7 @@ function genericSteps(platName,platColor,objName,objColor,mode,phase){
       ],
       'Público':[
         {t:'Defina a segmentação principal',d:`Configure o público-alvo com base nos dados demográficos, interesses e comportamentos alinhados ao perfil do cliente ideal para ${objName}.`,tip:null},
-        {t:'Crie públicos Lookalike de alta qualidade',d:'Use sua lista de melhores clientes (mín. 100–300 pessoas) como semente para criar Lookalike. Público 1% tem melhor qualidade.',tip:'Lookalike de compradores com maior LTV converte melhor do que Lookalike da base geral.',tc:objColor},
+        {t:'Crie públicos Lookalike de alta qualidade',d:'Use sua lista de melhores clientes (mín. 100-300 pessoas) como semente para criar Lookalike. Público 1% tem melhor qualidade.',tip:'Lookalike de compradores com maior LTV converte melhor do que Lookalike da base geral.',tc:objColor},
         {t:'Configure exclusões de público',d:'Exclua clientes recentes das campanhas de aquisição. Sobreposição entre remarketing e prospecção encarece os dois.',tip:null},
       ],
       'Criativos':[
@@ -809,7 +895,7 @@ function genericSteps(platName,platColor,objName,objColor,mode,phase){
       ],
       'Lance & Budget':[
         {t:'Inicie com estratégia de aprendizado',d:'Use Custo menor ou Maximizar conversões nos primeiros 14 dias para maximizar o aprendizado do algoritmo antes de definir CPAs.',tip:null},
-        {t:'Aumente o orçamento gradualmente',d:'Incremente em até 20% a cada 2–3 dias. Aumentos bruscos reiniciam o aprendizado e podem dobrar o CPA temporariamente.',tip:'Paciência na fase de escala é uma das habilidades mais valiosas em mídia paga.',tc:platColor},
+        {t:'Aumente o orçamento gradualmente',d:'Incremente em até 20% a cada 2-3 dias. Aumentos bruscos reiniciam o aprendizado e podem dobrar o CPA temporariamente.',tip:'Paciência na fase de escala é uma das habilidades mais valiosas em mídia paga.',tc:platColor},
       ],
       'Publicação':[
         {t:'Faça checklist final antes de publicar',d:'Confirme: rastreamento ativo, evento de conversão selecionado, URL com UTM, criativos aprovados pelas políticas.',tip:null},
@@ -824,7 +910,7 @@ function genericSteps(platName,platColor,objName,objColor,mode,phase){
       'Públicos':[
         {t:'Segmente por temperatura de intenção',d:'Público frio (visitou uma vez), morno (visitou múltiplas vezes ou adicionou ao carrinho) e quente (iniciou checkout). Cada um recebe mensagem diferente.',tip:null},
         {t:'Configure exclusões entre segmentos',d:'Cada segmento de remarketing deve excluir os segmentos de maior intenção (ex: abandonadores de carrinho excluem os que já compraram).',tip:'Exclusões cruzadas evitam que você mostre mensagens erradas para o momento errado do usuário.',tc:platColor},
-        {t:'Crie Lookalike de compradores para prospecção paralela',d:'Com lista de compradores (mín. 100–300 pessoas), crie Lookalike para rodar em paralelo ao remarketing.',tip:null},
+        {t:'Crie Lookalike de compradores para prospecção paralela',d:'Com lista de compradores (mín. 100-300 pessoas), crie Lookalike para rodar em paralelo ao remarketing.',tip:null},
       ],
       'Campanha':[
         {t:'Crie campanha de remarketing separada',d:'Nunca misture remarketing com prospecção na mesma campanha. Mantenha separados para analisar e otimizar individualmente.',tip:null},
@@ -832,15 +918,15 @@ function genericSteps(platName,platColor,objName,objColor,mode,phase){
       ],
       'Criativos':[
         {t:'Criativo por estágio do funil',d:'Abandono de carrinho: lembre o produto + urgência. Visitante geral: benefícios + prova social. Comprador anterior: novidade + exclusividade.',tip:null},
-        {t:'Configure sequência temporal',d:'Dias 1–3: lembrete neutro. Dias 4–7: incentivo (desconto, frete grátis). Dias 8–14: urgência máxima. Após 14 dias sem conversão: pausa ou nova oferta.',tip:null},
+        {t:'Configure sequência temporal',d:'Dias 1-3: lembrete neutro. Dias 4-7: incentivo (desconto, frete grátis). Dias 8-14: urgência máxima. Após 14 dias sem conversão: pausa ou nova oferta.',tip:null},
       ],
       'Lances':[
         {t:'Use CPA desejado com histórico de dados',d:'Com histórico de conversões de remarketing, defina CPA desejado 20% acima do CPA atual para estabilidade e escala gradual.',tip:null},
-        {t:'Lance maior para públicos de maior intenção',d:'Abandonadores de checkout merecem lance 30–50% maior que visitantes gerais. O valor potencial justifica o custo maior.',tip:null},
+        {t:'Lance maior para públicos de maior intenção',d:'Abandonadores de checkout merecem lance 30-50% maior que visitantes gerais. O valor potencial justifica o custo maior.',tip:null},
       ],
       'Monitoramento':[
         {t:'Monitore ROAS e CPA separadamente por segmento',d:'Remarketing deve ter ROAS significativamente maior que prospecção. Se não, revise a segmentação ou os criativos.',tip:null},
-        {t:'Controle a frequência rigorosamente',d:'Frequência acima de 5–7x/semana em remarketing indica saturação. Atualize criativos ou expanda o público.',tip:'Alta frequência + CPA crescente = público saturado. Renove o criativo antes de pausar o público.',tc:platColor},
+        {t:'Controle a frequência rigorosamente',d:'Frequência acima de 5-7x/semana em remarketing indica saturação. Atualize criativos ou expanda o público.',tip:'Alta frequência + CPA crescente = público saturado. Renove o criativo antes de pausar o público.',tc:platColor},
       ],
     },
     'Otimização':{
@@ -857,16 +943,16 @@ function genericSteps(platName,platColor,objName,objColor,mode,phase){
       'Criativos':[
         {t:'Identifique o criativo campeão',d:'Ordene anúncios por CPA ou ROAS. Pause os 20% mais caros. Duplique e itere os 20% com melhor desempenho.',tip:null},
         {t:'Otimize o gancho dos primeiros 3 segundos',d:'Taxa de retenção abaixo de 60% nos 3 primeiros segundos = gancho fraco. Refaça a abertura sem alterar o restante.',tip:null},
-        {t:'Estabeleça cadência de renovação de criativos',d:'Atualize criativos a cada 7–14 dias para públicos quentes, 3–4 semanas para públicos frios. Monitore frequência como gatilho.',tip:'Criativo cansado é a causa mais comum de CPA crescente em campanhas que já funcionaram bem.',tc:platColor},
+        {t:'Estabeleça cadência de renovação de criativos',d:'Atualize criativos a cada 7-14 dias para públicos quentes, 3-4 semanas para públicos frios. Monitore frequência como gatilho.',tip:'Criativo cansado é a causa mais comum de CPA crescente em campanhas que já funcionaram bem.',tc:platColor},
       ],
       'Lances & Budget':[
-        {t:'Ajuste o orçamento gradualmente (máx. 20% por vez)',d:'Incrementos maiores reiniciam o aprendizado. Aumente 10–15% a cada 2–3 dias para escalar com eficiência.',tip:null},
-        {t:'Use regras automatizadas para controle',d:'Configure regras: pausar se CPA > X em 3 dias; aumentar budget 15% se CPA < Y por 2 dias consecutivos.',tip:'Use janelas de 3–7 dias nas regras. Dados de 1 dia têm variância alta e geram ações desnecessárias.',tc:platColor},
+        {t:'Ajuste o orçamento gradualmente (máx. 20% por vez)',d:'Incrementos maiores reiniciam o aprendizado. Aumente 10-15% a cada 2-3 dias para escalar com eficiência.',tip:null},
+        {t:'Use regras automatizadas para controle',d:'Configure regras: pausar se CPA > X em 3 dias; aumentar budget 15% se CPA < Y por 2 dias consecutivos.',tip:'Use janelas de 3-7 dias nas regras. Dados de 1 dia têm variância alta e geram ações desnecessárias.',tc:platColor},
         {t:'Calcule o CPA máximo sustentável',d:'CPA máximo = Ticket médio × Margem × Taxa de conversão. Use esse número como teto nas estratégias de lance.',tip:null},
       ],
       'Público':[
         {t:'Expanda públicos que esgotaram o alcance',d:'Frequência alta + CPM crescente = público saturado. Expanda faixa etária, adicione interesses ou teste público amplo.',tip:null},
-        {t:'Teste três abordagens em paralelo',d:'Público de interesse vs. Lookalike vs. Público amplo (com bons criativos). Compare CPA por 7–14 dias e concentre budget no vencedor.',tip:null},
+        {t:'Teste três abordagens em paralelo',d:'Público de interesse vs. Lookalike vs. Público amplo (com bons criativos). Compare CPA por 7-14 dias e concentre budget no vencedor.',tip:null},
       ],
       'Escala':[
         {t:'Escale horizontalmente antes de verticalmente',d:'Duplique conjuntos vencedores com novos públicos antes de aumentar orçamento nos existentes. Evita saturação do público original.',tip:null},
@@ -878,7 +964,7 @@ function genericSteps(platName,platColor,objName,objColor,mode,phase){
   return (byMode[mode]||{})[phase] || [];
 }
 
-// LinkedIn full data (abbreviated — same as before)
+// LinkedIn full data (abbreviated  -  same as before)
 const linkedinSteps = {
   conversoes:{
     'Criação':{
@@ -886,7 +972,7 @@ const linkedinSteps = {
         {t:'Instale o LinkedIn Insight Tag',d:'Adicione o script via GTM ou direto no código. Obrigatório para rastreamento de conversões, remarketing e dados de audiência.',tip:'Verifique em Campaign Manager → Ativos de conta → Insight Tag. Ícone verde = ativo.',tc:'#0A66C2'},
         {t:'Crie uma Página de Empresa completa',d:'Campanhas exigem uma Página de Empresa vinculada. Complete com logo, descrição e URL do site.',tip:null},
         {t:'Configure eventos de conversão',d:'Campaign Manager → Ativos de conta → Conversões → + Criar. Configure para Compras, Inscrições ou outros eventos de alto valor.',tip:'LinkedIn Conversions API (server-side) recomendado para maior precisão pós-cookies.',tc:'#2D7D0A'},
-        {t:'Defina o orçamento mínimo viável',d:'CPCs e CPMs mais altos que outras plataformas. Budget mínimo recomendado: R$150–300/dia por campanha.',tip:'CPM no LinkedIn pode ser 3–5x maior que Meta, mas a qualidade do lead B2B justifica.',tc:'#EA4335'},
+        {t:'Defina o orçamento mínimo viável',d:'CPCs e CPMs mais altos que outras plataformas. Budget mínimo recomendado: R$150-300/dia por campanha.',tip:'CPM no LinkedIn pode ser 3-5x maior que Meta, mas a qualidade do lead B2B justifica.',tc:'#EA4335'},
       ],
       'Campanha':[
         {t:'Acesse o Campaign Manager',d:'linkedin.com/campaignmanager → selecione a conta → + Criar campanha.',tip:null},
@@ -894,7 +980,7 @@ const linkedinSteps = {
         {t:'Escolha o formato de anúncio',d:'Single Image Ad (mais comum), Video Ad, Carousel ou Document Ad. Comece com Single Image para validar.',tip:'Single Image tem melhor equilíbrio entre alcance e custo para conversões no início.',tc:'#185FA5'},
       ],
       'Público':[
-        {t:'Use segmentação profissional como diferencial',d:'LinkedIn: cargo, função, senioridade, setor, tamanho de empresa, habilidades. Combine 2–3 critérios.',tip:'Público mínimo recomendado: 50.000 pessoas. Abaixo disso, o CPM sobe demais.',tc:'#0A66C2'},
+        {t:'Use segmentação profissional como diferencial',d:'LinkedIn: cargo, função, senioridade, setor, tamanho de empresa, habilidades. Combine 2-3 critérios.',tip:'Público mínimo recomendado: 50.000 pessoas. Abaixo disso, o CPM sobe demais.',tc:'#0A66C2'},
         {t:'Priorize cargo + senioridade para B2B',d:'Segmente por cargos de decisão (Diretor, VP, C-Level) + função + setor da empresa.',tip:null},
         {t:'Use Matched Audiences para ABM',d:'Upload de lista de contas-alvo ou e-mails de prospects do CRM. Permite ABM preciso com mensagem personalizada por conta.',tip:'Company Targeting: anuncie apenas para pessoas nas empresas que você quer atingir.',tc:'#6B35D9'},
       ],
@@ -918,59 +1004,59 @@ const linkedinSteps = {
       'Rastreamento':[{t:'Confirme o Insight Tag ativo',d:'Verifique em Campaign Manager → Ativos de conta → Insight Tag que o status está verde.',tip:null},{t:'Configure eventos granulares',d:'Além de PageView, configure ViewContent, CompleteRegistration, Purchase para segmentar por comportamento no funil.',tip:'Sem eventos granulares, seu remarketing se limita a todos os visitantes.',tc:'#0A66C2'},{t:'Aguarde volume mínimo de 300 membros',d:'LinkedIn exige mínimo de 300 membros correspondidos para ativar retargeting. Com tráfego baixo, combine com Matched Audiences.',tip:'Combine retargeting com Matched Audiences do CRM para atingir o mínimo mais rápido.',tc:'#EA4335'}],
       'Públicos':[{t:'Crie público de visitantes por URL',d:'Ativos de conta → Públicos de retargeting: visitantes gerais, página de produto, página de conversão.',tip:null},{t:'Matched Audiences com CRM',d:'Upload de contas e e-mails de prospects. Remarketing preciso mesmo sem histórico de visita ao site.',tip:'Aceita listas de e-mail e listas de empresas por domínio. Poderoso para ABM.',tc:'#6B35D9'},{t:'Públicos de engajamento com a Página',d:'Adicione quem interagiu com sua Página de Empresa, abriu Lead Gen Forms ou interagiu com anúncios.',tip:null}],
       'Campanha':[{t:'Crie campanha de remarketing separada',d:'Configure campanha separada. Exclua convertidos recentes dos públicos.',tip:'Exclua compradores dos últimos 30 dias. Crie campanha separada de upsell para eles.',tc:'#2D7D0A'},{t:'Personalize a mensagem por estágio',d:'Visitantes de produto: benefícios + CTA. Visitantes de checkout: urgência + garantia + suporte.',tip:null},{t:'Sponsored InMail para remarketing direto',d:'Message Ads chegam na caixa de entrada. Taxa de abertura de 50%+ para visitantes de alto valor.',tip:'Message Ads cobrados por envio. Alta taxa de conversão para audiences quentes.',tc:'#0A66C2'}],
-      'Criativos':[{t:'Criativos específicos por segmento',d:'Visitante geral: benefícios + prova social. Visualizou produto: mencione diretamente. Checkout: urgência + garantia.',tip:null},{t:'Document Ads para mais contexto',d:'Para visitantes que consumiram conteúdo mas não converteram, Document Ads aprofundam o relacionamento antes do CTA.',tip:'Document Ads têm CPL menor para públicos mornos — qualifica o lead antes de falar com vendas.',tc:'#185FA5'}],
-      'Lances':[{t:'CPM para branding, CPC para conversão',d:'Remarketing de branding: CPM. Remarketing de conversão direta: CPC ou custo por conversão.',tip:null},{t:'Lance maior para alta intenção',d:'Visitantes de checkout merecem lance 30–50% maior que visitantes gerais.',tip:'A diferença de qualidade entre públicos por estágio do funil é enorme no LinkedIn.',tc:'#0A66C2'}],
+      'Criativos':[{t:'Criativos específicos por segmento',d:'Visitante geral: benefícios + prova social. Visualizou produto: mencione diretamente. Checkout: urgência + garantia.',tip:null},{t:'Document Ads para mais contexto',d:'Para visitantes que consumiram conteúdo mas não converteram, Document Ads aprofundam o relacionamento antes do CTA.',tip:'Document Ads têm CPL menor para públicos mornos  -  qualifica o lead antes de falar com vendas.',tc:'#185FA5'}],
+      'Lances':[{t:'CPM para branding, CPC para conversão',d:'Remarketing de branding: CPM. Remarketing de conversão direta: CPC ou custo por conversão.',tip:null},{t:'Lance maior para alta intenção',d:'Visitantes de checkout merecem lance 30-50% maior que visitantes gerais.',tip:'A diferença de qualidade entre públicos por estágio do funil é enorme no LinkedIn.',tc:'#0A66C2'}],
       'Monitoramento':[{t:'Conversões por segmento de público',d:'Separe relatórios por tipo de público. Compare taxa de conversão e CPA para alocar budget.',tip:null},{t:'Integre leads ao CRM imediatamente',d:'Configure integração automática via LinkedIn nativo, Zapier ou HubSpot.',tip:'Leads B2B têm ciclo longo. Configure nurturing de e-mail em paralelo para nutrir ao longo do tempo.',tc:'#6B35D9'}],
     },
     'Otimização':{
-      'Diagnóstico':[{t:'Audite o Insight Tag e conversões',d:'Confirme que o Insight Tag está ativo e eventos de conversão disparando corretamente.',tip:'LinkedIn tem menor volume de dados. Problemas de rastreamento afetam desproporcionalmente o aprendizado.',tc:'#EA4335'},{t:'CTR muito abaixo da média',d:'CTR médio no LinkedIn: 0,4–0,6% para Single Image. Abaixo de 0,2% indica problema de criativo ou público.',tip:'LinkedIn tem CTR estruturalmente menor que Meta — o usuário está em modo de trabalho, não de entretenimento.',tc:'#185FA5'}],
+      'Diagnóstico':[{t:'Audite o Insight Tag e conversões',d:'Confirme que o Insight Tag está ativo e eventos de conversão disparando corretamente.',tip:'LinkedIn tem menor volume de dados. Problemas de rastreamento afetam desproporcionalmente o aprendizado.',tc:'#EA4335'},{t:'CTR muito abaixo da média',d:'CTR médio no LinkedIn: 0,4-0,6% para Single Image. Abaixo de 0,2% indica problema de criativo ou público.',tip:'LinkedIn tem CTR estruturalmente menor que Meta  -  o usuário está em modo de trabalho, não de entretenimento.',tc:'#185FA5'}],
       'Estrutura':[{t:'Consolide campanhas com públicos sobrepostos',d:'Campanhas com segmentações similares competem no leilão e encarecem o CPM mutuamente.',tip:null},{t:'Separe por segmento estratégico',d:'Campanhas separadas por: tamanho de empresa, senioridade (Gestores vs. C-Level), função.',tip:'Cada segmento tem proposta de valor diferente. Mensagem genérica não ressoa com nenhum.',tc:'#0A66C2'}],
-      'Criativos':[{t:'Diferentes ângulos por segmento de cargo',d:'CMO: ROI e resultados. Gerente: eficiência operacional. C-Level: crescimento estratégico.',tip:'O maior erro é usar a mesma mensagem para todos os cargos. CTR e CPL melhoram com personalização.',tc:'#0A66C2'},{t:'Pause CTR < 0,2% após 5.000 impressões',d:'Criativo não gerando interesse. Teste novo ângulo ou imagem completamente diferente.',tip:null},{t:'Teste Carousel e Document Ads',d:'Se Single Image estagnado: Carousel (narrativa) e Document Ads (conteúdo para download).',tip:'Document Ads têm CPL 40–60% menor para públicos mornos. Excelente para nutrir decisores B2B.',tc:'#6B35D9'}],
-      'Lances & Budget':[{t:'Lance baseado no valor real do lead',d:'LinkedIn tem CPC alto (R$20–80 em B2B). Calcule o CPC máximo pelo ticket médio e margem.',tip:'CPC máximo = Ticket × Margem × Taxa de conversão. Use como teto no CPC manual.',tc:'#2D7D0A'},{t:'Configure janela de conversão adequada ao B2B',d:'Use janela de 60–90 dias no Campaign Manager. Em B2B, a conversão pode levar semanas ou meses.',tip:'Janela de 7 dias subestima gravemente o impacto de campanhas LinkedIn em ciclos longos.',tc:'#185FA5'}],
+      'Criativos':[{t:'Diferentes ângulos por segmento de cargo',d:'CMO: ROI e resultados. Gerente: eficiência operacional. C-Level: crescimento estratégico.',tip:'O maior erro é usar a mesma mensagem para todos os cargos. CTR e CPL melhoram com personalização.',tc:'#0A66C2'},{t:'Pause CTR < 0,2% após 5.000 impressões',d:'Criativo não gerando interesse. Teste novo ângulo ou imagem completamente diferente.',tip:null},{t:'Teste Carousel e Document Ads',d:'Se Single Image estagnado: Carousel (narrativa) e Document Ads (conteúdo para download).',tip:'Document Ads têm CPL 40-60% menor para públicos mornos. Excelente para nutrir decisores B2B.',tc:'#6B35D9'}],
+      'Lances & Budget':[{t:'Lance baseado no valor real do lead',d:'LinkedIn tem CPC alto (R$20-80 em B2B). Calcule o CPC máximo pelo ticket médio e margem.',tip:'CPC máximo = Ticket × Margem × Taxa de conversão. Use como teto no CPC manual.',tc:'#2D7D0A'},{t:'Configure janela de conversão adequada ao B2B',d:'Use janela de 60-90 dias no Campaign Manager. Em B2B, a conversão pode levar semanas ou meses.',tip:'Janela de 7 dias subestima gravemente o impacto de campanhas LinkedIn em ciclos longos.',tc:'#185FA5'}],
       'Público':[{t:'Refine com Audience Insights',d:'Audience Insights mostra o perfil real de quem clicou. Use para refinar e excluir segmentos de baixo desempenho.',tip:null},{t:'Teste ABM com lista de contas',d:'Para vendas enterprise, Company Targeting com lista de contas-alvo + segmentação de cargo.',tip:'ABM no LinkedIn: nenhuma outra plataforma permite essa combinação de empresa + cargo simultaneamente.',tc:'#0A66C2'},{t:'Segmente por Skills para nichos técnicos',d:'Para produtos técnicos: habilidades + senioridade + setor. Combinação poderosa para SaaS B2B.',tip:null}],
-      'Escala':[{t:'Expanda segmentação gradualmente',d:'Adicione um critério de cada vez e monitore CPA por 7 dias antes de continuar expandindo.',tip:null},{t:'Diversifique formatos ao escalar',d:'Se Single Image saturou: Video Ads e Document Ads em grupos separados para alcançar momentos diferentes.',tip:null},{t:'Combine com Employee Advocacy',d:'Colaboradores que compartilham conteúdo multiplicam o alcance sem custo adicional.',tip:'50 colaboradores ativos = 25.000–150.000 profissionais alcançados organicamente.',tc:'#2D7D0A'}],
+      'Escala':[{t:'Expanda segmentação gradualmente',d:'Adicione um critério de cada vez e monitore CPA por 7 dias antes de continuar expandindo.',tip:null},{t:'Diversifique formatos ao escalar',d:'Se Single Image saturou: Video Ads e Document Ads em grupos separados para alcançar momentos diferentes.',tip:null},{t:'Combine com Employee Advocacy',d:'Colaboradores que compartilham conteúdo multiplicam o alcance sem custo adicional.',tip:'50 colaboradores ativos = 25.000-150.000 profissionais alcançados organicamente.',tc:'#2D7D0A'}],
     },
   },
   leads:{
     'Criação':{
       'Pré-requisitos':[
         {t:'Instale Insight Tag e configure evento de Lead',d:'Instale o Insight Tag e configure o evento de conversão para Lead (disparo após envio de formulário).',tip:null},
-        {t:'Prepare a oferta de geração de lead',d:'Lead Gen Forms funcionam melhor com: e-book, white paper, webinar, diagnóstico gratuito ou trial.',tip:'Oferta genérica tem CPL 3–5x maior que oferta de conteúdo específico. Invista no material.',tc:'#6B35D9'},
-        {t:'Construa o Lead Gen Form antes da campanha',d:'Ativos de conta → Lead Gen Forms → + Criar. LinkedIn preenche automaticamente nome, e-mail, empresa e cargo do perfil.',tip:'Preenchimento automático reduz o atrito e aumenta a taxa de conclusão para 10–20%.',tc:'#0A66C2'},
+        {t:'Prepare a oferta de geração de lead',d:'Lead Gen Forms funcionam melhor com: e-book, white paper, webinar, diagnóstico gratuito ou trial.',tip:'Oferta genérica tem CPL 3-5x maior que oferta de conteúdo específico. Invista no material.',tc:'#6B35D9'},
+        {t:'Construa o Lead Gen Form antes da campanha',d:'Ativos de conta → Lead Gen Forms → + Criar. LinkedIn preenche automaticamente nome, e-mail, empresa e cargo do perfil.',tip:'Preenchimento automático reduz o atrito e aumenta a taxa de conclusão para 10-20%.',tc:'#0A66C2'},
         {t:'Configure integração com CRM',d:'Integração direta com HubSpot, Salesforce, Marketo ou Zapier. Lead sem integração = lead que esfria.',tip:'Lead contactado em até 5 minutos tem 9x mais chance de converter. Automatize o contato inicial.',tc:'#2D7D0A'},
       ],
       'Campanha':[{t:'Crie campanha Geração de leads',d:'Campaign Manager → + Criar → Objetivo: Geração de leads.',tip:null},{t:'Selecione formato Lead Gen Form',d:'Single Image + Lead Gen Form ou Video + Lead Gen Form. Formulário nativo maximiza a taxa de conclusão.',tip:'Sponsored InMail com Lead Gen Form tem taxa de conclusão ainda maior para Matched Audiences quentes.',tc:'#6B35D9'}],
-      'Público':[{t:'Segmente por cargo e senioridade (ICP)',d:'Defina o Ideal Customer Profile. Para SaaS B2B: Diretor/VP de TI, Marketing ou Operações.',tip:'Seja específico pelo ICP. Cada tipo de negócio tem o decisor certo.',tc:'#0A66C2'},{t:'Filtre por tamanho de empresa',d:'PME: 11–200 funcionários. Enterprise: 201–10.000+. Misturar dilui a mensagem e encarece o CPL.',tip:null},{t:'Matched Audience de contas-alvo',d:'Company Targeting com lista de empresas + segmentação de cargo. Uso mais poderoso do LinkedIn Ads.',tip:'ABM tem taxa de conversão de lead para oportunidade 3–5x maior que campanhas genéricas.',tc:'#6B35D9'}],
-      'Criativos':[{t:'Destaque o valor do material no criativo',d:'Mostre a capa do e-book ou preview do webinar. O usuário precisa entender o valor antes de fornecer dados.',tip:'Criativos que mostram o material têm CTR 40–60% maior que criativos genéricos de lead.',tc:'#0A66C2'},{t:'Personalize por segmento de cargo',d:'C-Level: impacto estratégico e ROI. Gerente: eficiência operacional. Analista: ferramentas práticas.',tip:'Campanhas com criativo por cargo têm CPL 30–50% menor. A personalização compensa o custo de produção.',tc:'#6B35D9'}],
+      'Público':[{t:'Segmente por cargo e senioridade (ICP)',d:'Defina o Ideal Customer Profile. Para SaaS B2B: Diretor/VP de TI, Marketing ou Operações.',tip:'Seja específico pelo ICP. Cada tipo de negócio tem o decisor certo.',tc:'#0A66C2'},{t:'Filtre por tamanho de empresa',d:'PME: 11-200 funcionários. Enterprise: 201-10.000+. Misturar dilui a mensagem e encarece o CPL.',tip:null},{t:'Matched Audience de contas-alvo',d:'Company Targeting com lista de empresas + segmentação de cargo. Uso mais poderoso do LinkedIn Ads.',tip:'ABM tem taxa de conversão de lead para oportunidade 3-5x maior que campanhas genéricas.',tc:'#6B35D9'}],
+      'Criativos':[{t:'Destaque o valor do material no criativo',d:'Mostre a capa do e-book ou preview do webinar. O usuário precisa entender o valor antes de fornecer dados.',tip:'Criativos que mostram o material têm CTR 40-60% maior que criativos genéricos de lead.',tc:'#0A66C2'},{t:'Personalize por segmento de cargo',d:'C-Level: impacto estratégico e ROI. Gerente: eficiência operacional. Analista: ferramentas práticas.',tip:'Campanhas com criativo por cargo têm CPL 30-50% menor. A personalização compensa o custo de produção.',tc:'#6B35D9'}],
       'Lance & Budget':[{t:'CPL desejado após histórico',d:'Inicie com Maximizar leads por 14 dias. Com 30+ leads, mude para CPL desejado 20% acima do atual.',tip:null},{t:'Orçamento mínimo de R$150/dia',d:'Abaixo disso, o algoritmo tem budget insuficiente. LinkedIn tem leilões mais caros que outras plataformas.',tip:'CPL médio no LinkedIn B2B: R$80 a R$400. Planeje o budget pelos leads necessários × CPL esperado.',tc:'#185FA5'}],
       'Publicação':[{t:'Teste o formulário antes de publicar',d:'Preencha o próprio formulário como usuário para verificar campos, política de privacidade e mensagem de agradecimento.',tip:null},{t:'Configure alertas de novos leads no CRM',d:'Garanta que a equipe de vendas recebe notificação imediata de novo lead.',tip:'Crie fluxo automático de boas-vindas que dispara imediatamente após o preenchimento.',tc:'#2D7D0A'}],
     },
     'Remarketing':{
       'Rastreamento':[{t:'Configure eventos de lead e engajamento',d:'Além do Insight Tag básico: LeadFormOpen e LeadFormSubmit para segmentar quem abriu mas não enviou.',tip:'Quem abriu o Lead Gen Form e não enviou é seu público mais quente. Muito mais barato de converter.',tc:'#6B35D9'},{t:'Importe lista de leads do CRM',d:'Faça upload de leads do CRM que não avançaram no funil como Matched Audience para nurturing.',tip:null}],
       'Públicos':[{t:'Por estágio no funil de conversão',d:'Visitantes da LP (30d), abriram o form mas não enviaram, leads capturados (exclusão ou nurturing).',tip:null},{t:'Matched Audiences de prospects em negociação',d:'Prospects que o time de vendas está negociando como Matched Audience. Anúncio durante o ciclo reforça o processo.',tip:'Prospect avaliando seu produto que vê anúncios = muito mais confiança no fechamento.',tc:'#0A66C2'}],
-      'Campanha':[{t:'Remarketing com conteúdo de nurturing',d:'Para leads frios: Document Ads (white papers, estudos de caso) ou Thought Leadership Ads.',tip:'Thought Leadership Ads: posts de executivos amplificados. Alta credibilidade para decisores B2B.',tc:'#0A66C2'},{t:'Message Ads para abordagem direta',d:'Para prospects quentes, Message Ads têm taxa de resposta 3–5x maior que e-mail frio.',tip:null}],
+      'Campanha':[{t:'Remarketing com conteúdo de nurturing',d:'Para leads frios: Document Ads (white papers, estudos de caso) ou Thought Leadership Ads.',tip:'Thought Leadership Ads: posts de executivos amplificados. Alta credibilidade para decisores B2B.',tc:'#0A66C2'},{t:'Message Ads para abordagem direta',d:'Para prospects quentes, Message Ads têm taxa de resposta 3-5x maior que e-mail frio.',tip:null}],
       'Criativos':[{t:'Estudos de caso específicos por setor',d:'Para remarketing: cases de clientes similares ao segmento. Especificidade do case é crucial para credibilidade.',tip:"'Como empresa X do setor Y reduziu Z%' converte muito mais que case genérico.",tc:'#6B35D9'},{t:'Thought Leadership para autoridade',d:'Amplificação de posts de liderança (CEO, VP) cria conexão humana e reforça autoridade de mercado.',tip:null}],
-      'Lances':[{t:'Lance maior para quem abriu o form',d:'Quem abriu o Lead Gen Form e não enviou merece lance 50–80% maior que visitantes gerais.',tip:null},{t:'CPM para nurturing durante ciclo longo',d:'Para manter presença durante o ciclo de venda B2B longo, CPM maximiza impressões por R$ gasto.',tip:'Em B2B com ciclo longo, o objetivo não é o clique — é a presença constante de marca.',tc:'#0A66C2'}],
+      'Lances':[{t:'Lance maior para quem abriu o form',d:'Quem abriu o Lead Gen Form e não enviou merece lance 50-80% maior que visitantes gerais.',tip:null},{t:'CPM para nurturing durante ciclo longo',d:'Para manter presença durante o ciclo de venda B2B longo, CPM maximiza impressões por R$ gasto.',tip:'Em B2B com ciclo longo, o objetivo não é o clique  -  é a presença constante de marca.',tc:'#0A66C2'}],
       'Monitoramento':[{t:'Progressão de leads no funil',d:'Além do CPL: taxa de MQL, SQL, proposta e fechamento por campanha de remarketing.',tip:null},{t:'Velocity do ciclo de venda',d:'Oportunidades com remarketing LinkedIn fecham mais rápido? Meça o tempo médio de fechamento.',tip:'Se fecham 20% mais rápido, isso representa ROI real mesmo com CPL aparentemente alto.',tc:'#2D7D0A'}],
     },
     'Otimização':{
       'Diagnóstico':[{t:'Analise o funil completo',d:'Impressão → clique → form aberto → form enviado → MQL → SQL → cliente. Identifique onde está o gargalo.',tip:'Taxa conclusão < 5%: problema no formulário. Taxa MQL < 10%: problema de segmentação ou oferta.',tc:'#6B35D9'},{t:'CPL bruto vs. CPL qualificado',d:'CPL R$80 com 30% MQL = R$267 por MQL. CPL R$150 com 60% MQL = R$250. A segunda é melhor.',tip:'CPL bruto é a métrica errada para B2B. Decida sempre pelo custo por lead qualificado.',tc:'#0A66C2'}],
       'Estrutura':[{t:'Campanha separada por segmento de ICP',d:'Cada segmento (tamanho de empresa, setor, cargo) deve ter campanha com criativo e oferta específicos.',tip:null},{t:'Revise o Lead Gen Form regularmente',d:'Formulários com mais de 5 campos têm abandono crescente. Remova campos que o time de vendas não usa.',tip:null}],
       'Criativos':[{t:'Teste diferentes ofertas (mesmo público)',d:'E-book vs. webinar vs. diagnóstico vs. trial. A oferta é a maior variável de CPL em LinkedIn.',tip:'C-Level: diagnóstico grátis tem CPL maior mas qualidade superior. Técnicos: conteúdo aprofundado.',tc:'#6B35D9'},{t:'Prova social específica por setor',d:"Mencione empresas conhecidas pelo público-alvo no setor deles. 'Usado por X e Y do setor financeiro' converte mais.",tip:null}],
-      'Lances & Budget':[{t:'CPL máximo pelo valor do cliente',d:'CPL máximo = LTV × Margem × Taxa de conversão. Para LTV R$20k e 10% conversão: max R$2.000 × margem.',tip:'LinkedIn tem CPL maior, mas LTV dos clientes B2B é proporcionalmente maior. Calcule o ROI correto.',tc:'#185FA5'},{t:'Sazonalidade B2B',d:'Set–nov e mar–jun têm mais atividade B2B. Jul–ago e dez têm menos. Ajuste o budget conforme.',tip:'CPL 20–30% menor de set a nov vs. jan ou jul. Planeje o budget pela sazonalidade profissional.',tc:'#2D7D0A'}],
+      'Lances & Budget':[{t:'CPL máximo pelo valor do cliente',d:'CPL máximo = LTV × Margem × Taxa de conversão. Para LTV R$20k e 10% conversão: max R$2.000 × margem.',tip:'LinkedIn tem CPL maior, mas LTV dos clientes B2B é proporcionalmente maior. Calcule o ROI correto.',tc:'#185FA5'},{t:'Sazonalidade B2B',d:'Set-nov e mar-jun têm mais atividade B2B. Jul-ago e dez têm menos. Ajuste o budget conforme.',tip:'CPL 20-30% menor de set a nov vs. jan ou jul. Planeje o budget pela sazonalidade profissional.',tc:'#2D7D0A'}],
       'Público':[{t:'Predictive Audiences para expansão',d:'Com 100+ conversões históricas, ative Predictive Audiences. IA encontra usuários similares ao seu histórico.',tip:'Requer volume histórico adequado mas entrega qualidade superior ao targeting manual.',tc:'#0A66C2'},{t:'Expanda cargos adjacentes ao ICP',d:'Diretores funcionando? Teste Gerentes Sênior e VP. Cargos adjacentes têm CPL menor com qualidade similar.',tip:null}],
-      'Escala':[{t:'ABM em escala (Tiers)',d:'Tier 1: 20 contas estratégicas, orçamento alto. Tier 2: 100 contas, médio. Tier 3: 500 contas, automático.',tip:null},{t:'Triple Touch: LinkedIn + Email + SDR',d:'Leads expostos a LinkedIn Ads + e-mail nurturing + SDR outreach convertem 3–4x mais.',tip:'A combinação dos três canais transforma o pipeline gerado pelo LinkedIn.',tc:'#6B35D9'},{t:'Ative feedback de qualidade via API',d:'Envie eventos de Lead Qualificado do CRM de volta ao LinkedIn. O algoritmo passa a otimizar por leads reais.',tip:'Este é o maior diferencial competitivo disponível. Quem faz tem vantagem enorme.',tc:'#533AB7'}],
+      'Escala':[{t:'ABM em escala (Tiers)',d:'Tier 1: 20 contas estratégicas, orçamento alto. Tier 2: 100 contas, médio. Tier 3: 500 contas, automático.',tip:null},{t:'Triple Touch: LinkedIn + Email + SDR',d:'Leads expostos a LinkedIn Ads + e-mail nurturing + SDR outreach convertem 3-4x mais.',tip:'A combinação dos três canais transforma o pipeline gerado pelo LinkedIn.',tc:'#6B35D9'},{t:'Ative feedback de qualidade via API',d:'Envie eventos de Lead Qualificado do CRM de volta ao LinkedIn. O algoritmo passa a otimizar por leads reais.',tip:'Este é o maior diferencial competitivo disponível. Quem faz tem vantagem enorme.',tc:'#533AB7'}],
     },
   },
   trafego:{
-    'Criação':{'Pré-requisitos':[{t:'Insight Tag para rastreamento de visitantes',d:'Obrigatório para retargeting e métricas de qualidade de tráfego no Campaign Manager.',tip:null},{t:'Defina a página de destino e o objetivo da visita',d:'LinkedIn gera tráfego mais caro. Defina qual página recebe o tráfego e qual ação o visitante deve tomar.',tip:'LPs com conteúdo de alto valor têm rejeição menor. O usuário do LinkedIn está em modo de aprendizado.',tc:'#185FA5'}],'Campanha':[{t:"Objetivo 'Visitas ao site'",d:'Campaign Manager → + Criar → Objetivo: Visitas ao site.',tip:null},{t:'Formato Document Ad para conteúdo',d:'Document Ad com preview do conteúdo e redirect para o artigo completo tem CTR superior ao Single Image.',tip:null}],'Público':[{t:'Segmente por função e setor do conteúdo',d:'O tráfego de LinkedIn é mais valioso quando altamente relevante ao conteúdo da LP.',tip:'Para artigo sobre gestão de vendas: Diretores/Gerentes de Vendas + empresas 50–500 funcionários.',tc:'#0A66C2'}],'Criativos':[{t:'Headline orientado ao benefício do conteúdo',d:"'5 estratégias que triplicam o pipeline [Artigo]'. O usuário precisa saber o que vai encontrar ao clicar.",tip:null},{t:'Imagens de dados e gráficos',d:'Gráficos, infográficos e screenshots têm CTR maior para conteúdo B2B que fotos genéricas.',tip:null}],'Lance & Budget':[{t:'CPC manual para controle de custo',d:'CPC máximo aceitável baseado no valor de cada visita para o negócio.',tip:'CPC no LinkedIn B2B: R$15 a R$60+. Alto, mas visitas de decisores têm valor desproporcional.',tc:'#185FA5'}],'Publicação':[{t:'Monitore CTR nas primeiras 48h',d:'CTR esperado Single Image: 0,4–0,8%. Abaixo de 0,2% após 2.000 impressões: problema de criativo.',tip:null}]},
-    'Remarketing':{'Rastreamento':[{t:'Públicos de visitantes por URL',d:'Ativos de conta → Públicos de retargeting → Visitas ao site. Segmente por seção visitada.',tip:null}],'Públicos':[{t:'Visitantes por seção do site',d:'Blog, produto, preços, sobre. Cada segmento recebe mensagem com conteúdo relacionado.',tip:null},{t:'Engajamento com LinkedIn como sinal',d:'Pessoas que interagiram com sua Página como segmento de remarketing de tráfego.',tip:'Seguidores da página que visitaram o site são o público de maior afinidade disponível.',tc:'#0A66C2'}],'Campanha':[{t:'Conteúdo complementar ao visitado',d:'Leu artigo A → anuncie artigo B relacionado. Visitou produto → anuncie caso de uso ou webinar.',tip:'Remarketing de tráfego no LinkedIn deve aprofundar o relacionamento com conteúdo, não repetir o mesmo.',tc:'#185FA5'}],'Criativos':[{t:'Reference ao conteúdo visitado',d:"'Você leu sobre X — aqui está o guia completo'. Personalização = relevância = CTR maior.",tip:null}],'Lances':[{t:'CPM para presença de marca',d:'Para remarketing de tráfego com objetivo de visibilidade de marca, CPM maximiza impressões.',tip:null}],'Monitoramento':[{t:'Progressão de visitantes no funil',d:'No GA4, visitantes de remarketing LinkedIn estão avançando para páginas de maior valor?',tip:null}]},
-    'Otimização':{'Diagnóstico':[{t:'Qualidade do tráfego no GA4',d:'Com UTMs, veja taxa de engajamento, duração e páginas por sessão por campanha de LinkedIn.',tip:null}],'Estrutura':[{t:'Campanhas por tipo de conteúdo',d:'Blog, produto e ferramenta têm públicos e mensagens diferentes. Mantenha em campanhas separadas.',tip:null}],'Criativos':[{t:'Headline 100% claro sobre o conteúdo',d:'Ambiguidade reduz CTR e aumenta rejeição. Especificidade converte muito melhor.',tip:"'Guia: Como reduzir 40% do onboarding [15 páginas, gratuito]' tem CTR 2–3x maior que genérico.",tc:'#0A66C2'}],'Lances & Budget':[{t:'Reduza CPC gradualmente',d:'Reduza 10% por semana que o volume se mantiver estável. Encontre o piso eficiente.',tip:null}],'Público':[{t:'Refine com Audience Insights',d:'Campaign Manager mostra quem clicou (cargo, setor, empresa). Use para refinar a segmentação.',tip:null}],'Escala':[{t:'Thought Leadership para escalar com credibilidade',d:'Posts de executivos amplificados têm CPM menor e muito mais credibilidade para B2B.',tip:'Funcionalidade mais subutilizada e com maior potencial de diferenciação no LinkedIn Ads.',tc:'#0A66C2'},{t:'LinkedIn + Google Search = sinergia B2B',d:'LinkedIn cria consciência; Google Search captura a intenção gerada. Combine os dois canais.',tip:null}]},
+    'Criação':{'Pré-requisitos':[{t:'Insight Tag para rastreamento de visitantes',d:'Obrigatório para retargeting e métricas de qualidade de tráfego no Campaign Manager.',tip:null},{t:'Defina a página de destino e o objetivo da visita',d:'LinkedIn gera tráfego mais caro. Defina qual página recebe o tráfego e qual ação o visitante deve tomar.',tip:'LPs com conteúdo de alto valor têm rejeição menor. O usuário do LinkedIn está em modo de aprendizado.',tc:'#185FA5'}],'Campanha':[{t:"Objetivo 'Visitas ao site'",d:'Campaign Manager → + Criar → Objetivo: Visitas ao site.',tip:null},{t:'Formato Document Ad para conteúdo',d:'Document Ad com preview do conteúdo e redirect para o artigo completo tem CTR superior ao Single Image.',tip:null}],'Público':[{t:'Segmente por função e setor do conteúdo',d:'O tráfego de LinkedIn é mais valioso quando altamente relevante ao conteúdo da LP.',tip:'Para artigo sobre gestão de vendas: Diretores/Gerentes de Vendas + empresas 50-500 funcionários.',tc:'#0A66C2'}],'Criativos':[{t:'Headline orientado ao benefício do conteúdo',d:"'5 estratégias que triplicam o pipeline [Artigo]'. O usuário precisa saber o que vai encontrar ao clicar.",tip:null},{t:'Imagens de dados e gráficos',d:'Gráficos, infográficos e screenshots têm CTR maior para conteúdo B2B que fotos genéricas.',tip:null}],'Lance & Budget':[{t:'CPC manual para controle de custo',d:'CPC máximo aceitável baseado no valor de cada visita para o negócio.',tip:'CPC no LinkedIn B2B: R$15 a R$60+. Alto, mas visitas de decisores têm valor desproporcional.',tc:'#185FA5'}],'Publicação':[{t:'Monitore CTR nas primeiras 48h',d:'CTR esperado Single Image: 0,4-0,8%. Abaixo de 0,2% após 2.000 impressões: problema de criativo.',tip:null}]},
+    'Remarketing':{'Rastreamento':[{t:'Públicos de visitantes por URL',d:'Ativos de conta → Públicos de retargeting → Visitas ao site. Segmente por seção visitada.',tip:null}],'Públicos':[{t:'Visitantes por seção do site',d:'Blog, produto, preços, sobre. Cada segmento recebe mensagem com conteúdo relacionado.',tip:null},{t:'Engajamento com LinkedIn como sinal',d:'Pessoas que interagiram com sua Página como segmento de remarketing de tráfego.',tip:'Seguidores da página que visitaram o site são o público de maior afinidade disponível.',tc:'#0A66C2'}],'Campanha':[{t:'Conteúdo complementar ao visitado',d:'Leu artigo A → anuncie artigo B relacionado. Visitou produto → anuncie caso de uso ou webinar.',tip:'Remarketing de tráfego no LinkedIn deve aprofundar o relacionamento com conteúdo, não repetir o mesmo.',tc:'#185FA5'}],'Criativos':[{t:'Reference ao conteúdo visitado',d:"'Você leu sobre X  -  aqui está o guia completo'. Personalização = relevância = CTR maior.",tip:null}],'Lances':[{t:'CPM para presença de marca',d:'Para remarketing de tráfego com objetivo de visibilidade de marca, CPM maximiza impressões.',tip:null}],'Monitoramento':[{t:'Progressão de visitantes no funil',d:'No GA4, visitantes de remarketing LinkedIn estão avançando para páginas de maior valor?',tip:null}]},
+    'Otimização':{'Diagnóstico':[{t:'Qualidade do tráfego no GA4',d:'Com UTMs, veja taxa de engajamento, duração e páginas por sessão por campanha de LinkedIn.',tip:null}],'Estrutura':[{t:'Campanhas por tipo de conteúdo',d:'Blog, produto e ferramenta têm públicos e mensagens diferentes. Mantenha em campanhas separadas.',tip:null}],'Criativos':[{t:'Headline 100% claro sobre o conteúdo',d:'Ambiguidade reduz CTR e aumenta rejeição. Especificidade converte muito melhor.',tip:"'Guia: Como reduzir 40% do onboarding [15 páginas, gratuito]' tem CTR 2-3x maior que genérico.",tc:'#0A66C2'}],'Lances & Budget':[{t:'Reduza CPC gradualmente',d:'Reduza 10% por semana que o volume se mantiver estável. Encontre o piso eficiente.',tip:null}],'Público':[{t:'Refine com Audience Insights',d:'Campaign Manager mostra quem clicou (cargo, setor, empresa). Use para refinar a segmentação.',tip:null}],'Escala':[{t:'Thought Leadership para escalar com credibilidade',d:'Posts de executivos amplificados têm CPM menor e muito mais credibilidade para B2B.',tip:'Funcionalidade mais subutilizada e com maior potencial de diferenciação no LinkedIn Ads.',tc:'#0A66C2'},{t:'LinkedIn + Google Search = sinergia B2B',d:'LinkedIn cria consciência; Google Search captura a intenção gerada. Combine os dois canais.',tip:null}]},
   },
   marca:{
-    'Criação':{'Pré-requisitos':[{t:'Página de Empresa completa e ativa',d:'Logo, imagem de capa, descrição. Postagem semanal orgânica reduz o CPM dos anúncios pagos.',tip:'Marcas com 3+ posts/semana têm CPM 15–25% menor. O algoritmo favorece marcas ativas.',tc:'#0A66C2'}],'Campanha':[{t:"Objetivo 'Reconhecimento de marca'",d:'Campaign Manager → + Criar → Objetivo: Reconhecimento. Maximiza impressões ao menor CPM.',tip:null},{t:'Video Ads para maior impacto de marca',d:'CPM menor que Single Image e impacto de marca muito superior. Use 15–30s com branding nos primeiros 3s.',tip:'Vídeo é o formato mais eficiente para branding no LinkedIn: CPM 20–30% menor.',tc:'#0A66C2'}],'Público':[{t:'Segmentação ampla por setor',d:'Para reconhecimento, público amplo por setor maximiza o alcance único dentro do público relevante.',tip:null},{t:'Todos os níveis de senioridade',d:'O Analista de hoje é o Diretor de amanhã. Branding com profissionais em início de carreira tem ROI de longo prazo.',tip:'Construir reconhecimento com profissionais em ascensão tem ROI de longo prazo significativo.',tc:'#A05C00'}],'Criativos':[{t:'Logo nos primeiros 2–3 segundos do vídeo',d:'Para branding em vídeo, logo deve aparecer no início. Quem não assiste o vídeo completo ainda recebe a impressão.',tip:null},{t:'Storytelling, não apresentação de produto',d:'Impacto humano, cultura e histórias de clientes têm muito mais impacto de marca que apresentações corporativas.',tip:'Storytelling emocional em contexto profissional ressoa profundamente com o público do LinkedIn.',tc:'#A05C00'}],'Lance & Budget':[{t:'CPM para maximizar impressões',d:'CPM garante previsibilidade de custo por impressão. Objetivo é alcançar o maior número de profissionais.',tip:null}],'Publicação':[{t:'Configure limite de frequência',d:'Máximo 4–5 impressões por membro por mês. Sem limite, o LinkedIn concentra nos mais acessíveis.',tip:null},{t:'Monitore seguidores como KPI auxiliar',d:'Branding eficaz aumenta seguidores organicamente. Cada seguidor tem valor de alcance recorrente.',tip:'Cada seguidor representa contato que optou por receber conteúdo orgânico da marca.',tc:'#0A66C2'}]},
-    'Remarketing':{'Rastreamento':[{t:'Públicos de engajamento com a marca',d:'Seguidores, curtidas/comentários, visualizadores de vídeo (25%, 50%, 75%).',tip:null},{t:'Visualizadores de vídeo como remarketing',d:'75%+ de visualização = interesse suficiente para receber próxima mensagem da sequência.',tip:'Sequência: Apresentação (todos) → Proposta de valor (50%+) → Case/prova social (75%+).',tc:'#A05C00'}],'Públicos':[{t:'Por profundidade de engajamento',d:'Nível 1: visitaram o site. Nível 2: seguem + visitaram. Nível 3: interagiram + assistiram vídeos.',tip:null}],'Campanha':[{t:'Video Sequencing para narrativa de marca',d:'Sequência: quem viu 25% do Vídeo 1 recebe Vídeo 2. Aprofunda a história progressivamente.',tip:null},{t:'Thought Leadership para reforço de autoridade',d:'Posts de executivos para público que já conhece a marca. Credibilidade muito superior a anúncios corporativos.',tip:'Posts de fundadores têm engajamento 3–4x maior que posts corporativos. Ideal para remarketing de marca.',tc:'#0A66C2'}],'Criativos':[{t:'Depoimentos específicos de clientes reais',d:'Para público que conhece a marca: depoimentos com resultado específico têm o maior impacto de credibilidade.',tip:"'Como empresa X do setor Y alcançou resultado Z' transforma percepção. Específico sempre ganha.",tc:'#6B35D9'}],'Lances':[{t:'CPM para impressões de marca',d:'Branding em remarketing usa CPM para frequência de exposição controlada.',tip:null}],'Monitoramento':[{t:'Crescimento de seguidores como KPI',d:'Branding eficaz aumenta seguidores. Monitore correlação com exposição aos anúncios.',tip:null},{t:'Brand Lift Study para impacto real',d:'Para campanhas maiores, mede Ad Recall, consideração e familiaridade antes e depois.',tip:'Brand Lift Study é a forma mais confiável de medir ROI real de branding B2B.',tc:'#0A66C2'}]},
-    'Otimização':{'Diagnóstico':[{t:'CPM e alcance único por segmento',d:'CPM alto: saturação, público restrito ou qualidade de criativo baixa penalizada pelo leilão.',tip:null},{t:'Taxa de engajamento dos anúncios',d:'Alto engajamento reduz CPM ao longo do tempo. Responda aos comentários nos anúncios.',tip:'Responder comentários nos anúncios aumenta o engajamento e reduz o CPM pelo algoritmo.',tc:'#0A66C2'}],'Estrutura':[{t:'Video Sequencing para narrativa progressiva',d:'Sequências de 3 vídeos têm Ad Recall 3x maior do que um único vídeo repetido.',tip:null}],'Criativos':[{t:'Thought Leadership Ads para autoridade',d:'Menor CPM, maior engajamento, mais credibilidade. Funcionalidade mais eficiente para branding B2B.',tip:'Líderes com 10k+ seguidores têm alcance orgânico que reduz custo dos anúncios pagos.',tc:'#0A66C2'}],'Lances & Budget':[{t:'Concentre budget nos picos de atividade B2B',d:'Set–nov e mar–mai: maior atividade profissional. Concentre o budget de branding nesses períodos.',tip:'Reduzir em jul–ago e dez e concentrar nos picos aumenta eficiência sem reduzir impacto anual.',tc:'#2D7D0A'}],'Público':[{t:'Company Targeting para branding de contas',d:'Anúncios para funcionários de empresas estratégicas. Prepara o terreno para conversão futura.',tip:'Prospects que conhecem a marca antes da abordagem comercial fecham 2x mais rápido.',tc:'#0A66C2'}],'Escala':[{t:'Orgânico + Pago: a sinergia mais eficiente',d:'3+ posts orgânicos/semana → CPM 15–25% menor nas campanhas pagas. Invista no orgânico.',tip:'O algoritmo favorece marcas que engajam o feed organicamente.',tc:'#0A66C2'},{t:'Employee Advocacy como alavanca de escala',d:'50 colaboradores ativos = 25.000–150.000 profissionais alcançados organicamente.',tip:null}]},
+    'Criação':{'Pré-requisitos':[{t:'Página de Empresa completa e ativa',d:'Logo, imagem de capa, descrição. Postagem semanal orgânica reduz o CPM dos anúncios pagos.',tip:'Marcas com 3+ posts/semana têm CPM 15-25% menor. O algoritmo favorece marcas ativas.',tc:'#0A66C2'}],'Campanha':[{t:"Objetivo 'Reconhecimento de marca'",d:'Campaign Manager → + Criar → Objetivo: Reconhecimento. Maximiza impressões ao menor CPM.',tip:null},{t:'Video Ads para maior impacto de marca',d:'CPM menor que Single Image e impacto de marca muito superior. Use 15-30s com branding nos primeiros 3s.',tip:'Vídeo é o formato mais eficiente para branding no LinkedIn: CPM 20-30% menor.',tc:'#0A66C2'}],'Público':[{t:'Segmentação ampla por setor',d:'Para reconhecimento, público amplo por setor maximiza o alcance único dentro do público relevante.',tip:null},{t:'Todos os níveis de senioridade',d:'O Analista de hoje é o Diretor de amanhã. Branding com profissionais em início de carreira tem ROI de longo prazo.',tip:'Construir reconhecimento com profissionais em ascensão tem ROI de longo prazo significativo.',tc:'#A05C00'}],'Criativos':[{t:'Logo nos primeiros 2-3 segundos do vídeo',d:'Para branding em vídeo, logo deve aparecer no início. Quem não assiste o vídeo completo ainda recebe a impressão.',tip:null},{t:'Storytelling, não apresentação de produto',d:'Impacto humano, cultura e histórias de clientes têm muito mais impacto de marca que apresentações corporativas.',tip:'Storytelling emocional em contexto profissional ressoa profundamente com o público do LinkedIn.',tc:'#A05C00'}],'Lance & Budget':[{t:'CPM para maximizar impressões',d:'CPM garante previsibilidade de custo por impressão. Objetivo é alcançar o maior número de profissionais.',tip:null}],'Publicação':[{t:'Configure limite de frequência',d:'Máximo 4-5 impressões por membro por mês. Sem limite, o LinkedIn concentra nos mais acessíveis.',tip:null},{t:'Monitore seguidores como KPI auxiliar',d:'Branding eficaz aumenta seguidores organicamente. Cada seguidor tem valor de alcance recorrente.',tip:'Cada seguidor representa contato que optou por receber conteúdo orgânico da marca.',tc:'#0A66C2'}]},
+    'Remarketing':{'Rastreamento':[{t:'Públicos de engajamento com a marca',d:'Seguidores, curtidas/comentários, visualizadores de vídeo (25%, 50%, 75%).',tip:null},{t:'Visualizadores de vídeo como remarketing',d:'75%+ de visualização = interesse suficiente para receber próxima mensagem da sequência.',tip:'Sequência: Apresentação (todos) → Proposta de valor (50%+) → Case/prova social (75%+).',tc:'#A05C00'}],'Públicos':[{t:'Por profundidade de engajamento',d:'Nível 1: visitaram o site. Nível 2: seguem + visitaram. Nível 3: interagiram + assistiram vídeos.',tip:null}],'Campanha':[{t:'Video Sequencing para narrativa de marca',d:'Sequência: quem viu 25% do Vídeo 1 recebe Vídeo 2. Aprofunda a história progressivamente.',tip:null},{t:'Thought Leadership para reforço de autoridade',d:'Posts de executivos para público que já conhece a marca. Credibilidade muito superior a anúncios corporativos.',tip:'Posts de fundadores têm engajamento 3-4x maior que posts corporativos. Ideal para remarketing de marca.',tc:'#0A66C2'}],'Criativos':[{t:'Depoimentos específicos de clientes reais',d:'Para público que conhece a marca: depoimentos com resultado específico têm o maior impacto de credibilidade.',tip:"'Como empresa X do setor Y alcançou resultado Z' transforma percepção. Específico sempre ganha.",tc:'#6B35D9'}],'Lances':[{t:'CPM para impressões de marca',d:'Branding em remarketing usa CPM para frequência de exposição controlada.',tip:null}],'Monitoramento':[{t:'Crescimento de seguidores como KPI',d:'Branding eficaz aumenta seguidores. Monitore correlação com exposição aos anúncios.',tip:null},{t:'Brand Lift Study para impacto real',d:'Para campanhas maiores, mede Ad Recall, consideração e familiaridade antes e depois.',tip:'Brand Lift Study é a forma mais confiável de medir ROI real de branding B2B.',tc:'#0A66C2'}]},
+    'Otimização':{'Diagnóstico':[{t:'CPM e alcance único por segmento',d:'CPM alto: saturação, público restrito ou qualidade de criativo baixa penalizada pelo leilão.',tip:null},{t:'Taxa de engajamento dos anúncios',d:'Alto engajamento reduz CPM ao longo do tempo. Responda aos comentários nos anúncios.',tip:'Responder comentários nos anúncios aumenta o engajamento e reduz o CPM pelo algoritmo.',tc:'#0A66C2'}],'Estrutura':[{t:'Video Sequencing para narrativa progressiva',d:'Sequências de 3 vídeos têm Ad Recall 3x maior do que um único vídeo repetido.',tip:null}],'Criativos':[{t:'Thought Leadership Ads para autoridade',d:'Menor CPM, maior engajamento, mais credibilidade. Funcionalidade mais eficiente para branding B2B.',tip:'Líderes com 10k+ seguidores têm alcance orgânico que reduz custo dos anúncios pagos.',tc:'#0A66C2'}],'Lances & Budget':[{t:'Concentre budget nos picos de atividade B2B',d:'Set-nov e mar-mai: maior atividade profissional. Concentre o budget de branding nesses períodos.',tip:'Reduzir em jul-ago e dez e concentrar nos picos aumenta eficiência sem reduzir impacto anual.',tc:'#2D7D0A'}],'Público':[{t:'Company Targeting para branding de contas',d:'Anúncios para funcionários de empresas estratégicas. Prepara o terreno para conversão futura.',tip:'Prospects que conhecem a marca antes da abordagem comercial fecham 2x mais rápido.',tc:'#0A66C2'}],'Escala':[{t:'Orgânico + Pago: a sinergia mais eficiente',d:'3+ posts orgânicos/semana → CPM 15-25% menor nas campanhas pagas. Invista no orgânico.',tip:'O algoritmo favorece marcas que engajam o feed organicamente.',tc:'#0A66C2'},{t:'Employee Advocacy como alavanca de escala',d:'50 colaboradores ativos = 25.000-150.000 profissionais alcançados organicamente.',tip:null}]},
   },
 };
 
@@ -986,7 +1072,7 @@ const GA4_TABS = {
   'Configuração Inicial': {
     'Conta & Propriedade': [
       {t:'Crie ou acesse sua conta no GA4',d:'Acesse analytics.google.com → Administrador → + Criar conta (se nova) ou selecione a propriedade existente. Cada domínio deve ter uma propriedade GA4 própria.',tip:'Se ainda usa Universal Analytics (GA3), migre imediatamente. O GA3 foi descontinuado em julho de 2023. Dados históricos do GA3 não são importados para o GA4.',tc:'#EA4335'},
-      {t:'Crie uma Propriedade GA4',d:'Administrador → + Criar propriedade → Nome, fuso horário (Brasília, GMT-3), moeda (BRL). O fuso horário afeta todos os relatórios — defina corretamente desde o início.',tip:'Use o mesmo fuso horário em GA4, Google Ads e todas as plataformas de anúncios. Inconsistências geram discrepâncias de dados difíceis de diagnosticar.',tc:'#E37400'},
+      {t:'Crie uma Propriedade GA4',d:'Administrador → + Criar propriedade → Nome, fuso horário (Brasília, GMT-3), moeda (BRL). O fuso horário afeta todos os relatórios  -  defina corretamente desde o início.',tip:'Use o mesmo fuso horário em GA4, Google Ads e todas as plataformas de anúncios. Inconsistências geram discrepâncias de dados difíceis de diagnosticar.',tc:'#E37400'},
       {t:'Configure um Fluxo de Dados Web',d:'Administrador → Fluxos de dados → + Adicionar fluxo → Web → insira a URL do site → ative Medição aprimorada. O fluxo gera o ID de medição (G-XXXXXXXXXX).',tip:'Ative todas as opções de Medição aprimorada: rolagem de página, cliques de saída, pesquisa no site, engajamento com vídeo e downloads de arquivo. São eventos automáticos gratuitos.',tc:'#E37400'},
       {t:'Instale o tag via Google Tag Manager (recomendado)',d:'No GTM: + Nova tag → Google Analytics: GA4 → Configuração → Insira o ID G-XXXXXXXXXX → Acionador: All Pages. Publique o contêiner.',tip:'GTM é o método mais recomendado. Permite adicionar e editar tags sem mexer no código do site, reduz dependência do dev e facilita testes.',tc:'#0A66C2'},
       {t:'Valide a instalação com o Relatório em Tempo Real',d:'No GA4: Relatórios → Tempo real. Acesse o site em outra aba e veja se sua visita aparece. Se aparecer, a tag está funcionando.',tip:'Use também a extensão Google Analytics Debugger no Chrome para validar eventos específicos disparando corretamente.',tc:'#E37400'},
@@ -1012,10 +1098,10 @@ const GA4_TABS = {
       {t:'Configure eventos de e-commerce aprimorado',d:'Para e-commerce: implemente os eventos view_item, add_to_cart, begin_checkout, purchase com o array items completo (item_id, item_name, price, quantity). Alimenta os relatórios de monetização.',tip:'E-commerce aprimorado no GA4 requer implementação correta do array items em todos os eventos de funil. Sem isso, os relatórios de produto e funil de compra ficam incompletos.',tc:'#EA4335'},
     ],
     'Conversões': [
-      {t:'Marque eventos-chave como Conversões',d:'GA4 → Configurar → Conversões → + Nova conversão. Adicione os eventos de maior valor: purchase, generate_lead, form_submit, phone_call. Esses aparecem nos relatórios de conversão e podem ser importados para Google Ads.',tip:'Marque como conversão apenas eventos de alto valor. Micro-conversões (scroll, clique) devem ser eventos comuns, não conversões — caso contrário, distorcem os relatórios.',tc:'#EA4335'},
+      {t:'Marque eventos-chave como Conversões',d:'GA4 → Configurar → Conversões → + Nova conversão. Adicione os eventos de maior valor: purchase, generate_lead, form_submit, phone_call. Esses aparecem nos relatórios de conversão e podem ser importados para Google Ads.',tip:'Marque como conversão apenas eventos de alto valor. Micro-conversões (scroll, clique) devem ser eventos comuns, não conversões  -  caso contrário, distorcem os relatórios.',tc:'#EA4335'},
       {t:'Configure o valor de conversão',d:'Para eventos de conversão, inclua o parâmetro value com o valor monetário real (ex: purchase com value = preço da compra) ou estimado (ex: generate_lead com value = ticket médio × taxa de fechamento).',tip:'Conversões com valor configurado permitem calcular ROAS diretamente no GA4 e no Google Ads. Sem o valor, os relatórios de retorno ficam incompletos.',tc:'#E37400'},
       {t:'Importe conversões do GA4 para o Google Ads',d:'No Google Ads: Ferramentas → Conversões → + Nova → Importar → Google Analytics 4 → selecione as conversões desejadas. Isso centraliza o rastreamento no GA4 como fonte da verdade.',tip:'Importar conversões do GA4 para o Google Ads é mais preciso do que usar tags de conversão separadas. Evita duplicidade e garante consistência entre plataformas.',tc:'#2D7D0A'},
-      {t:'Valide as conversões com dados reais',d:'Faça uma compra de teste (ou simule um formulário de lead) e verifique: evento aparece no DebugView, conversão registra no Relatório em Tempo Real, valor correto, e dados aparecem no relatório de conversões em 24–48h.',tip:null},
+      {t:'Valide as conversões com dados reais',d:'Faça uma compra de teste (ou simule um formulário de lead) e verifique: evento aparece no DebugView, conversão registra no Relatório em Tempo Real, valor correto, e dados aparecem no relatório de conversões em 24-48h.',tip:null},
     ],
   },
   'Relatórios & Análise': {
@@ -1057,14 +1143,14 @@ const GA4_TABS = {
   },
   'Análise de Campanhas Pagas': {
     'Performance por Canal': [
-      {t:'Compare canais pagos por custo por sessão qualificada',d:'Relatórios → Aquisição → Aquisição de tráfego → Filtrar por Paid channels. Compare: sessões, taxa de engajamento, conversões e receita. Calcule o custo por sessão qualificada cruzando com dados de gasto das plataformas.',tip:'CPC bruto é uma métrica enganosa. Um canal com CPC R$0,50 e 80% de rejeição tem custo por sessão qualificada de R$2,50. Um canal com CPC R$2,00 e 20% de rejeição custa R$2,50 também — mas sessões muito diferentes.',tc:'#E37400'},
+      {t:'Compare canais pagos por custo por sessão qualificada',d:'Relatórios → Aquisição → Aquisição de tráfego → Filtrar por Paid channels. Compare: sessões, taxa de engajamento, conversões e receita. Calcule o custo por sessão qualificada cruzando com dados de gasto das plataformas.',tip:'CPC bruto é uma métrica enganosa. Um canal com CPC R$0,50 e 80% de rejeição tem custo por sessão qualificada de R$2,50. Um canal com CPC R$2,00 e 20% de rejeição custa R$2,50 também  -  mas sessões muito diferentes.',tc:'#E37400'},
       {t:'Configure grupos de canais customizados para ads',d:'Administrador → Grupos de canais → + Criar grupo. Configure: Paid Meta (utm_source contains "meta" OR "facebook" OR "instagram"), Paid Google, Paid TikTok, Paid LinkedIn, Paid YouTube.',tip:'Com grupos de canais customizados, você vê o desempenho de cada plataforma de anúncios separadamente no relatório de Aquisição, sem precisar filtrar manualmente.',tc:'#E37400'},
       {t:'Analise o funil de conversão por canal pago',d:'Exploração → Funil → Segmentos por canal. Compare as taxas de conversão em cada etapa do funil para Meta vs. Google vs. TikTok. Identifique em qual etapa cada canal perde mais usuários.',tip:'Canais diferentes têm comportamentos de funil distintos. Google Ads (Pesquisa) geralmente tem taxa de conversão mais alta no fundo. Meta e TikTok têm mais abandono no topo mas grande volume.',tc:'#E37400'},
       {t:'Calcule o ROAS real por canal com dados do GA4',d:'No Exploração, use dimensão "Grupo de canais" e métrica "Receita de eventos" (ou "Receita total" para e-commerce). Divida pela receita de anúncios de cada plataforma para calcular o ROAS real no GA4.',tip:'O ROAS do GA4 (fonte neutra) é sempre diferente do ROAS reportado pelas plataformas. Use o GA4 para comparações entre canais e planejamento de budget.',tc:'#2D7D0A'},
     ],
     'Otimização com GA4': [
       {t:'Identifique páginas de alta saída no funil pago',d:'Relatórios → Engajamento → Páginas e telas → Filtre por usuários vindos de canais pagos. Veja quais páginas têm maior taxa de saída. Essas são as landing pages que precisam de otimização urgente.',tip:'Uma melhoria de 10% na taxa de conversão da landing page tem o mesmo efeito no custo por conversão que reduzir o CPM em 10%. A LP é parte da campanha.',tc:'#E37400'},
-      {t:'Crie audiências de remarketing baseadas em comportamento de saída',d:'Usuários que visitaram a página de checkout mas não compraram (sessão com evento begin_checkout sem purchase). Configure como audiência e exporte para Google Ads e Meta Ads.',tip:'Estas são as audiências de maior intenção. Criar campanhas específicas de remarketing para elas no Google Ads e Meta Ads geralmente tem ROAS 3–5x maior que remarketing genérico.',tc:'#E37400'},
+      {t:'Crie audiências de remarketing baseadas em comportamento de saída',d:'Usuários que visitaram a página de checkout mas não compraram (sessão com evento begin_checkout sem purchase). Configure como audiência e exporte para Google Ads e Meta Ads.',tip:'Estas são as audiências de maior intenção. Criar campanhas específicas de remarketing para elas no Google Ads e Meta Ads geralmente tem ROAS 3-5x maior que remarketing genérico.',tc:'#E37400'},
       {t:'Analise o impacto do tempo no funil de conversão',d:'Exploração → Caminhos de conversão. Veja quantos dias e touchpoints são necessários em média para uma conversão. Isso define a janela de atribuição adequada para cada campanha.',tip:'Se 60% das conversões acontecem depois do dia 7 após o primeiro toque, uma janela de atribuição de 7 dias subestima gravemente o impacto de campanhas de topo de funil.',tc:'#E37400'},
       {t:'Use o Relatório de Caminhos para defender o YouTube e LinkedIn',d:'Relatórios → Monetização → Caminhos de conversão. Filtre por conversões que passaram por YouTube ou LinkedIn em qualquer touchpoint. Veja quantas conversões esses canais influenciaram mesmo sem ser o último clique.',tip:'YouTube e LinkedIn raramente aparecem como último clique, mas frequentemente estão no início da jornada. O relatório de caminhos é o argumento mais forte para justificar investimento nesses canais.',tc:'#2D7D0A'},
       {t:'Configure alertas automáticos para anomalias',d:'GA4 → Exploração → Criar uma exploração com KPIs principais → Compartilhe com o time via e-mail. Para alertas automáticos, use o Google Data Studio com alertas ou configure via Google Analytics Admin API.',tip:'Quedas súbitas em conversões muitas vezes indicam problema técnico (pixel quebrado, página fora do ar) e não queda de performance de campanha. Alertas permitem identificar rapidamente.',tc:'#EA4335'},
@@ -1214,373 +1300,459 @@ renderAds();
 renderGA4();
 </script>
 
-<!-- UPDATE FAB -->
-<button class="update-fab" onclick="openUpdates()" id="update-fab">
-  <div class="fab-dot"></div>
-  Novidades &amp; Atualizações (BETA)
-  <span class="fab-badge" id="fab-badge">8</span>
-</button>
-
-<!-- UPDATE MODAL -->
-<div class="update-overlay" id="update-overlay" onclick="handleOverlayClick(event)">
-  <div class="update-modal" id="update-modal">
-    <div class="modal-header">
-      <div class="modal-header-left">
-        <div class="modal-icon">🔔</div>
-        <div>
-          <div class="modal-title">Novidades &amp; Atualizações  (BETA)</div>
-          <div class="modal-subtitle">Últimas mudanças nas plataformas de anúncios</div>
-        </div>
-      </div>
-      <button class="modal-close" onclick="closeUpdates()" title="Fechar">✕</button>
-    </div>
-    <div class="modal-body" id="modal-body">
-    <div class="json-hint">📄 <span>Dados carregados de <strong>noticias.json</strong> — edite o arquivo para adicionar novas entradas</span></div>
-  </div>
-    <div class="modal-footer">
-      <button class="btn-mark-read" onclick="markAllRead()">Marcar tudo como lido</button>
-    </div>
+<!-- LESSON MODAL -->
+<div class="lesson-overlay" id="lesson-overlay" onclick="handleLessonOverlay(event)">
+  <div class="lesson-modal" id="lesson-modal">
+    <div class="lesson-modal-header" id="lesson-modal-header"></div>
+    <div class="lesson-modal-body" id="lesson-modal-body"></div>
   </div>
 </div>
 
-<script>
+<div class="divider"></div>
 
-// ─────────────────────────────────────────────
-// UPDATES DATA
-// ─────────────────────────────────────────────
-
-// ─────────────────────────────────────────────
-// DYNAMIC DATA — loaded from noticias.json
-// ─────────────────────────────────────────────
-let UPDATES = [];
-let NEWS = [];
-let DATA_LOADED = false;
-let DATA_ERROR = false;
-
-const JSON_URL = 'noticias.json';
-const CACHE_KEY = 'noticias_cache';
-const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
-
-async function loadData() {
-  // Try cache first (5-minute TTL)
-  try {
-    const cached = localStorage.getItem(CACHE_KEY);
-    if (cached) {
-      const { ts, data } = JSON.parse(cached);
-      if (Date.now() - ts < CACHE_TTL) {
-        UPDATES = data.updates || [];
-        NEWS    = data.news    || [];
-        DATA_LOADED = true;
-        return;
-      }
-    }
-  } catch(e) {}
-
-  try {
-    const res = await fetch(JSON_URL + '?v=' + Date.now());
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    const data = await res.json();
-    UPDATES = data.updates || [];
-    NEWS    = data.news    || [];
-    DATA_LOADED = true;
-    DATA_ERROR  = false;
-    // Store in cache
-    try {
-      localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data }));
-    } catch(e) {}
-  } catch(err) {
-    console.warn('noticias.json not found — using empty arrays.', err.message);
-    DATA_ERROR  = true;
-    DATA_LOADED = true;
-  }
-}
-
-
-let readUpdates = JSON.parse(localStorage.getItem('readUpdates') || '[]');
-
-async function openUpdates() {
-  showUpdatesLoading();
-  document.getElementById('update-overlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-  if (!DATA_LOADED) await loadData();
-  renderUpdates();
-}
-
-function showUpdatesLoading() {
-  const body = document.getElementById('modal-body');
-  if(body) body.innerHTML = '<div class="data-loading"><div class="spinner"></div>Carregando atualizações...</div>';
-}
-function closeUpdates() {
-  document.getElementById('update-overlay').classList.remove('open');
-  document.body.style.overflow = '';
-}
-function handleOverlayClick(e) {
-  if(e.target === document.getElementById('update-overlay')) closeUpdates();
-}
-
-function toggleItem(id) {
-  const el = document.getElementById('ui-' + id);
-  el.classList.toggle('expanded');
-  // Mark as read when opened
-  if(el.classList.contains('expanded') && !readUpdates.includes(id)) {
-    readUpdates.push(id);
-    try { localStorage.setItem('readUpdates', JSON.stringify(readUpdates)); } catch(e){}
-    updateBadge();
-  }
-}
-
-function markAllRead() {
-  readUpdates = (UPDATES || []).map(u => u.id);
-  try { localStorage.setItem('readUpdates', JSON.stringify(readUpdates)); } catch(e){}
-  updateBadge();
-  renderUpdates();
-}
-
-function updateBadge() {
-  const unread = UPDATES.filter(u => !readUpdates.includes(u.id)).length;
-  const badge = document.getElementById('fab-badge');
-  if(unread > 0) { badge.textContent = unread; badge.style.display = 'inline'; }
-  else { badge.style.display = 'none'; }
-}
-
-function renderUpdates() {
-  const body = document.getElementById('modal-body');
-  body.innerHTML = '';
-  if(DATA_ERROR) {
-    body.innerHTML = '<div class="data-error">⚠ Não foi possível carregar <strong>noticias.json</strong>.<br>Verifique se o arquivo está no mesmo diretório que o HTML.</div>';
-    return;
-  }
-  if(!UPDATES.length) {
-    body.innerHTML = '<div class="data-loading" style="color:#aaa">Nenhuma atualização disponível.</div>';
-    return;
-  }
-  UPDATES.forEach(u => {
-    const isRead = readUpdates.includes(u.id);
-    const tagClass = { new:'tag-new', change:'tag-change', deprec:'tag-deprec', critical:'tag-critical' }[u.tag] || 'tag-change';
-    const item = document.createElement('div');
-    item.className = 'update-item' + (isRead ? ' read' : '');
-    item.id = 'ui-' + u.id;
-    item.innerHTML = `
-      <div class="update-item-header" onclick="toggleItem('${u.id}')">
-        <div class="update-item-left">
-          <div class="update-plat-dot" style="background:${u.color}"></div>
-          <div>
-            <div class="update-item-title" style="${isRead?'opacity:.6':''}">${u.title}</div>
-            <div class="update-item-meta">${u.plat} · ${u.date}${isRead ? ' · <span style=\"color:#4ade80;font-weight:600\">✓ Lido</span>' : ''}</div>
-          </div>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px">
-          <span class="update-tag ${tagClass}">${u.tagLabel}</span>
-          <span class="update-chevron">▼</span>
-        </div>
+<!-- ESPACO EDUCACIONAL -->
+<div id="aprenda"><div class="section">
+  <div class="section-label">Espaço Educacional</div>
+  <h2 class="section-title">Aprenda na prática,<br>passo a passo</h2>
+  <div class="edu-hero">
+    <div class="edu-hero-content">
+      <div class="edu-hero-badge">📚 Tutoriais práticos</div>
+      <h3>Do pixel ao anúncio:<br><em>guias que realmente ensinam</em></h3>
+      <p>Tutoriais detalhados com passo a passo, dicas e armadilhas a evitar para as tarefas mais importantes do dia a dia em mídia paga.</p>
+      <div class="edu-stats">
+        <div><div class="edu-stat-num" id="edu-count-total">24</div><div class="edu-stat-lbl">tutoriais</div></div>
+        <div><div class="edu-stat-num">5</div><div class="edu-stat-lbl">plataformas</div></div>
+        <div><div class="edu-stat-num">3</div><div class="edu-stat-lbl">níveis</div></div>
       </div>
-      <div class="update-item-body">
-        <div class="update-item-content">${u.content}</div>
-      </div>`;
-    body.appendChild(item);
-  });
-}
-
-// Badge init handled by async IIFE above
-
-</script>
-
-<!-- NEWS FAB -->
-<button class="news-fab" onclick="openNews()" id="news-fab">
-  <span class="news-fab-icon">📰</span>
-  Notícias do Mercado  (BETA)
-  <span class="news-badge" id="news-badge">8</span>
-</button>
-
-<!-- NEWS MODAL -->
-<div class="news-overlay" id="news-overlay" onclick="handleNewsOverlay(event)">
-  <div class="news-modal" id="news-modal">
-    <div class="news-modal-header">
-      <div class="news-modal-header-left">
-        <div class="news-modal-icon">📰</div>
-        <div>
-          <div class="news-modal-title">Notícias do Mercado (BETA)</div>
-          <div class="news-modal-subtitle">Notícias reais e validadas sobre as plataformas de anúncios</div>
-        </div>
-      </div>
-      <button class="news-modal-close" onclick="closeNews()" title="Fechar">✕</button>
-    </div>
-    <div class="news-modal-body">
-      <div class="news-filter-bar" id="news-filter-bar"></div>
-      <div id="news-list"></div>
-    </div>
-    <div class="news-modal-footer">
-      <button class="btn-news-read" onclick="markAllNewsRead()">Marcar tudo como lido</button>
     </div>
   </div>
-</div>
+  <div class="edu-search-wrap">
+    <span class="edu-search-icon">🔍</span>
+    <input class="edu-search" id="edu-search" type="text" placeholder="Buscar tutorial... ex: pixel, remarketing, whatsapp">
+    <button class="edu-search-clear" id="edu-search-clear" onclick="clearEduSearch()">✕</button>
+  </div>
+  <div class="edu-cats" id="edu-cats"></div>
+  <div class="edu-grid" id="edu-grid"></div>
+</div></div>
+
+<footer class="footer">
+  <strong>Guia de Anúncios Digitais + GA4</strong> · 6 Plataformas · 4 Objetivos · Criação, Remarketing e Otimização
+</footer>
 
 <script>
 
-// ─────────────────────────────────────────────
-// NEWS DATA (Notícias reais e validadas 2025–2026)
-// ─────────────────────────────────────────────
+// ================================================================
+// ESPAÇO EDUCACIONAL
+// ================================================================
+const EDU_CATS = [
+  { id:'all',      label:'Todos',        color:'#1A1A2E', dot:'#1A1A2E' },
+  { id:'meta',     label:'Meta Ads',     color:'#1877F2', dot:'#1877F2' },
+  { id:'google',   label:'Google Ads',   color:'#EA4335', dot:'#EA4335' },
+  { id:'tiktok',   label:'TikTok Ads',   color:'#333',    dot:'#555'    },
+  { id:'youtube',  label:'YouTube Ads',  color:'#FF0000', dot:'#FF0000' },
+  { id:'linkedin', label:'LinkedIn Ads', color:'#0A66C2', dot:'#0A66C2' },
+  { id:'ga4',      label:'GA4',          color:'#E37400', dot:'#E37400' },
+  { id:'geral',    label:'Geral',        color:'#6B35D9', dot:'#6B35D9' },
+];
 
+const LESSONS = [
+  { id:'meta-pixel', cat:'meta', plat:'Meta Ads', color:'#1877F2', icon:'🔵', bg:'#EEF4FF',
+    title:'Como gerar e instalar o Pixel do Meta', level:'init', levelLabel:'Iniciante',
+    desc:'Crie o Pixel do Meta e instale no seu site para rastrear visitantes e otimizar campanhas.',
+    tags:['Pixel','Rastreamento','GTM'],
+    steps:[
+      { title:'Acesse o Gerenciador de Eventos', desc:'No Meta Business Suite, va em Configuracoes, Fontes de dados, + Adicionar, Pixel do Meta. Ou acesse diretamente em business.facebook.com/events-manager.', tip:'Cada dominio deve ter apenas 1 Pixel. Se a sua conta ja tem um, use-o - nao crie duplicado.' },
+      { title:'Nomeie e associe o Pixel ao dominio', desc:"Dê um nome descritivo ao Pixel (ex: 'Pixel - MinhaMarca'). Insira a URL do site. Clique em Continuar.", tip:null },
+      { title:'Escolha o metodo de instalacao', desc:'O Meta oferece 3 opcoes: (1) Instalar codigo manualmente, (2) Usar integracao de parceiro (Shopify, WordPress), (3) Enviar instrucoes para o desenvolvedor. Para controle total, escolha o Google Tag Manager.', warn:'Se usar o metodo manual, o codigo precisa estar no head de TODAS as paginas do site.' },
+      { title:'Instale via Google Tag Manager (recomendado)', desc:'No GTM: + Nova tag, Tag do Google, busque Meta Pixel, insira o ID do Pixel, Acionador: All Pages. Publique o conteiner.', code:'<!-- Alternativa: codigo manual -->\n<script>\n!function(f,b,e,v,n,t,s)\n{if(f.fbq)return;n=f.fbq=function(){n.callMethod?\nn.callMethod.apply(n,arguments):n.queue.push(arguments)};\nif(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version=\'2.0\';\nn.queue=[];t=b.createElement(e);t.async=!0;\nt.src=v;s=b.getElementsByTagName(e)[0];\ns.parentNode.insertBefore(t,s)}(window,document,\'script\',\n\'https://connect.facebook.net/en_US/fbevents.js\');\nfbq(\'init\', \'SEU_PIXEL_ID_AQUI\');\nfbq(\'track\', \'PageView\');\n<\/script>' },
+      { title:'Valide com o Meta Pixel Helper', desc:'Instale a extensao Meta Pixel Helper no Chrome. Acesse seu site e clique na extensao - ela mostra se o Pixel esta ativo.', tip:'Se aparecer o icone verde com o numero de eventos, o Pixel esta funcionando corretamente.' },
+      { title:'Configure eventos de conversao', desc:'No Gerenciador de Eventos, selecione seu Pixel, Adicionar eventos, configure: ViewContent, AddToCart, Purchase.', tip:'Use o Assistente de configuracao de eventos do Meta para configurar eventos sem codigo diretamente no site.' },
+    ],
+    resources:[
+      { icon:'🔗', label:'Meta Pixel Helper (Chrome)', url:'https://chromewebstore.google.com/detail/meta-pixel-helper/fdgfkebogiimcoedlicjlajpkdmockpc' },
+      { icon:'📖', label:'Gerenciador de Eventos do Meta', url:'https://business.facebook.com/events-manager' },
+    ]
+  },
+  { id:'meta-whatsapp-click', cat:'meta', plat:'Meta Ads', color:'#1877F2', icon:'💬', bg:'#EEF4FF',
+    title:'Como rastrear cliques no botão do WhatsApp', level:'inter', levelLabel:'Intermediário',
+    desc:'Configure o evento de conversao para cliques no link do WhatsApp e otimize campanhas por essa acao.',
+    tags:['WhatsApp','Conversão','GTM'],
+    steps:[
+      { title:'Identifique o link do WhatsApp no site', desc:'O link do WhatsApp geralmente tem o formato: https://wa.me/5511999999999 ou https://api.whatsapp.com/send?phone=... Inspecione o botao no seu site para confirmar a URL exata.', tip:null },
+      { title:'Crie uma tag de evento no GTM', desc:'No GTM: + Nova tag, Tag HTML personalizado, insira o codigo de evento do Pixel. Crie um acionador de tipo Clique - Apenas links com a condicao: URL do clique contem "wa.me" OU "whatsapp.com".', code:'<script>\n  fbq(\'track\', \'Contact\', {\n    content_name: \'WhatsApp Button\',\n    content_category: \'whatsapp_click\'\n  });\n<\/script>' },
+      { title:'Configure a variavel de URL de clique', desc:'No GTM, ative as variaveis integradas: Clique, marque URL do clique e Texto do clique. Essas variaveis permitem capturar exatamente qual link foi clicado.', tip:'Ative tambem Elemento do clique para diferenciar multiplos botoes de WhatsApp na mesma pagina.' },
+      { title:'Teste no modo de previa do GTM', desc:'Ative o Preview do GTM, acesse o site e clique no botao do WhatsApp. No painel do Preview, confirme que a tag disparou no evento de clique correto.', warn:'Nao publique sem testar. Tag disparando em todos os cliques vai distorcer completamente os dados de conversao.' },
+      { title:'Crie o evento como conversao no Meta', desc:'No Gerenciador de Eventos, selecione o Pixel, Configurar, Adicionar eventos. Confirme que o evento Contact esta aparecendo apos o clique de teste.', tip:null },
+      { title:'Configure a conversao na campanha', desc:'Ao criar ou editar a campanha, selecione o evento Contact (WhatsApp) como conversao principal. O Meta passara a buscar usuarios mais propensos a clicar no WhatsApp.', tip:'Crie um publico personalizado de pessoas que fizeram o evento Contact nos ultimos 30 dias para remarketing.' },
+    ],
+    resources:[
+      { icon:'🔗', label:'GTM Preview (Tag Assistant)', url:'https://tagassistant.google.com' },
+    ]
+  },
+  { id:'meta-remarketing-audience', cat:'meta', plat:'Meta Ads', color:'#1877F2', icon:'🎯', bg:'#EEF4FF',
+    title:'Como criar públicos de remarketing no Meta', level:'inter', levelLabel:'Intermediário',
+    desc:'Crie publicos personalizados de visitantes do site, engajadores e compradores para campanhas de remarketing.',
+    tags:['Remarketing','Público','Funil'],
+    steps:[
+      { title:'Acesse o Gerenciador de Publicos', desc:'No Meta Business Suite: Todos os recursos, Publicos. Clique em + Criar publico, Publico personalizado.', tip:null },
+      { title:'Escolha a fonte do publico', desc:'Para remarketing de site: selecione Site e escolha o Pixel. Para lista de clientes: upload de CSV.', tip:'Crie publicos separados para cada etapa do funil: visitantes gerais (60d), pagina de produto (30d), carrinho abandonado (14d), compradores (30d).' },
+      { title:'Configure visitantes do site', desc:'Selecione o Pixel, Todos os visitantes do site, ultimos 60 dias. Adicione variacoes por URL especifica como /checkout ou /produto.', code:'URLs uteis para segmentar:\n- /produto = interesse\n- /carrinho = consideracao\n- /obrigado = compra\n- /contato = intencao de lead' },
+      { title:'Crie o publico de abandono de carrinho', desc:'+ Criar publico, Publico personalizado, Site, Pessoas que visitaram paginas especificas, insira URL contendo /carrinho. Em Excluir: URL contendo /obrigado.', warn:'A exclusao de compradores e obrigatoria. Anunciar produto para quem ja comprou gera irritacao e CPA desnecessario.' },
+      { title:'Crie Lookalike de compradores', desc:'Com o publico de compradores criado (min. 100 pessoas), va em + Criar publico, Publico semelhante, selecione compradores, Pais: Brasil, Tamanho: 1%.', tip:'1% e o mais parecido com seus compradores. Teste tambem 1-3% para maior volume.' },
+      { title:'Use os publicos nas campanhas', desc:'Ao criar o conjunto de anuncios, em Publico clique em Editar, Publicos personalizados, selecione o publico criado. Configure um conjunto separado por temperatura.', tip:null },
+    ],
+    resources:[]
+  },
+  { id:'meta-cbo', cat:'meta', plat:'Meta Ads', color:'#1877F2', icon:'💰', bg:'#EEF4FF',
+    title:'Como configurar o CBO (orçamento de campanha)', level:'init', levelLabel:'Iniciante',
+    desc:'Configure o Campaign Budget Optimization para o Meta distribuir o budget automaticamente entre os conjuntos.',
+    tags:['CBO','Orçamento','Algoritmo'],
+    steps:[
+      { title:'O que e o CBO e quando usar', desc:'CBO define o orcamento no nivel da campanha. O Meta distribui automaticamente entre os conjuntos conforme a performance em tempo real.', tip:'Use CBO quando tiver 3+ conjuntos ativos. Com 1-2 conjuntos, ABO oferece mais controle.' },
+      { title:'Ative o CBO ao criar a campanha', desc:'Na criacao da campanha, apos selecionar o objetivo, ative a chave Orcamento da campanha. Defina o valor diario que sera distribuido entre todos os conjuntos.', warn:'Uma vez criada com CBO, nao e possivel mudar para ABO sem recriar a campanha.' },
+      { title:'Configure os conjuntos de anuncios', desc:'Com CBO ativo, cada conjunto nao tem orcamento proprio. Configure apenas publico, periodo e criativos. O Meta decide quanto alocar para cada um.', tip:'Com CBO, evite criar mais de 5 conjuntos por campanha. O Meta tende a concentrar o budget no melhor.' },
+      { title:'Defina limites minimos por conjunto (opcional)', desc:'Se precisar garantir entrega em um conjunto especifico, defina um Limite de gasto minimo no nivel do conjunto.', tip:null },
+      { title:'Monitore a distribuicao do budget', desc:'No Ads Manager, veja a coluna Gasto do conjunto. Se um conjunto recebe 0% do budget por mais de 3 dias, pode ter problema de publico ou criativo.', tip:'Budget concentrado em um unico conjunto nao e necessariamente ruim - significa que o Meta esta otimizando. So intervenha se o CPA desse conjunto subir.' },
+    ],
+    resources:[]
+  },
+  { id:'google-tag', cat:'google', plat:'Google Ads', color:'#EA4335', icon:'🔴', bg:'#FFF0EF',
+    title:'Como instalar a Tag do Google Ads via GTM', level:'init', levelLabel:'Iniciante',
+    desc:'Instale a tag global do Google Ads no site usando o Google Tag Manager para rastrear conversoes.',
+    tags:['Tag','GTM','Rastreamento'],
+    steps:[
+      { title:'Acesse o Google Tag Manager', desc:'Acesse tagmanager.google.com, selecione o conteiner do seu site, clique em + Nova tag.', tip:'Se ainda nao tem GTM no site, crie uma conta e cole o codigo do conteiner no head e body do site.' },
+      { title:'Crie a tag do Google Ads', desc:'Em Tipo de tag, Google Ads, selecione Acompanhamento de conversoes do Google Ads. Cole o ID de conversao (comeca com AW-XXXXXXXXX) que voce encontra em Google Ads, Ferramentas, Medicao, Conversoes.', tip:null },
+      { title:'Configure o acionador de conversao', desc:'Para rastrear compras: crie um acionador de Visualizacao de pagina com a condicao URL da pagina contem /obrigado. Adicione o rotulo de conversao do Google Ads.', code:'// Variaveis de conversao dinamica (e-commerce)\nwindow.dataLayer = window.dataLayer || [];\ndataLayer.push({\n  event: "purchase",\n  value: 99.90,\n  currency: "BRL",\n  transaction_id: "12345"\n});' },
+      { title:'Valide com o Tag Assistant', desc:'Acesse tagassistant.google.com, conecte ao seu site, realize uma conversao de teste. O Tag Assistant mostra se a tag disparou corretamente.', warn:'Tag disparando em todas as paginas vai inflar artificialmente as conversoes e destruir o aprendizado do tCPA.' },
+      { title:'Importe a conversao no Google Ads', desc:'No Google Ads: Ferramentas, Medicao, Conversoes, + Nova conversao, Site. Marque como conversao Principal apenas acoes de alto valor (Compra, Lead). Micro-conversoes = Secundarias.', tip:'Prefira importar conversoes do GA4 em vez de criar tags separadas. Centraliza o rastreamento e elimina duplicidade.' },
+    ],
+    resources:[
+      { icon:'🔗', label:'Google Tag Assistant', url:'https://tagassistant.google.com' },
+      { icon:'📖', label:'Tag Manager Google', url:'https://tagmanager.google.com' },
+    ]
+  },
+  { id:'google-performance-max', cat:'google', plat:'Google Ads', color:'#EA4335', icon:'🚀', bg:'#FFF0EF',
+    title:'Como criar uma campanha Performance Max do zero', level:'inter', levelLabel:'Intermediário',
+    desc:'Configure uma campanha PMax completa com ativos, sinais de publico e metas de ROAS.',
+    tags:['PMax','IA','Conversão'],
+    steps:[
+      { title:'Pre-requisitos antes de criar', desc:'Para PMax funcionar bem: (1) Conversoes configuradas com historico minimo de 30 dias, (2) Catalogo de produtos no Merchant Center para e-commerce, (3) Pelo menos 5 criativos de alta qualidade.', warn:'PMax sem historico de conversoes otimiza para cliques, nao para vendas. Rode campanhas de Pesquisa por 30+ dias antes.' },
+      { title:'Crie a campanha PMax', desc:'Google Ads, + Nova campanha, Vendas, Performance Max. Defina o orcamento diario (min. R$50, ideal R$150+) e a estrategia de lance: Maximizar conversoes inicialmente.', tip:null },
+      { title:'Adicione sinais de publico', desc:'Em Grupos de ativos, Sinais de publico, adicione: (1) Listas de remarketing do site, (2) Listas de clientes (Customer Match), (3) Publicos de interesse relevantes. Sinais guiam o algoritmo - nao restringem o alcance.', tip:'Quanto melhor o sinal, mais rapido o PMax aprende. Sua lista de melhores clientes e o sinal mais poderoso.' },
+      { title:'Configure o grupo de ativos', desc:'Adicione: 5 imagens (proporcoes 1:1, 1.91:1 e 4:5), 5 videos, 5 headlines, 5 descricoes longas e o logo da empresa. Mire em Forca do anuncio: Excelente.', warn:'Se nao subir videos, o Google gera automaticamente com seus ativos - e a qualidade costuma ser ruim. Sempre suba seus proprios videos.' },
+      { title:'Aguarde o aprendizado e analise', desc:'O PMax tem periodo de aprendizado de 2-4 semanas. Nao faca alteracoes significativas nesse periodo. Apos aprendizado: verifique o relatorio de termos de busca em Insights.', tip:'Para adicionar negativos ao PMax, crie uma lista de palavras-chave negativas e vincule via Ferramentas, Palavras-chave negativas de campanha.' },
+    ],
+    resources:[
+      { icon:'📖', label:'Google Merchant Center', url:'https://merchants.google.com' },
+    ]
+  },
+  { id:'google-quality-score', cat:'google', plat:'Google Ads', color:'#EA4335', icon:'⭐', bg:'#FFF0EF',
+    title:'Como melhorar o Índice de Qualidade das palavras-chave', level:'inter', levelLabel:'Intermediário',
+    desc:'Entenda os 3 componentes do Indice de Qualidade e reduza o CPC em 20-40%.',
+    tags:['Qualidade','CPC','Pesquisa'],
+    steps:[
+      { title:'Entenda os 3 componentes do IQ', desc:'O Indice de Qualidade (1-10) e calculado por: (1) Taxa de clique esperada, (2) Relevancia do anuncio, (3) Experiencia na pagina de destino.', tip:'IQ 7-10 = CPC com desconto. IQ 1-4 = CPC penalizado. Melhorar de 4 para 7 pode reduzir o CPC em 30%.' },
+      { title:'Adicione o IQ como coluna no relatorio', desc:'No relatorio de Palavras-chave, Colunas, Qualidade, ative Indice de qualidade, Relevancia do anuncio, Taxa de clique esperada e Experiencia na pagina. Priorize palavras com IQ menor ou igual a 5.', tip:null },
+      { title:'Melhore a relevancia do anuncio', desc:'O texto do anuncio deve conter a palavra-chave ou variacao proxima. Use a insercao dinamica de palavra-chave {KeyWord:Default} no headline.', code:'Headline com insercao dinamica:\n{KeyWord:Compre Agora}\n\nSe alguem pesquisar "tenis masculino",\no headline mostrara: Tenis Masculino' },
+      { title:'Melhore a experiencia na pagina de destino', desc:'Criterios do Google: (1) Conteudo relevante a pesquisa, (2) Tempo de carregamento menor que 3 segundos, (3) Facil de usar no mobile, (4) Sem excesso de popups.', warn:'Landing page com score menor que 50 no PageSpeed mobile penaliza o IQ de todas as palavras que levam para ela.' },
+      { title:'Melhore o CTR esperado', desc:'CTR baixo indica que as pessoas veem seu anuncio mas nao clicam. Solucoes: (1) Adicione extensoes (sitelinks, chamada), (2) Teste CTAs diferentes, (3) Adicione numeros e proposta de valor especifica.', tip:'Anuncios com 4+ tipos de extensao tem CTR em media 30% maior.' },
+    ],
+    resources:[
+      { icon:'🔗', label:'PageSpeed Insights', url:'https://pagespeed.web.dev' },
+    ]
+  },
+  { id:'tiktok-pixel', cat:'tiktok', plat:'TikTok Ads', color:'#333333', icon:'⚫', bg:'#F5F5F5',
+    title:'Como instalar o TikTok Pixel e configurar eventos', level:'init', levelLabel:'Iniciante',
+    desc:'Instale o pixel do TikTok Ads e configure os eventos de conversao para otimizar suas campanhas.',
+    tags:['Pixel','TikTok','Rastreamento'],
+    steps:[
+      { title:'Acesse o Gerenciador de Eventos do TikTok', desc:'No TikTok Ads Manager: Ativos, Eventos, Gerenciar, + Criar pixel. De um nome ao pixel e selecione o metodo de instalacao.', tip:null },
+      { title:'Instale via GTM (recomendado)', desc:'Selecione Google Tag Manager, copie o ID do pixel (comeca com C...). No GTM: + Nova tag, TikTok Pixel, insira o ID, Acionador: All Pages. Publique.', code:'// Alternativa: instalacao manual\nwindow.TiktokAnalyticsObject = "ttq";\nvar ttq = window[window.TiktokAnalyticsObject] = window[window.TiktokAnalyticsObject] || [];\nttq.load("SEU_PIXEL_ID");\nttq.page();' },
+      { title:'Configure eventos de conversao', desc:'No Gerenciador de Eventos: selecione o pixel, Configurar eventos web. Configure: ViewContent, AddToCart, InitiateCheckout e Purchase com os parametros corretos.', tip:'Use o TikTok Pixel Helper (extensao Chrome) para validar que os eventos estao disparando corretamente.' },
+      { title:'Ative a API de Conversoes (recomendado)', desc:'Para maior precisao pos-iOS: no TikTok Ads Manager, Ativos, Eventos, selecione o pixel, aba API de Conversoes, siga o guia de configuracao server-side.', warn:'Apenas o pixel client-side perde dados de usuarios com bloqueadores de anuncio e iOS 14+. A API recupera esses dados pelo servidor.' },
+      { title:'Valide e teste', desc:'Use o TikTok Pixel Helper no Chrome para confirmar os eventos. No Gerenciador de Eventos, use a aba Teste de eventos para simular conversoes em tempo real.', tip:null },
+    ],
+    resources:[
+      { icon:'🔗', label:'TikTok Pixel Helper (Chrome)', url:'https://chromewebstore.google.com/detail/tiktok-pixel-helper/aelgobmabdmlfmiblddjfnjodalhidnn' },
+    ]
+  },
+  { id:'tiktok-spark-ads', cat:'tiktok', plat:'TikTok Ads', color:'#333333', icon:'✨', bg:'#F5F5F5',
+    title:'Como criar Spark Ads a partir de posts orgânicos', level:'inter', levelLabel:'Intermediário',
+    desc:'Transforme posts organicos do TikTok em anuncios pagos para maxima autenticidade.',
+    tags:['Spark Ads','UGC','Criativo'],
+    steps:[
+      { title:'O que sao Spark Ads e por que usar', desc:'Spark Ads impulsionam posts organicos existentes como anuncios pagos. O anuncio aparece com o nome do criador original, mantem os comentarios e curtidas, e parece conteudo nativo.', tip:'Spark Ads de posts com engajamento organico pre-existente tem CPM 30-50% menor.' },
+      { title:'Opcao A: impulsionar seus proprios posts', desc:'No TikTok Ads Manager: + Criar campanha, em Formato do anuncio selecione Spark Ad, clique em Usar post existente, selecione posts da sua conta.', tip:null },
+      { title:'Opcao B: usar posts de criadores (UGC)', desc:'Voce precisa solicitar autorizacao ao criador. No Ads Manager, Ativo, Criadores, Gerenciar autorizacoes, Solicitar autorizacao.', warn:'Nunca use posts de terceiros sem autorizacao. Viola os termos de servico e pode resultar em ban da conta de anuncios.' },
+      { title:'Configure a campanha com o Spark Ad', desc:'Ao criar o anuncio, selecione o post autorizado. Configure normalmente: objetivo, publico, orcamento e lances.', tip:'Combine Spark Ads com campanhas de conversao e RLSA de visitantes do site.' },
+      { title:'Analise metricas especificas', desc:'Acompanhe: taxa de visualizacao, taxa de clique no perfil, novos seguidores gerados e engagement rate. Spark Ads geralmente tem engagement rate 3x maior que anuncios tradicionais.', tip:null },
+    ],
+    resources:[]
+  },
+  { id:'youtube-trueview', cat:'youtube', plat:'YouTube Ads', color:'#FF0000', icon:'▶', bg:'#FFF0F0',
+    title:'Como criar anúncios TrueView In-Stream no YouTube', level:'init', levelLabel:'Iniciante',
+    desc:'Configure anuncios de video pulaveis no YouTube com CTA clicavel e otimizados para conversao.',
+    tags:['TrueView','Vídeo','YouTube'],
+    steps:[
+      { title:'Faca upload do video no YouTube', desc:'O video do anuncio precisa estar no YouTube (pode ser nao listado). Acesse youtube.com/upload, faca upload, defina como Nao listado se nao quiser aparecer organicamente.', tip:'Videos nao listados funcionam normalmente como anuncio mas nao aparecem nas buscas do YouTube.' },
+      { title:'Crie a campanha de Video no Google Ads', desc:'Google Ads, + Nova campanha, selecione objetivo (Vendas, Leads ou Trafego), Video, Subtipo: Campanha de video de resposta direta para conversao.', tip:null },
+      { title:'Configure o grupo de anuncios e publico', desc:'Defina: idioma (Portugues), localizacao (Brasil), publico-alvo (interesses, Intencao personalizada, remarketing). Para conversao, use publicos de Intencao personalizada.', tip:'Intencao personalizada: adicione os termos que seu cliente pesquisaria antes de comprar. O YouTube mostrara o anuncio para quem pesquisou esses termos no Google.' },
+      { title:'Configure o anuncio TrueView', desc:'Cole a URL do video do YouTube. Adicione: URL de destino, CTA (ate 10 caracteres), headline (ate 15 caracteres) e banner complementar.', warn:'O CTA e o headline aparecem DURANTE o video como overlay clicavel. Escreva com clareza maxima.' },
+      { title:'Monitore os 5 primeiros segundos', desc:'No relatorio de video, veja a taxa de visualizacao de 5s (antes do pulo). Abaixo de 30% = gancho fraco. Seu logo e proposta de valor devem aparecer nos primeiros 5s.', tip:null },
+    ],
+    resources:[]
+  },
+  { id:'linkedin-insight-tag', cat:'linkedin', plat:'LinkedIn Ads', color:'#0A66C2', icon:'🔷', bg:'#E8F0FB',
+    title:'Como instalar o LinkedIn Insight Tag', level:'init', levelLabel:'Iniciante',
+    desc:'Instale o Insight Tag para habilitar remarketing, conversoes e dados de audiencia do LinkedIn.',
+    tags:['Insight Tag','Rastreamento','GTM'],
+    steps:[
+      { title:'Acesse o Campaign Manager', desc:'Acesse linkedin.com/campaignmanager, selecione a conta, Ativos de conta, Insight Tag, + Adicionar novo Insight Tag.', tip:'O Insight Tag e obrigatorio para remarketing, rastreamento de conversoes e dados demograficos do LinkedIn. Instale antes de criar qualquer campanha.' },
+      { title:'Copie o codigo do Insight Tag', desc:'O LinkedIn gera um script JavaScript. Copie o codigo completo ou use o Partner ID para instalacao via GTM.', tip:null },
+      { title:'Instale via Google Tag Manager', desc:'No GTM: + Nova tag, Tag HTML personalizado, cole o codigo do Insight Tag, Acionador: All Pages. Publique o conteiner.', code:'<!-- Exemplo do Insight Tag -->\n_linkedin_partner_id = "SEU_PARTNER_ID";\nwindow._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];\nwindow._linkedin_data_partner_ids.push(_linkedin_partner_id);' },
+      { title:'Valide a instalacao', desc:'No Campaign Manager, Insight Tag, veja o status. O indicador fica verde em ate 24 horas apos a instalacao.', warn:'O status Sem atividade recente indica que o tag nao esta disparando. Verifique se o GTM esta publicado.' },
+      { title:'Configure eventos de conversao', desc:'Campaign Manager, Conversoes, + Criar conversao. Configure para: carregamento de pagina (URL de confirmacao), clique em elemento ou evento JavaScript.', tip:'Crie ao menos uma conversao de alto valor (envio de formulario, compra) para que o Campaign Manager possa otimizar campanhas.' },
+    ],
+    resources:[
+      { icon:'📖', label:'Campaign Manager LinkedIn', url:'https://linkedin.com/campaignmanager' },
+    ]
+  },
+  { id:'linkedin-lead-gen-form', cat:'linkedin', plat:'LinkedIn Ads', color:'#0A66C2', icon:'📋', bg:'#E8F0FB',
+    title:'Como criar um Lead Gen Form no LinkedIn', level:'init', levelLabel:'Iniciante',
+    desc:'Configure formularios nativos do LinkedIn que se preenchem automaticamente com dados do perfil do usuario.',
+    tags:['Lead Gen Form','Leads','B2B'],
+    steps:[
+      { title:'Por que Lead Gen Forms superam landing pages', desc:'Lead Gen Forms do LinkedIn se preenchem automaticamente com dados do perfil: nome, e-mail, empresa, cargo. O usuario nao precisa digitar nada. Taxa de conclusao: 10-20% vs. 2-5% de LPs externas.', tip:null },
+      { title:'Acesse Ativos de conta, Lead Gen Forms', desc:'Campaign Manager, Ativos de conta, Lead Gen Forms, + Criar formulario. De um nome descritivo ao formulario.', tip:null },
+      { title:'Configure o formulario', desc:'Defina: (1) Titulo da oferta (ate 60 caracteres), (2) Descricao (ate 160 caracteres), (3) Campos: selecione apenas os essenciais. LinkedIn preenche automaticamente: Nome, E-mail, Empresa, Cargo.', warn:'Evite adicionar campos personalizados desnecessarios. Cada campo extra reduz a taxa de conclusao em cerca de 15%.' },
+      { title:'Adicione pergunta de qualificacao (opcional)', desc:'Para qualificar leads, adicione 1 pergunta personalizada de multipla escolha (ex: Qual o tamanho da sua equipe?). Reduz volume mas aumenta a qualidade.', tip:'Mais de 1 pergunta customizada reduz drasticamente a taxa de conclusao. Use exatamente 1 pergunta estrategica.' },
+      { title:'Configure integracao com CRM', desc:'Ao criar o anuncio, selecione o formulario criado. Configure integracao com CRM (HubSpot, Salesforce) via LinkedIn nativo ou Zapier para recebimento automatico.', warn:'Lead sem integracao automatica esfria em horas. Configure a integracao antes de publicar a campanha.' },
+    ],
+    resources:[]
+  },
+  { id:'ga4-setup', cat:'ga4', plat:'Google Analytics 4', color:'#E37400', icon:'📊', bg:'#FFF8F0',
+    title:'Como configurar o GA4 do zero corretamente', level:'init', levelLabel:'Iniciante',
+    desc:'Crie e configure uma propriedade GA4 com eventos aprimorados, filtros e integracao com Google Ads.',
+    tags:['GA4','Configuração','Analytics'],
+    steps:[
+      { title:'Crie a propriedade GA4', desc:'Acesse analytics.google.com, Admin, + Criar propriedade. Defina: nome, fuso horario (Brasilia, GMT-3) e moeda (BRL).', warn:'Mudar o fuso horario apos coletar dados cria descontinuidade nos relatorios historicos. Defina corretamente na primeira configuracao.' },
+      { title:'Configure o Fluxo de dados Web', desc:'Admin, Fluxos de dados, + Adicionar fluxo, Web, insira a URL do site. Ative TODAS as opcoes de Medicao aprimorada: rolagem, cliques de saida, busca no site, videos e downloads.', tip:'A Medicao aprimorada captura eventos automaticamente sem codigo extra. Ative tudo.' },
+      { title:'Instale via GTM', desc:'Copie o ID de medicao (G-XXXXXXXXXX). No GTM: + Nova tag, Google Analytics: GA4, Configuracao, insira o ID, Acionador: All Pages. Publique.', tip:'Valide imediatamente em Relatorios, Tempo real. Se sua visita aparecer, a instalacao esta correta.' },
+      { title:'Configure filtros de trafego interno', desc:'Admin, Fluxos de dados, seu fluxo, Filtros de trafego interno, Definir. Adicione o IP do seu escritorio e dos membros da equipe.', warn:'Trafego interno nao filtrado distorce metricas de comportamento do usuario real.' },
+      { title:'Vincule ao Google Ads', desc:'Admin, Associacoes, Google Ads, + Associar, selecione a conta de Google Ads. Apos vincular, importe as conversoes do GA4 no Google Ads: Ferramentas, Conversoes, + Nova, Importar, GA4.', tip:'Centralizar o rastreamento no GA4 e importar para o Google Ads e muito mais preciso que criar tags separadas.' },
+      { title:'Configure retencao de dados para 14 meses', desc:'Admin, Configuracoes de dados, Retencao de dados, Retencao de dados de eventos, selecione 14 meses. O padrao e 2 meses.', tip:'14 meses e o maximo disponivel no plano gratuito. Voce vai agradecer ter dados historicos.' },
+    ],
+    resources:[
+      { icon:'🔗', label:'Google Analytics', url:'https://analytics.google.com' },
+    ]
+  },
+  { id:'ga4-events', cat:'ga4', plat:'Google Analytics 4', color:'#E37400', icon:'⚡', bg:'#FFF8F0',
+    title:'Como criar eventos customizados no GA4 via GTM', level:'inter', levelLabel:'Intermediário',
+    desc:'Configure eventos personalizados para rastrear acoes especificas como cliques em botoes e formularios.',
+    tags:['Eventos','GTM','Conversão'],
+    steps:[
+      { title:'Entenda a estrutura de eventos do GA4', desc:'GA4 usa eventos com parametros. Cada evento tem: nome (obrigatorio), parametros (chave:valor, opcionais). Ex: evento form_submit com parametros form_name e form_location.', tip:'Use snake_case para nomes de eventos. Evite espacos e caracteres especiais.' },
+      { title:'Crie a tag de evento no GTM', desc:'GTM, + Nova tag, Google Analytics: Evento GA4, selecione a tag de Configuracao GA4 existente, configure: Nome do evento (ex: form_submit), Parametros de evento.', code:'// Evento de clique em botao CTA:\nNome: button_click\nParametros:\n  button_text  | {{Click Text}}\n  button_url   | {{Click URL}}\n  page_section | header' },
+      { title:'Configure o acionador correto', desc:'Para clique em botao especifico: acionador Clique - Todos os elementos com condicao: Classe do clique contem "cta-button". Teste no modo Preview antes de publicar.', tip:'Ative as variaveis integradas de Clique em GTM: Ferramentas, Variaveis, Clique.' },
+      { title:'Marque como conversao no GA4', desc:'GA4, Admin, Conversoes, + Nova conversao de evento, insira o nome do evento (form_submit). A partir de agora o evento aparece nos relatorios de conversao.', warn:'So marque como conversao acoes de alto valor. Eventos de engajamento como scroll como conversao distorce relatorios.' },
+      { title:'Verifique nos relatorios em 24h', desc:'GA4, Relatorios, Engajamento, Eventos. Seu evento deve aparecer na lista. Para validacao imediata, use Relatorios, Tempo real.', tip:'Eventos levam ate 24h para aparecer nos relatorios padrao.' },
+    ],
+    resources:[]
+  },
+  { id:'geral-utms', cat:'geral', plat:'Geral', color:'#6B35D9', icon:'🔗', bg:'#F3EEFF',
+    title:'Como criar e padronizar UTMs para todas as campanhas', level:'init', levelLabel:'Iniciante',
+    desc:'Implemente UTM parameters padronizados para rastrear trafego de todas as plataformas com precisao no GA4.',
+    tags:['UTM','GA4','Rastreamento'],
+    steps:[
+      { title:'O que sao UTMs e por que sao obrigatorios', desc:'UTM parameters sao sufixos adicionados a URL que dizem ao GA4 de onde veio o visitante. Sem UTMs, trafego pago aparece como Direct ou Organic - tornando a analise inutil.', tip:'Google Ads tem integracao automatica com GA4 (auto-tagging). Para Meta, TikTok, LinkedIn e outros, voce PRECISA adicionar UTMs manualmente em cada anuncio.' },
+      { title:'Conheca os 5 parametros UTM', desc:'utm_source: de onde veio (meta, google, tiktok, linkedin). utm_medium: qual canal (paid-social, cpc, paid-video). utm_campaign: nome da campanha. utm_content: identificacao do criativo. utm_term: palavra-chave (so para Search).', code:'Exemplo de URL com UTMs:\nhttps://seusite.com.br/produto\n?utm_source=meta\n&utm_medium=paid-social\n&utm_campaign=black-friday-2026\n&utm_content=video-hook-produto-a' },
+      { title:'Crie um padrao e documente', desc:'Defina as regras do seu time: (1) tudo em minusculas, (2) hifen em vez de espaco, (3) nomes de campanha consistentes. Crie uma planilha de padroes que todos consultam.', warn:'Um time com 3 pessoas que usa Meta, meta e Facebook como utm_source cria 3 fontes diferentes no GA4.' },
+      { title:'Use o Google Campaign URL Builder', desc:'Acesse ga-dev-tools.google.com/campaign-url-builder, preencha os campos, copie a URL gerada. Cole essa URL no campo URL de destino do anuncio.', tip:'Crie atalhos no Google Sheets com formula CONCATENATE para gerar URLs de UTM automaticamente. Evita erros manuais.' },
+      { title:'Valide no GA4', desc:'Apos publicar a campanha, acesse GA4, Relatorios, Aquisicao, Aquisicao de trafego. Confirme que o trafego aparece com os valores corretos de Source/Medium.', tip:null },
+    ],
+    resources:[
+      { icon:'🔗', label:'Google Campaign URL Builder', url:'https://ga-dev-tools.google.com/campaign-url-builder' },
+    ]
+  },
+  { id:'geral-cpa-calculo', cat:'geral', plat:'Geral', color:'#6B35D9', icon:'🧮', bg:'#F3EEFF',
+    title:'Como calcular o CPA máximo sustentável', level:'init', levelLabel:'Iniciante',
+    desc:'Calcule o custo por aquisicao maximo que o seu negocio pode pagar e ainda ser lucrativo.',
+    tags:['CPA','ROAS','Margem'],
+    steps:[
+      { title:'Entenda a formula do CPA maximo', desc:'CPA maximo = Ticket medio x Margem bruta (%). Exemplo: ticket de R$300 com margem de 40% = CPA maximo de R$120. Gastar mais que isso por venda significa operar no prejuizo.', tip:'Use o CPA maximo como teto nas estrategias de lance.' },
+      { title:'Calcule o ROAS minimo viavel', desc:'ROAS minimo = 1 dividido pela Margem bruta. Com margem de 40% (0,4): ROAS minimo = 1/0,4 = 2,5x. Qualquer campanha com ROAS abaixo de 2,5x esta consumindo mais do que gera.', code:'Formulas essenciais:\nCPA maximo = Ticket x Margem\nROAS minimo = 1 / Margem\nROAS = Receita / Gasto com Ads\nCPA real = Gasto / Conversoes\n\nExemplo:\nTicket: R$500 | Margem: 50%\nCPA maximo: R$250\nROAS minimo: 2x' },
+      { title:'Inclua o LTV no calculo (quando possivel)', desc:'Para negocios com recompra (assinaturas, e-commerce de consumiveis), o CPA pode ser calculado sobre o LTV (Lifetime Value). CPA maximo = LTV x Margem.', tip:'Se um cliente compra em media 4 vezes com ticket de R$200, o LTV e R$800. Com margem de 40%, voce pode pagar ate R$320 para adquiri-lo.' },
+      { title:'Monitore o CPA real vs. o CPA meta semanalmente', desc:'Crie um relatorio semanal comparando: CPA meta vs. CPA real por canal e campanha. Qualquer desvio acima de 20% por mais de 7 dias exige acao.', tip:'Acao quando CPA maior que meta: (1) revise o criativo, (2) ajuste o publico, (3) verifique a LP, (4) revise a estrategia de lance. Nessa ordem.' },
+    ],
+    resources:[]
+  },
+  { id:'geral-landing-page', cat:'geral', plat:'Geral', color:'#6B35D9', icon:'🏠', bg:'#F3EEFF',
+    title:'Como otimizar a Landing Page para campanhas pagas', level:'inter', levelLabel:'Intermediário',
+    desc:'Os elementos fundamentais de uma LP de alta conversao para trafego pago de qualquer plataforma.',
+    tags:['Landing Page','Conversão','CRO'],
+    steps:[
+      { title:'A LP e parte da campanha (nao separada)', desc:'A taxa de conversao da landing page tem impacto equivalente ao CPC no custo por resultado. Uma LP com 5% de conversao vs 2% faz o mesmo efeito que reduzir o CPC a metade.', tip:null },
+      { title:'Consistencia de mensagem entre anuncio e LP', desc:'O headline da LP deve continuar ou ampliar a promessa do anuncio. Se o anuncio diz Desconto de 40%, a LP deve mostrar isso imediatamente acima da dobra.', warn:'Message match e o fator mais comum de alta taxa de rejeicao em trafego pago.' },
+      { title:'Velocidade menor que 3 segundos (mobile)', desc:'Teste em pagespeed.web.dev. Score mobile abaixo de 50 = penalizacao no Indice de Qualidade do Google Ads e perda de trafego antes mesmo da pagina carregar.', code:'Checklist de velocidade:\n* Imagens em formato WebP (20-30% menor)\n* Lazy loading em imagens abaixo da dobra\n* CDN ativo (Cloudflare gratuito)\n* CSS/JS minificados\n* Remover plugins WordPress nao essenciais' },
+      { title:'Formulario ou CTA acima da dobra', desc:'O visitante nao deve rolar para encontrar o formulario ou botao principal. Para LPs de lead: formulario visivel sem scroll. Para e-commerce: botao de compra + preco acima da dobra.', tip:'Em mobile, acima da dobra e a area visivel sem rolar - geralmente apenas 400-500px. Teste no celular real.' },
+      { title:'Prova social especifica e credivel', desc:'Depoimentos com foto, nome e empresa convertem melhor que depoimentos anonimos. Logos de clientes conhecidos e metricas concretas aumentam a confianca.', tip:'Prova social generica como "Otimo produto!" tem impacto proximo de zero. Especifica como "Reduzimos o CAC em 35% em 3 meses" converte.' },
+    ],
+    resources:[
+      { icon:'🔗', label:'PageSpeed Insights', url:'https://pagespeed.web.dev' },
+    ]
+  },
+];
 
-const NEWS_PLATS = ['Todos', 'Google Ads', 'Meta Ads', 'TikTok Ads', 'LinkedIn Ads'];
+let eduCat   = 'all';
+let eduQuery = '';
+let currentLesson = null;
 
-let newsReadIds = [];
-try { newsReadIds = JSON.parse(localStorage.getItem('newsReadIds') || '[]'); } catch(e){}
-let newsFilter = 'Todos';
-
-async function openNews() {
-  showNewsLoading();
-  document.getElementById('news-overlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-  if (!DATA_LOADED) await loadData();
-  renderNewsFilters();
-  renderNewsList();
-}
-
-function showNewsLoading() {
-  const list = document.getElementById('news-list');
-  const bar  = document.getElementById('news-filter-bar');
-  if(bar)  bar.innerHTML  = '';
-  if(list) list.innerHTML = '<div class="data-loading"><div class="spinner spinner-orange"></div>Carregando notícias...</div>';
-}
-function closeNews() {
-  document.getElementById('news-overlay').classList.remove('open');
-  document.body.style.overflow = '';
-}
-function handleNewsOverlay(e) {
-  if(e.target === document.getElementById('news-overlay')) closeNews();
-}
-
-function toggleNewsCard(id) {
-  const el = document.getElementById('nc-' + id);
-  el.classList.toggle('expanded');
-  if(el.classList.contains('expanded') && !newsReadIds.includes(id)) {
-    newsReadIds.push(id);
-    try { localStorage.setItem('newsReadIds', JSON.stringify(newsReadIds)); } catch(e){}
-    updateNewsBadge();
-    // Re-render just the meta line
-    const meta = el.querySelector('.news-card-meta');
-    if(meta) meta.innerHTML = meta.innerHTML.replace('|  lida','') + ' · <span style="color:#22c55e;font-weight:600">✓ Lida</span>';
-  }
-}
-
-function setNewsFilter(plat) {
-  newsFilter = plat;
-  renderNewsFilters();
-  renderNewsList();
-}
-
-function markAllNewsRead() {
-  newsReadIds = (NEWS || []).map(n => n.id);
-  try { localStorage.setItem('newsReadIds', JSON.stringify(newsReadIds)); } catch(e){}
-  updateNewsBadge();
-  renderNewsList();
-}
-
-function updateNewsBadge() {
-  const unread = NEWS.filter(n => !newsReadIds.includes(n.id)).length;
-  const badge = document.getElementById('news-badge');
-  if(unread > 0) { badge.textContent = unread; badge.style.display = 'inline'; }
-  else { badge.style.display = 'none'; }
-}
-
-function renderNewsFilters() {
-  const bar = document.getElementById('news-filter-bar');
-  bar.innerHTML = '';
-  const platColors = {
-    'Todos':'#0f172a','Google Ads':'#EA4335','Meta Ads':'#1877F2',
-    'TikTok Ads':'#333','LinkedIn Ads':'#0A66C2'
-  };
-  NEWS_PLATS.forEach(p => {
-    const chip = document.createElement('button');
-    chip.className = 'news-filter-chip' + (p === newsFilter ? ' active' : '');
-    chip.textContent = p;
-    if(p === newsFilter) chip.style.background = platColors[p] || '#0f172a';
-    chip.onclick = () => setNewsFilter(p);
-    bar.appendChild(chip);
+function renderEduCats() {
+  const wrap = document.getElementById('edu-cats');
+  if (!wrap) return;
+  wrap.innerHTML = '';
+  EDU_CATS.forEach(c => {
+    const btn = document.createElement('button');
+    btn.className = 'edu-cat'+(c.id===eduCat?' active':'');
+    if (c.id===eduCat) btn.style.background = c.color;
+    btn.innerHTML = c.id!=='all' ? '<span class="edu-cat-dot" style="background:'+c.dot+'"></span>'+c.label : c.label;
+    btn.onclick = () => { eduCat=c.id; renderEduCats(); renderEduGrid(); };
+    wrap.appendChild(btn);
   });
 }
 
-function renderNewsList() {
-  const list = document.getElementById('news-list');
-  const filtered = newsFilter === 'Todos' ? NEWS : NEWS.filter(n => n.plat === newsFilter);
-  list.innerHTML = '';
-
-  if(DATA_ERROR) {
-    list.innerHTML = '<div class="data-error">⚠ Não foi possível carregar <strong>noticias.json</strong>.<br>Verifique se o arquivo está no mesmo diretório que o HTML.</div>';
-    return;
-  }
-  if(!filtered.length) {
-    list.innerHTML = '<div class="news-empty"><div>🔍</div>Nenhuma notícia para este filtro ainda.</div>';
-    return;
-  }
-
-  const tagClass = { new:'ntag-new', change:'ntag-change', warning:'ntag-warning', critical:'ntag-critical' };
-
-  filtered.forEach(n => {
-    const isRead = newsReadIds.includes(n.id);
-    const card = document.createElement('div');
-    card.className = 'news-card';
-    card.id = 'nc-' + n.id;
-    card.innerHTML = `
-      <div class="news-card-header" onclick="toggleNewsCard('${n.id}')">
-        <div class="news-card-plat-bar" style="background:${n.color}"></div>
-        <div class="news-card-main">
-          <div class="news-card-top">
-            <div class="news-card-title" style="${isRead?'opacity:.6':''}">${n.title}</div>
-            <div class="news-card-tags">
-              <span class="news-tag ${tagClass[n.tag]||'ntag-change'}">${n.tagLabel}</span>
-              <span class="news-card-chevron">▼</span>
-            </div>
-          </div>
-          <div class="news-card-meta">
-            <span class="news-card-plat-label" style="color:${n.color}">${n.plat}</span>
-            · ${n.date}
-            · ${n.summary}
-            ${isRead ? ' · <span style="color:#22c55e;font-weight:600">✓ Lida</span>' : ''}
-          </div>
-        </div>
-      </div>
-      <div class="news-card-body">
-        <div class="news-card-content">${n.content}</div>
-      </div>`;
-    list.appendChild(card);
+function initEduSearch() {
+  const inp = document.getElementById('edu-search');
+  const clr = document.getElementById('edu-search-clear');
+  if (!inp) return;
+  inp.addEventListener('input', () => {
+    eduQuery = inp.value.toLowerCase().trim();
+    clr.classList.toggle('show', eduQuery.length>0);
+    renderEduGrid();
   });
 }
+function clearEduSearch() {
+  const inp = document.getElementById('edu-search');
+  const clr = document.getElementById('edu-search-clear');
+  if (inp) { inp.value=''; eduQuery=''; }
+  if (clr) clr.classList.remove('show');
+  renderEduGrid();
+}
 
-// Init on load
-updateNewsBadge();
+function renderEduGrid() {
+  const grid = document.getElementById('edu-grid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  let lessons = LESSONS;
+  if (eduCat!=='all') lessons = lessons.filter(l=>l.cat===eduCat);
+  if (eduQuery) lessons = lessons.filter(l=>l.title.toLowerCase().includes(eduQuery)||l.desc.toLowerCase().includes(eduQuery)||l.tags.some(t=>t.toLowerCase().includes(eduQuery))||l.plat.toLowerCase().includes(eduQuery));
+  if (!lessons.length) { grid.innerHTML='<div class="edu-empty"><div>🔍</div>Nenhum tutorial encontrado. Tente outra busca.</div>'; return; }
+  const lvlLabel={init:'Iniciante',inter:'Intermediario',adv:'Avancado'};
+  const lvlClass={init:'level-init',inter:'level-inter',adv:'level-adv'};
+  lessons.forEach(l => {
+    const card=document.createElement('div');
+    card.className='lesson-card'; card.onclick=()=>openLesson(l.id);
+    card.innerHTML='<div class="lesson-bar" style="background:'+l.color+'"></div><div class="lesson-card-top"><div class="lesson-icon" style="background:'+l.bg+'">'+l.icon+'</div><div class="lesson-meta"><div class="lesson-plat" style="color:'+l.color+'">'+l.plat+'</div><div class="lesson-title">'+l.title+'</div></div></div><div class="lesson-desc">'+l.desc+'</div><div class="lesson-card-bottom"><div class="lesson-tags">'+l.tags.map(t=>'<span class="lesson-tag">'+t+'</span>').join('')+'</div><span class="lesson-level '+lvlClass[l.level]+'">'+lvlLabel[l.level]+'</span></div>';
+    grid.appendChild(card);
+  });
+  const cnt=document.getElementById('edu-count-total'); if(cnt) cnt.textContent=LESSONS.length;
+}
 
+function openLesson(id) {
+  const l=LESSONS.find(x=>x.id===id); if(!l) return;
+  currentLesson=l; renderLessonModal(l);
+  document.getElementById('lesson-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeLesson() {
+  document.getElementById('lesson-overlay').classList.remove('open');
+  document.body.style.overflow=''; currentLesson=null;
+}
+function handleLessonOverlay(e) {
+  if(e.target===document.getElementById('lesson-overlay')) closeLesson();
+}
 
-// ── HAMBURGER NAV ──────────────────────────────
+function renderLessonModal(l) {
+  const lvlLabel={init:'Iniciante',inter:'Intermediario',adv:'Avancado'};
+  const lvlClass={init:'level-init',inter:'level-inter',adv:'level-adv'};
+  document.getElementById('lesson-modal-header').innerHTML='<div class="lesson-modal-icon" style="background:'+l.bg+'">'+l.icon+'</div><div class="lesson-modal-meta"><div class="lesson-modal-plat" style="color:'+l.color+'">'+l.plat+'</div><div class="lesson-modal-title">'+l.title+'</div><div class="lesson-modal-badges"><span class="lesson-level '+lvlClass[l.level]+'">'+lvlLabel[l.level]+'</span>'+l.tags.map(t=>'<span class="lesson-tag">'+t+'</span>').join('')+'<span class="lesson-tag">'+l.steps.length+' passos</span></div></div><button class="lesson-modal-close" onclick="closeLesson()">✕</button>';
+  const body=document.getElementById('lesson-modal-body');
+  body.innerHTML='';
+  const pbWrap=document.createElement('div');
+  pbWrap.innerHTML='<div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:0%;background:'+l.color+'" id="lesson-progress-bar"></div></div><div class="progress-label" id="lesson-progress-label">0 / '+l.steps.length+' passos</div>';
+  body.appendChild(pbWrap);
+  const sw=document.createElement('div'); sw.className='lesson-steps'; sw.style.marginTop='20px';
+  l.steps.forEach((s,i)=>{
+    const isLast=i===l.steps.length-1;
+    const item=document.createElement('div');
+    item.className='lesson-step-item'+(isLast?' lesson-step-last':'');
+    item.id='lstep-'+i;
+    let extra='';
+    if(s.tip)  extra+='<div class="lesson-step-tip">💡 <strong>Dica:</strong> '+s.tip+'</div>';
+    if(s.warn) extra+='<div class="lesson-step-warn">⚠️ <strong>Atencao:</strong> '+s.warn+'</div>';
+    if(s.code) extra+='<div style="overflow-x:auto;max-width:100%;-webkit-overflow-scrolling:touch"><div class="lesson-step-code"><button class="copy-code-btn" onclick="copyCode(this)">Copiar</button>'+escHtml(s.code)+'</div></div>';
+    item.innerHTML='<div class="lesson-step-left"><div class="lesson-step-num" style="background:'+l.color+'">'+(i+1)+'</div><div class="lesson-step-line"></div></div><div class="lesson-step-content"><div class="lesson-step-title">'+s.title+'</div><div class="lesson-step-desc">'+s.desc+'</div>'+extra+'</div>';
+    sw.appendChild(item);
+  });
+  body.appendChild(sw);
+  if(l.resources&&l.resources.length){
+    const res=document.createElement('div'); res.className='lesson-resources';
+    res.innerHTML='<h4>📎 Recursos uteis</h4>'+l.resources.map(r=>'<a class="lesson-link" href="'+r.url+'" target="_blank"><span class="lesson-link-icon">'+r.icon+'</span>'+r.label+'</a>').join('');
+    body.appendChild(res);
+  }
+  setTimeout(()=>{
+    const obs=new IntersectionObserver(entries=>{
+      let max=0; entries.forEach(e=>{ if(e.isIntersecting){const idx=parseInt(e.target.id.replace('lstep-','')); if(!isNaN(idx)) max=Math.max(max,idx+1);}});
+      if(max>0){const pct=Math.round((max/l.steps.length)*100); const bar=document.getElementById('lesson-progress-bar'); const lbl=document.getElementById('lesson-progress-label'); if(bar) bar.style.width=pct+'%'; if(lbl) lbl.textContent=max+' / '+l.steps.length+' passos';}
+    },{threshold:0.5});
+    document.querySelectorAll('[id^="lstep-"]').forEach(el=>obs.observe(el));
+  },100);
+}
+
+function escHtml(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
 function toggleHamburger() {
   const btn = document.getElementById('nav-hamburger');
   const inner = document.getElementById('nav-inner');
-  btn.classList.toggle('open');
-  inner.classList.toggle('open');
+  if (btn) btn.classList.toggle('open');
+  if (inner) inner.classList.toggle('open');
+}
+function navTo(id, btn) {
+  const h = document.getElementById('nav-hamburger');
+  const inn = document.getElementById('nav-inner');
+  if (h) h.classList.remove('open');
+  if (inn) inn.classList.remove('open');
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({behavior:'smooth'});
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+}
+function copyCode(btn) {
+  const codeEl = btn.parentElement;
+  const raw = codeEl.textContent || codeEl.innerText || '';
+  const code = raw.replace(/^Copiar\s*/, '').trim();
+  const done = () => {
+    btn.textContent = 'Copiado!';
+    btn.style.background = 'rgba(74,222,128,.25)'; btn.style.color = '#4ade80';
+    setTimeout(() => { btn.textContent = 'Copiar'; btn.style.background=''; btn.style.color=''; }, 2000);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(code).then(done).catch(() => fallbackCopy(code, done));
+    return;
+  }
+  fallbackCopy(code, done);
+}
+function fallbackCopy(text, done) {
+  const ta = document.createElement('textarea');
+  ta.value = text; ta.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0';
+  document.body.appendChild(ta); ta.focus(); ta.select();
+  try { document.execCommand('copy'); done(); } catch(e) { alert('Copie manualmente:\n\n' + text); }
+  document.body.removeChild(ta);
 }
 
-// Close hamburger when a nav link is clicked
-const origNavTo = navTo;
-function navTo(id, btn) {
-  // close hamburger if open
-  const hamburger = document.getElementById('nav-hamburger');
-  const inner = document.getElementById('nav-inner');
-  if(hamburger && inner) {
-    hamburger.classList.remove('open');
-    inner.classList.remove('open');
-  }
-  document.getElementById(id)?.scrollIntoView({behavior:'smooth'});
-  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
-  if(btn) btn.classList.add('active');
-}
-// ── INIT ──────────────────────────────────────
-async function initData() {
-  await loadData();
-  updateBadge();
-  updateNewsBadge();
-}
-initData();
+function initEdu() { renderEduCats(); renderEduGrid(); initEduSearch(); }
+initEdu();
 
 </script>
 </body>
