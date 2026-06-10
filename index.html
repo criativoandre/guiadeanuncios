@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="/app/favicon.ico" type="image/x-icon">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Guia Completo de Anúncios Digitais + GA4</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
@@ -1568,11 +1569,11 @@ const LESSONS = [
       { title:'O que sao UTMs e por que sao obrigatorios', desc:'UTM parameters sao sufixos adicionados a URL que dizem ao GA4 de onde veio o visitante. Sem UTMs, trafego pago aparece como Direct ou Organic - tornando a analise inutil.', tip:'Google Ads tem integracao automatica com GA4 (auto-tagging). Para Meta, TikTok, LinkedIn e outros, voce PRECISA adicionar UTMs manualmente em cada anuncio.' },
       { title:'Conheca os 5 parametros UTM', desc:'utm_source: de onde veio (meta, google, tiktok, linkedin). utm_medium: qual canal (paid-social, cpc, paid-video). utm_campaign: nome da campanha. utm_content: identificacao do criativo. utm_term: palavra-chave (so para Search).', code:'Exemplo de URL com UTMs:\nhttps://seusite.com.br/produto\n?utm_source=meta\n&utm_medium=paid-social\n&utm_campaign=black-friday-2026\n&utm_content=video-hook-produto-a' },
       { title:'Crie um padrao e documente', desc:'Defina as regras do seu time: (1) tudo em minusculas, (2) hifen em vez de espaco, (3) nomes de campanha consistentes. Crie uma planilha de padroes que todos consultam.', warn:'Um time com 3 pessoas que usa Meta, meta e Facebook como utm_source cria 3 fontes diferentes no GA4.' },
-      { title:'Use o Google Campaign URL Builder', desc:'Acesse ga-dev-tools.google.com/campaign-url-builder, preencha os campos, copie a URL gerada. Cole essa URL no campo URL de destino do anuncio.', tip:'Crie atalhos no Google Sheets com formula CONCATENATE para gerar URLs de UTM automaticamente. Evita erros manuais.' },
+      { title:'Use o Google Campaign URL Builder', desc:'Acesse ga-dev-tools.google/campaign-url-builder, preencha os campos, copie a URL gerada. Cole essa URL no campo URL de destino do anuncio.', tip:'Crie atalhos no Google Sheets com formula CONCATENATE para gerar URLs de UTM automaticamente. Evita erros manuais.' },
       { title:'Valide no GA4', desc:'Apos publicar a campanha, acesse GA4, Relatorios, Aquisicao, Aquisicao de trafego. Confirme que o trafego aparece com os valores corretos de Source/Medium.', tip:null },
     ],
     resources:[
-      { icon:'🔗', label:'Google Campaign URL Builder', url:'https://ga-dev-tools.google.com/campaign-url-builder' },
+      { icon:'🔗', label:'Google Campaign URL Builder', url:'https://ga-dev-tools.google/campaign-url-builder' },
     ]
   },
   { id:'geral-cpa-calculo', cat:'geral', plat:'Geral', color:'#6B35D9', icon:'🧮', bg:'#F3EEFF',
