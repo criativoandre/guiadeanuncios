@@ -121,6 +121,40 @@
   color: #fff;
 }
 
+#obj-filter .filter-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  background: #ffffff;
+  color: #1f2937;
+  border: 1px solid #d9d9d9;
+  border-radius: 999px;
+  padding: 12px 28px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+#obj-filter .filter-icon {
+  width: 17px;
+  height: 17px;
+  color: currentColor;
+  flex-shrink: 0;
+}
+
+#obj-filter .filter-btn:hover {
+  border-color: #1c3029;
+  color: #1c3029;
+}
+
+#obj-filter .filter-btn.active {
+  background: #1c3029;
+  color: #ffffff;
+  border-color: #1c3029;
+}
+
   /* OBJECTIVES */
   .obj-strip { display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-bottom:64px; }
   .obj-card { border-radius:var(--radius);padding:28px 24px;background:var(--card);border:1.5px solid;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s; }
@@ -799,11 +833,11 @@
 </div>
 
   <div class="filter-row" id="obj-filter">
-    <button class="filter-btn" data-obj="conversoes" onclick="setObj('conversoes',this)">Vendas/Conversões</button>
-    <button class="filter-btn" data-obj="leads" onclick="setObj('leads',this)">Geração de Leads</button>
-    <button class="filter-btn" data-obj="trafego" onclick="setObj('trafego',this)">Tráfego</button>
-    <button class="filter-btn" data-obj="marca" onclick="setObj('marca',this)">Reconhecimento</button>
-  </div>
+  <button class="filter-btn active" data-obj="conversoes" onclick="setObj('conversoes',this)">Vendas/Conversões</button>
+  <button class="filter-btn" data-obj="leads" onclick="setObj('leads',this)">Geração de Leads</button>
+  <button class="filter-btn" data-obj="trafego" onclick="setObj('trafego',this)">Tráfego</button>
+  <button class="filter-btn" data-obj="marca" onclick="setObj('marca',this)">Reconhecimento</button>
+</div>
   <div id="all-phases"></div>
 </div></div>
 
@@ -911,6 +945,16 @@
 </footer>
 
 <script>
+
+function setObj(obj, btn) {
+    document
+      .querySelectorAll('#obj-filter .filter-btn')
+      .forEach(button => button.classList.remove('active'));
+
+    btn.classList.add('active');
+
+    // mantém sua lógica atual aqui
+  }
 
 // ─────────────────────────────────────────────
 // PLATFORM ROTEIRO DATA (Ads)
