@@ -96,30 +96,30 @@
   /* BOTÕES */
   
   .filter-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 10px 22px;
-    border-radius: 999px;
-    border: 1px solid #ddd;
-    background: #fff;
-    color: #444;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all .2s ease;
-  }
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  border: 1px solid #ddd;
+  background: #fff;
+  color: #444;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all .2s ease;
+}
 
-  .filter-btn img {
-    width: 14px;
-    height: 14px;
-    display: block;
-  }
+.filter-btn img {
+  width: 14px;
+  height: 14px;
+  display: block;
+}
 
-  .filter-btn.active {
-    background: #1877f2;
-    border-color: #1877f2;
-    color: #fff;
-  }
+.filter-btn.active {
+  color: #fff;
+}
 
   /* OBJECTIVES */
   .obj-strip { display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-bottom:64px; }
@@ -140,7 +140,6 @@
   .mode-btn.active { background:var(--ink);border-color:var(--ink);color:#fff; }
   .mode-btn:hover:not(.active){border-color:#999;color:var(--ink)}
   .filter-row { display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px; }
-  .filter-btn { padding:7px 16px;border-radius:99px;font-size:12px;font-weight:500;cursor:pointer;border:1.5px solid #e0e0e0;background:var(--card);color:#666;font-family:'DM Sans',sans-serif;transition:all .2s; }
   .phases-row { display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px; }
   .phase-chip { padding:6px 14px;border-radius:8px;font-size:12px;font-weight:500;cursor:pointer;border:1px solid #e0e0e0;background:var(--card);color:#888;font-family:'DM Sans',sans-serif;transition:all .2s; }
   .phase-chip.active { background:var(--ink);border-color:var(--ink);color:#fff; }
@@ -769,27 +768,34 @@
     <button class="mode-btn" onclick="setMode('Remarketing',this)">🔁 Remarketing</button>
     <button class="mode-btn" onclick="setMode('Otimização',this)">⚡ Otimização</button>
   </div>
-  <div class="filter-row" id="plat-filter">
-<button class="filter-btn active" data-plat="meta" onclick="setPlat('meta', this)">
-  <img src="https://cdn.simpleicons.org/meta/ffffff" alt="">
-  Meta
-</button>
 
-<button class="filter-btn" data-plat="google" onclick="setPlat('google', this)">
-  <img src="https://cdn.simpleicons.org/googleads/666666" alt="">
-  Google
-</button>
+ <div class="filter-row" id="plat-filter">
+  <button class="filter-btn active" data-plat="meta" onclick="setPlat('meta', this)">
+    <img src="https://cdn.simpleicons.org/meta/ffffff" alt="">
+    Meta
+  </button>
 
-<button class="filter-btn" data-plat="tiktok" onclick="setPlat('tiktok', this)">
-  <img src="https://cdn.simpleicons.org/tiktok/666666" alt="">
-  TikTok
-</button>
+  <button class="filter-btn" data-plat="google" onclick="setPlat('google', this)">
+    <img src="https://cdn.simpleicons.org/googleads/666666" alt="">
+    Google
+  </button>
 
-<button class="filter-btn" data-plat="youtube" onclick="setPlat('youtube', this)">
-  <img src="https://cdn.simpleicons.org/youtube/666666" alt="">
-  YouTube
-</button>
-  </div>
+  <button class="filter-btn" data-plat="tiktok" onclick="setPlat('tiktok', this)">
+    <img src="https://cdn.simpleicons.org/tiktok/666666" alt="">
+    TikTok
+  </button>
+
+  <button class="filter-btn" data-plat="youtube" onclick="setPlat('youtube', this)">
+    <img src="https://cdn.simpleicons.org/youtube/666666" alt="">
+    YouTube
+  </button>
+
+  <button class="filter-btn" data-plat="linkedin" onclick="setPlat('linkedin', this)">
+    <img src="https://cdn.simpleicons.org/linkedin/666666" alt="">
+    LinkedIn
+  </button>
+</div>
+
   <div class="filter-row" id="obj-filter">
     <button class="filter-btn" data-obj="conversoes" onclick="setObj('conversoes',this)">Vendas/Conversões</button>
     <button class="filter-btn" data-obj="leads" onclick="setObj('leads',this)">Geração de Leads</button>
@@ -905,31 +911,50 @@
 <script>
 
 const icons = {
-    meta: 'meta',
-    google: 'googleads',
-    tiktok: 'tiktok',
-    youtube: 'youtube'
-  };
+  meta: 'meta',
+  google: 'googleads',
+  tiktok: 'tiktok',
+  youtube: 'youtube',
+  linkedin: 'linkedin'
+};
 
-  function setPlat(plat, el) {
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-      const btnPlat = btn.dataset.plat;
-      const img = btn.querySelector('img');
+const platColors = {
+  meta: '#1877F2',
+  google: '#EA4335',
+  tiktok: '#333333',
+  youtube: '#FF0000',
+  linkedin: '#0A66C2'
+};
 
-      btn.classList.remove('active');
+function setPlat(plat, el) {
+  currentPlat = plat;
 
-      if (img && icons[btnPlat]) {
-        img.src = `https://cdn.simpleicons.org/${icons[btnPlat]}/666666`;
-      }
-    });
+  document.querySelectorAll('#plat-filter .filter-btn').forEach(btn => {
+    const btnPlat = btn.dataset.plat;
+    const img = btn.querySelector('img');
 
-    el.classList.add('active');
+    btn.classList.remove('active');
+    btn.style.background = '#fff';
+    btn.style.borderColor = '#ddd';
+    btn.style.color = '#444';
 
-    const activeImg = el.querySelector('img');
-    if (activeImg && icons[plat]) {
-      activeImg.src = `https://cdn.simpleicons.org/${icons[plat]}/ffffff`;
+    if (img && icons[btnPlat]) {
+      img.src = `https://cdn.simpleicons.org/${icons[btnPlat]}/666666`;
     }
+  });
+
+  el.classList.add('active');
+  el.style.background = platColors[plat];
+  el.style.borderColor = platColors[plat];
+  el.style.color = '#fff';
+
+  const activeImg = el.querySelector('img');
+  if (activeImg && icons[plat]) {
+    activeImg.src = `https://cdn.simpleicons.org/${icons[plat]}/ffffff`;
   }
+
+  renderSteps();
+}
 
 // ─────────────────────────────────────────────
 // PLATFORM ROTEIRO DATA (Ads)
