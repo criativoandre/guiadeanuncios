@@ -771,29 +771,31 @@
 
  <div class="filter-row" id="plat-filter">
   <button class="filter-btn active" data-plat="meta" onclick="setPlat('meta', this)">
-    <img src="https://cdn.simpleicons.org/meta/ffffff" alt="">
+    <img src="https://cdn.simpleicons.org/meta/ffffff" alt="Meta">
     Meta
   </button>
 
   <button class="filter-btn" data-plat="google" onclick="setPlat('google', this)">
-    <img src="https://cdn.simpleicons.org/googleads/666666" alt="">
+    <img src="https://cdn.simpleicons.org/googleads/666666" alt="Google">
     Google
   </button>
 
   <button class="filter-btn" data-plat="tiktok" onclick="setPlat('tiktok', this)">
-    <img src="https://cdn.simpleicons.org/tiktok/666666" alt="">
+    <img src="https://cdn.simpleicons.org/tiktok/666666" alt="TikTok">
     TikTok
   </button>
 
   <button class="filter-btn" data-plat="youtube" onclick="setPlat('youtube', this)">
-    <img src="https://cdn.simpleicons.org/youtube/666666" alt="">
+    <img src="https://cdn.simpleicons.org/youtube/666666" alt="YouTube">
     YouTube
   </button>
 
   <button class="filter-btn" data-plat="linkedin" onclick="setPlat('linkedin', this)">
-    <img src="https://cdn.simpleicons.org/linkedin/666666" alt="">
-    LinkedIn
-  </button>
+  <img 
+    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3Cpath%20fill%3D%22%23666666%22%20d%3D%22M100.28%20448H7.4V148.9h92.88zM53.79%20108.1C24.09%20108.1%200%2083.5%200%2053.8a53.79%2053.79%200%200%201%20107.58%200c0%2029.7-24.1%2054.3-53.79%2054.3zM447.9%20448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29%200-55.69%2037.7-55.69%2076.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5%2042.69-48.3%2087.88-48.3%2094%200%20111.28%2061.9%20111.28%20142.3V448z%22/%3E%3C/svg%3E" 
+    alt="LinkedIn">
+  LinkedIn
+</button>
 </div>
 
   <div class="filter-row" id="obj-filter">
@@ -909,52 +911,6 @@
 </footer>
 
 <script>
-
-const icons = {
-  meta: 'meta',
-  google: 'googleads',
-  tiktok: 'tiktok',
-  youtube: 'youtube',
-  linkedin: 'linkedin'
-};
-
-const platColors = {
-  meta: '#1877F2',
-  google: '#EA4335',
-  tiktok: '#333333',
-  youtube: '#FF0000',
-  linkedin: '#0A66C2'
-};
-
-function setPlat(plat, el) {
-  currentPlat = plat;
-
-  document.querySelectorAll('#plat-filter .filter-btn').forEach(btn => {
-    const btnPlat = btn.dataset.plat;
-    const img = btn.querySelector('img');
-
-    btn.classList.remove('active');
-    btn.style.background = '#fff';
-    btn.style.borderColor = '#ddd';
-    btn.style.color = '#444';
-
-    if (img && icons[btnPlat]) {
-      img.src = `https://cdn.simpleicons.org/${icons[btnPlat]}/666666`;
-    }
-  });
-
-  el.classList.add('active');
-  el.style.background = platColors[plat];
-  el.style.borderColor = platColors[plat];
-  el.style.color = '#fff';
-
-  const activeImg = el.querySelector('img');
-  if (activeImg && icons[plat]) {
-    activeImg.src = `https://cdn.simpleicons.org/${icons[plat]}/ffffff`;
-  }
-
-  renderSteps();
-}
 
 // ─────────────────────────────────────────────
 // PLATFORM ROTEIRO DATA (Ads)
@@ -1349,16 +1305,25 @@ function renderAds(){
 
   // Platform filter colors
   document.querySelectorAll('#plat-filter .filter-btn').forEach(btn => {
-    const p = btn.getAttribute('data-plat');
-    if(p===adState.plat){ btn.style.background=PLATFORMS[p].color; btn.style.color='#fff'; btn.style.borderColor='transparent'; }
-    else{ btn.style.background='#fff'; btn.style.color='#666'; btn.style.borderColor='#e0e0e0'; }
-  });
-  // Obj filter colors
-  document.querySelectorAll('#obj-filter .filter-btn').forEach(btn => {
-    const o = btn.getAttribute('data-obj');
-    if(o===adState.obj){ btn.style.background=OBJS[o].color; btn.style.color='#fff'; btn.style.borderColor='transparent'; }
-    else{ btn.style.background='#fff'; btn.style.color='#666'; btn.style.borderColor='#e0e0e0'; }
-  });
+  const p = btn.getAttribute('data-plat');
+  const img = btn.querySelector('img');
+
+  if (p === adState.plat) {
+    btn.classList.add('active');
+    btn.style.background = PLATFORMS[p].color;
+    btn.style.color = '#fff';
+    btn.style.borderColor = PLATFORMS[p].color;
+
+    if (img) img.src = iconSrc(p, 'FFFFFF');
+  } else {
+    btn.classList.remove('active');
+    btn.style.background = '#fff';
+    btn.style.color = '#666';
+    btn.style.borderColor = '#e0e0e0';
+
+    if (img) img.src = iconSrc(p, '666666');
+  }
+});
 }
 
 function setMode(mode,btn){
@@ -1368,7 +1333,60 @@ function setMode(mode,btn){
   btn.classList.add('active');
   renderAds();
 }
-function setPlat(plat){ adState.plat=plat; renderAds(); }
+const platColors = {
+  meta: '#1877F2',
+  google: '#EA4335',
+  tiktok: '#333333',
+  youtube: '#FF0000',
+  linkedin: '#0A66C2'
+};
+
+function linkedinSvg(color) {
+  return `data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3Cpath%20fill%3D%22%23${color}%22%20d%3D%22M100.28%20448H7.4V148.9h92.88zM53.79%20108.1C24.09%20108.1%200%2083.5%200%2053.8a53.79%2053.79%200%200%201%20107.58%200c0%2029.7-24.1%2054.3-53.79%2054.3zM447.9%20448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29%200-55.69%2037.7-55.69%2076.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5%2042.69-48.3%2087.88-48.3%2094%200%20111.28%2061.9%20111.28%20142.3V448z%22/%3E%3C/svg%3E`;
+}
+
+function iconSrc(plat, color) {
+  if (plat === 'linkedin') return linkedinSvg(color);
+
+  const icons = {
+    meta: 'meta',
+    google: 'googleads',
+    tiktok: 'tiktok',
+    youtube: 'youtube'
+  };
+
+  return `https://cdn.simpleicons.org/${icons[plat]}/${color}`;
+}
+
+function setPlat(plat, el) {
+  adState.plat = plat;
+
+  document.querySelectorAll('#plat-filter .filter-btn').forEach(btn => {
+    const btnPlat = btn.dataset.plat;
+    const img = btn.querySelector('img');
+
+    btn.classList.remove('active');
+    btn.style.background = '#fff';
+    btn.style.borderColor = '#e0e0e0';
+    btn.style.color = '#666';
+
+    if (img) {
+      img.src = iconSrc(btnPlat, '666666');
+    }
+  });
+
+  el.classList.add('active');
+  el.style.background = platColors[plat];
+  el.style.borderColor = platColors[plat];
+  el.style.color = '#fff';
+
+  const activeImg = el.querySelector('img');
+  if (activeImg) {
+    activeImg.src = iconSrc(plat, 'FFFFFF');
+  }
+
+  renderAds();
+}
 function setObj(obj){ adState.obj=obj; renderAds(); }
 
 // ─────────────────────────────────────────────
