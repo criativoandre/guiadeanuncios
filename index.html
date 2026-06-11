@@ -94,16 +94,30 @@
   .platform-kpis span { font-size:10px;font-weight:600;letter-spacing:.04em;background:rgba(255,255,255,.15);border-radius:4px;padding:3px 8px; }
 
   /* BOTÕES */
+  
+  .filter-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 22px;
+    border-radius: 999px;
+    border: 1px solid #ddd;
+    background: #fff;
+    color: #444;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .2s ease;
+  }
 
   .filter-btn img {
     width: 14px;
     height: 14px;
-    vertical-align: middle;
-    margin-right: 5px;
+    display: block;
   }
 
   .filter-btn.active {
-    background: #2563eb;
+    background: #1877f2;
+    border-color: #1877f2;
     color: #fff;
   }
 
@@ -756,26 +770,25 @@
     <button class="mode-btn" onclick="setMode('Otimização',this)">⚡ Otimização</button>
   </div>
   <div class="filter-row" id="plat-filter">
-<button class="filter-btn" data-plat="meta" onclick="setPlat('meta',this)">
-  <img data-icon="meta" src="https://cdn.simpleicons.org/meta/666666" alt="">Meta
+<button class="filter-btn active" data-plat="meta" onclick="setPlat('meta', this)">
+  <img src="https://cdn.simpleicons.org/meta/ffffff" alt="">
+  Meta
 </button>
 
-<button class="filter-btn" data-plat="google" onclick="setPlat('google',this)">
-  <img data-icon="googleads" src="https://cdn.simpleicons.org/googleads/666666" alt="">Google
+<button class="filter-btn" data-plat="google" onclick="setPlat('google', this)">
+  <img src="https://cdn.simpleicons.org/googleads/666666" alt="">
+  Google
 </button>
 
-<button class="filter-btn" data-plat="tiktok" onclick="setPlat('tiktok',this)">
-  <img data-icon="tiktok" src="https://cdn.simpleicons.org/tiktok/666666" alt="">TikTok
+<button class="filter-btn" data-plat="tiktok" onclick="setPlat('tiktok', this)">
+  <img src="https://cdn.simpleicons.org/tiktok/666666" alt="">
+  TikTok
 </button>
 
-<button class="filter-btn" data-plat="youtube" onclick="setPlat('youtube',this)">
-  <img data-icon="youtube" src="https://cdn.simpleicons.org/youtube/666666" alt="">YouTube
+<button class="filter-btn" data-plat="youtube" onclick="setPlat('youtube', this)">
+  <img src="https://cdn.simpleicons.org/youtube/666666" alt="">
+  YouTube
 </button>
-
-<button class="filter-btn" data-plat="linkedin" onclick="setPlat('linkedin',this)">
-  <img data-icon="linkedin" src="https://cdn.simpleicons.org/linkedin/666666" alt="">LinkedIn
-</button>
-
   </div>
   <div class="filter-row" id="obj-filter">
     <button class="filter-btn" data-obj="conversoes" onclick="setObj('conversoes',this)">Vendas/Conversões</button>
@@ -890,6 +903,34 @@
 </footer>
 
 <script>
+
+const icons = {
+    meta: 'meta',
+    google: 'googleads',
+    tiktok: 'tiktok',
+    youtube: 'youtube'
+  };
+
+  function setPlat(plat, el) {
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      const btnPlat = btn.dataset.plat;
+      const img = btn.querySelector('img');
+
+      btn.classList.remove('active');
+
+      if (img && icons[btnPlat]) {
+        img.src = `https://cdn.simpleicons.org/${icons[btnPlat]}/666666`;
+      }
+    });
+
+    el.classList.add('active');
+
+    const activeImg = el.querySelector('img');
+    if (activeImg && icons[plat]) {
+      activeImg.src = `https://cdn.simpleicons.org/${icons[plat]}/ffffff`;
+    }
+  }
+
 // ─────────────────────────────────────────────
 // PLATFORM ROTEIRO DATA (Ads)
 // ─────────────────────────────────────────────
@@ -1372,28 +1413,6 @@ renderGA4();
 </script>
 
 <script>
-
-  function setPlat(plat, btn) {
-    document.querySelectorAll('.filter-btn').forEach(button => {
-      button.classList.remove('active');
-
-      const img = button.querySelector('img');
-      if (img && img.dataset.icon) {
-        img.src = `https://cdn.simpleicons.org/${img.dataset.icon}/666666`;
-      }
-    });
-
-    btn.classList.add('active');
-
-    const activeImg = btn.querySelector('img');
-    if (activeImg && activeImg.dataset.icon) {
-      activeImg.src = `https://cdn.simpleicons.org/${activeImg.dataset.icon}/ffffff`;
-    }
-
-    // mantenha aqui o restante da sua lógica de filtro
-    // exemplo:
-    // filtrarCardsPorPlataforma(plat);
-  }
 
 // ================================================================
 // ESPAÇO EDUCACIONAL
