@@ -443,7 +443,7 @@
     position: fixed; inset: 0; z-index: 1002;
     background: rgba(10,10,30,.65); backdrop-filter: blur(8px);
     display: flex; align-items: flex-start; justify-content: center;
-    padding: 12px; overflow-y: auto; overflow-x: hidden;
+    padding: 12px; overflow: hidden;
     opacity: 0; pointer-events: none; transition: opacity .25s;
   }
   .lesson-overlay.open { opacity: 1; pointer-events: all; }
@@ -452,12 +452,16 @@
     box-shadow: 0 40px 100px rgba(0,0,0,.3);
     transform: translateY(28px) scale(.97); transition: transform .25s;
     margin: auto; position: relative;
-    overflow: hidden;
+    overflow-y: auto; overflow-x: hidden;
+    max-height: calc(100vh - 24px);
   }
   .lesson-overlay.open .lesson-modal { transform: translateY(0) scale(1); }
   .lesson-modal-header {
-    padding: 28px 32px 24px; border-bottom: 1px solid #f0f0f0;
+    padding: 28px 32px 18px; border-bottom: 1px solid #f0f0f0;
     display: flex; align-items: flex-start; gap: 18px;
+    position: sticky; top: 0; z-index: 10;
+    background: #fff;
+    box-shadow: 0 8px 24px rgba(0,0,0,.05);
   }
   .lesson-modal-icon {
     width: 52px; height: 52px; border-radius: 14px; flex-shrink: 0;
@@ -547,7 +551,7 @@
   .lesson-link:hover { background: #f5f5f5; border-color: #e0e0e0; }
   .lesson-link-icon { font-size: 16px; flex-shrink: 0; }
   .progress-bar-wrap {
-    background: #f0f0f0; border-radius: 99px; height: 4px; margin: 20px 0 4px;
+    background: #f0f0f0; border-radius: 99px; height: 4px; margin: 14px 0 4px;
     overflow: hidden;
   }
   .progress-bar-fill { height: 100%; border-radius: 99px; transition: width .4s; }
@@ -1634,13 +1638,11 @@ function handleLessonOverlay(e) {
 function renderLessonModal(l) {
   const lvlLabel={init:'Iniciante',inter:'Intermediario',adv:'Avancado'};
   const lvlClass={init:'level-init',inter:'level-inter',adv:'level-adv'};
-  document.getElementById('lesson-modal-header').innerHTML='<div class="lesson-modal-icon" style="background:'+l.bg+'">'+l.icon+'</div><div class="lesson-modal-meta"><div class="lesson-modal-plat" style="color:'+l.color+'">'+l.plat+'</div><div class="lesson-modal-title">'+l.title+'</div><div class="lesson-modal-badges"><span class="lesson-level '+lvlClass[l.level]+'">'+lvlLabel[l.level]+'</span>'+l.tags.map(t=>'<span class="lesson-tag">'+t+'</span>').join('')+'<span class="lesson-tag">'+l.steps.length+' passos</span></div></div><button class="lesson-modal-close" onclick="closeLesson()">✕</button>';
+  const initialProgress=Math.round((1/l.steps.length)*100);
+  document.getElementById('lesson-modal-header').innerHTML='<div class="lesson-modal-icon" style="background:'+l.bg+'">'+l.icon+'</div><div class="lesson-modal-meta"><div class="lesson-modal-plat" style="color:'+l.color+'">'+l.plat+'</div><div class="lesson-modal-title">'+l.title+'</div><div class="lesson-modal-badges"><span class="lesson-level '+lvlClass[l.level]+'">'+lvlLabel[l.level]+'</span>'+l.tags.map(t=>'<span class="lesson-tag">'+t+'</span>').join('')+'<span class="lesson-tag">'+l.steps.length+' passos</span></div><div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:'+initialProgress+'%;background:'+l.color+'" id="lesson-progress-bar"></div></div><div class="progress-label" id="lesson-progress-label">1 / '+l.steps.length+' passos</div></div><button class="lesson-modal-close" onclick="closeLesson()">✕</button>';
   const body=document.getElementById('lesson-modal-body');
   body.innerHTML='';
-  const pbWrap=document.createElement('div');
-  pbWrap.innerHTML='<div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:0%;background:'+l.color+'" id="lesson-progress-bar"></div></div><div class="progress-label" id="lesson-progress-label">0 / '+l.steps.length+' passos</div>';
-  body.appendChild(pbWrap);
-  const sw=document.createElement('div'); sw.className='lesson-steps'; sw.style.marginTop='20px';
+  const sw=document.createElement('div'); sw.className='lesson-steps'; sw.style.marginTop='0';
   l.steps.forEach((s,i)=>{
     const isLast=i===l.steps.length-1;
     const item=document.createElement('div');
