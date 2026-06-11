@@ -833,10 +833,41 @@
 </div>
 
   <div class="filter-row" id="obj-filter">
-  <button class="filter-btn active" data-obj="conversoes" onclick="setObj('conversoes',this)">Vendas/Conversões</button>
-  <button class="filter-btn" data-obj="leads" onclick="setObj('leads',this)">Geração de Leads</button>
-  <button class="filter-btn" data-obj="trafego" onclick="setObj('trafego',this)">Tráfego</button>
-  <button class="filter-btn" data-obj="marca" onclick="setObj('marca',this)">Reconhecimento</button>
+  <button class="filter-btn active" data-obj="conversoes" onclick="setObj('conversoes',this)">
+    <svg class="filter-icon" viewBox="0 0 24 24" fill="none">
+      <path d="M3 17L9 11L13 15L21 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M17 7H21V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Vendas/Conversões
+  </button>
+
+  <button class="filter-btn" data-obj="leads" onclick="setObj('leads',this)">
+    <svg class="filter-icon" viewBox="0 0 24 24" fill="none">
+      <path d="M16 21V19C16 16.8 14.2 15 12 15H6C3.8 15 2 16.8 2 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+      <path d="M19 8V14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <path d="M22 11H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    Geração de Leads
+  </button>
+
+  <button class="filter-btn" data-obj="trafego" onclick="setObj('trafego',this)">
+    <svg class="filter-icon" viewBox="0 0 24 24" fill="none">
+      <path d="M4 19V5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <path d="M4 19H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <path d="M8 16V11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <path d="M12 16V8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <path d="M16 16V13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    Tráfego
+  </button>
+
+  <button class="filter-btn" data-obj="marca" onclick="setObj('marca',this)">
+    <svg class="filter-icon" viewBox="0 0 24 24" fill="none">
+      <path d="M12 3L14.7 8.5L20.8 9.4L16.4 13.7L17.4 19.8L12 16.9L6.6 19.8L7.6 13.7L3.2 9.4L9.3 8.5L12 3Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+    </svg>
+    Reconhecimento
+  </button>
 </div>
   <div id="all-phases"></div>
 </div></div>
