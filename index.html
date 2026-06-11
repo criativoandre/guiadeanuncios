@@ -121,6 +121,63 @@
   color: #fff;
 }
 
+/* Hover global dos botões de modo e chips */
+.mode-btn:hover,
+.phase-chip:hover {
+  background: var(--ink) !important;
+  color: #ffffff !important;
+  border-color: var(--ink) !important;
+  transform: translateY(-1px);
+}
+
+.mode-btn:hover img {
+  filter: brightness(0) invert(1);
+}
+
+/* Hover dos botões de plataforma com a cor oficial de cada canal */
+#plat-filter .filter-btn:hover {
+  color: #ffffff !important;
+  transform: translateY(-1px);
+}
+
+#plat-filter .filter-btn:hover img {
+  filter: brightness(0) invert(1);
+}
+
+#plat-filter .filter-btn[data-plat="meta"]:hover {
+  background: #1877f2 !important;
+  border-color: #1877f2 !important;
+}
+
+#plat-filter .filter-btn[data-plat="google"]:hover {
+  background: #ea4335 !important;
+  border-color: #ea4335 !important;
+}
+
+#plat-filter .filter-btn[data-plat="tiktok"]:hover {
+  background: #333333 !important;
+  border-color: #333333 !important;
+}
+
+#plat-filter .filter-btn[data-plat="youtube"]:hover {
+  background: #ff0000 !important;
+  border-color: #ff0000 !important;
+}
+
+#plat-filter .filter-btn[data-plat="linkedin"]:hover {
+  background: #0a66c2 !important;
+  border-color: #0a66c2 !important;
+}
+
+#plat-filter .filter-btn[data-plat="ga4"]:hover,
+.pill-ga4:hover,
+.ga4-tab:hover,
+.ga4-phase:hover {
+  background: #e37400 !important;
+  border-color: #e37400 !important;
+  color: #ffffff !important;
+}
+
 #obj-filter .filter-btn {
   display: inline-flex;
   align-items: center;
@@ -145,15 +202,20 @@
   flex-shrink: 0;
 }
 
-#obj-filter .filter-btn:hover {
-  border-color: #18bf24;
-  color: #18bf24;
-}
-
+/* Objetivo selecionado em verde */
+#obj-filter .filter-btn.active,
 #obj-filter .filter-btn.selected {
   background: #18bf24 !important;
   color: #ffffff !important;
   border-color: #18bf24 !important;
+}
+
+/* Hover dos objetivos em verde */
+#obj-filter .filter-btn:hover {
+  background: #18bf24 !important;
+  color: #ffffff !important;
+  border-color: #18bf24 !important;
+  transform: translateY(-1px);
 }
 
   /* OBJECTIVES */
@@ -171,14 +233,14 @@
 
   /* MODE / FILTER TABS */
   .mode-tabs { display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px; }
-  .mode-btn { padding:10px 24px;border-radius:99px;font-size:14px;font-weight:500;cursor:pointer;border:1.5px solid #ddd;background:var(--card);color:#666;font-family:'DM Sans',sans-serif;transition:all .2s; }
+  .mode-btn { padding:10px 24px;border-radius:99px;font-size:14px;font-weight:500;cursor:pointer;border:1.5px solid #ddd;background:var(--card);color:#666;font-family:'DM Sans',sans-serif;transition:all .2s ease; }
   .mode-btn.active { background:var(--ink);border-color:var(--ink);color:#fff; }
-  .mode-btn:hover:not(.active){border-color:#999;color:var(--ink)}
+  .mode-btn:hover { background:var(--ink) !important;border-color:var(--ink) !important;color:#fff !important;transform:translateY(-1px); }
   .filter-row { display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px; }
   .phases-row { display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px; }
-  .phase-chip { padding:6px 14px;border-radius:8px;font-size:12px;font-weight:500;cursor:pointer;border:1px solid #e0e0e0;background:var(--card);color:#888;font-family:'DM Sans',sans-serif;transition:all .2s; }
+  .phase-chip { padding:6px 14px;border-radius:8px;font-size:12px;font-weight:500;cursor:pointer;border:1px solid #e0e0e0;background:var(--card);color:#888;font-family:'DM Sans',sans-serif;transition:all .2s ease; }
   .phase-chip.active { background:var(--ink);border-color:var(--ink);color:#fff; }
-  .phase-chip:hover:not(.active){border-color:#999;color:var(--ink)}
+  .phase-chip:hover { background:var(--ink) !important;border-color:var(--ink) !important;color:#fff !important;transform:translateY(-1px); }
 
   /* ALL-PHASES VIEW */
   .phase-block { margin-bottom: 40px; }
@@ -448,7 +510,58 @@
     white-space: nowrap;
   }
   .edu-cat.active { border-color: transparent; color: #fff; }
-  .edu-cat:hover:not(.active) { border-color: #999; color: var(--ink); }
+
+  /* Hover dos botões do Espaço Educacional com a cor oficial de cada categoria */
+  .edu-cat:hover {
+    color: #ffffff !important;
+    transform: translateY(-1px);
+  }
+
+  .edu-cat:hover .brand-logo,
+  .edu-cat.active .brand-logo {
+    filter: brightness(0) invert(1);
+  }
+
+  .edu-cat[data-cat="all"]:hover {
+    background: #1A1A2E !important;
+    border-color: #1A1A2E !important;
+  }
+
+  .edu-cat[data-cat="meta"]:hover {
+    background: #1877f2 !important;
+    border-color: #1877f2 !important;
+  }
+
+  .edu-cat[data-cat="google"]:hover {
+    background: #ea4335 !important;
+    border-color: #ea4335 !important;
+  }
+
+  .edu-cat[data-cat="tiktok"]:hover {
+    background: #333333 !important;
+    border-color: #333333 !important;
+  }
+
+  .edu-cat[data-cat="youtube"]:hover {
+    background: #ff0000 !important;
+    border-color: #ff0000 !important;
+  }
+
+  .edu-cat[data-cat="linkedin"]:hover {
+    background: #0a66c2 !important;
+    border-color: #0a66c2 !important;
+  }
+
+  .edu-cat[data-cat="ga4"]:hover {
+    background: #e37400 !important;
+    border-color: #e37400 !important;
+  }
+
+  .edu-cat[data-cat="geral"]:hover {
+    background: #6B35D9 !important;
+    border-color: #6B35D9 !important;
+  }
+
   .edu-cat-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 
   /* LESSON GRID */
@@ -686,6 +799,166 @@
     .kpi-section { padding: 24px 16px; }
     .edu-grid { grid-template-columns: 1fr; }
     .lesson-card { border-radius: 14px; }
+  }
+
+
+
+  /* =========================================================
+     HOVER FINAL DOS BOTÕES - CORES OFICIAIS
+     ========================================================= */
+  #plat-filter .filter-btn,
+  #obj-filter .filter-btn,
+  .mode-btn,
+  .phase-chip {
+    transition: all .2s ease;
+  }
+
+  /* Modo: hover igual ao ativo escuro */
+  .mode-btn:hover,
+  .mode-btn.active {
+    background: var(--ink) !important;
+    border-color: var(--ink) !important;
+    color: #ffffff !important;
+    transform: translateY(-1px);
+  }
+
+  /* Plataformas: hover com a mesma cor oficial do canal */
+  #plat-filter .filter-btn:hover {
+    color: #ffffff !important;
+    transform: translateY(-1px);
+  }
+
+  #plat-filter .filter-btn:hover img {
+    filter: brightness(0) invert(1) !important;
+  }
+
+  #plat-filter .filter-btn[data-plat="meta"]:hover {
+    background: #1877f2 !important;
+    border-color: #1877f2 !important;
+  }
+
+  #plat-filter .filter-btn[data-plat="google"]:hover {
+    background: #ea4335 !important;
+    border-color: #ea4335 !important;
+  }
+
+  #plat-filter .filter-btn[data-plat="tiktok"]:hover {
+    background: #333333 !important;
+    border-color: #333333 !important;
+  }
+
+  #plat-filter .filter-btn[data-plat="youtube"]:hover {
+    background: #ff0000 !important;
+    border-color: #ff0000 !important;
+  }
+
+  #plat-filter .filter-btn[data-plat="linkedin"]:hover {
+    background: #0a66c2 !important;
+    border-color: #0a66c2 !important;
+  }
+
+  #plat-filter .filter-btn[data-plat="ga4"]:hover,
+  .pill-ga4:hover,
+  .ga4-tab:hover,
+  .ga4-phase:hover {
+    background: #e37400 !important;
+    border-color: #e37400 !important;
+    color: #ffffff !important;
+  }
+
+  /* Objetivos: hover e ativo com o mesmo verde */
+  #obj-filter .filter-btn:hover,
+  #obj-filter .filter-btn.active,
+  #obj-filter .filter-btn.selected {
+    background: #18bf24 !important;
+    border-color: #18bf24 !important;
+    color: #ffffff !important;
+    transform: translateY(-1px);
+  }
+
+  #obj-filter .filter-btn:hover svg,
+  #obj-filter .filter-btn.active svg,
+  #obj-filter .filter-btn.selected svg {
+    color: #ffffff !important;
+  }
+
+
+  /* =========================================================
+     AJUSTE FINAL — HOVER/ATIVO COM CORES OFICIAIS
+     ========================================================= */
+
+  /* Plataformas: hover e ativo na cor oficial de cada canal */
+  #plat-filter .filter-btn[data-plat="meta"]:hover,
+  #plat-filter .filter-btn[data-plat="meta"].active {
+    background: #1877f2 !important;
+    border-color: #1877f2 !important;
+    color: #ffffff !important;
+  }
+
+  #plat-filter .filter-btn[data-plat="google"]:hover,
+  #plat-filter .filter-btn[data-plat="google"].active {
+    background: #ea4335 !important;
+    border-color: #ea4335 !important;
+    color: #ffffff !important;
+  }
+
+  #plat-filter .filter-btn[data-plat="tiktok"]:hover,
+  #plat-filter .filter-btn[data-plat="tiktok"].active {
+    background: #333333 !important;
+    border-color: #333333 !important;
+    color: #ffffff !important;
+  }
+
+  #plat-filter .filter-btn[data-plat="youtube"]:hover,
+  #plat-filter .filter-btn[data-plat="youtube"].active {
+    background: #ff0000 !important;
+    border-color: #ff0000 !important;
+    color: #ffffff !important;
+  }
+
+  #plat-filter .filter-btn[data-plat="linkedin"]:hover,
+  #plat-filter .filter-btn[data-plat="linkedin"].active {
+    background: #0a66c2 !important;
+    border-color: #0a66c2 !important;
+    color: #ffffff !important;
+  }
+
+  #plat-filter .filter-btn[data-plat="ga4"]:hover,
+  #plat-filter .filter-btn[data-plat="ga4"].active,
+  .pill-ga4:hover,
+  .ga4-tab:hover,
+  .ga4-tab.active,
+  .ga4-phase:hover,
+  .ga4-phase.active {
+    background: #e37400 !important;
+    border-color: #e37400 !important;
+    color: #ffffff !important;
+  }
+
+  #plat-filter .filter-btn:hover,
+  #plat-filter .filter-btn.active {
+    transform: translateY(-1px);
+  }
+
+  #plat-filter .filter-btn:hover img,
+  #plat-filter .filter-btn.active img {
+    filter: brightness(0) invert(1) !important;
+  }
+
+  /* Objetivos: hover e ativo sempre no verde solicitado */
+  #obj-filter .filter-btn:hover,
+  #obj-filter .filter-btn.active,
+  #obj-filter .filter-btn.selected {
+    background: #18bf24 !important;
+    border-color: #18bf24 !important;
+    color: #ffffff !important;
+    transform: translateY(-1px);
+  }
+
+  #obj-filter .filter-btn:hover svg,
+  #obj-filter .filter-btn.active svg,
+  #obj-filter .filter-btn.selected svg {
+    color: #ffffff !important;
   }
 
 </style>
@@ -979,27 +1252,26 @@
 <script>
 
   function setObj(obj, btn) {
+    adState.obj = obj;
+
     document
       .querySelectorAll('#obj-filter .filter-btn')
       .forEach(button => button.classList.remove('active'));
 
-    btn.classList.add('active');
+    if (btn) btn.classList.add('active');
 
-    // mantém aqui o restante da sua lógica atual
-    // exemplo:
-    currentObj = obj;
-    renderPhases();
+    renderAds();
   }
 
 // ─────────────────────────────────────────────
 // PLATFORM ROTEIRO DATA (Ads)
 // ─────────────────────────────────────────────
 const PLATFORMS = {
-  meta:{name:'Meta Ads',color:'#1877F2'},
-  google:{name:'Google Ads',color:'#EA4335'},
+  meta:{name:'Meta Ads',color:'#1877f2'},
+  google:{name:'Google Ads',color:'#ea4335'},
   tiktok:{name:'TikTok Ads',color:'#333333'},
-  youtube:{name:'YouTube Ads',color:'#FF0000'},
-  linkedin:{name:'LinkedIn Ads',color:'#0A66C2'},
+  youtube:{name:'YouTube Ads',color:'#ff0000'},
+  linkedin:{name:'LinkedIn Ads',color:'#0a66c2'},
 };
 const OBJS = {
   conversoes:{name:'Vendas/Conversões',color:'#2D7D0A'},
@@ -1413,11 +1685,12 @@ function setMode(mode,btn){
   renderAds();
 }
 const platColors = {
-  meta: '#1877F2',
-  google: '#EA4335',
+  meta: '#1877f2',
+  google: '#ea4335',
   tiktok: '#333333',
-  youtube: '#FF0000',
-  linkedin: '#0A66C2'
+  youtube: '#ff0000',
+  linkedin: '#0a66c2',
+  ga4: '#e37400'
 };
 
 function linkedinSvg(color) {
@@ -1466,7 +1739,19 @@ function setPlat(plat, el) {
 
   renderAds();
 }
-function setObj(obj){ adState.obj=obj; renderAds(); }
+function setObj(obj, btn){
+  adState.obj = obj;
+
+  document.querySelectorAll('#obj-filter .filter-btn').forEach(b => {
+    b.classList.remove('active');
+  });
+
+  if (btn) {
+    btn.classList.add('active');
+  }
+
+  renderAds();
+}
 
 // ─────────────────────────────────────────────
 // GA4 RENDER
@@ -1543,7 +1828,7 @@ const EDU_CATS = [
   { id:'all',      label:'Todos',        color:'#1A1A2E', dot:'#1A1A2E' },
   { id:'meta',     label:'Meta Ads',     color:'#1877F2', dot:'#1877F2' },
   { id:'google',   label:'Google Ads',   color:'#EA4335', dot:'#EA4335' },
-  { id:'tiktok',   label:'TikTok Ads',   color:'#333',    dot:'#555'    },
+  { id:'tiktok',   label:'TikTok Ads',   color:'#333333', dot:'#333333' },
   { id:'youtube',  label:'YouTube Ads',  color:'#FF0000', dot:'#FF0000' },
   { id:'linkedin', label:'LinkedIn Ads', color:'#0A66C2', dot:'#0A66C2' },
   { id:'ga4',      label:'GA4',          color:'#E37400', dot:'#E37400' },
@@ -1810,7 +2095,11 @@ function renderEduCats() {
   EDU_CATS.forEach(c => {
     const btn = document.createElement('button');
     btn.className = 'edu-cat'+(c.id===eduCat?' active':'');
-    if (c.id===eduCat) btn.style.background = c.color;
+    btn.dataset.cat = c.id;
+    if (c.id===eduCat) {
+      btn.style.background = c.color;
+      btn.style.borderColor = c.color;
+    }
     btn.innerHTML = eduCatIcon(c.id) + '<span>'+c.label+'</span>';
     btn.onclick = () => { eduCat=c.id; renderEduCats(); renderEduGrid(); };
     wrap.appendChild(btn);
