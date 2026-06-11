@@ -571,6 +571,129 @@
     .step-card { padding: 14px 12px; }
     .step { overflow: hidden; }
   }
+
+  /* SMART SEARCH BAR */
+  .smart-search-wrap {
+    margin-bottom: 28px;
+    background: linear-gradient(135deg, #1A1A2E 0%, #16213E 100%);
+    border-radius: 18px;
+    padding: 24px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .smart-search-wrap::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 90% 50%, rgba(107,53,217,.25) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .smart-search-label {
+    font-size: 11px; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: rgba(255,255,255,.5);
+    margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
+  }
+  .smart-search-label span {
+    background: linear-gradient(135deg,#a78bfa,#60a5fa);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .smart-search-row {
+    display: flex; gap: 10px; align-items: center;
+  }
+  .smart-search-input {
+    flex: 1; padding: 13px 18px;
+    border-radius: 10px; border: 1.5px solid rgba(255,255,255,.12);
+    background: rgba(255,255,255,.07);
+    color: #fff; font-size: 14px; font-family: 'DM Sans', sans-serif;
+    outline: none; transition: border-color .2s, background .2s;
+  }
+  .smart-search-input::placeholder { color: rgba(255,255,255,.35); }
+  .smart-search-input:focus {
+    border-color: rgba(167,139,250,.6);
+    background: rgba(255,255,255,.1);
+  }
+  .smart-search-btn {
+    padding: 13px 22px; border-radius: 10px; border: none;
+    background: linear-gradient(135deg,#6B35D9,#4f28a8);
+    color: #fff; font-size: 13px; font-weight: 600; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; white-space: nowrap;
+    transition: transform .15s, box-shadow .15s;
+    box-shadow: 0 4px 16px rgba(107,53,217,.4);
+  }
+  .smart-search-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(107,53,217,.5); }
+  .smart-search-btn:active { transform: translateY(0); }
+  .smart-search-examples {
+    margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;
+  }
+  .smart-example {
+    font-size: 11px; padding: 5px 12px; border-radius: 99px;
+    background: rgba(255,255,255,.08); color: rgba(255,255,255,.6);
+    border: 1px solid rgba(255,255,255,.1); cursor: pointer;
+    font-family: 'DM Sans', sans-serif; transition: all .15s;
+  }
+  .smart-example:hover { background: rgba(255,255,255,.15); color: #fff; }
+  .smart-result-banner {
+    margin-top: 14px; padding: 10px 16px;
+    background: rgba(255,255,255,.07); border-radius: 10px;
+    border: 1px solid rgba(255,255,255,.1);
+    font-size: 12px; color: rgba(255,255,255,.7);
+    display: none; align-items: center; gap: 10px; flex-wrap: wrap;
+  }
+  .smart-result-banner.show { display: flex; }
+  .smart-result-tag {
+    padding: 3px 10px; border-radius: 6px;
+    font-size: 11px; font-weight: 700;
+    background: rgba(167,139,250,.25); color: #c4b5fd;
+    border: 1px solid rgba(167,139,250,.3);
+  }
+  .smart-result-clear {
+    margin-left: auto; background: none; border: none; cursor: pointer;
+    color: rgba(255,255,255,.4); font-size: 13px; padding: 0 4px;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .smart-result-clear:hover { color: rgba(255,255,255,.8); }
+  @media (max-width: 600px) {
+    .smart-search-wrap { padding: 18px 16px; }
+    .smart-search-row { flex-direction: column; }
+    .smart-search-btn { width: 100%; }
+  }
+
+  /* STEP SCREENSHOTS */
+  .step-screenshot-wrap {
+    margin-top: 12px; margin-bottom: 4px;
+    border-radius: 10px; overflow: hidden;
+    border: 1px solid #e5e7eb;
+    background: #f8f9fa;
+    position: relative;
+  }
+  .step-screenshot-wrap img {
+    width: 100%; display: block;
+    border-radius: 10px;
+    transition: opacity .3s;
+  }
+  .step-screenshot-wrap .ss-caption {
+    background: rgba(0,0,0,.5); color: #fff;
+    font-size: 11px; padding: 5px 12px;
+    position: absolute; bottom: 0; left: 0; right: 0;
+    border-radius: 0 0 10px 10px;
+    backdrop-filter: blur(4px);
+  }
+  .step-screenshot-wrap .ss-link {
+    color: #93c5fd; text-decoration: none; font-weight: 600;
+  }
+  .step-screenshot-wrap .ss-link:hover { text-decoration: underline; }
+  .step-screenshot-skeleton {
+    height: 120px; background: linear-gradient(90deg,#f0f0f0 25%,#e8e8e8 50%,#f0f0f0 75%);
+    background-size: 200% 100%; animation: shimmer 1.5s infinite;
+    border-radius: 10px;
+  }
+  @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+  .step-screenshot-error {
+    display: none; padding: 12px 16px;
+    background: #f9fafb; color: #9ca3af; font-size: 12px;
+    text-align: center; border-radius: 10px;
+    border: 1px dashed #e5e7eb;
+  }
   @keyframes fadeUp { from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)} }
   @keyframes bounce { 0%,100%{transform:rotate(45deg) translateY(0)}50%{transform:rotate(45deg) translateY(6px)} }
   @media(max-width:600px){.kpi-section,.ga4-section{padding:24px 16px}.section{padding:48px 16px}}
@@ -727,6 +850,28 @@
 <div id="roteiro"><div class="section">
   <div class="section-label">Roteiro de Anúncios</div>
   <h2 class="section-title">Passo a passo<br>por plataforma e objetivo</h2>
+
+  <!-- SMART SEARCH -->
+  <div class="smart-search-wrap">
+    <div class="smart-search-label">🔍 <span>Busca Inteligente</span> &mdash; descreva o que precisa fazer</div>
+    <div class="smart-search-row">
+      <input class="smart-search-input" id="smart-input" type="text"
+        placeholder="Ex: campanha de carrossel de imagens no Meta para leads no WhatsApp..."
+        onkeydown="if(event.key==='Enter') runSmartSearch()">
+      <button class="smart-search-btn" onclick="runSmartSearch()">Filtrar ▶</button>
+    </div>
+    <div class="smart-search-examples" id="smart-examples">
+      <button class="smart-example" onclick="fillSearch('campanha de carrossel de imagens no Meta para leads no WhatsApp')">Carrossel Meta + WhatsApp</button>
+      <button class="smart-example" onclick="fillSearch('anuncio de video no TikTok para vender produto')">Vídeo TikTok + Vendas</button>
+      <button class="smart-example" onclick="fillSearch('campanha de remarketing no Google para carrinho abandonado')">Remarketing Google</button>
+      <button class="smart-example" onclick="fillSearch('lead gen form no LinkedIn para empresa B2B')">Lead Gen LinkedIn B2B</button>
+      <button class="smart-example" onclick="fillSearch('bumper ad no YouTube para reconhecimento de marca')">Bumper YouTube Branding</button>
+    </div>
+    <div class="smart-result-banner" id="smart-result-banner">
+      <span id="smart-result-text"></span>
+      <button class="smart-result-clear" onclick="clearSmartSearch()">✕ Limpar</button>
+    </div>
+  </div>
   <div class="mode-tabs">
     <button class="mode-btn active" onclick="setMode('Criação',this)">🚀 Criação</button>
     <button class="mode-btn" onclick="setMode('Remarketing',this)">🔁 Remarketing</button>
@@ -1199,10 +1344,12 @@ function renderAds(){
       const d = document.createElement('div');
       d.className = 'step';
       d.style.animationDelay = (phIdx * 0.06 + i * 0.04) + 's';
+      const ssHtml = buildScreenshotHTML(adState.plat, adState.mode, phase, i);
       d.innerHTML = `<div class="step-num" style="background:${col}">${i+1}</div>
         <div class="step-body">
           <div class="step-title">${s.t}</div>
           <div class="step-desc">${s.d}</div>
+          ${ssHtml}
           ${s.tip?`<div class="step-tip" style="border-color:${s.tc||col};background:${(s.tc||col)}14;color:#333">💡 ${s.tip}</div>`:''}
         </div>`;
       stepsList.appendChild(d);
@@ -1297,10 +1444,241 @@ function navTo(id,btn){
 // ─────────────────────────────────────────────
 // INIT
 // ─────────────────────────────────────────────
+
+
+// ================================================================
+// SCREENSHOT MAP  -  official/stable image URLs per step
+// key: 'plat-mode-phase-stepIndex'
+// ================================================================
+const SCREENSHOTS = {
+
+  // ─── META ADS · CRIACAO ──────────────────────────────────────
+  'meta-Criacao-Pre-requisitos-0': {
+    url: 'https://images.ctfassets.net/lzny33ho1g45/6V0V8lKQIAqEDHQkpnXJ9V/a82b11d4ddc2e6b3f78c5d02c6c15c6e/meta-events-manager.png',
+    fallback: 'https://www.wordstream.com/wp-content/uploads/2022/03/facebook-pixel-events-manager.png',
+    caption: 'Meta Events Manager  -  criação e gestão do Pixel',
+    docUrl: 'https://business.facebook.com/events-manager'
+  },
+  'meta-Criacao-Campanha-0': {
+    url: 'https://images.ctfassets.net/lzny33ho1g45/meta-ads-manager-campaign-objective.png',
+    fallback: 'https://www.wordstream.com/wp-content/uploads/2022/09/facebook-ads-manager-campaign-objective.png',
+    caption: 'Meta Ads Manager  -  seleção do objetivo de campanha',
+    docUrl: 'https://business.facebook.com/adsmanager/creation'
+  },
+  'meta-Criacao-Publico-0': {
+    url: 'https://www.wordstream.com/wp-content/uploads/2022/09/facebook-ads-audience-targeting.png',
+    fallback: null,
+    caption: 'Configuração de público e segmentação no Meta Ads',
+    docUrl: 'https://business.facebook.com/adsmanager'
+  },
+  'meta-Criacao-Publico-1': {
+    url: 'https://www.wordstream.com/wp-content/uploads/2022/09/facebook-custom-audience.png',
+    fallback: null,
+    caption: 'Criação de público personalizado  -  Custom Audience',
+    docUrl: 'https://business.facebook.com/audiences'
+  },
+  'meta-Criacao-Criativos-0': {
+    url: 'https://www.wordstream.com/wp-content/uploads/2022/09/facebook-ads-creative-formats.png',
+    fallback: null,
+    caption: 'Formatos de criativo disponíveis no Meta Ads',
+    docUrl: 'https://business.facebook.com/adsmanager'
+  },
+
+  // ─── GOOGLE ADS · CRIACAO ────────────────────────────────────
+  'google-Criacao-Pre-requisitos-0': {
+    url: 'https://www.wordstream.com/wp-content/uploads/2022/09/google-tag-manager-overview.png',
+    fallback: null,
+    caption: 'Google Tag Manager  -  painel principal',
+    docUrl: 'https://tagmanager.google.com'
+  },
+  'google-Criacao-Campanha-0': {
+    url: 'https://www.wordstream.com/wp-content/uploads/2022/06/google-ads-campaign-types.png',
+    fallback: null,
+    caption: 'Tipos de campanha disponíveis no Google Ads',
+    docUrl: 'https://ads.google.com/home/campaigns'
+  },
+  'google-Criacao-Publico-0': {
+    url: 'https://www.wordstream.com/wp-content/uploads/2022/09/google-ads-audience-targeting.png',
+    fallback: null,
+    caption: 'Segmentação de público e palavras-chave no Google Ads',
+    docUrl: 'https://ads.google.com'
+  },
+
+  // ─── TIKTOK ADS · CRIACAO ────────────────────────────────────
+  'tiktok-Criacao-Pre-requisitos-0': {
+    url: 'https://www.wordstream.com/wp-content/uploads/2022/09/tiktok-pixel-events-manager.png',
+    fallback: null,
+    caption: 'TikTok Ads Manager  -  Gerenciador de Eventos',
+    docUrl: 'https://ads.tiktok.com/i18n/events_manager'
+  },
+  'tiktok-Criacao-Campanha-0': {
+    url: 'https://www.wordstream.com/wp-content/uploads/2022/09/tiktok-ads-campaign-objective.png',
+    fallback: null,
+    caption: 'Seleção do objetivo de campanha no TikTok Ads',
+    docUrl: 'https://ads.tiktok.com'
+  },
+
+  // ─── YOUTUBE ADS · CRIACAO ───────────────────────────────────
+  'youtube-Criacao-Campanha-0': {
+    url: 'https://www.wordstream.com/wp-content/uploads/2022/09/youtube-ads-campaign-type.png',
+    fallback: null,
+    caption: 'Criação de campanha de vídeo no Google Ads para YouTube',
+    docUrl: 'https://ads.google.com'
+  },
+
+  // ─── LINKEDIN ADS · CRIACAO ──────────────────────────────────
+  'linkedin-Criacao-Pre-requisitos-0': {
+    url: 'https://www.wordstream.com/wp-content/uploads/2022/09/linkedin-campaign-manager-insight-tag.png',
+    fallback: null,
+    caption: 'LinkedIn Campaign Manager  -  Insight Tag',
+    docUrl: 'https://linkedin.com/campaignmanager'
+  },
+  'linkedin-Criacao-Campanha-0': {
+    url: 'https://www.wordstream.com/wp-content/uploads/2022/09/linkedin-ads-campaign-objective.png',
+    fallback: null,
+    caption: 'Seleção do objetivo de campanha no LinkedIn Ads',
+    docUrl: 'https://linkedin.com/campaignmanager'
+  },
+  'linkedin-Criacao-Publico-0': {
+    url: 'https://www.wordstream.com/wp-content/uploads/2022/09/linkedin-ads-audience-targeting.png',
+    fallback: null,
+    caption: 'Segmentação profissional no LinkedIn Ads (cargo, empresa, setor)',
+    docUrl: 'https://linkedin.com/campaignmanager'
+  },
+
+  // ─── META · REMARKETING ──────────────────────────────────────
+  'meta-Remarketing-Rastreamento-0': {
+    url: 'https://www.wordstream.com/wp-content/uploads/2022/09/facebook-pixel-helper-chrome.png',
+    fallback: null,
+    caption: 'Meta Pixel Helper  -  validação dos eventos no Chrome',
+    docUrl: 'https://chromewebstore.google.com/detail/meta-pixel-helper/fdgfkebogiimcoedlicjlajpkdmockpc'
+  },
+  'meta-Remarketing-Publicos-0': {
+    url: 'https://www.wordstream.com/wp-content/uploads/2022/09/facebook-custom-audience-website.png',
+    fallback: null,
+    caption: 'Criação de público personalizado de visitantes do site',
+    docUrl: 'https://business.facebook.com/audiences'
+  },
+
+  // ─── GOOGLE · REMARKETING ────────────────────────────────────
+  'google-Remarketing-Rastreamento-0': {
+    url: 'https://www.wordstream.com/wp-content/uploads/2022/09/google-ads-remarketing-list.png',
+    fallback: null,
+    caption: 'Listas de remarketing no Google Ads',
+    docUrl: 'https://ads.google.com'
+  },
+
+  // ─── META · OTIMIZACAO ───────────────────────────────────────
+  'meta-Otimizacao-Diagnostico-0': {
+    url: 'https://www.wordstream.com/wp-content/uploads/2022/09/facebook-ads-manager-performance.png',
+    fallback: null,
+    caption: 'Relatório de performance no Meta Ads Manager',
+    docUrl: 'https://business.facebook.com/adsmanager'
+  },
+  'meta-Otimizacao-Criativos-0': {
+    url: 'https://www.wordstream.com/wp-content/uploads/2022/09/facebook-ads-creative-testing.png',
+    fallback: null,
+    caption: 'Análise de criativos e teste A/B no Meta Ads',
+    docUrl: 'https://business.facebook.com/adsmanager'
+  },
+
+  // ─── GOOGLE · OTIMIZACAO ─────────────────────────────────────
+  'google-Otimizacao-Diagnostico-1': {
+    url: 'https://www.wordstream.com/wp-content/uploads/2022/09/google-ads-quality-score.png',
+    fallback: null,
+    caption: 'Índice de Qualidade por palavra-chave no Google Ads',
+    docUrl: 'https://ads.google.com'
+  },
+
+};
+
+// Normalize key helper (remove accents, spaces to hyphens)
+// Normalize key helper (remove accents, spaces to hyphens)
+function ssKey(plat, mode, phase, stepIdx) {
+  const norm = s => s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-zA-Z0-9]+/g,'-').replace(/^-|-$/g,'');
+  return norm(plat) + '-' + norm(mode) + '-' + norm(phase) + '-' + stepIdx;
+}
+
+function getScreenshot(plat, mode, phase, stepIdx) {
+  const key = ssKey(plat, mode, phase, stepIdx);
+  return SCREENSHOTS[key] || null;
+}
+
+// Build screenshot HTML for a step
+function buildScreenshotHTML(plat, mode, phase, stepIdx) {
+  const ss = getScreenshot(plat, mode, phase, stepIdx);
+  if (!ss) return '';
+  const id = 'ss-' + ssKey(plat, mode, phase, stepIdx).replace(/[^a-z0-9]/gi,'-');
+  const fallbackAttr = ss.fallback ? `data-fallback="${ss.fallback}"` : '';
+  return `<div class="step-screenshot-wrap" id="${id}">
+    <div class="step-screenshot-skeleton" id="${id}-skel"></div>
+    <img src="${ss.url}" alt="${ss.caption}" ${fallbackAttr}
+      onload="this.style.display='block';document.getElementById('${id}-skel').style.display='none'"
+      onerror="handleSsError(this,'${id}')"
+      style="display:none">
+    <div class="step-screenshot-error" id="${id}-err">
+      📷 Screenshot nao disponivel.
+      <a href="${ss.docUrl}" target="_blank" style="color:#6B35D9;font-weight:600">Abrir plataforma oficial →</a>
+    </div>
+    <div class="ss-caption">${ss.caption}
+      <a class="ss-link" href="${ss.docUrl}" target="_blank">Abrir →</a>
+    </div>
+  </div>`;
+}
+
+function handleSsError(img, id) {
+  const fallback = img.getAttribute('data-fallback');
+  if (fallback && img.src !== fallback) {
+    img.src = fallback;
+    return;
+  }
+  img.style.display = 'none';
+  document.getElementById(id + '-skel').style.display = 'none';
+  document.getElementById(id + '-err').style.display = 'block';
+}
+
 renderAds();
 renderGA4();
 </script>
 
+<!-- LESSON MODAL -->
+<div class="lesson-overlay" id="lesson-overlay" onclick="handleLessonOverlay(event)">
+  <div class="lesson-modal" id="lesson-modal">
+    <div class="lesson-modal-header" id="lesson-modal-header"></div>
+    <div class="lesson-modal-body" id="lesson-modal-body"></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ESPACO EDUCACIONAL -->
+<div id="aprenda"><div class="section">
+  <div class="section-label">Espaço Educacional</div>
+  <h2 class="section-title">Aprenda na prática,<br>passo a passo</h2>
+  <div class="edu-hero">
+    <div class="edu-hero-content">
+      <div class="edu-hero-badge">📚 Tutoriais práticos</div>
+      <h3>Do pixel ao anúncio:<br><em>guias que realmente ensinam</em></h3>
+      <p>Tutoriais detalhados com passo a passo, dicas e armadilhas a evitar para as tarefas mais importantes do dia a dia em mídia paga.</p>
+      <div class="edu-stats">
+        <div><div class="edu-stat-num" id="edu-count-total">24</div><div class="edu-stat-lbl">tutoriais</div></div>
+        <div><div class="edu-stat-num">5</div><div class="edu-stat-lbl">plataformas</div></div>
+        <div><div class="edu-stat-num">3</div><div class="edu-stat-lbl">níveis</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="edu-search-wrap">
+    <span class="edu-search-icon">🔍</span>
+    <input class="edu-search" id="edu-search" type="text" placeholder="Buscar tutorial... ex: pixel, remarketing, whatsapp">
+    <button class="edu-search-clear" id="edu-search-clear" onclick="clearEduSearch()">✕</button>
+  </div>
+  <div class="edu-cats" id="edu-cats"></div>
+  <div class="edu-grid" id="edu-grid"></div>
+</div></div>
+
+<footer class="footer">
+  <strong>Guia de Anúncios Digitais + GA4</strong> · 6 Plataformas · 4 Objetivos · Criação, Remarketing e Otimização
+</footer>
 <script>
 
 // ================================================================
@@ -1500,7 +1878,7 @@ const LESSONS = [
     steps:[
       { title:'Crie a propriedade GA4', desc:'Acesse analytics.google.com, Admin, + Criar propriedade. Defina: nome, fuso horario (Brasilia, GMT-3) e moeda (BRL).', warn:'Mudar o fuso horario apos coletar dados cria descontinuidade nos relatorios historicos. Defina corretamente na primeira configuracao.' },
       { title:'Configure o Fluxo de dados Web', desc:'Admin, Fluxos de dados, + Adicionar fluxo, Web, insira a URL do site. Ative TODAS as opcoes de Medicao aprimorada: rolagem, cliques de saida, busca no site, videos e downloads.', tip:'A Medicao aprimorada captura eventos automaticamente sem codigo extra. Ative tudo.' },
-      { title:'Instale o script no site', desc:'Copie o ID de medicao (G-XXXXXXXXXX) em Admin > Fluxos de dados > seu fluxo. Adicione os dois trechos abaixo no HTML do site, substituindo G-XXXXXXXXXX pelo seu ID real.', tip:'Valide em Relatorios > Tempo real. Se sua visita aparecer, a instalacao esta correta. Preferindo GTM: nova tag > GA4 > insira o ID > acionador All Pages > Publicar.', code:'=== 1. Cole no <head> (antes de </head>) ===\n\n<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({\'gtm.start\':\nnew Date().getTime(),event:\'gtm.js\'});var f=d.getElementsByTagName(s)[0],\nj=d.createElement(s),dl=l!=\'dataLayer\'?\'&l=\'+l:\'\';j.async=true;j.src=\n\'https://www.googletagmanager.com/gtm.js?id=\'+i+dl;f.parentNode.insertBefore(j,f);\n})(window,document,\'script\',\'dataLayer\',\'GTM-XXXXXXX\');<\/script>\n\n=== 2. Cole no <body> (logo apos <body>) ===\n\n<noscript><iframe src=\'https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX\'\nheight=\'0\' width=\'0\' style=\'display:none;visibility:hidden\'></iframe></noscript>\n\n<!-- Substitua GTM-XXXXXXX pelo seu ID (ex: GTM-ABC1234) -->\n<!-- Encontre o ID em: tagmanager.google.com > seu container -->' },
+      { title:'Instale via GTM', desc:'Copie o ID de medicao (G-XXXXXXXXXX). No GTM: + Nova tag, Google Analytics: GA4, Configuracao, insira o ID, Acionador: All Pages. Publique.', tip:'Valide imediatamente em Relatorios, Tempo real. Se sua visita aparecer, a instalacao esta correta.' },
       { title:'Configure filtros de trafego interno', desc:'Admin, Fluxos de dados, seu fluxo, Filtros de trafego interno, Definir. Adicione o IP do seu escritorio e dos membros da equipe.', warn:'Trafego interno nao filtrado distorce metricas de comportamento do usuario real.' },
       { title:'Vincule ao Google Ads', desc:'Admin, Associacoes, Google Ads, + Associar, selecione a conta de Google Ads. Apos vincular, importe as conversoes do GA4 no Google Ads: Ferramentas, Conversoes, + Nova, Importar, GA4.', tip:'Centralizar o rastreamento no GA4 e importar para o Google Ads e muito mais preciso que criar tags separadas.' },
       { title:'Configure retencao de dados para 14 meses', desc:'Admin, Configuracoes de dados, Retencao de dados, Retencao de dados de eventos, selecione 14 meses. O padrao e 2 meses.', tip:'14 meses e o maximo disponivel no plano gratuito. Voce vai agradecer ter dados historicos.' },
@@ -1530,11 +1908,11 @@ const LESSONS = [
       { title:'O que sao UTMs e por que sao obrigatorios', desc:'UTM parameters sao sufixos adicionados a URL que dizem ao GA4 de onde veio o visitante. Sem UTMs, trafego pago aparece como Direct ou Organic - tornando a analise inutil.', tip:'Google Ads tem integracao automatica com GA4 (auto-tagging). Para Meta, TikTok, LinkedIn e outros, voce PRECISA adicionar UTMs manualmente em cada anuncio.' },
       { title:'Conheca os 5 parametros UTM', desc:'utm_source: de onde veio (meta, google, tiktok, linkedin). utm_medium: qual canal (paid-social, cpc, paid-video). utm_campaign: nome da campanha. utm_content: identificacao do criativo. utm_term: palavra-chave (so para Search).', code:'Exemplo de URL com UTMs:\nhttps://seusite.com.br/produto\n?utm_source=meta\n&utm_medium=paid-social\n&utm_campaign=black-friday-2026\n&utm_content=video-hook-produto-a' },
       { title:'Crie um padrao e documente', desc:'Defina as regras do seu time: (1) tudo em minusculas, (2) hifen em vez de espaco, (3) nomes de campanha consistentes. Crie uma planilha de padroes que todos consultam.', warn:'Um time com 3 pessoas que usa Meta, meta e Facebook como utm_source cria 3 fontes diferentes no GA4.' },
-      { title:'Use o Google Campaign URL Builder', desc:'Acesse ga-dev-tools.google/campaign-url-builder, preencha os campos, copie a URL gerada. Cole essa URL no campo URL de destino do anuncio.', tip:'Crie atalhos no Google Sheets com formula CONCATENATE para gerar URLs de UTM automaticamente. Evita erros manuais.' },
+      { title:'Use o Google Campaign URL Builder', desc:'Acesse ga-dev-tools.google.com/campaign-url-builder, preencha os campos, copie a URL gerada. Cole essa URL no campo URL de destino do anuncio.', tip:'Crie atalhos no Google Sheets com formula CONCATENATE para gerar URLs de UTM automaticamente. Evita erros manuais.' },
       { title:'Valide no GA4', desc:'Apos publicar a campanha, acesse GA4, Relatorios, Aquisicao, Aquisicao de trafego. Confirme que o trafego aparece com os valores corretos de Source/Medium.', tip:null },
     ],
     resources:[
-      { icon:'🔗', label:'Google Campaign URL Builder', url:'https://ga-dev-tools.google/campaign-url-builder' },
+      { icon:'🔗', label:'Google Campaign URL Builder', url:'https://ga-dev-tools.google.com/campaign-url-builder' },
     ]
   },
   { id:'geral-cpa-calculo', cat:'geral', plat:'Geral', color:'#6B35D9', icon:'🧮', bg:'#F3EEFF',
@@ -1709,6 +2087,168 @@ function fallbackCopy(text, done) {
   document.body.appendChild(ta); ta.focus(); ta.select();
   try { document.execCommand('copy'); done(); } catch(e) { alert('Copie manualmente:\n\n' + text); }
   document.body.removeChild(ta);
+}
+
+// ================================================================
+// SMART SEARCH  -  detects platform, mode, objective, format
+// ================================================================
+const SMART_KEYWORDS = {
+  plat: {
+    meta:     ['meta','facebook','instagram','fb','reels','stories','advantage','pixel meta','carrossel meta','stories meta'],
+    google:   ['google','search','pesquisa','display','pmax','performance max','shopping','gmail','maps','keyword','palavra-chave'],
+    tiktok:   ['tiktok','tik tok','spark','short video','for you','fyp','tiktok ads'],
+    youtube:  ['youtube','yt','bumper','trueview','video ad','pre-roll','youtube ads'],
+    linkedin: ['linkedin','b2b','empresa','cargo','ceo','diretor','lead gen form','inmail','sponsored'],
+  },
+  mode: {
+    'Criação':    ['criar','criar campanha','novo anuncio','nova campanha','comecar','configurar','setup','montar','primeiro'],
+    'Remarketing':['remarketing','retargeting','carrinho abandonado','visitante','quem visitou','re-impactar','reimpactar','publico morno','abandono'],
+    'Otimização': ['otimizar','melhorar','reduzir cpa','aumentar roas','baixar custo','performance','escalar','cortar','ajustar','diagnosticar'],
+  },
+  obj: {
+    conversoes: ['venda','vendas','conversao','conversoes','compra','ecommerce','e-commerce','loja','produto','checkout','roas','purchase','receita'],
+    leads:      ['lead','leads','captacao','captar','formulario','whatsapp','contato','cadastro','email','telefone','ligacao','b2b','orcamento','demo','demonstracao','trial'],
+    trafego:    ['trafego','trafico','visita','visitante','site','blog','clique','cpc','ctr','sessao','pagina'],
+    marca:      ['marca','branding','reconhecimento','awareness','alcance','impressao','cpm','lembrar','notoriedade','institucional'],
+  },
+  format: {
+    carrossel:  ['carrossel','carousel','multiplas imagens','varias imagens','galeria'],
+    video:      ['video','vídeo','reels','stories video','tiktok video','bumper','trueview','short'],
+    imagem:     ['imagem','imagens','foto','banner','estatica','static'],
+    collection: ['colecao','collection','catalogo','catalog','dynamic','dinamico'],
+    stories:    ['stories','story','vertical'],
+    lead_form:  ['lead gen form','formulario nativo','instant form','lead ads'],
+    inmail:     ['inmail','message ads','mensagem direta'],
+  }
+};
+
+function detectFromText(text) {
+  const t = text.toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // remove accents for matching
+    .replace(/[^a-z0-9\s\-]/g, ' ');
+
+  const scores = { plat:{}, mode:{}, obj:{}, format:{} };
+
+  // Score each category
+  for (const [cat, groups] of Object.entries(SMART_KEYWORDS)) {
+    for (const [key, words] of Object.entries(groups)) {
+      scores[cat][key] = 0;
+      for (const w of words) {
+        const wn = w.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        if (t.includes(wn)) scores[cat][key] += w.length; // longer match = higher score
+      }
+    }
+  }
+
+  const best = cat => {
+    const entries = Object.entries(scores[cat]).filter(([,v]) => v > 0);
+    if (!entries.length) return null;
+    return entries.sort((a,b) => b[1]-a[1])[0][0];
+  };
+
+  return {
+    plat:   best('plat'),
+    mode:   best('mode'),
+    obj:    best('obj'),
+    format: best('format'),
+  };
+}
+
+function buildResultLabel(detected, rawText) {
+  const platLabels = { meta:'Meta Ads', google:'Google Ads', tiktok:'TikTok Ads', youtube:'YouTube Ads', linkedin:'LinkedIn Ads' };
+  const modeLabels = { 'Criação':'Criação', 'Remarketing':'Remarketing', 'Otimização':'Otimização' };
+  const objLabels  = { conversoes:'Vendas/Conversões', leads:'Geração de Leads', trafego:'Tráfego', marca:'Reconhecimento' };
+  const fmtLabels  = { carrossel:'Carrossel', video:'Vídeo', imagem:'Imagem', collection:'Coleção/Catálogo', stories:'Stories', lead_form:'Lead Gen Form', inmail:'InMail' };
+
+  const tags = [];
+  if (detected.plat)   tags.push({ label: platLabels[detected.plat]   || detected.plat,   color: '#a78bfa' });
+  if (detected.mode)   tags.push({ label: modeLabels[detected.mode]   || detected.mode,   color: '#60a5fa' });
+  if (detected.obj)    tags.push({ label: objLabels[detected.obj]     || detected.obj,    color: '#34d399' });
+  if (detected.format) tags.push({ label: fmtLabels[detected.format]  || detected.format, color: '#fbbf24' });
+
+  return tags;
+}
+
+function runSmartSearch() {
+  const input = document.getElementById('smart-input');
+  const text = (input && input.value) ? input.value.trim() : '';
+  if (!text) return;
+
+  const detected = detectFromText(text);
+  const tags = buildResultLabel(detected, text);
+
+  // Apply detected filters to the UI
+  let applied = false;
+
+  if (detected.plat) {
+    adState.plat = detected.plat;
+    applied = true;
+  }
+  if (detected.mode) {
+    adState.mode = detected.mode;
+    // Update mode button UI
+    document.querySelectorAll('.mode-btn').forEach(b => {
+      b.classList.toggle('active', b.textContent.includes(
+        detected.mode === 'Criação' ? 'Criação' : detected.mode === 'Remarketing' ? 'Remarketing' : 'Otimização'
+      ));
+    });
+    applied = true;
+  }
+  if (detected.obj) {
+    adState.obj = detected.obj;
+    applied = true;
+  }
+
+  // If nothing detected, show a gentle fallback tip
+  if (!applied) {
+    const banner = document.getElementById('smart-result-banner');
+    const txt = document.getElementById('smart-result-text');
+    banner.classList.add('show');
+    txt.innerHTML = '⚠️ Nao foi possivel identificar plataforma ou objetivo. Tente ser mais especifico, ex: "campanha de video no TikTok para vender produto".';
+    return;
+  }
+
+  // Re-render the ads grid
+  renderAds();
+
+  // Show result banner
+  const banner = document.getElementById('smart-result-banner');
+  const txt = document.getElementById('smart-result-text');
+  banner.classList.add('show');
+
+  // Build tag HTML
+  const tagHtml = tags.map(t =>
+    '<span class="smart-result-tag" style="background:' + t.color + '22;color:' + t.color + ';border-color:' + t.color + '44">' + t.label + '</span>'
+  ).join(' ');
+
+  let tipHtml = '';
+  if (detected.format) {
+    const fmtTips = {
+      carrossel: '  -  Para carrossel, use o formato <strong>Carrossel</strong> ao criar os criativos na seção acima.',
+      video:     '  -  Para video, priorize os passos de <strong>Criativos</strong> com foco em gancho nos primeiros 3s.',
+      lead_form: '  -  Para formulario nativo, veja a secao de <strong>Criativos</strong> com foco em Lead Gen Form.',
+      inmail:    '  -  Para InMail, consulte os passos de <strong>Criativos</strong> no modo Remarketing do LinkedIn.',
+    };
+    tipHtml = fmtTips[detected.format] || '';
+  }
+
+  txt.innerHTML = 'Filtrado automaticamente: ' + tagHtml + tipHtml;
+
+  // Scroll to the results
+  document.getElementById('all-phases') && document.getElementById('all-phases').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function fillSearch(text) {
+  const input = document.getElementById('smart-input');
+  if (input) { input.value = text; input.focus(); }
+  runSmartSearch();
+}
+
+function clearSmartSearch() {
+  const input = document.getElementById('smart-input');
+  if (input) input.value = '';
+  const banner = document.getElementById('smart-result-banner');
+  if (banner) banner.classList.remove('show');
 }
 
 function initEdu() { renderEduCats(); renderEduGrid(); initEduSearch(); }
