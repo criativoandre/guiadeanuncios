@@ -78,7 +78,16 @@
   .platform-card:hover { transform:translateY(-4px);box-shadow:0 20px 48px rgba(0,0,0,.18); }
   .platform-card:hover::before { opacity:1; }
   .platform-card.meta{background:linear-gradient(135deg,#1877F2,#0856c4)}.platform-card.google{background:linear-gradient(135deg,#EA4335,#c5281c)}.platform-card.tiktok{background:linear-gradient(135deg,#2d2d2d,#111)}.platform-card.youtube{background:linear-gradient(135deg,#FF0000,#c40000)}.platform-card.linkedin{background:linear-gradient(135deg,#0A66C2,#064a8e)}.platform-card.ga4{background:linear-gradient(135deg,#E37400,#b85c00)}
-  .platform-icon { font-size:34px;margin-bottom:14px;display:block; }
+  .platform-icon { font-size:34px;margin-bottom:14px;display:flex;align-items:center; }
+  .brand-logo { width:22px;height:22px;display:inline-block;vertical-align:middle;object-fit:contain;flex-shrink:0; }
+  .brand-logo-pill { width:18px;height:18px; }
+  .brand-logo-platform { width:38px;height:38px;filter:drop-shadow(0 2px 4px rgba(0,0,0,.12)); }
+  .brand-logo-kpi { width:16px;height:16px;margin-right:7px; }
+  .lesson-icon .brand-logo, .lesson-modal-icon .brand-logo { width:24px;height:24px; }
+  .lesson-modal-icon .brand-logo { width:28px;height:28px; }
+  .edu-cat .brand-logo { width:14px;height:14px;object-fit:contain; }
+  .edu-cat.active .brand-logo { filter: brightness(0) invert(1); }
+  .edu-cat-icon { width:14px;height:14px;display:inline-flex;align-items:center;justify-content:center;font-size:13px;line-height:1; }
   .platform-name { font-family:'Montserrat',sans-serif;font-size:18px;font-weight:700;margin-bottom:8px; }
   .platform-desc { font-size:12px;opacity:.75;line-height:1.5; }
   .platform-kpis { margin-top:14px;display:flex;flex-wrap:wrap;gap:5px; }
@@ -631,12 +640,12 @@
   <h1>Roteiro de<br><em>Anúncios Digitais</em></h1>
   <p class="hero-sub">Guia completo para Meta, Google, TikTok, YouTube, LinkedIn Ads e Google Analytics 4.</p>
   <div class="platform-pills">
-    <div class="pill pill-meta">🔵 Meta Ads</div>
-    <div class="pill pill-google">🔴 Google Ads</div>
-    <div class="pill pill-tiktok">⚫ TikTok Ads</div>
-    <div class="pill pill-youtube">▶ YouTube Ads</div>
-    <div class="pill pill-linkedin">🔷 LinkedIn Ads</div>
-    <div class="pill pill-ga4">📊 Google Analytics 4</div>
+    <div class="pill pill-meta"><img class="brand-logo brand-logo-pill" src="https://cdn.simpleicons.org/meta/FFFFFF" alt="Meta Ads"> Meta Ads</div>
+    <div class="pill pill-google"><img class="brand-logo brand-logo-pill" src="https://cdn.simpleicons.org/googleads/FFFFFF" alt="Google Ads"> Google Ads</div>
+    <div class="pill pill-tiktok"><img class="brand-logo brand-logo-pill" src="https://cdn.simpleicons.org/tiktok/FFFFFF" alt="TikTok Ads"> TikTok Ads</div>
+    <div class="pill pill-youtube"><img class="brand-logo brand-logo-pill" src="https://cdn.simpleicons.org/youtube/FFFFFF" alt="YouTube Ads"> YouTube Ads</div>
+    <div class="pill pill-linkedin"><img class="brand-logo brand-logo-pill" src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M100.28%20448H7.4V148.9h92.88zM53.79%20108.1C24.09%20108.1%200%2083.5%200%2053.8a53.79%2053.79%200%200%201%20107.58%200c0%2029.7-24.1%2054.3-53.79%2054.3zM447.9%20448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29%200-55.69%2037.7-55.69%2076.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5%2042.69-48.3%2087.88-48.3%2094%200%20111.28%2061.9%20111.28%20142.3V448z%22/%3E%3C/svg%3E" alt="LinkedIn Ads"> LinkedIn Ads</div>
+    <div class="pill pill-ga4"><img class="brand-logo brand-logo-pill" src="https://cdn.simpleicons.org/googleanalytics/FFFFFF" alt="Google Analytics 4"> Google Analytics 4</div>
   </div>
   <div class="scroll-hint"><span>Explore</span><div class="scroll-arrow"></div></div>
 </header>
@@ -669,37 +678,37 @@
   <h2 class="section-title">6 plataformas,<br>uma estratégia integrada</h2>
   <div class="platform-grid">
     <div class="platform-card meta">
-      <span class="platform-icon">🔵</span>
+      <span class="platform-icon"><img class="brand-logo brand-logo-platform" src="https://cdn.simpleicons.org/meta/FFFFFF" alt="Meta Ads"></span>
       <div class="platform-name">Meta Ads</div>
       <div class="platform-desc">Facebook e Instagram. Alcance massivo, segmentação comportamental e Creative Testing avançado.</div>
       <div class="platform-kpis"><span>CBO</span><span>Pixel</span><span>Lookalike</span><span>Advantage+</span></div>
     </div>
     <div class="platform-card google">
-      <span class="platform-icon">🔴</span>
+      <span class="platform-icon"><img class="brand-logo brand-logo-platform" src="https://cdn.simpleicons.org/googleads/FFFFFF" alt="Google Ads"></span>
       <div class="platform-name">Google Ads</div>
       <div class="platform-desc">Captura de demanda via Pesquisa, Display e Performance Max com Smart Bidding.</div>
       <div class="platform-kpis"><span>RLSA</span><span>PMax</span><span>tCPA</span><span>Quality Score</span></div>
     </div>
     <div class="platform-card tiktok">
-      <span class="platform-icon">⚫</span>
+      <span class="platform-icon"><img class="brand-logo brand-logo-platform" src="https://cdn.simpleicons.org/tiktok/FFFFFF" alt="TikTok Ads"></span>
       <div class="platform-name">TikTok Ads</div>
       <div class="platform-desc">Conteúdo nativo em vídeo vertical. Algoritmo poderoso que encontra o público pelo criativo.</div>
       <div class="platform-kpis"><span>Spark Ads</span><span>UGC</span><span>TopView</span><span>API Conv.</span></div>
     </div>
     <div class="platform-card youtube">
-      <span class="platform-icon">▶</span>
+      <span class="platform-icon"><img class="brand-logo brand-logo-platform" src="https://cdn.simpleicons.org/youtube/FFFFFF" alt="YouTube Ads"></span>
       <div class="platform-name">YouTube Ads</div>
       <div class="platform-desc">Vídeo com intenção. TrueView, Bumper Ads e sequências para branding e conversão.</div>
       <div class="platform-kpis"><span>Bumper</span><span>TrueView</span><span>Sequencing</span><span>Brand Lift</span></div>
     </div>
     <div class="platform-card linkedin">
-      <span class="platform-icon">🔷</span>
+      <span class="platform-icon"><img class="brand-logo brand-logo-platform" src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M100.28%20448H7.4V148.9h92.88zM53.79%20108.1C24.09%20108.1%200%2083.5%200%2053.8a53.79%2053.79%200%200%201%20107.58%200c0%2029.7-24.1%2054.3-53.79%2054.3zM447.9%20448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29%200-55.69%2037.7-55.69%2076.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5%2042.69-48.3%2087.88-48.3%2094%200%20111.28%2061.9%20111.28%20142.3V448z%22/%3E%3C/svg%3E" alt="LinkedIn Ads"></span>
       <div class="platform-name">LinkedIn Ads</div>
       <div class="platform-desc">Único canal com segmentação por cargo, empresa e setor. Ideal para B2B e ABM.</div>
       <div class="platform-kpis"><span>Lead Gen Forms</span><span>ABM</span><span>InMail</span><span>Insight Tag</span></div>
     </div>
     <div class="platform-card ga4">
-      <span class="platform-icon">📊</span>
+      <span class="platform-icon"><img class="brand-logo brand-logo-platform" src="https://cdn.simpleicons.org/googleanalytics/FFFFFF" alt="Google Analytics 4"></span>
       <div class="platform-name">Google Analytics 4</div>
       <div class="platform-desc">Central de inteligência de dados. Mede a performance real de todos os canais e mapeia o comportamento do usuário.</div>
       <div class="platform-kpis"><span>Eventos</span><span>Funis</span><span>Attribution</span><span>Audiences</span></div>
@@ -771,12 +780,12 @@
   <div class="kpi-section">
     <h3>O que monitorar em cada canal</h3>
     <div class="kpi-grid">
-      <div class="kpi-card"><div class="kpi-platform" style="color:#60a5fa">🔵 Meta Ads</div><div class="kpi-tags"><span class="kpi-tag">ROAS</span><span class="kpi-tag">CPA</span><span class="kpi-tag">CPL</span><span class="kpi-tag">CTR</span><span class="kpi-tag">Frequência</span><span class="kpi-tag">CPM</span><span class="kpi-tag">Ad Recall Lift</span></div></div>
-      <div class="kpi-card"><div class="kpi-platform" style="color:#f87171">🔴 Google Ads</div><div class="kpi-tags"><span class="kpi-tag">ROAS</span><span class="kpi-tag">CPA</span><span class="kpi-tag">Quality Score</span><span class="kpi-tag">CTR</span><span class="kpi-tag">Parcela Impressões</span><span class="kpi-tag">CPL</span></div></div>
-      <div class="kpi-card"><div class="kpi-platform" style="color:#d1d5db">⚫ TikTok Ads</div><div class="kpi-tags"><span class="kpi-tag">ROAS</span><span class="kpi-tag">CPA</span><span class="kpi-tag">CPL</span><span class="kpi-tag">CTR</span><span class="kpi-tag">Taxa Visualização</span><span class="kpi-tag">CPM</span></div></div>
-      <div class="kpi-card"><div class="kpi-platform" style="color:#fca5a5">▶ YouTube Ads</div><div class="kpi-tags"><span class="kpi-tag">ROAS</span><span class="kpi-tag">CPA</span><span class="kpi-tag">CPV</span><span class="kpi-tag">CTR</span><span class="kpi-tag">View-through Rate</span><span class="kpi-tag">Ad Recall</span></div></div>
-      <div class="kpi-card"><div class="kpi-platform" style="color:#93c5fd">🔷 LinkedIn Ads</div><div class="kpi-tags"><span class="kpi-tag">CPL</span><span class="kpi-tag">MQL Rate</span><span class="kpi-tag">CTR</span><span class="kpi-tag">CPM</span><span class="kpi-tag">Pipeline Gerado</span><span class="kpi-tag">ROAS</span></div></div>
-      <div class="kpi-card"><div class="kpi-platform" style="color:#fcd34d">📊 Google Analytics 4</div><div class="kpi-tags"><span class="kpi-tag">Sessões</span><span class="kpi-tag">Taxa Engajamento</span><span class="kpi-tag">Conversões</span><span class="kpi-tag">ROAS</span><span class="kpi-tag">LTV</span><span class="kpi-tag">Funil</span><span class="kpi-tag">Atribuição</span></div></div>
+      <div class="kpi-card"><div class="kpi-platform" style="color:#60a5fa"><img class="brand-logo brand-logo-kpi" src="https://cdn.simpleicons.org/meta/60A5FA" alt="Meta Ads">Meta Ads</div><div class="kpi-tags"><span class="kpi-tag">ROAS</span><span class="kpi-tag">CPA</span><span class="kpi-tag">CPL</span><span class="kpi-tag">CTR</span><span class="kpi-tag">Frequência</span><span class="kpi-tag">CPM</span><span class="kpi-tag">Ad Recall Lift</span></div></div>
+      <div class="kpi-card"><div class="kpi-platform" style="color:#f87171"><img class="brand-logo brand-logo-kpi" src="https://cdn.simpleicons.org/googleads/F87171" alt="Google Ads">Google Ads</div><div class="kpi-tags"><span class="kpi-tag">ROAS</span><span class="kpi-tag">CPA</span><span class="kpi-tag">Quality Score</span><span class="kpi-tag">CTR</span><span class="kpi-tag">Parcela Impressões</span><span class="kpi-tag">CPL</span></div></div>
+      <div class="kpi-card"><div class="kpi-platform" style="color:#d1d5db"><img class="brand-logo brand-logo-kpi" src="https://cdn.simpleicons.org/tiktok/D1D5DB" alt="TikTok Ads">TikTok Ads</div><div class="kpi-tags"><span class="kpi-tag">ROAS</span><span class="kpi-tag">CPA</span><span class="kpi-tag">CPL</span><span class="kpi-tag">CTR</span><span class="kpi-tag">Taxa Visualização</span><span class="kpi-tag">CPM</span></div></div>
+      <div class="kpi-card"><div class="kpi-platform" style="color:#fca5a5"><img class="brand-logo brand-logo-kpi" src="https://cdn.simpleicons.org/youtube/FCA5A5" alt="YouTube Ads">YouTube Ads</div><div class="kpi-tags"><span class="kpi-tag">ROAS</span><span class="kpi-tag">CPA</span><span class="kpi-tag">CPV</span><span class="kpi-tag">CTR</span><span class="kpi-tag">View-through Rate</span><span class="kpi-tag">Ad Recall</span></div></div>
+      <div class="kpi-card"><div class="kpi-platform" style="color:#93c5fd"><img class="brand-logo brand-logo-kpi" src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3Cpath%20fill%3D%22%2393C5FD%22%20d%3D%22M100.28%20448H7.4V148.9h92.88zM53.79%20108.1C24.09%20108.1%200%2083.5%200%2053.8a53.79%2053.79%200%200%201%20107.58%200c0%2029.7-24.1%2054.3-53.79%2054.3zM447.9%20448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29%200-55.69%2037.7-55.69%2076.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5%2042.69-48.3%2087.88-48.3%2094%200%20111.28%2061.9%20111.28%20142.3V448z%22/%3E%3C/svg%3E" alt="LinkedIn Ads">LinkedIn Ads</div><div class="kpi-tags"><span class="kpi-tag">CPL</span><span class="kpi-tag">MQL Rate</span><span class="kpi-tag">CTR</span><span class="kpi-tag">CPM</span><span class="kpi-tag">Pipeline Gerado</span><span class="kpi-tag">ROAS</span></div></div>
+      <div class="kpi-card"><div class="kpi-platform" style="color:#fcd34d"><img class="brand-logo brand-logo-kpi" src="https://cdn.simpleicons.org/googleanalytics/FCD34D" alt="Google Analytics 4">Google Analytics 4</div><div class="kpi-tags"><span class="kpi-tag">Sessões</span><span class="kpi-tag">Taxa Engajamento</span><span class="kpi-tag">Conversões</span><span class="kpi-tag">ROAS</span><span class="kpi-tag">LTV</span><span class="kpi-tag">Funil</span><span class="kpi-tag">Atribuição</span></div></div>
     </div>
   </div>
 </div></div>
@@ -814,7 +823,7 @@
   <!-- Hero card -->
   <div class="edu-hero">
     <div class="edu-hero-content">
-      <div class="edu-hero-badge">📚 Tutoriais práticos</div>
+      <div class="edu-hero-badge"><span class="edu-cat-icon">▦</span> Tutoriais práticos</div>
       <h3>Do pixel ao anúncio:<br><em>guias que realmente ensinam</em></h3>
       <p>Tutoriais detalhados com passo a passo, dicas e armadilhas a evitar para as tarefas mais importantes do dia a dia em mídia paga.</p>
       <div class="edu-stats">
@@ -873,6 +882,34 @@ const AD_PHASES = {
   'Remarketing':['Rastreamento','Públicos','Campanha','Criativos','Lances','Monitoramento'],
   'Otimização':['Diagnóstico','Estrutura','Criativos','Lances & Budget','Público','Escala'],
 };
+
+const BRAND_LOGOS = {
+  meta: { name: 'Meta Ads', slug: 'meta', color: '1877F2' },
+  google: { name: 'Google Ads', slug: 'googleads', color: 'EA4335' },
+  tiktok: { name: 'TikTok Ads', slug: 'tiktok', color: '333333' },
+  youtube: { name: 'YouTube Ads', slug: 'youtube', color: 'FF0000' },
+  linkedin: { name: 'LinkedIn Ads', slug: 'linkedin', color: '0A66C2' },
+  ga4: { name: 'Google Analytics 4', slug: 'googleanalytics', color: 'E37400' }
+};
+function brandLogo(key, variant='color') {
+  const item = BRAND_LOGOS[key] || BRAND_LOGOS.meta;
+  const color = variant === 'white' ? 'FFFFFF' : item.color;
+  if (key === 'linkedin') {
+    const svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#'+color+'" d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"/></svg>';
+    return '<img class="brand-logo" src="data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg)+'" alt="'+item.name+'">';
+  }
+  return '<img class="brand-logo" src="https://cdn.simpleicons.org/'+item.slug+'/'+color+'" alt="'+item.name+'">';
+}
+
+function eduCatIcon(catId) {
+  if (['meta','google','tiktok','youtube','linkedin','ga4'].includes(catId)) {
+    return brandLogo(catId);
+  }
+  if (catId === 'all') return '<span class="edu-cat-icon">▦</span>';
+  if (catId === 'geral') return '<span class="edu-cat-icon">◆</span>';
+  return '';
+}
+
 
 // Generic step builder for non-linkedin platforms
 function genericSteps(platName,platColor,objName,objColor,mode,phase){
@@ -1322,7 +1359,7 @@ const EDU_CATS = [
 ];
 
 const LESSONS = [
-  { id:'meta-pixel', cat:'meta', plat:'Meta Ads', color:'#1877F2', icon:'🔵', bg:'#EEF4FF',
+  { id:'meta-pixel', cat:'meta', plat:'Meta Ads', color:'#1877F2', icon:'meta', bg:'#EEF4FF',
     title:'Como gerar e instalar o Pixel do Meta', level:'init', levelLabel:'Iniciante',
     desc:'Crie o Pixel do Meta e instale no seu site para rastrear visitantes e otimizar campanhas.',
     tags:['Pixel','Rastreamento','GTM'],
@@ -1382,7 +1419,7 @@ const LESSONS = [
     ],
     resources:[]
   },
-  { id:'google-tag', cat:'google', plat:'Google Ads', color:'#EA4335', icon:'🔴', bg:'#FFF0EF',
+  { id:'google-tag', cat:'google', plat:'Google Ads', color:'#EA4335', icon:'google', bg:'#FFF0EF',
     title:'Como instalar a Tag do Google Ads via GTM', level:'init', levelLabel:'Iniciante',
     desc:'Instale a tag global do Google Ads no site usando o Google Tag Manager para rastrear conversoes.',
     tags:['Tag','GTM','Rastreamento'],
@@ -1428,7 +1465,7 @@ const LESSONS = [
       { icon:'🔗', label:'PageSpeed Insights', url:'https://pagespeed.web.dev' },
     ]
   },
-  { id:'tiktok-pixel', cat:'tiktok', plat:'TikTok Ads', color:'#333333', icon:'⚫', bg:'#F5F5F5',
+  { id:'tiktok-pixel', cat:'tiktok', plat:'TikTok Ads', color:'#333333', icon:'tiktok', bg:'#F5F5F5',
     title:'Como instalar o TikTok Pixel e configurar eventos', level:'init', levelLabel:'Iniciante',
     desc:'Instale o pixel do TikTok Ads e configure os eventos de conversao para otimizar suas campanhas.',
     tags:['Pixel','TikTok','Rastreamento'],
@@ -1456,7 +1493,7 @@ const LESSONS = [
     ],
     resources:[]
   },
-  { id:'youtube-trueview', cat:'youtube', plat:'YouTube Ads', color:'#FF0000', icon:'▶', bg:'#FFF0F0',
+  { id:'youtube-trueview', cat:'youtube', plat:'YouTube Ads', color:'#FF0000', icon:'youtube', bg:'#FFF0F0',
     title:'Como criar anúncios TrueView In-Stream no YouTube', level:'init', levelLabel:'Iniciante',
     desc:'Configure anuncios de video pulaveis no YouTube com CTA clicavel e otimizados para conversao.',
     tags:['TrueView','Vídeo','YouTube'],
@@ -1469,7 +1506,7 @@ const LESSONS = [
     ],
     resources:[]
   },
-  { id:'linkedin-insight-tag', cat:'linkedin', plat:'LinkedIn Ads', color:'#0A66C2', icon:'🔷', bg:'#E8F0FB',
+  { id:'linkedin-insight-tag', cat:'linkedin', plat:'LinkedIn Ads', color:'#0A66C2', icon:'linkedin', bg:'#E8F0FB',
     title:'Como instalar o LinkedIn Insight Tag', level:'init', levelLabel:'Iniciante',
     desc:'Instale o Insight Tag para habilitar remarketing, conversoes e dados de audiencia do LinkedIn.',
     tags:['Insight Tag','Rastreamento','GTM'],
@@ -1497,7 +1534,7 @@ const LESSONS = [
     ],
     resources:[]
   },
-  { id:'ga4-setup', cat:'ga4', plat:'Google Analytics 4', color:'#E37400', icon:'📊', bg:'#FFF8F0',
+  { id:'ga4-setup', cat:'ga4', plat:'Google Analytics 4', color:'#E37400', icon:'ga4', bg:'#FFF8F0',
     title:'Como configurar o GA4 do zero corretamente', level:'init', levelLabel:'Iniciante',
     desc:'Crie e configure uma propriedade GA4 com eventos aprimorados, filtros e integracao com Google Ads.',
     tags:['GA4','Configuração','Analytics'],
@@ -1582,7 +1619,7 @@ function renderEduCats() {
     const btn = document.createElement('button');
     btn.className = 'edu-cat'+(c.id===eduCat?' active':'');
     if (c.id===eduCat) btn.style.background = c.color;
-    btn.innerHTML = c.id!=='all' ? '<span class="edu-cat-dot" style="background:'+c.dot+'"></span>'+c.label : c.label;
+    btn.innerHTML = eduCatIcon(c.id) + '<span>'+c.label+'</span>';
     btn.onclick = () => { eduCat=c.id; renderEduCats(); renderEduGrid(); };
     wrap.appendChild(btn);
   });
@@ -1619,7 +1656,7 @@ function renderEduGrid() {
   lessons.forEach(l => {
     const card=document.createElement('div');
     card.className='lesson-card'; card.onclick=()=>openLesson(l.id);
-    card.innerHTML='<div class="lesson-bar" style="background:'+l.color+'"></div><div class="lesson-card-top"><div class="lesson-icon" style="background:'+l.bg+'">'+l.icon+'</div><div class="lesson-meta"><div class="lesson-plat" style="color:'+l.color+'">'+l.plat+'</div><div class="lesson-title">'+l.title+'</div></div></div><div class="lesson-desc">'+l.desc+'</div><div class="lesson-card-bottom"><div class="lesson-tags">'+l.tags.map(t=>'<span class="lesson-tag">'+t+'</span>').join('')+'</div><span class="lesson-level '+lvlClass[l.level]+'">'+lvlLabel[l.level]+'</span></div>';
+    card.innerHTML='<div class="lesson-bar" style="background:'+l.color+'"></div><div class="lesson-card-top"><div class="lesson-icon" style="background:'+l.bg+'">'+brandLogo(l.icon)+'</div><div class="lesson-meta"><div class="lesson-plat" style="color:'+l.color+'">'+l.plat+'</div><div class="lesson-title">'+l.title+'</div></div></div><div class="lesson-desc">'+l.desc+'</div><div class="lesson-card-bottom"><div class="lesson-tags">'+l.tags.map(t=>'<span class="lesson-tag">'+t+'</span>').join('')+'</div><span class="lesson-level '+lvlClass[l.level]+'">'+lvlLabel[l.level]+'</span></div>';
     grid.appendChild(card);
   });
   const cnt=document.getElementById('edu-count-total'); if(cnt) cnt.textContent=LESSONS.length;
@@ -1643,7 +1680,7 @@ function renderLessonModal(l) {
   const lvlLabel={init:'Iniciante',inter:'Intermediario',adv:'Avancado'};
   const lvlClass={init:'level-init',inter:'level-inter',adv:'level-adv'};
   const initialProgress=Math.round((1/l.steps.length)*100);
-  document.getElementById('lesson-modal-header').innerHTML='<div class="lesson-modal-icon" style="background:'+l.bg+'">'+l.icon+'</div><div class="lesson-modal-meta"><div class="lesson-modal-plat" style="color:'+l.color+'">'+l.plat+'</div><div class="lesson-modal-title">'+l.title+'</div><div class="lesson-modal-badges"><span class="lesson-level '+lvlClass[l.level]+'">'+lvlLabel[l.level]+'</span>'+l.tags.map(t=>'<span class="lesson-tag">'+t+'</span>').join('')+'<span class="lesson-tag">'+l.steps.length+' passos</span></div><div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:'+initialProgress+'%;background:'+l.color+'" id="lesson-progress-bar"></div></div><div class="progress-label" id="lesson-progress-label">1 / '+l.steps.length+' passos</div></div><button class="lesson-modal-close" onclick="closeLesson()">✕</button>';
+  document.getElementById('lesson-modal-header').innerHTML='<div class="lesson-modal-icon" style="background:'+l.bg+'">'+brandLogo(l.icon)+'</div><div class="lesson-modal-meta"><div class="lesson-modal-plat" style="color:'+l.color+'">'+l.plat+'</div><div class="lesson-modal-title">'+l.title+'</div><div class="lesson-modal-badges"><span class="lesson-level '+lvlClass[l.level]+'">'+lvlLabel[l.level]+'</span>'+l.tags.map(t=>'<span class="lesson-tag">'+t+'</span>').join('')+'<span class="lesson-tag">'+l.steps.length+' passos</span></div><div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:'+initialProgress+'%;background:'+l.color+'" id="lesson-progress-bar"></div></div><div class="progress-label" id="lesson-progress-label">1 / '+l.steps.length+' passos</div></div><button class="lesson-modal-close" onclick="closeLesson()">✕</button>';
   const body=document.getElementById('lesson-modal-body');
   body.innerHTML='';
   const sw=document.createElement('div'); sw.className='lesson-steps'; sw.style.marginTop='0';
