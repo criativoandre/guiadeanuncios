@@ -975,12 +975,12 @@
   <h1>Roteiro de<br><em>Anúncios Digitais</em></h1>
   <p class="hero-sub">Guia completo para Meta, Google, TikTok, YouTube, LinkedIn Ads e Google Analytics 4.</p>
   <div class="platform-pills">
-    <div class="pill pill-meta"><img class="brand-logo brand-logo-pill" src="https://cdn.simpleicons.org/meta/FFFFFF" alt="Meta Ads"> Meta Ads</div>
-    <div class="pill pill-google"><img class="brand-logo brand-logo-pill" src="https://cdn.simpleicons.org/googleads/FFFFFF" alt="Google Ads"> Google Ads</div>
-    <div class="pill pill-tiktok"><img class="brand-logo brand-logo-pill" src="https://cdn.simpleicons.org/tiktok/FFFFFF" alt="TikTok Ads"> TikTok Ads</div>
-    <div class="pill pill-youtube"><img class="brand-logo brand-logo-pill" src="https://cdn.simpleicons.org/youtube/FFFFFF" alt="YouTube Ads"> YouTube Ads</div>
-    <div class="pill pill-linkedin"><img class="brand-logo brand-logo-pill" src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M100.28%20448H7.4V148.9h92.88zM53.79%20108.1C24.09%20108.1%200%2083.5%200%2053.8a53.79%2053.79%200%200%201%20107.58%200c0%2029.7-24.1%2054.3-53.79%2054.3zM447.9%20448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29%200-55.69%2037.7-55.69%2076.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5%2042.69-48.3%2087.88-48.3%2094%200%20111.28%2061.9%20111.28%20142.3V448z%22/%3E%3C/svg%3E" alt="LinkedIn Ads"> LinkedIn Ads</div>
-    <div class="pill pill-ga4"><img class="brand-logo brand-logo-pill" src="https://cdn.simpleicons.org/googleanalytics/FFFFFF" alt="Google Analytics 4"> Google Analytics 4</div>
+    <div class="pill pill-meta" role="button" tabindex="0" onclick="goHeroToGuide('meta')" onkeydown="handleHeroPillKey(event, 'meta')"><img class="brand-logo brand-logo-pill" src="https://cdn.simpleicons.org/meta/FFFFFF" alt="Meta Ads"> Meta Ads</div>
+    <div class="pill pill-google" role="button" tabindex="0" onclick="goHeroToGuide('google')" onkeydown="handleHeroPillKey(event, 'google')"><img class="brand-logo brand-logo-pill" src="https://cdn.simpleicons.org/googleads/FFFFFF" alt="Google Ads"> Google Ads</div>
+    <div class="pill pill-tiktok" role="button" tabindex="0" onclick="goHeroToGuide('tiktok')" onkeydown="handleHeroPillKey(event, 'tiktok')"><img class="brand-logo brand-logo-pill" src="https://cdn.simpleicons.org/tiktok/FFFFFF" alt="TikTok Ads"> TikTok Ads</div>
+    <div class="pill pill-youtube" role="button" tabindex="0" onclick="goHeroToGuide('youtube')" onkeydown="handleHeroPillKey(event, 'youtube')"><img class="brand-logo brand-logo-pill" src="https://cdn.simpleicons.org/youtube/FFFFFF" alt="YouTube Ads"> YouTube Ads</div>
+    <div class="pill pill-linkedin" role="button" tabindex="0" onclick="goHeroToGuide('linkedin')" onkeydown="handleHeroPillKey(event, 'linkedin')"><img class="brand-logo brand-logo-pill" src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M100.28%20448H7.4V148.9h92.88zM53.79%20108.1C24.09%20108.1%200%2083.5%200%2053.8a53.79%2053.79%200%200%201%20107.58%200c0%2029.7-24.1%2054.3-53.79%2054.3zM447.9%20448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29%200-55.69%2037.7-55.69%2076.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5%2042.69-48.3%2087.88-48.3%2094%200%20111.28%2061.9%20111.28%20142.3V448z%22/%3E%3C/svg%3E" alt="LinkedIn Ads"> LinkedIn Ads</div>
+    <div class="pill pill-ga4" role="button" tabindex="0" onclick="goHeroToGA4()" onkeydown="handleHeroPillKey(event, 'ga4')"><img class="brand-logo brand-logo-pill" src="https://cdn.simpleicons.org/googleanalytics/FFFFFF" alt="Google Analytics 4"> Google Analytics 4</div>
   </div>
   <div class="scroll-hint"><span>Explore</span><div class="scroll-arrow"></div></div>
 </header>
@@ -1810,6 +1810,59 @@ function navTo(id,btn){
   document.getElementById(id)?.scrollIntoView({behavior:'smooth'});
   document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
   btn.classList.add('active');
+}
+
+// ─────────────────────────────────────────────
+// HERO PILLS → PASSO A PASSO
+// ─────────────────────────────────────────────
+function updateModeButton(mode) {
+  document.querySelectorAll('.mode-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.textContent.includes(mode));
+  });
+}
+
+function updateNavButton(sectionId) {
+  document.querySelectorAll('.nav-tab').forEach(btn => {
+    const target = btn.getAttribute('onclick') || '';
+    btn.classList.toggle('active', target.includes("'" + sectionId + "'") || target.includes('"' + sectionId + '"'));
+  });
+}
+
+function goHeroToGuide(plat) {
+  adState.mode = 'Criação';
+  adState.phase = AD_PHASES['Criação'][0];
+  adState.plat = plat;
+  adState.obj = 'conversoes';
+
+  updateModeButton('Criação');
+
+  const platBtn = document.querySelector(`#plat-filter .filter-btn[data-plat="${plat}"]`);
+  if (platBtn) setPlat(plat, platBtn);
+
+  const objBtn = document.querySelector('#obj-filter .filter-btn[data-obj="conversoes"]');
+  if (objBtn) setObj('conversoes', objBtn);
+
+  updateNavButton('roteiro');
+
+  setTimeout(() => {
+    document.getElementById('roteiro')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 80);
+}
+
+function goHeroToGA4() {
+  updateNavButton('ga4');
+  document.getElementById('ga4')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function handleHeroPillKey(event, plat) {
+  if (event.key !== 'Enter' && event.key !== ' ') return;
+  event.preventDefault();
+
+  if (plat === 'ga4') {
+    goHeroToGA4();
+  } else {
+    goHeroToGuide(plat);
+  }
 }
 
 // ─────────────────────────────────────────────
