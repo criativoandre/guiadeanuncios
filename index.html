@@ -1307,8 +1307,13 @@ function eduCatIcon(catId) {
   if (['meta','google','tiktok','youtube','linkedin','ga4'].includes(catId)) {
     return brandLogo(catId);
   }
-  if (catId === 'all') return '<span class="edu-cat-icon">▦</span>';
-  if (catId === 'geral') return '<span class="edu-cat-icon">◆</span>';
+  if (catId === 'all') {
+  return '<img class="edu-cat-icon" src="https://www.svgrepo.com/show/479099/menu-1.svg" alt="Todos">';
+}
+
+if (catId === 'geral') {
+  return '<img class="edu-cat-icon" src="https://www.svgrepo.com/show/479099/menu-1.svg" alt="Geral">';
+}
   return '';
 }
 
