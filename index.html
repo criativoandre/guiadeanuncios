@@ -103,7 +103,7 @@
   border-radius: 999px;
   border: 1px solid #ddd;
   background: #fff;
-  color: #444;
+  color: #000;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
@@ -1307,8 +1307,13 @@ function eduCatIcon(catId) {
   if (['meta','google','tiktok','youtube','linkedin','ga4'].includes(catId)) {
     return brandLogo(catId);
   }
-  if (catId === 'all') return '<span class="edu-cat-icon">▦</span>';
-  if (catId === 'geral') return '<span class="edu-cat-icon">◆</span>';
+  if (catId === 'all') {
+  return '<img class="edu-cat-icon" src="https://www.svgrepo.com/show/385302/education-cap-student-graduation-university.svg" alt="Todos">';
+}
+
+if (catId === 'geral') {
+  return '<img class="edu-cat-icon" src="https://www.svgrepo.com/show/479099/menu-1.svg" alt="Geral">';
+}
   return '';
 }
 
@@ -1720,10 +1725,10 @@ function setPlat(plat, el) {
     btn.classList.remove('active');
     btn.style.background = '#fff';
     btn.style.borderColor = '#e0e0e0';
-    btn.style.color = '#666';
+    btn.style.color = '#000';
 
     if (img) {
-      img.src = iconSrc(btnPlat, '666666');
+      img.src = iconSrc(btnPlat, '000');
     }
   });
 
