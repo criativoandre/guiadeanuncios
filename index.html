@@ -103,7 +103,7 @@
   border-radius: 999px;
   border: 1px solid #ddd;
   background: #fff;
-  color: #444;
+  color: #000;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
@@ -305,6 +305,29 @@
   /* FOOTER */
   .footer { background:var(--ink);color:rgba(255,255,255,.5);text-align:center;padding:40px 24px;font-size:13px; }
   .footer strong { color:#fff; }
+  .footer-top-btn {
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    margin-top:18px;
+    padding:10px 20px;
+    border-radius:999px;
+    border:1px solid rgba(255,255,255,.18);
+    background:rgba(255,255,255,.08);
+    color:#ffffff;
+    font-family:'DM Sans',sans-serif;
+    font-size:13px;
+    font-weight:600;
+    cursor:pointer;
+    transition:all .2s ease;
+  }
+  .footer-top-btn:hover {
+    background:#ffffff;
+    border-color:#ffffff;
+    color:var(--ink);
+    transform:translateY(-1px);
+  }
   @keyframes pulse {
     0%,100% { box-shadow: 0 0 0 3px rgba(74,222,128,.3); }
     50%      { box-shadow: 0 0 0 7px rgba(74,222,128,.1); }
@@ -518,7 +541,9 @@
   }
 
   .edu-cat:hover .brand-logo,
-  .edu-cat.active .brand-logo {
+  .edu-cat.active .brand-logo,
+  .edu-cat:hover .edu-cat-icon,
+  .edu-cat.active .edu-cat-icon {
     filter: brightness(0) invert(1);
   }
 
@@ -961,6 +986,105 @@
     color: #ffffff !important;
   }
 
+
+  /* =========================================================
+     PADRONIZAÇÃO FINAL — BOTÕES ROTEIRO COMO ESPAÇO EDUCACIONAL
+     ========================================================= */
+  .mode-tabs,
+  #plat-filter,
+  #obj-filter {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+
+  #plat-filter,
+  #obj-filter {
+    margin-bottom: 24px;
+  }
+
+  .mode-btn,
+  #plat-filter .filter-btn,
+  #obj-filter .filter-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 7px !important;
+    padding: 7px 16px !important;
+    border-radius: 999px !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    cursor: pointer !important;
+    border: 1.5px solid #e5e7eb !important;
+    background: #ffffff;
+    color: #555555;
+    font-family: 'DM Sans', sans-serif !important;
+    transition: all .18s ease !important;
+    white-space: nowrap;
+    line-height: 1.2;
+  }
+
+  .mode-btn img,
+  #plat-filter .filter-btn img,
+  #obj-filter .filter-btn img,
+  .edu-hero-badge .edu-cat-icon {
+    width: 14px;
+    height: 14px;
+    display: block;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  .edu-hero-badge .edu-cat-icon {
+    filter: brightness(0) invert(1);
+    opacity: .8;
+  }
+
+  .mode-btn.active,
+  .mode-btn:hover {
+    background: var(--ink) !important;
+    border-color: var(--ink) !important;
+    color: #ffffff !important;
+    transform: translateY(-1px);
+  }
+
+  .mode-btn.active img,
+  .mode-btn:hover img {
+    filter: brightness(0) invert(1);
+  }
+
+  #plat-filter .filter-btn.active,
+  #plat-filter .filter-btn:hover,
+  #obj-filter .filter-btn.active,
+  #obj-filter .filter-btn:hover {
+    transform: translateY(-1px);
+  }
+
+  #obj-filter .filter-btn svg,
+  #obj-filter .filter-icon {
+    width: 14px !important;
+    height: 14px !important;
+  }
+
+
+
+  /* AJUSTE MOBILE — evita que o Explore fique em cima dos botões da Hero */
+  @media (max-width: 768px) {
+    .hero {
+      min-height: auto;
+      padding-bottom: 36px;
+    }
+
+    .scroll-hint {
+      position: static;
+      left: auto;
+      bottom: auto;
+      transform: none;
+      margin-top: 28px;
+    }
+  }
+
 </style>
 </head>
 <body>
@@ -975,12 +1099,35 @@
   <h1>Roteiro de<br><em>Anúncios Digitais</em></h1>
   <p class="hero-sub">Guia completo para Meta, Google, TikTok, YouTube, LinkedIn Ads e Google Analytics 4.</p>
   <div class="platform-pills">
-    <div class="pill pill-meta" role="button" tabindex="0" onclick="goHeroToGuide('meta')" onkeydown="handleHeroPillKey(event, 'meta')"><img class="brand-logo brand-logo-pill" src="https://cdn.simpleicons.org/meta/FFFFFF" alt="Meta Ads"> Meta Ads</div>
-    <div class="pill pill-google" role="button" tabindex="0" onclick="goHeroToGuide('google')" onkeydown="handleHeroPillKey(event, 'google')"><img class="brand-logo brand-logo-pill" src="https://cdn.simpleicons.org/googleads/FFFFFF" alt="Google Ads"> Google Ads</div>
-    <div class="pill pill-tiktok" role="button" tabindex="0" onclick="goHeroToGuide('tiktok')" onkeydown="handleHeroPillKey(event, 'tiktok')"><img class="brand-logo brand-logo-pill" src="https://cdn.simpleicons.org/tiktok/FFFFFF" alt="TikTok Ads"> TikTok Ads</div>
-    <div class="pill pill-youtube" role="button" tabindex="0" onclick="goHeroToGuide('youtube')" onkeydown="handleHeroPillKey(event, 'youtube')"><img class="brand-logo brand-logo-pill" src="https://cdn.simpleicons.org/youtube/FFFFFF" alt="YouTube Ads"> YouTube Ads</div>
-    <div class="pill pill-linkedin" role="button" tabindex="0" onclick="goHeroToGuide('linkedin')" onkeydown="handleHeroPillKey(event, 'linkedin')"><img class="brand-logo brand-logo-pill" src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M100.28%20448H7.4V148.9h92.88zM53.79%20108.1C24.09%20108.1%200%2083.5%200%2053.8a53.79%2053.79%200%200%201%20107.58%200c0%2029.7-24.1%2054.3-53.79%2054.3zM447.9%20448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29%200-55.69%2037.7-55.69%2076.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5%2042.69-48.3%2087.88-48.3%2094%200%20111.28%2061.9%20111.28%20142.3V448z%22/%3E%3C/svg%3E" alt="LinkedIn Ads"> LinkedIn Ads</div>
-    <div class="pill pill-ga4" role="button" tabindex="0" onclick="goHeroToGA4()" onkeydown="handleHeroPillKey(event, 'ga4')"><img class="brand-logo brand-logo-pill" src="https://cdn.simpleicons.org/googleanalytics/FFFFFF" alt="Google Analytics 4"> Google Analytics 4</div>
+    <div class="pill pill-meta" onclick="goToTutorial('criacao', 'meta', 'vendas')">
+  <img class="brand-logo brand-logo-pill" src="https://cdn.simpleicons.org/meta/FFFFFF" alt="Meta Ads">
+  Meta Ads
+</div>
+
+<div class="pill pill-google" onclick="goToTutorial('criacao', 'google', 'vendas')">
+  <img class="brand-logo brand-logo-pill" src="https://cdn.simpleicons.org/googleads/FFFFFF" alt="Google Ads">
+  Google Ads
+</div>
+
+<div class="pill pill-tiktok" onclick="goToTutorial('criacao', 'tiktok', 'vendas')">
+  <img class="brand-logo brand-logo-pill" src="https://cdn.simpleicons.org/tiktok/FFFFFF" alt="TikTok Ads">
+  TikTok Ads
+</div>
+
+<div class="pill pill-youtube" onclick="goToTutorial('criacao', 'youtube', 'vendas')">
+  <img class="brand-logo brand-logo-pill" src="https://cdn.simpleicons.org/youtube/FFFFFF" alt="YouTube Ads">
+  YouTube Ads
+</div>
+
+<div class="pill pill-linkedin" onclick="goToTutorial('criacao', 'linkedin', 'vendas')">
+  <img class="brand-logo brand-logo-pill" src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M100.28%20448H7.4V148.9h92.88zM53.79%20108.1C24.09%20108.1%200%2083.5%200%2053.8a53.79%2053.79%200%200%201%20107.58%200c0%2029.7-24.1%2054.3-53.79%2054.3zM447.9%20448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29%200-55.69%2037.7-55.69%2076.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5%2042.69-48.3%2087.88-48.3%2094%200%20111.28%2061.9%20111.28%20142.3V448z%22/%3E%3C/svg%3E" alt="LinkedIn Ads">
+  LinkedIn Ads
+</div>
+
+<div class="pill pill-ga4" onclick="goToTutorial('criacao', 'ga4', 'vendas')">
+  <img class="brand-logo brand-logo-pill" src="https://cdn.simpleicons.org/googleanalytics/FFFFFF" alt="Google Analytics 4">
+  Google Analytics 4
+</div>
   </div>
   <div class="scroll-hint"><span>Explore</span><div class="scroll-arrow"></div></div>
 </header>
@@ -1072,9 +1219,18 @@
   <div class="section-label">Roteiro de Anúncios</div>
   <h2 class="section-title">Passo a passo<br>por plataforma e objetivo</h2>
   <div class="mode-tabs">
-    <button class="mode-btn active" onclick="setMode('Criação',this)">🚀 Criação</button>
-    <button class="mode-btn" onclick="setMode('Remarketing',this)">🔁 Remarketing</button>
-    <button class="mode-btn" onclick="setMode('Otimização',this)">⚡ Otimização</button>
+    <button class="mode-btn active" onclick="setMode('Criação',this)">
+      <img src="https://www.svgrepo.com/show/473363/rocket-launch.svg" alt="Criação">
+      Criação
+    </button>
+    <button class="mode-btn" onclick="setMode('Remarketing',this)">
+      <img src="https://www.svgrepo.com/show/320363/back-forth.svg" alt="Remarketing">
+      Remarketing
+    </button>
+    <button class="mode-btn" onclick="setMode('Otimização',this)">
+      <img src="https://www.svgrepo.com/show/449165/optimization.svg" alt="Otimização">
+      Otimização
+    </button>
   </div>
 
  <div class="filter-row" id="plat-filter">
@@ -1212,7 +1368,7 @@
   <!-- Hero card -->
   <div class="edu-hero">
     <div class="edu-hero-content">
-      <div class="edu-hero-badge"><span class="edu-cat-icon">▦</span> Tutoriais práticos</div>
+      <div class="edu-hero-badge"><img class="edu-cat-icon" src="https://www.svgrepo.com/show/385302/education-cap-student-graduation-university.svg" alt="Tutoriais práticos"> Tutoriais práticos</div>
       <h3>Do pixel ao anúncio:<br><em>guias que realmente ensinam</em></h3>
       <p>Tutoriais detalhados com passo a passo, dicas e armadilhas a evitar para as tarefas mais importantes do dia a dia em mídia paga.</p>
       <div class="edu-stats">
@@ -1247,9 +1403,53 @@
 
 <footer class="footer">
   <strong>Guia de Anúncios Digitais + GA4</strong> · 6 Plataformas · 4 Objetivos · Criação, Remarketing e Otimização
+  <br>
+  <button class="footer-top-btn" type="button" onclick="scrollToTop()">↑ Voltar ao topo</button>
 </footer>
 
 <script>
+
+
+function goToTutorial(mode, plat, obj) {
+  const modeMap = {
+    criacao: 'Criação',
+    criação: 'Criação',
+    remarketing: 'Remarketing',
+    otimizacao: 'Otimização',
+    otimização: 'Otimização'
+  };
+
+  const objMap = {
+    vendas: 'conversoes',
+    conversoes: 'conversoes',
+    conversões: 'conversoes',
+    leads: 'leads',
+    trafego: 'trafego',
+    tráfego: 'trafego',
+    reconhecimento: 'marca',
+    marca: 'marca'
+  };
+
+  if (plat === 'ga4') {
+    document.getElementById('ga4')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    return;
+  }
+
+  const modeLabel = modeMap[mode] || 'Criação';
+  const objKey = objMap[obj] || 'conversoes';
+
+  const modeBtn = Array.from(document.querySelectorAll('.mode-btn'))
+    .find(btn => btn.textContent.trim().includes(modeLabel));
+
+  const platBtn = document.querySelector(`#plat-filter .filter-btn[data-plat="${plat}"]`);
+  const objBtn = document.querySelector(`#obj-filter .filter-btn[data-obj="${objKey}"]`);
+
+  if (modeBtn) setMode(modeLabel, modeBtn);
+  if (platBtn) setPlat(plat, platBtn);
+  if (objBtn) setObj(objKey, objBtn);
+
+  document.getElementById('roteiro')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
 
   function setObj(obj, btn) {
     adState.obj = obj;
@@ -1294,6 +1494,9 @@ const BRAND_LOGOS = {
   ga4: { name: 'Google Analytics 4', slug: 'googleanalytics', color: 'E37400' }
 };
 function brandLogo(key, variant='color') {
+  if (key === 'geral') {
+    return '<img class="brand-logo" src="https://www.svgrepo.com/show/243821/menu-grid.svg" alt="Geral">';
+  }
   const item = BRAND_LOGOS[key] || BRAND_LOGOS.meta;
   const color = variant === 'white' ? 'FFFFFF' : item.color;
   if (key === 'linkedin') {
@@ -1307,8 +1510,12 @@ function eduCatIcon(catId) {
   if (['meta','google','tiktok','youtube','linkedin','ga4'].includes(catId)) {
     return brandLogo(catId);
   }
-  if (catId === 'all') return '<span class="edu-cat-icon">▦</span>';
-  if (catId === 'geral') return '<span class="edu-cat-icon">◆</span>';
+  if (catId === 'all') {
+    return '<img class="edu-cat-icon" src="https://www.svgrepo.com/show/427446/general-hierachy-map.svg" alt="Todos">';
+  }
+  if (catId === 'geral') {
+    return '<img class="edu-cat-icon" src="https://www.svgrepo.com/show/243821/menu-grid.svg" alt="Geral">';
+  }
   return '';
 }
 
@@ -1720,10 +1927,10 @@ function setPlat(plat, el) {
     btn.classList.remove('active');
     btn.style.background = '#fff';
     btn.style.borderColor = '#e0e0e0';
-    btn.style.color = '#666';
+    btn.style.color = '#000';
 
     if (img) {
-      img.src = iconSrc(btnPlat, '666666');
+      img.src = iconSrc(btnPlat, '000');
     }
   });
 
@@ -1810,59 +2017,6 @@ function navTo(id,btn){
   document.getElementById(id)?.scrollIntoView({behavior:'smooth'});
   document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
   btn.classList.add('active');
-}
-
-// ─────────────────────────────────────────────
-// HERO PILLS → PASSO A PASSO
-// ─────────────────────────────────────────────
-function updateModeButton(mode) {
-  document.querySelectorAll('.mode-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.textContent.includes(mode));
-  });
-}
-
-function updateNavButton(sectionId) {
-  document.querySelectorAll('.nav-tab').forEach(btn => {
-    const target = btn.getAttribute('onclick') || '';
-    btn.classList.toggle('active', target.includes("'" + sectionId + "'") || target.includes('"' + sectionId + '"'));
-  });
-}
-
-function goHeroToGuide(plat) {
-  adState.mode = 'Criação';
-  adState.phase = AD_PHASES['Criação'][0];
-  adState.plat = plat;
-  adState.obj = 'conversoes';
-
-  updateModeButton('Criação');
-
-  const platBtn = document.querySelector(`#plat-filter .filter-btn[data-plat="${plat}"]`);
-  if (platBtn) setPlat(plat, platBtn);
-
-  const objBtn = document.querySelector('#obj-filter .filter-btn[data-obj="conversoes"]');
-  if (objBtn) setObj('conversoes', objBtn);
-
-  updateNavButton('roteiro');
-
-  setTimeout(() => {
-    document.getElementById('roteiro')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, 80);
-}
-
-function goHeroToGA4() {
-  updateNavButton('ga4');
-  document.getElementById('ga4')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-function handleHeroPillKey(event, plat) {
-  if (event.key !== 'Enter' && event.key !== ' ') return;
-  event.preventDefault();
-
-  if (plat === 'ga4') {
-    goHeroToGA4();
-  } else {
-    goHeroToGuide(plat);
-  }
 }
 
 // ─────────────────────────────────────────────
@@ -2093,7 +2247,7 @@ const LESSONS = [
     ],
     resources:[]
   },
-  { id:'geral-utms', cat:'geral', plat:'Geral', color:'#6B35D9', icon:'🔗', bg:'#F3EEFF',
+  { id:'geral-utms', cat:'geral', plat:'Geral', color:'#6B35D9', icon:'geral', bg:'#F3EEFF',
     title:'Como criar e padronizar UTMs para todas as campanhas', level:'init', levelLabel:'Iniciante',
     desc:'Implemente UTM parameters padronizados para rastrear trafego de todas as plataformas com precisao no GA4.',
     tags:['UTM','GA4','Rastreamento'],
@@ -2108,7 +2262,7 @@ const LESSONS = [
       { icon:'🔗', label:'Google Campaign URL Builder', url:'https://ga-dev-tools.google/campaign-url-builder' },
     ]
   },
-  { id:'geral-cpa-calculo', cat:'geral', plat:'Geral', color:'#6B35D9', icon:'🧮', bg:'#F3EEFF',
+  { id:'geral-cpa-calculo', cat:'geral', plat:'Geral', color:'#6B35D9', icon:'geral', bg:'#F3EEFF',
     title:'Como calcular o CPA máximo sustentável', level:'init', levelLabel:'Iniciante',
     desc:'Calcule o custo por aquisicao maximo que o seu negocio pode pagar e ainda ser lucrativo.',
     tags:['CPA','ROAS','Margem'],
@@ -2120,7 +2274,7 @@ const LESSONS = [
     ],
     resources:[]
   },
-  { id:'geral-landing-page', cat:'geral', plat:'Geral', color:'#6B35D9', icon:'🏠', bg:'#F3EEFF',
+  { id:'geral-landing-page', cat:'geral', plat:'Geral', color:'#6B35D9', icon:'geral', bg:'#F3EEFF',
     title:'Como otimizar a Landing Page para campanhas pagas', level:'inter', levelLabel:'Intermediário',
     desc:'Os elementos fundamentais de uma LP de alta conversao para trafego pago de qualquer plataforma.',
     tags:['Landing Page','Conversão','CRO'],
@@ -2246,6 +2400,10 @@ function renderLessonModal(l) {
 }
 
 function escHtml(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
 function toggleHamburger() {
   const btn = document.getElementById('nav-hamburger');
