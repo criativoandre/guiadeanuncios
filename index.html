@@ -8,9 +8,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
   :root {
+    :root {
     --meta:    #1877F2;
     --google:  #EA4335;
     --tiktok:  #333333;
+    --tiktok-shop: #FF0050;
     --youtube: #FF0000;
     --linkedin:#0A66C2;
     --ga4:     #E37400;
@@ -54,7 +56,7 @@
   .platform-pills { display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:40px;animation:fadeUp .7s .3s ease both; }
   .pill { display:flex;align-items:center;gap:8px;padding:8px 18px;border-radius:99px;font-size:13px;font-weight:500;color:#fff;cursor:pointer;transition:transform .2s,box-shadow .2s; }
   .pill:hover { transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.3); }
-  .pill-meta{background:var(--meta)}.pill-google{background:var(--google)}.pill-tiktok{background:#333;border:1px solid #666}.pill-youtube{background:var(--youtube)}.pill-linkedin{background:var(--linkedin)}.pill-ga4{background:var(--ga4)}
+  .pill-meta{background:var(--meta)}.pill-google{background:var(--google)}.pill-tiktok{background:#333;border:1px solid #666}.pill-tiktok-shop{background:linear-gradient(135deg,var(--tiktok-shop),#cc003f)}.pill-youtube{background:var(--youtube)}.pill-linkedin{background:var(--linkedin)}.pill-ga4{background:var(--ga4)}
   .scroll-hint { position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,.4);font-size:11px;letter-spacing:.08em;text-transform:uppercase;animation:fadeUp .7s .5s ease both; }
   .scroll-arrow { width:20px;height:20px;border-right:2px solid;border-bottom:2px solid;transform:rotate(45deg);animation:bounce 1.4s infinite; }
 
@@ -77,7 +79,7 @@
   .platform-card::before { content:'';position:absolute;inset:0;background:rgba(255,255,255,0.08);opacity:0;transition:opacity .2s; }
   .platform-card:hover { transform:translateY(-4px);box-shadow:0 20px 48px rgba(0,0,0,.18); }
   .platform-card:hover::before { opacity:1; }
-  .platform-card.meta{background:linear-gradient(135deg,#1877F2,#0856c4)}.platform-card.google{background:linear-gradient(135deg,#EA4335,#c5281c)}.platform-card.tiktok{background:linear-gradient(135deg,#2d2d2d,#111)}.platform-card.youtube{background:linear-gradient(135deg,#FF0000,#c40000)}.platform-card.linkedin{background:linear-gradient(135deg,#0A66C2,#064a8e)}.platform-card.ga4{background:linear-gradient(135deg,#E37400,#b85c00)}
+  .platform-card.meta{background:linear-gradient(135deg,#1877F2,#0856c4)}.platform-card.google{background:linear-gradient(135deg,#EA4335,#c5281c)}.platform-card.tiktok{background:linear-gradient(135deg,#2d2d2d,#111)}.platform-card.tiktok-shop{background:linear-gradient(135deg,var(--tiktok-shop),#cc003f)}.platform-card.youtube{background:linear-gradient(135deg,#FF0000,#c40000)}.platform-card.linkedin{background:linear-gradient(135deg,#0A66C2,#064a8e)}.platform-card.ga4{background:linear-gradient(135deg,#E37400,#b85c00)}
   .platform-icon { font-size:34px;margin-bottom:14px;display:flex;align-items:center; }
   .brand-logo { width:22px;height:22px;display:inline-block;vertical-align:middle;object-fit:contain;flex-shrink:0; }
   .brand-logo-pill { width:18px;height:18px; }
@@ -1142,6 +1144,11 @@
   TikTok Ads
 </div>
 
+<div class="pill pill-tiktok-shop" onclick="goToTutorial('criacao', 'tiktok-shop', 'vendas')">
+  <img class="brand-logo brand-logo-pill" src="data:image/svg+xml;charset=utf-8,%3Csvg%20role%3D%22img%22%20viewBox%3D%220%200%2024%2024%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Ctitle%3ETikTok%3C/title%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M12.525.02c1.31-.02%202.61-.01%203.91-.02.08%201.53.63%203.09%201.75%204.17%201.12%201.11%202.7%201.62%204.24%201.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01%202.92.01%205.84-.02%208.75-.08%201.4-.54%202.79-1.35%203.94-1.31%201.92-3.58%203.17-5.91%203.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9%201.12-3.72%202.58-4.96%201.66-1.44%203.98-2.13%206.15-1.72.02%201.48-.04%202.96-.04%204.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11%201.04-1.36%201.75-.21.51-.15%201.07-.14%201.61.24%201.64%201.82%203.02%203.5%202.87%201.12-.01%202.19-.66%202.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z%22/%3E%3C/svg%3E" alt="TikTok Shop">
+  TikTok Shop
+</div>
+
 <div class="pill pill-youtube" onclick="goToTutorial('criacao', 'youtube', 'vendas')">
   <img class="brand-logo brand-logo-pill" src="https://cdn.simpleicons.org/youtube/FFFFFF" alt="YouTube Ads">
   YouTube Ads
@@ -1204,6 +1211,19 @@
       <div class="platform-name">TikTok Ads</div>
       <div class="platform-desc">Conteúdo nativo em vídeo vertical. Algoritmo poderoso que encontra o público pelo criativo.</div>
       <div class="platform-kpis"><span>Spark Ads</span><span>UGC</span><span>TopView</span><span>API Conv.</span></div>
+    </div>
+    <div class="platform-card tiktok-shop" onclick="goToTutorial('criacao', 'tiktok-shop', 'vendas')" style="cursor:pointer">
+  <span class="platform-icon">
+    <img class="brand-logo brand-logo-platform" src="data:image/svg+xml;charset=utf-8,%3Csvg%20role%3D%22img%22%20viewBox%3D%220%200%2024%2024%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Ctitle%3ETikTok%3C/title%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M12.525.02c1.31-.02%202.61-.01%203.91-.02.08%201.53.63%203.09%201.75%204.17%201.12%201.11%202.7%201.62%204.24%201.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01%202.92.01%205.84-.02%208.75-.08%201.4-.54%202.79-1.35%203.94-1.31%201.92-3.58%203.17-5.91%203.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9%201.12-3.72%202.58-4.96%201.66-1.44%203.98-2.13%206.15-1.72.02%201.48-.04%202.96-.04%204.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11%201.04-1.36%201.75-.21.51-.15%201.07-.14%201.61.24%201.64%201.82%203.02%203.5%202.87%201.12-.01%202.19-.66%202.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z%22/%3E%3C/svg%3E" alt="TikTok Shop">
+  </span>
+      <div class="platform-name">TikTok Shop</div>
+      <div class="platform-desc">Venda integrada entre conteúdo, live commerce e vitrine de produtos dentro do TikTok.</div>
+      <div class="platform-kpis">
+        <span>Catálogo</span>
+        <span>GMV</span>
+        <span>Live Shopping</span>
+        <span>Shop Ads</span>
+      </div>
     </div>
     <div class="platform-card youtube">
       <span class="platform-icon"><img class="brand-logo brand-logo-platform" src="https://cdn.simpleicons.org/youtube/FFFFFF" alt="YouTube Ads"></span>
