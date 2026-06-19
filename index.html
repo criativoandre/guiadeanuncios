@@ -574,6 +574,12 @@
     border-color: #333333 !important;
   }
 
+  .edu-cat[data-cat="tiktok-shop"]:hover {
+  background: #FF0050 !important;
+  border-color: #FF0050 !important;
+  color: #ffffff !important;
+}
+
   .edu-cat[data-cat="youtube"]:hover {
     background: #ff0000 !important;
     border-color: #ff0000 !important;
@@ -1594,7 +1600,7 @@ function eduCatIcon(catId) {
     `;
   }
 
-  if (['meta','tiktok','youtube','linkedin','ga4'].includes(catId)) {
+  if (['meta','tiktok','tiktok-shop','youtube','linkedin','ga4'].includes(catId)) {
     return brandLogo(catId);
   }
 
@@ -2294,7 +2300,8 @@ const EDU_CATS = [
   { id:'all',      label:'Todos',        color:'#1A1A2E', dot:'#1A1A2E' },
   { id:'meta',     label:'Meta Ads',     color:'#1877F2', dot:'#1877F2' },
   { id:'google',   label:'Google Ads',   color:'#EA4335', dot:'#EA4335' },
-  { id:'tiktok',   label:'TikTok Ads',   color:'#333333', dot:'#333333' },
+  { id:'tiktok',   label:'TikTok Ads',   color:'#333',    dot:'#555'    },
+  { id:'tiktok-shop', label:'TikTok Shop', color:'#FF0050', dot:'#FF0050' },
   { id:'youtube',  label:'YouTube Ads',  color:'#FF0000', dot:'#FF0000' },
   { id:'linkedin', label:'LinkedIn Ads', color:'#0A66C2', dot:'#0A66C2' },
   { id:'ga4',      label:'GA4',          color:'#E37400', dot:'#E37400' },
