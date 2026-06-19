@@ -1609,6 +1609,168 @@ function eduCatIcon(catId) {
   return '';
 }
 
+function tiktokShopSteps(obj, mode, phase) {
+  const data = {
+    conversoes: {
+      'Criação': {
+        'Pré-requisitos': [
+          {
+            t: 'Configure o TikTok Shop Seller Center',
+            d: 'Crie ou acesse sua conta no TikTok Shop Seller Center, valide os dados da empresa, cadastre endereço, dados fiscais e métodos de pagamento antes de criar campanhas.',
+            tip: 'Sem Seller Center configurado, catálogo aprovado e loja ativa, os anúncios de TikTok Shop não conseguem vender com checkout nativo.',
+            tc: '#FF0050'
+          }
+        ],
+        'Campanha': [
+          {
+            t: 'Crie uma campanha de Video Shopping Ads',
+            d: 'No TikTok Ads Manager, crie uma campanha com objetivo de vendas de produtos e selecione Video Shopping Ads. Esse formato exibe produtos diretamente no vídeo com botão de compra.',
+            tip: 'Use VSA para vender produtos do catálogo diretamente dentro do TikTok Shop.',
+            tc: '#FF0050'
+          }
+        ],
+        'Público': [
+          {
+            t: 'Comece com público amplo',
+            d: 'Para TikTok Shop, comece com segmentação mais aberta, limitando apenas país, idade e idioma quando necessário. O algoritmo usa sinais do produto, vídeo e comportamento de compra.',
+            tip: 'Segmentação muito travada pode limitar o aprendizado do algoritmo no TikTok Shop.',
+            tc: '#FF0050'
+          }
+        ],
+        'Criativos': [
+          {
+            t: 'Use vídeo vertical com produto em uso',
+            d: 'Crie vídeos 9:16 mostrando o produto nos primeiros 3 segundos, com demonstração prática, benefício claro e CTA direto para compra.',
+            tip: 'A estrutura ideal é: produto em destaque, demonstração, benefício, prova social e chamada para comprar.',
+            tc: '#FF0050'
+          }
+        ],
+        'Lance & Budget': [
+          {
+            t: 'Comece com orçamento suficiente para aprendizado',
+            d: 'Inicie com orçamento diário capaz de gerar volume mínimo de compras. Acompanhe CPA, ROAS, GMV e taxa de conversão do produto.',
+            tip: 'Evite pausar campanhas antes de ter dados suficientes para análise.',
+            tc: '#FF0050'
+          }
+        ],
+        'Publicação': [
+          {
+            t: 'Valide produto, vídeo e checkout',
+            d: 'Antes de escalar, confira se o produto aparece corretamente, se o botão de compra funciona, se o preço está correto e se o checkout nativo está ativo.',
+            tip: 'Um erro simples no catálogo pode derrubar toda a performance da campanha.',
+            tc: '#FF0050'
+          }
+        ]
+      },
+
+      'Remarketing': {
+        'Rastreamento': [
+          {
+            t: 'Use eventos de visualização e compra',
+            d: 'Garanta que o TikTok consiga identificar visualizações de produto, adição ao carrinho, início de checkout e compras realizadas no TikTok Shop.',
+            tip: 'Esses sinais alimentam públicos de remarketing e otimização automática.',
+            tc: '#FF0050'
+          }
+        ],
+        'Públicos': [
+          {
+            t: 'Crie públicos de compradores e interessados',
+            d: 'Separe públicos de quem viu produtos, clicou no botão de compra, adicionou ao carrinho e comprou. Cada grupo precisa de mensagem diferente.',
+            tip: 'Carrinho abandonado merece criativo de urgência ou prova social.',
+            tc: '#FF0050'
+          }
+        ],
+        'Campanha': [
+          {
+            t: 'Crie campanha para recuperar intenção',
+            d: 'Use campanhas focadas em quem interagiu com produtos, assistiu vídeos ou abandonou o checkout. Priorize produtos com maior margem ou maior volume.',
+            tip: null
+          }
+        ],
+        'Criativos': [
+          {
+            t: 'Use prova social e demonstração',
+            d: 'Mostre reviews, unboxing, antes e depois, comparativos e benefícios claros para quem já demonstrou interesse.',
+            tip: 'No remarketing, o criativo deve remover dúvidas, não apenas repetir a oferta.',
+            tc: '#FF0050'
+          }
+        ],
+        'Lances': [
+          {
+            t: 'Controle CPA e frequência',
+            d: 'Acompanhe CPA, frequência, ROAS e queda de CTR. Se a frequência subir e o CTR cair, renove criativos.',
+            tip: null
+          }
+        ],
+        'Monitoramento': [
+          {
+            t: 'Analise GMV por produto',
+            d: 'Avalie quais produtos geram mais GMV, melhor ROAS e menor custo por compra. Realocar verba por produto costuma melhorar o resultado.',
+            tip: null
+          }
+        ]
+      },
+
+      'Otimização': {
+        'Diagnóstico': [
+          {
+            t: 'Identifique o gargalo principal',
+            d: 'Analise se o problema está no vídeo, no produto, no preço, no checkout, no frete ou na página do produto dentro do TikTok Shop.',
+            tip: 'Nem todo CPA alto é problema de campanha. Muitas vezes o gargalo está no produto ou na oferta.',
+            tc: '#FF0050'
+          }
+        ],
+        'Estrutura': [
+          {
+            t: 'Separe campanhas por produto ou categoria',
+            d: 'Organize campanhas por produtos campeões, categorias ou margem. Isso facilita leitura de dados e controle de orçamento.',
+            tip: null
+          }
+        ],
+        'Criativos': [
+          {
+            t: 'Teste novos ângulos de vídeo',
+            d: 'Crie variações com demonstração, review, UGC, comparação, oferta, dor do cliente e prova social.',
+            tip: 'TikTok Shop depende muito de volume e variedade de criativos.',
+            tc: '#FF0050'
+          }
+        ],
+        'Lances & Budget': [
+          {
+            t: 'Escale os produtos vencedores',
+            d: 'Aumente orçamento gradualmente nos produtos com ROAS positivo, bom volume de compras e taxa de conversão consistente.',
+            tip: null
+          }
+        ],
+        'Público': [
+          {
+            t: 'Evite segmentação excessiva',
+            d: 'Mantenha públicos mais amplos quando o algoritmo estiver performando bem. Use segmentações específicas apenas para testes controlados.',
+            tip: null
+          }
+        ],
+        'Escala': [
+          {
+            t: 'Combine VSA, lives e afiliados',
+            d: 'Para escalar, combine Video Shopping Ads, Live Shopping Ads, Spark Ads e programa de afiliados do TikTok Shop.',
+            tip: 'Afiliados podem gerar vendas com menor risco, porque a comissão só acontece quando há venda.',
+            tc: '#FF0050'
+          }
+        ]
+      }
+    }
+  };
+
+  return data[obj]?.[mode]?.[phase] || [
+    {
+      t: 'Objetivo não recomendado para TikTok Shop',
+      d: 'O TikTok Shop é focado principalmente em vendas de produtos físicos. Para leads, tráfego ou reconhecimento, use TikTok Ads tradicional.',
+      tip: 'Use TikTok Shop quando o objetivo principal for vender produto com catálogo e checkout nativo.',
+      tc: '#FF0050'
+    }
+  ];
+}
+
 
 // Generic step builder for non-linkedin platforms
 function genericSteps(platName,platColor,objName,objColor,mode,phase){
@@ -1915,7 +2077,9 @@ function renderAds(){
   container.innerHTML = '';
 
   phases.forEach((phase, phIdx) => {
-    const steps = getAdsSteps(adState.plat, adState.obj, adState.mode, phase);
+    const steps = adState.plat === 'tiktok-shop'
+  ? tiktokShopSteps(adState.obj, adState.mode, ph)
+  : genericSteps(p.name, p.color, o.name, o.color, adState.mode, ph);
     if(!steps.length) return;
 
     // Phase block
