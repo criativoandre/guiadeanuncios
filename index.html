@@ -1240,23 +1240,23 @@
   </button>
 
   <button class="filter-btn" data-plat="google" onclick="setPlat('google', this)">
-    <img src="https://cdn.simpleicons.org/googleads/666666" alt="Google">
+    <img src="https://cdn.simpleicons.org/googleads/000" alt="Google">
     Google
   </button>
 
   <button class="filter-btn" data-plat="tiktok" onclick="setPlat('tiktok', this)">
-    <img src="https://cdn.simpleicons.org/tiktok/666666" alt="TikTok">
+    <img src="https://cdn.simpleicons.org/tiktok/000" alt="TikTok">
     TikTok
   </button>
 
   <button class="filter-btn" data-plat="youtube" onclick="setPlat('youtube', this)">
-    <img src="https://cdn.simpleicons.org/youtube/666666" alt="YouTube">
+    <img src="https://cdn.simpleicons.org/youtube/000" alt="YouTube">
     YouTube
   </button>
 
   <button class="filter-btn" data-plat="linkedin" onclick="setPlat('linkedin', this)">
   <img 
-    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3Cpath%20fill%3D%22%23666666%22%20d%3D%22M100.28%20448H7.4V148.9h92.88zM53.79%20108.1C24.09%20108.1%200%2083.5%200%2053.8a53.79%2053.79%200%200%201%20107.58%200c0%2029.7-24.1%2054.3-53.79%2054.3zM447.9%20448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29%200-55.69%2037.7-55.69%2076.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5%2042.69-48.3%2087.88-48.3%2094%200%20111.28%2061.9%20111.28%20142.3V448z%22/%3E%3C/svg%3E" 
+    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3Cpath%20fill%3D%22%23000000%22%20d%3D%22M100.28%20448H7.4V148.9h92.88zM53.79%20108.1C24.09%20108.1%200%2083.5%200%2053.8a53.79%2053.79%200%200%201%20107.58%200c0%2029.7-24.1%2054.3-53.79%2054.3zM447.9%20448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29%200-55.69%2037.7-55.69%2076.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5%2042.69-48.3%2087.88-48.3%2094%200%20111.28%2061.9%20111.28%20142.3V448z%22/%3E%3C/svg%3E" 
     alt="LinkedIn">
   LinkedIn
 </button>
@@ -1507,15 +1507,30 @@ function brandLogo(key, variant='color') {
 }
 
 function eduCatIcon(catId) {
-  if (['meta','google','tiktok','youtube','linkedin','ga4'].includes(catId)) {
+  if (catId === 'google') {
+    return `
+      <span class="google-ads-svg-icon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+          <polygon fill="#ffc107" points="30.129,15.75 18.871,9.25 5.871,31.25 17.129,37.75"></polygon>
+          <path fill="#1e88e5" d="M31.871,37.75c1.795,3.109,5.847,4.144,8.879,2.379c3.103-1.806,4.174-5.77,2.379-8.879l-13-22 c-1.795-3.109-5.835-4.144-8.879-2.379c-3.106,1.801-4.174,5.77-2.379,8.879L31.871,37.75z"></path>
+          <circle cx="11.5" cy="34.5" r="6.5" fill="#43a047"></circle>
+        </svg>
+      </span>
+    `;
+  }
+
+  if (['meta','tiktok','youtube','linkedin','ga4'].includes(catId)) {
     return brandLogo(catId);
   }
+
   if (catId === 'all') {
     return '<img class="edu-cat-icon" src="https://www.svgrepo.com/show/427446/general-hierachy-map.svg" alt="Todos">';
   }
+
   if (catId === 'geral') {
     return '<img class="edu-cat-icon" src="https://www.svgrepo.com/show/243821/menu-grid.svg" alt="Geral">';
   }
+
   return '';
 }
 
