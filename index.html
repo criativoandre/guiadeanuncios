@@ -1085,6 +1085,34 @@
     }
   }
 
+  .edu-cat .google-ads-svg-icon {
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.edu-cat .google-ads-svg-icon svg {
+  width: 14px;
+  height: 14px;
+  display: block;
+}
+
+/* Mantém o fundo atual vermelho do Google Ads no hover */
+.edu-cat[data-cat="google"]:hover {
+  background: #ea4335 !important;
+  border-color: #ea4335 !important;
+  color: #ffffff !important;
+}
+
+/* Deixa o SVG branco no hover e ativo */
+.edu-cat[data-cat="google"]:hover .google-ads-svg-icon,
+.edu-cat[data-cat="google"].active .google-ads-svg-icon {
+  filter: brightness(0) invert(1);
+}
+
 </style>
 </head>
 <body>
