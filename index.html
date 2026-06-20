@@ -11,6 +11,7 @@
     --meta:    #1877F2;
     --google:  #EA4335;
     --tiktok:  #333333;
+    --tiktok-shop: #FF0050;
     --youtube: #FF0000;
     --linkedin:#0A66C2;
     --ga4:     #E37400;
@@ -54,7 +55,7 @@
   .platform-pills { display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:40px;animation:fadeUp .7s .3s ease both; }
   .pill { display:flex;align-items:center;gap:8px;padding:8px 18px;border-radius:99px;font-size:13px;font-weight:500;color:#fff;cursor:pointer;transition:transform .2s,box-shadow .2s; }
   .pill:hover { transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.3); }
-  .pill-meta{background:var(--meta)}.pill-google{background:var(--google)}.pill-tiktok{background:#333;border:1px solid #666}.pill-youtube{background:var(--youtube)}.pill-linkedin{background:var(--linkedin)}.pill-ga4{background:var(--ga4)}
+  .pill-meta{background:var(--meta)}.pill-google{background:var(--google)}.pill-tiktok{background:#333;border:1px solid #666}.pill-tiktok-shop{background:linear-gradient(135deg,var(--tiktok-shop),#cc003f)}.pill-youtube{background:var(--youtube)}.pill-linkedin{background:var(--linkedin)}.pill-ga4{background:var(--ga4)}
   .scroll-hint { position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,.4);font-size:11px;letter-spacing:.08em;text-transform:uppercase;animation:fadeUp .7s .5s ease both; }
   .scroll-arrow { width:20px;height:20px;border-right:2px solid;border-bottom:2px solid;transform:rotate(45deg);animation:bounce 1.4s infinite; }
 
@@ -77,7 +78,7 @@
   .platform-card::before { content:'';position:absolute;inset:0;background:rgba(255,255,255,0.08);opacity:0;transition:opacity .2s; }
   .platform-card:hover { transform:translateY(-4px);box-shadow:0 20px 48px rgba(0,0,0,.18); }
   .platform-card:hover::before { opacity:1; }
-  .platform-card.meta{background:linear-gradient(135deg,#1877F2,#0856c4)}.platform-card.google{background:linear-gradient(135deg,#EA4335,#c5281c)}.platform-card.tiktok{background:linear-gradient(135deg,#2d2d2d,#111)}.platform-card.youtube{background:linear-gradient(135deg,#FF0000,#c40000)}.platform-card.linkedin{background:linear-gradient(135deg,#0A66C2,#064a8e)}.platform-card.ga4{background:linear-gradient(135deg,#E37400,#b85c00)}
+  .platform-card.meta{background:linear-gradient(135deg,#1877F2,#0856c4)}.platform-card.google{background:linear-gradient(135deg,#EA4335,#c5281c)}.platform-card.tiktok{background:linear-gradient(135deg,#2d2d2d,#111)}.platform-card.tiktok-shop{background:linear-gradient(135deg,var(--tiktok-shop),#cc003f)}.platform-card.youtube{background:linear-gradient(135deg,#FF0000,#c40000)}.platform-card.linkedin{background:linear-gradient(135deg,#0A66C2,#064a8e)}.platform-card.ga4{background:linear-gradient(135deg,#E37400,#b85c00)}
   .platform-icon { font-size:34px;margin-bottom:14px;display:flex;align-items:center; }
   .brand-logo { width:22px;height:22px;display:inline-block;vertical-align:middle;object-fit:contain;flex-shrink:0; }
   .brand-logo-pill { width:18px;height:18px; }
@@ -157,6 +158,11 @@
 #plat-filter .filter-btn[data-plat="tiktok"]:hover {
   background: #333333 !important;
   border-color: #333333 !important;
+}
+
+#plat-filter .filter-btn[data-plat="tiktok-shop"]:hover {
+  background: #FF0050 !important;
+  border-color: #FF0050 !important;
 }
 
 #plat-filter .filter-btn[data-plat="youtube"]:hover {
@@ -305,29 +311,45 @@
   /* FOOTER */
   .footer { background:var(--ink);color:rgba(255,255,255,.5);text-align:center;padding:40px 24px;font-size:13px; }
   .footer strong { color:#fff; }
-  .footer-top-btn {
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    gap:8px;
-    margin-top:18px;
-    padding:10px 20px;
-    border-radius:999px;
-    border:1px solid rgba(255,255,255,.18);
-    background:rgba(255,255,255,.08);
-    color:#ffffff;
-    font-family:'DM Sans',sans-serif;
-    font-size:13px;
-    font-weight:600;
-    cursor:pointer;
-    transition:all .2s ease;
+
+  .floating-top-btn {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 999;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  background: var(--ink);
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 12px 28px rgba(0,0,0,.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.floating-top-btn:hover {
+  background: #000000;
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px rgba(0,0,0,.28);
+}
+
+@media (max-width: 768px) {
+  .floating-top-btn {
+    right: 16px;
+    bottom: 16px;
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
   }
-  .footer-top-btn:hover {
-    background:#ffffff;
-    border-color:#ffffff;
-    color:var(--ink);
-    transform:translateY(-1px);
-  }
+}
+
   @keyframes pulse {
     0%,100% { box-shadow: 0 0 0 3px rgba(74,222,128,.3); }
     50%      { box-shadow: 0 0 0 7px rgba(74,222,128,.1); }
@@ -566,6 +588,11 @@
     background: #333333 !important;
     border-color: #333333 !important;
   }
+
+  .edu-cat[data-cat="tiktok-shop"]:hover {
+  background: #FF0050 !important;
+  border-color: #FF0050 !important;
+}
 
   .edu-cat[data-cat="youtube"]:hover {
     background: #ff0000 !important;
@@ -872,6 +899,11 @@
     border-color: #333333 !important;
   }
 
+  #plat-filter .filter-btn[data-plat="tiktok-shop"]:hover {
+  background: #FF0050 !important;
+  border-color: #FF0050 !important;
+}
+
   #plat-filter .filter-btn[data-plat="youtube"]:hover {
     background: #ff0000 !important;
     border-color: #ff0000 !important;
@@ -933,6 +965,13 @@
     border-color: #333333 !important;
     color: #ffffff !important;
   }
+
+  #plat-filter .filter-btn[data-plat="tiktok-shop"]:hover,
+  #plat-filter .filter-btn[data-plat="tiktok-shop"].active {
+  background: #FF0050 !important;
+  border-color: #FF0050 !important;
+  color: #ffffff !important;
+}
 
   #plat-filter .filter-btn[data-plat="youtube"]:hover,
   #plat-filter .filter-btn[data-plat="youtube"].active {
@@ -1067,7 +1106,10 @@
     height: 14px !important;
   }
 
-
+  #plat-filter .filter-btn:hover img,
+  #plat-filter .filter-btn.active img {
+  filter: brightness(0) invert(1) !important;
+}
 
   /* AJUSTE MOBILE — evita que o Explore fique em cima dos botões da Hero */
   @media (max-width: 768px) {
@@ -1085,6 +1127,113 @@
     }
   }
 
+  .edu-cat .google-ads-svg-icon {
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.edu-cat .google-ads-svg-icon svg {
+  width: 14px;
+  height: 14px;
+  display: block;
+}
+
+/* Mantém o fundo atual vermelho do Google Ads no hover */
+.edu-cat[data-cat="google"]:hover {
+  background: #ea4335 !important;
+  border-color: #ea4335 !important;
+  color: #ffffff !important;
+}
+
+/* Deixa o SVG branco no hover e ativo */
+.edu-cat[data-cat="google"]:hover .google-ads-svg-icon,
+.edu-cat[data-cat="google"].active .google-ads-svg-icon {
+  filter: brightness(0) invert(1);
+}
+
+/* Objetivos bloqueados para TikTok Shop */
+#obj-filter .filter-btn.disabled-obj {
+  opacity: 0.35 !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+  filter: grayscale(1);
+}
+
+#obj-filter .filter-btn.disabled-obj:hover {
+  background: #ffffff !important;
+  color: #111827 !important;
+  border-color: #d9d9d9 !important;
+  transform: none !important;
+}
+
+/* Botões principais da Hero */
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+  animation: fadeUp .7s .25s ease both;
+}
+
+.hero-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 46px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  transition: all .2s ease;
+  white-space: nowrap;
+}
+
+.hero-action-primary {
+  background: #ffffff;
+  color: var(--ink);
+  box-shadow: 0 12px 32px rgba(0,0,0,.22);
+}
+
+.hero-action-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px rgba(0,0,0,.28);
+}
+
+.hero-action-secondary {
+  background: rgba(255,255,255,.08);
+  color: #ffffff;
+  border-color: rgba(255,255,255,.22);
+  backdrop-filter: blur(8px);
+}
+
+.hero-action-secondary:hover {
+  background: rgba(255,255,255,.16);
+  border-color: rgba(255,255,255,.36);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+  .hero-actions {
+    width: 100%;
+    gap: 10px;
+  }
+
+  .hero-action-btn {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1095,9 +1244,15 @@
     <div class="blob blob-1"></div><div class="blob blob-2"></div>
     <div class="blob blob-3"></div><div class="blob blob-4"></div><div class="blob blob-5"></div>
   </div>
-  <div class="hero-badge"><span></span> 6 Plataformas · 4 Objetivos · Criação + Remarketing + Otimização + GA4</div>
+  <div class="hero-badge"><span></span> 7 Plataformas · 4 Objetivos · Criação + Remarketing + Otimização + GA4</div>
   <h1>Roteiro de<br><em>Anúncios Digitais</em></h1>
-  <p class="hero-sub">Guia completo para Meta, Google, TikTok, YouTube, LinkedIn Ads e Google Analytics 4.</p>
+
+<p class="hero-sub">
+  Guia completo com roteiro estratégico de campanhas, GA4 e um Espaço Educacional com tutoriais práticos para Meta, Google, TikTok, TikTok Shop, YouTube e LinkedIn Ads.
+</p>
+    
+  </button>
+</div>
   <div class="platform-pills">
     <div class="pill pill-meta" onclick="goToTutorial('criacao', 'meta', 'vendas')">
   <img class="brand-logo brand-logo-pill" src="https://cdn.simpleicons.org/meta/FFFFFF" alt="Meta Ads">
@@ -1114,6 +1269,11 @@
   TikTok Ads
 </div>
 
+<div class="pill pill-tiktok-shop" onclick="goToTutorial('criacao', 'tiktok-shop', 'vendas')">
+  <img class="brand-logo brand-logo-pill" src="data:image/svg+xml;charset=utf-8,%3Csvg%20role%3D%22img%22%20viewBox%3D%220%200%2024%2024%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Ctitle%3ETikTok%3C/title%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M12.525.02c1.31-.02%202.61-.01%203.91-.02.08%201.53.63%203.09%201.75%204.17%201.12%201.11%202.7%201.62%204.24%201.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01%202.92.01%205.84-.02%208.75-.08%201.4-.54%202.79-1.35%203.94-1.31%201.92-3.58%203.17-5.91%203.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9%201.12-3.72%202.58-4.96%201.66-1.44%203.98-2.13%206.15-1.72.02%201.48-.04%202.96-.04%204.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11%201.04-1.36%201.75-.21.51-.15%201.07-.14%201.61.24%201.64%201.82%203.02%203.5%202.87%201.12-.01%202.19-.66%202.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z%22/%3E%3C/svg%3E" alt="TikTok Shop">
+  TikTok Shop
+</div>
+
 <div class="pill pill-youtube" onclick="goToTutorial('criacao', 'youtube', 'vendas')">
   <img class="brand-logo brand-logo-pill" src="https://cdn.simpleicons.org/youtube/FFFFFF" alt="YouTube Ads">
   YouTube Ads
@@ -1128,6 +1288,11 @@
   <img class="brand-logo brand-logo-pill" src="https://cdn.simpleicons.org/googleanalytics/FFFFFF" alt="Google Analytics 4">
   Google Analytics 4
 </div>
+
+<div class="hero-action-btn hero-action-secondary" onclick="navTo('aprenda')">
+  📚 Acessar Espaço Educacional
+</div>
+
   </div>
   <div class="scroll-hint"><span>Explore</span><div class="scroll-arrow"></div></div>
 </header>
@@ -1157,7 +1322,7 @@
 <!-- PLATAFORMAS -->
 <div id="plataformas"><div class="section">
   <div class="section-label">Plataformas</div>
-  <h2 class="section-title">6 plataformas,<br>uma estratégia integrada</h2>
+  <h2 class="section-title">7 plataformas,<br>uma estratégia integrada</h2>
   <div class="platform-grid">
     <div class="platform-card meta">
       <span class="platform-icon"><img class="brand-logo brand-logo-platform" src="https://cdn.simpleicons.org/meta/FFFFFF" alt="Meta Ads"></span>
@@ -1176,6 +1341,19 @@
       <div class="platform-name">TikTok Ads</div>
       <div class="platform-desc">Conteúdo nativo em vídeo vertical. Algoritmo poderoso que encontra o público pelo criativo.</div>
       <div class="platform-kpis"><span>Spark Ads</span><span>UGC</span><span>TopView</span><span>API Conv.</span></div>
+    </div>
+    <div class="platform-card tiktok-shop" onclick="goToTutorial('criacao', 'tiktok-shop', 'conversoes')" style="cursor:pointer">
+  <span class="platform-icon">
+    <img class="brand-logo brand-logo-platform" src="data:image/svg+xml;charset=utf-8,%3Csvg%20role%3D%22img%22%20viewBox%3D%220%200%2024%2024%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Ctitle%3ETikTok%3C/title%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M12.525.02c1.31-.02%202.61-.01%203.91-.02.08%201.53.63%203.09%201.75%204.17%201.12%201.11%202.7%201.62%204.24%201.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01%202.92.01%205.84-.02%208.75-.08%201.4-.54%202.79-1.35%203.94-1.31%201.92-3.58%203.17-5.91%203.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9%201.12-3.72%202.58-4.96%201.66-1.44%203.98-2.13%206.15-1.72.02%201.48-.04%202.96-.04%204.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11%201.04-1.36%201.75-.21.51-.15%201.07-.14%201.61.24%201.64%201.82%203.02%203.5%202.87%201.12-.01%202.19-.66%202.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z%22/%3E%3C/svg%3E" alt="TikTok Shop">
+  </span>
+      <div class="platform-name">TikTok Shop</div>
+      <div class="platform-desc">Venda integrada entre conteúdo, live commerce e vitrine de produtos dentro do TikTok.</div>
+      <div class="platform-kpis">
+        <span>Catálogo</span>
+        <span>GMV</span>
+        <span>Live Shopping</span>
+        <span>Shop Ads</span>
+      </div>
     </div>
     <div class="platform-card youtube">
       <span class="platform-icon"><img class="brand-logo brand-logo-platform" src="https://cdn.simpleicons.org/youtube/FFFFFF" alt="YouTube Ads"></span>
@@ -1218,7 +1396,42 @@
 <div id="roteiro"><div class="section">
   <div class="section-label">Roteiro de Anúncios</div>
   <h2 class="section-title">Passo a passo<br>por plataforma e objetivo</h2>
-  <div class="mode-tabs">
+
+ <div class="filter-row" id="plat-filter">
+  <button class="filter-btn active" data-plat="meta" onclick="setPlat('meta', this)">
+    <img src="https://cdn.simpleicons.org/meta/ffffff" alt="Meta">
+    Meta
+  </button>
+
+  <button class="filter-btn" data-plat="google" onclick="setPlat('google', this)">
+    <img src="https://cdn.simpleicons.org/googleads/000" alt="Google">
+    Google
+  </button>
+
+  <button class="filter-btn" data-plat="tiktok" onclick="setPlat('tiktok', this)">
+    <img src="https://cdn.simpleicons.org/tiktok/000" alt="TikTok">
+    TikTok
+  </button>
+
+  <button class="filter-btn" data-plat="tiktok-shop" onclick="setPlat('tiktok-shop', this)">
+  <img src="data:image/svg+xml;charset=utf-8,%3Csvg%20role%3D%22img%22%20viewBox%3D%220%200%2024%2024%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Ctitle%3ETikTok%20Shop%3C/title%3E%3Cpath%20fill%3D%22%23000%22%20d%3D%22M12.525.02c1.31-.02%202.61-.01%203.91-.02.08%201.53.63%203.09%201.75%204.17%201.12%201.11%202.7%201.62%204.24%201.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01%202.92.01%205.84-.02%208.75-.08%201.4-.54%202.79-1.35%203.94-1.31%201.92-3.58%203.17-5.91%203.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9%201.12-3.72%202.58-4.96%201.66-1.44%203.98-2.13%206.15-1.72.02%201.48-.04%202.96-.04%204.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11%201.04-1.36%201.75-.21.51-.15%201.07-.14%201.61.24%201.64%201.82%203.02%203.5%202.87%201.12-.01%202.19-.66%202.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z%22/%3E%3C/svg%3E" alt="TikTok Shop">
+  TikTok Shop
+</button>
+
+  <button class="filter-btn" data-plat="youtube" onclick="setPlat('youtube', this)">
+    <img src="https://cdn.simpleicons.org/youtube/000" alt="YouTube">
+    YouTube
+  </button>
+
+  <button class="filter-btn" data-plat="linkedin" onclick="setPlat('linkedin', this)">
+  <img 
+    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3Cpath%20fill%3D%22%23000000%22%20d%3D%22M100.28%20448H7.4V148.9h92.88zM53.79%20108.1C24.09%20108.1%200%2083.5%200%2053.8a53.79%2053.79%200%200%201%20107.58%200c0%2029.7-24.1%2054.3-53.79%2054.3zM447.9%20448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29%200-55.69%2037.7-55.69%2076.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5%2042.69-48.3%2087.88-48.3%2094%200%20111.28%2061.9%20111.28%20142.3V448z%22/%3E%3C/svg%3E" 
+    alt="LinkedIn">
+  LinkedIn
+</button>
+</div>
+
+<div class="mode-tabs">
     <button class="mode-btn active" onclick="setMode('Criação',this)">
       <img src="https://www.svgrepo.com/show/473363/rocket-launch.svg" alt="Criação">
       Criação
@@ -1232,35 +1445,6 @@
       Otimização
     </button>
   </div>
-
- <div class="filter-row" id="plat-filter">
-  <button class="filter-btn active" data-plat="meta" onclick="setPlat('meta', this)">
-    <img src="https://cdn.simpleicons.org/meta/ffffff" alt="Meta">
-    Meta
-  </button>
-
-  <button class="filter-btn" data-plat="google" onclick="setPlat('google', this)">
-    <img src="https://cdn.simpleicons.org/googleads/666666" alt="Google">
-    Google
-  </button>
-
-  <button class="filter-btn" data-plat="tiktok" onclick="setPlat('tiktok', this)">
-    <img src="https://cdn.simpleicons.org/tiktok/666666" alt="TikTok">
-    TikTok
-  </button>
-
-  <button class="filter-btn" data-plat="youtube" onclick="setPlat('youtube', this)">
-    <img src="https://cdn.simpleicons.org/youtube/666666" alt="YouTube">
-    YouTube
-  </button>
-
-  <button class="filter-btn" data-plat="linkedin" onclick="setPlat('linkedin', this)">
-  <img 
-    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3Cpath%20fill%3D%22%23666666%22%20d%3D%22M100.28%20448H7.4V148.9h92.88zM53.79%20108.1C24.09%20108.1%200%2083.5%200%2053.8a53.79%2053.79%200%200%201%20107.58%200c0%2029.7-24.1%2054.3-53.79%2054.3zM447.9%20448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29%200-55.69%2037.7-55.69%2076.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5%2042.69-48.3%2087.88-48.3%2094%200%20111.28%2061.9%20111.28%20142.3V448z%22/%3E%3C/svg%3E" 
-    alt="LinkedIn">
-  LinkedIn
-</button>
-</div>
 
   <div class="filter-row" id="obj-filter">
   <button class="filter-btn active" data-obj="conversoes" onclick="setObj('conversoes',this)">
@@ -1402,9 +1586,11 @@
 </div>
 
 <footer class="footer">
-  <strong>Guia de Anúncios Digitais + GA4</strong> · 6 Plataformas · 4 Objetivos · Criação, Remarketing e Otimização
+  <strong>Guia de Anúncios Digitais + GA4</strong> · 7 Plataformas · 4 Objetivos · Criação, Remarketing e Otimização
   <br>
-  <button class="footer-top-btn" type="button" onclick="scrollToTop()">↑ Voltar ao topo</button>
+  <button class="floating-top-btn" onclick="scrollToTop()" aria-label="Voltar ao topo">
+  ↑
+</button>
 </footer>
 
 <script>
@@ -1470,6 +1656,7 @@ const PLATFORMS = {
   meta:{name:'Meta Ads',color:'#1877f2'},
   google:{name:'Google Ads',color:'#ea4335'},
   tiktok:{name:'TikTok Ads',color:'#333333'},
+  'tiktok-shop':{name:'TikTok Shop',color:'#FF0050'},
   youtube:{name:'YouTube Ads',color:'#ff0000'},
   linkedin:{name:'LinkedIn Ads',color:'#0a66c2'},
 };
@@ -1489,6 +1676,7 @@ const BRAND_LOGOS = {
   meta: { name: 'Meta Ads', slug: 'meta', color: '1877F2' },
   google: { name: 'Google Ads', slug: 'googleads', color: 'EA4335' },
   tiktok: { name: 'TikTok Ads', slug: 'tiktok', color: '333333' },
+  'tiktok-shop': { name: 'TikTok Shop', slug: 'tiktok', color: 'FF0050' },
   youtube: { name: 'YouTube Ads', slug: 'youtube', color: 'FF0000' },
   linkedin: { name: 'LinkedIn Ads', slug: 'linkedin', color: '0A66C2' },
   ga4: { name: 'Google Analytics 4', slug: 'googleanalytics', color: 'E37400' }
@@ -1507,16 +1695,193 @@ function brandLogo(key, variant='color') {
 }
 
 function eduCatIcon(catId) {
-  if (['meta','google','tiktok','youtube','linkedin','ga4'].includes(catId)) {
+  if (catId === 'google') {
+    return `
+      <span class="google-ads-svg-icon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+          <polygon fill="#ffc107" points="30.129,15.75 18.871,9.25 5.871,31.25 17.129,37.75"></polygon>
+          <path fill="#1e88e5" d="M31.871,37.75c1.795,3.109,5.847,4.144,8.879,2.379c3.103-1.806,4.174-5.77,2.379-8.879l-13-22 c-1.795-3.109-5.835-4.144-8.879-2.379c-3.106,1.801-4.174,5.77-2.379,8.879L31.871,37.75z"></path>
+          <circle cx="11.5" cy="34.5" r="6.5" fill="#43a047"></circle>
+        </svg>
+      </span>
+    `;
+  }
+
+  if (['meta','tiktok','tiktok-shop','youtube','linkedin','ga4'].includes(catId)) {
     return brandLogo(catId);
   }
+
   if (catId === 'all') {
     return '<img class="edu-cat-icon" src="https://www.svgrepo.com/show/427446/general-hierachy-map.svg" alt="Todos">';
   }
+
   if (catId === 'geral') {
     return '<img class="edu-cat-icon" src="https://www.svgrepo.com/show/243821/menu-grid.svg" alt="Geral">';
   }
+
   return '';
+}
+
+function tiktokShopSteps(obj, mode, phase) {
+  const data = {
+    conversoes: {
+      'Criação': {
+        'Pré-requisitos': [
+          {
+            t: 'Configure o TikTok Shop Seller Center',
+            d: 'Crie ou acesse sua conta no TikTok Shop Seller Center, valide os dados da empresa, cadastre endereço, dados fiscais e métodos de pagamento antes de criar campanhas.',
+            tip: 'Sem Seller Center configurado, catálogo aprovado e loja ativa, os anúncios de TikTok Shop não conseguem vender com checkout nativo.',
+            tc: '#FF0050'
+          }
+        ],
+        'Campanha': [
+          {
+            t: 'Crie uma campanha de Video Shopping Ads',
+            d: 'No TikTok Ads Manager, crie uma campanha com objetivo de vendas de produtos e selecione Video Shopping Ads. Esse formato exibe produtos diretamente no vídeo com botão de compra.',
+            tip: 'Use VSA para vender produtos do catálogo diretamente dentro do TikTok Shop.',
+            tc: '#FF0050'
+          }
+        ],
+        'Público': [
+          {
+            t: 'Comece com público amplo',
+            d: 'Para TikTok Shop, comece com segmentação mais aberta, limitando apenas país, idade e idioma quando necessário. O algoritmo usa sinais do produto, vídeo e comportamento de compra.',
+            tip: 'Segmentação muito travada pode limitar o aprendizado do algoritmo no TikTok Shop.',
+            tc: '#FF0050'
+          }
+        ],
+        'Criativos': [
+          {
+            t: 'Use vídeo vertical com produto em uso',
+            d: 'Crie vídeos 9:16 mostrando o produto nos primeiros 3 segundos, com demonstração prática, benefício claro e CTA direto para compra.',
+            tip: 'A estrutura ideal é: produto em destaque, demonstração, benefício, prova social e chamada para comprar.',
+            tc: '#FF0050'
+          }
+        ],
+        'Lance & Budget': [
+          {
+            t: 'Comece com orçamento suficiente para aprendizado',
+            d: 'Inicie com orçamento diário capaz de gerar volume mínimo de compras. Acompanhe CPA, ROAS, GMV e taxa de conversão do produto.',
+            tip: 'Evite pausar campanhas antes de ter dados suficientes para análise.',
+            tc: '#FF0050'
+          }
+        ],
+        'Publicação': [
+          {
+            t: 'Valide produto, vídeo e checkout',
+            d: 'Antes de escalar, confira se o produto aparece corretamente, se o botão de compra funciona, se o preço está correto e se o checkout nativo está ativo.',
+            tip: 'Um erro simples no catálogo pode derrubar toda a performance da campanha.',
+            tc: '#FF0050'
+          }
+        ]
+      },
+
+      'Remarketing': {
+        'Rastreamento': [
+          {
+            t: 'Use eventos de visualização e compra',
+            d: 'Garanta que o TikTok consiga identificar visualizações de produto, adição ao carrinho, início de checkout e compras realizadas no TikTok Shop.',
+            tip: 'Esses sinais alimentam públicos de remarketing e otimização automática.',
+            tc: '#FF0050'
+          }
+        ],
+        'Públicos': [
+          {
+            t: 'Crie públicos de compradores e interessados',
+            d: 'Separe públicos de quem viu produtos, clicou no botão de compra, adicionou ao carrinho e comprou. Cada grupo precisa de mensagem diferente.',
+            tip: 'Carrinho abandonado merece criativo de urgência ou prova social.',
+            tc: '#FF0050'
+          }
+        ],
+        'Campanha': [
+          {
+            t: 'Crie campanha para recuperar intenção',
+            d: 'Use campanhas focadas em quem interagiu com produtos, assistiu vídeos ou abandonou o checkout. Priorize produtos com maior margem ou maior volume.',
+            tip: null
+          }
+        ],
+        'Criativos': [
+          {
+            t: 'Use prova social e demonstração',
+            d: 'Mostre reviews, unboxing, antes e depois, comparativos e benefícios claros para quem já demonstrou interesse.',
+            tip: 'No remarketing, o criativo deve remover dúvidas, não apenas repetir a oferta.',
+            tc: '#FF0050'
+          }
+        ],
+        'Lances': [
+          {
+            t: 'Controle CPA e frequência',
+            d: 'Acompanhe CPA, frequência, ROAS e queda de CTR. Se a frequência subir e o CTR cair, renove criativos.',
+            tip: null
+          }
+        ],
+        'Monitoramento': [
+          {
+            t: 'Analise GMV por produto',
+            d: 'Avalie quais produtos geram mais GMV, melhor ROAS e menor custo por compra. Realocar verba por produto costuma melhorar o resultado.',
+            tip: null
+          }
+        ]
+      },
+
+      'Otimização': {
+        'Diagnóstico': [
+          {
+            t: 'Identifique o gargalo principal',
+            d: 'Analise se o problema está no vídeo, no produto, no preço, no checkout, no frete ou na página do produto dentro do TikTok Shop.',
+            tip: 'Nem todo CPA alto é problema de campanha. Muitas vezes o gargalo está no produto ou na oferta.',
+            tc: '#FF0050'
+          }
+        ],
+        'Estrutura': [
+          {
+            t: 'Separe campanhas por produto ou categoria',
+            d: 'Organize campanhas por produtos campeões, categorias ou margem. Isso facilita leitura de dados e controle de orçamento.',
+            tip: null
+          }
+        ],
+        'Criativos': [
+          {
+            t: 'Teste novos ângulos de vídeo',
+            d: 'Crie variações com demonstração, review, UGC, comparação, oferta, dor do cliente e prova social.',
+            tip: 'TikTok Shop depende muito de volume e variedade de criativos.',
+            tc: '#FF0050'
+          }
+        ],
+        'Lances & Budget': [
+          {
+            t: 'Escale os produtos vencedores',
+            d: 'Aumente orçamento gradualmente nos produtos com ROAS positivo, bom volume de compras e taxa de conversão consistente.',
+            tip: null
+          }
+        ],
+        'Público': [
+          {
+            t: 'Evite segmentação excessiva',
+            d: 'Mantenha públicos mais amplos quando o algoritmo estiver performando bem. Use segmentações específicas apenas para testes controlados.',
+            tip: null
+          }
+        ],
+        'Escala': [
+          {
+            t: 'Combine VSA, lives e afiliados',
+            d: 'Para escalar, combine Video Shopping Ads, Live Shopping Ads, Spark Ads e programa de afiliados do TikTok Shop.',
+            tip: 'Afiliados podem gerar vendas com menor risco, porque a comissão só acontece quando há venda.',
+            tc: '#FF0050'
+          }
+        ]
+      }
+    }
+  };
+
+  return data[obj]?.[mode]?.[phase] || [
+    {
+      t: 'Objetivo não recomendado para TikTok Shop',
+      d: 'O TikTok Shop é focado principalmente em vendas de produtos físicos. Para leads, tráfego ou reconhecimento, use TikTok Ads tradicional.',
+      tip: 'Use TikTok Shop quando o objetivo principal for vender produto com catálogo e checkout nativo.',
+      tc: '#FF0050'
+    }
+  ];
 }
 
 
@@ -1819,14 +2184,17 @@ let ga4State = { tab: Object.keys(GA4_TABS)[0], phase: Object.keys(Object.values
 // ADS RENDER
 // ─────────────────────────────────────────────
 function renderAds(){
-  const col = PLATFORMS[adState.plat].color;
+  const p = PLATFORMS[adState.plat];
+  const o = OBJS[adState.obj];
+  const col = p.color;
   const phases = AD_PHASES[adState.mode] || [];
   const container = document.getElementById('all-phases');
   container.innerHTML = '';
 
   phases.forEach((phase, phIdx) => {
-    const steps = getAdsSteps(adState.plat, adState.obj, adState.mode, phase);
-    if(!steps.length) return;
+    const steps = adState.plat === 'tiktok-shop'
+      ? tiktokShopSteps(adState.obj, adState.mode, phase)
+      : genericSteps(p.name, p.color, o.name, o.color, adState.mode, phase);
 
     // Phase block
     const block = document.createElement('div');
@@ -1895,6 +2263,7 @@ const platColors = {
   meta: '#1877f2',
   google: '#ea4335',
   tiktok: '#333333',
+  'tiktok-shop': '#FF0050',
   youtube: '#ff0000',
   linkedin: '#0a66c2',
   ga4: '#e37400'
@@ -1911,52 +2280,72 @@ function iconSrc(plat, color) {
     meta: 'meta',
     google: 'googleads',
     tiktok: 'tiktok',
-    youtube: 'youtube'
+    'tiktok-shop': 'tiktok',
+    youtube: 'youtube',
+    ga4: 'googleanalytics'
   };
 
-  return `https://cdn.simpleicons.org/${icons[plat]}/${color}`;
+  return icons[plat]
+    ? `https://cdn.simpleicons.org/${icons[plat]}/${color}`
+    : '';
 }
 
-function setPlat(plat, el) {
-  adState.plat = plat;
+function updateObjectiveAvailability() {
+  const objButtons = document.querySelectorAll('#obj-filter .filter-btn');
 
-  document.querySelectorAll('#plat-filter .filter-btn').forEach(btn => {
-    const btnPlat = btn.dataset.plat;
-    const img = btn.querySelector('img');
+  objButtons.forEach(btn => {
+    const obj = btn.dataset.obj;
 
-    btn.classList.remove('active');
-    btn.style.background = '#fff';
-    btn.style.borderColor = '#e0e0e0';
-    btn.style.color = '#000';
-
-    if (img) {
-      img.src = iconSrc(btnPlat, '000');
+    if (adState.plat === 'tiktok-shop' && obj !== 'conversoes') {
+      btn.classList.add('disabled-obj');
+      btn.setAttribute('aria-disabled', 'true');
+      btn.title = 'TikTok Shop disponível apenas para Vendas / Conversões';
+    } else {
+      btn.classList.remove('disabled-obj');
+      btn.removeAttribute('aria-disabled');
+      btn.removeAttribute('title');
     }
   });
-
-  el.classList.add('active');
-  el.style.background = platColors[plat];
-  el.style.borderColor = platColors[plat];
-  el.style.color = '#fff';
-
-  const activeImg = el.querySelector('img');
-  if (activeImg) {
-    activeImg.src = iconSrc(plat, 'FFFFFF');
-  }
-
-  renderAds();
 }
-function setObj(obj, btn){
-  adState.obj = obj;
 
-  document.querySelectorAll('#obj-filter .filter-btn').forEach(b => {
+function setPlat(plat, btn) {
+  adState.plat = plat;
+
+  document.querySelectorAll('#plat-filter .filter-btn').forEach(b => {
     b.classList.remove('active');
   });
 
-  if (btn) {
-    btn.classList.add('active');
+  if (btn) btn.classList.add('active');
+
+  if (plat === 'tiktok-shop' && adState.obj !== 'conversoes') {
+    adState.obj = 'conversoes';
+
+    document.querySelectorAll('#obj-filter .filter-btn').forEach(b => {
+      b.classList.remove('active', 'selected');
+    });
+
+    const conversoesBtn = document.querySelector('#obj-filter .filter-btn[data-obj="conversoes"]');
+    if (conversoesBtn) conversoesBtn.classList.add('active');
   }
 
+  updateObjectiveAvailability();
+  renderAds();
+}
+
+function setObj(obj, btn) {
+  if (adState.plat === 'tiktok-shop' && obj !== 'conversoes') {
+    return;
+  }
+
+  adState.obj = obj;
+
+  document.querySelectorAll('#obj-filter .filter-btn').forEach(b => {
+    b.classList.remove('active', 'selected');
+  });
+
+  if (btn) btn.classList.add('active');
+
+  updateObjectiveAvailability();
   renderAds();
 }
 
@@ -2022,6 +2411,7 @@ function navTo(id,btn){
 // ─────────────────────────────────────────────
 // INIT
 // ─────────────────────────────────────────────
+updateObjectiveAvailability();
 renderAds();
 renderGA4();
 </script>
@@ -2035,7 +2425,8 @@ const EDU_CATS = [
   { id:'all',      label:'Todos',        color:'#1A1A2E', dot:'#1A1A2E' },
   { id:'meta',     label:'Meta Ads',     color:'#1877F2', dot:'#1877F2' },
   { id:'google',   label:'Google Ads',   color:'#EA4335', dot:'#EA4335' },
-  { id:'tiktok',   label:'TikTok Ads',   color:'#333333', dot:'#333333' },
+  { id:'tiktok',   label:'TikTok Ads',   color:'#333',    dot:'#555'    },
+  { id:'tiktok-shop', label:'TikTok Shop', color:'#FF0050', dot:'#FF0050' },
   { id:'youtube',  label:'YouTube Ads',  color:'#FF0000', dot:'#FF0000' },
   { id:'linkedin', label:'LinkedIn Ads', color:'#0A66C2', dot:'#0A66C2' },
   { id:'ga4',      label:'GA4',          color:'#E37400', dot:'#E37400' },
@@ -2177,6 +2568,124 @@ const LESSONS = [
     ],
     resources:[]
   },
+  {
+  id:'tiktok-shop-seller-center',
+  cat:'tiktok-shop',
+  plat:'TikTok Shop',
+  color:'#FF0050',
+  icon:'🛍️',
+  bg:'#FFF0F5',
+  title:'Como configurar o TikTok Shop Seller Center',
+  level:'init',
+  levelLabel:'Iniciante',
+  desc:'Configure a base da sua loja no TikTok Shop antes de criar campanhas de venda.',
+  tags:['Seller Center','Loja','Catálogo'],
+  steps:[
+    {
+      title:'Acesse o Seller Center',
+      desc:'Entre no TikTok Shop Seller Center e faça login com a conta responsável pela loja. Valide os dados principais da empresa antes de cadastrar produtos.',
+      tip:'Sem Seller Center ativo, catálogo aprovado e loja configurada, o TikTok Shop não consegue vender com checkout nativo.',
+      tc:'#FF0050'
+    },
+    {
+      title:'Complete os dados da loja',
+      desc:'Preencha nome da loja, documentos, endereço, dados fiscais, política de entrega e informações de pagamento.',
+      tip:'Dados incompletos podem atrasar a aprovação da loja e bloquear campanhas.',
+      tc:'#FF0050'
+    },
+    {
+      title:'Cadastre os produtos',
+      desc:'Adicione título, imagens, descrição, preço, estoque, categoria, variações e informações de envio dos produtos.',
+      tip:'Produtos com imagens claras, descrição objetiva e preço competitivo tendem a performar melhor.',
+      tc:'#FF0050'
+    },
+    {
+      title:'Aguarde a aprovação',
+      desc:'Depois de cadastrar os produtos, aguarde a revisão da plataforma. Produtos reprovados precisam ser corrigidos antes de entrarem em campanhas.',
+      tip:null
+    },
+    {
+      title:'Conecte com o TikTok Ads Manager',
+      desc:'Vincule a loja do TikTok Shop à conta de anúncios para conseguir criar campanhas de Video Shopping Ads e usar o catálogo nas campanhas.',
+      tip:'Essa conexão é o que permite vender produtos diretamente pelos anúncios.',
+      tc:'#FF0050'
+    }
+  ],
+  resources:[
+    {
+      icon:'🔗',
+      label:'TikTok Shop Seller Center',
+      url:'https://seller.tiktok.com'
+    },
+    {
+      icon:'📖',
+      label:'TikTok for Business Brasil',
+      url:'https://ads.tiktok.com/business/pt-BR'
+    }
+  ]
+},
+
+{
+  id:'tiktok-shop-vsa',
+  cat:'tiktok-shop',
+  plat:'TikTok Shop',
+  color:'#FF0050',
+  icon:'🎬',
+  bg:'#FFF0F5',
+  title:'Como criar Video Shopping Ads no TikTok Shop',
+  level:'inter',
+  levelLabel:'Intermediário',
+  desc:'Configure anúncios de Video Shopping Ads para vender produtos diretamente dentro do TikTok.',
+  tags:['VSA','Shopping Ads','Conversão'],
+  steps:[
+    {
+      title:'Entenda o formato Video Shopping Ads',
+      desc:'Video Shopping Ads é o formato de anúncio do TikTok Shop que exibe produtos do catálogo diretamente no vídeo, com card clicável, preço e botão de compra.',
+      tip:'O checkout acontece dentro do TikTok, reduzindo a fricção entre interesse e compra.',
+      tc:'#FF0050'
+    },
+    {
+      title:'Crie a campanha no TikTok Ads Manager',
+      desc:'Acesse o TikTok Ads Manager, clique em criar campanha, escolha o objetivo de vendas de produtos e selecione Video Shopping Ads.',
+      tip:null
+    },
+    {
+      title:'Selecione os produtos do catálogo',
+      desc:'Escolha os produtos que serão exibidos nos anúncios. Para começar, priorize produtos com boa margem, estoque disponível e histórico de venda.',
+      tip:'Comece com poucos produtos vencedores antes de abrir o catálogo completo.',
+      tc:'#FF0050'
+    },
+    {
+      title:'Configure o público',
+      desc:'Para TikTok Shop, comece com público mais amplo. Limite apenas país, idioma e idade quando necessário. O algoritmo usa sinais de produto, vídeo e compra.',
+      warn:'Segmentação muito fechada pode limitar o aprendizado e reduzir a entrega.'
+    },
+    {
+      title:'Suba o criativo em vídeo',
+      desc:'Use vídeo vertical 9:16 mostrando o produto nos primeiros segundos. Demonstre uso, benefício, prova social e chamada direta para compra.',
+      tip:'Estrutura simples: produto em destaque, demonstração, benefício, prova social e CTA.',
+      tc:'#FF0050'
+    },
+    {
+      title:'Acompanhe os indicadores',
+      desc:'Monitore CPA, ROAS, GMV, taxa de conversão, cliques no produto e compras geradas pelo anúncio.',
+      tip:'No TikTok Shop, GMV e ROAS são métricas essenciais para decidir quais produtos escalar.',
+      tc:'#FF0050'
+    }
+  ],
+  resources:[
+    {
+      icon:'🔗',
+      label:'TikTok Ads Manager',
+      url:'https://ads.tiktok.com'
+    },
+    {
+      icon:'🛍️',
+      label:'TikTok Shop Seller Center',
+      url:'https://seller.tiktok.com'
+    }
+  ]
+},
   { id:'youtube-trueview', cat:'youtube', plat:'YouTube Ads', color:'#FF0000', icon:'youtube', bg:'#FFF0F0',
     title:'Como criar anúncios TrueView In-Stream no YouTube', level:'init', levelLabel:'Iniciante',
     desc:'Configure anuncios de video pulaveis no YouTube com CTA clicavel e otimizados para conversao.',
@@ -2344,7 +2853,7 @@ function renderEduGrid() {
   lessons.forEach(l => {
     const card=document.createElement('div');
     card.className='lesson-card'; card.onclick=()=>openLesson(l.id);
-    card.innerHTML='<div class="lesson-bar" style="background:'+l.color+'"></div><div class="lesson-card-top"><div class="lesson-icon" style="background:'+l.bg+'">'+brandLogo(l.icon)+'</div><div class="lesson-meta"><div class="lesson-plat" style="color:'+l.color+'">'+l.plat+'</div><div class="lesson-title">'+l.title+'</div></div></div><div class="lesson-desc">'+l.desc+'</div><div class="lesson-card-bottom"><div class="lesson-tags">'+l.tags.map(t=>'<span class="lesson-tag">'+t+'</span>').join('')+'</div><span class="lesson-level '+lvlClass[l.level]+'">'+lvlLabel[l.level]+'</span></div>';
+    card.innerHTML='<div class="lesson-bar" style="background:'+l.color+'"></div><div class="lesson-card-top"><div class="lesson-icon" style="background:'+l.bg+'">'+brandLogo(l.cat)+'</div><div class="lesson-meta"><div class="lesson-plat" style="color:'+l.color+'">'+l.plat+'</div><div class="lesson-title">'+l.title+'</div></div></div><div class="lesson-desc">'+l.desc+'</div><div class="lesson-card-bottom"><div class="lesson-tags">'+l.tags.map(t=>'<span class="lesson-tag">'+t+'</span>').join('')+'</div><span class="lesson-level '+lvlClass[l.level]+'">'+lvlLabel[l.level]+'</span></div>';
     grid.appendChild(card);
   });
   const cnt=document.getElementById('edu-count-total'); if(cnt) cnt.textContent=LESSONS.length;
@@ -2368,7 +2877,7 @@ function renderLessonModal(l) {
   const lvlLabel={init:'Iniciante',inter:'Intermediario',adv:'Avancado'};
   const lvlClass={init:'level-init',inter:'level-inter',adv:'level-adv'};
   const initialProgress=Math.round((1/l.steps.length)*100);
-  document.getElementById('lesson-modal-header').innerHTML='<div class="lesson-modal-icon" style="background:'+l.bg+'">'+brandLogo(l.icon)+'</div><div class="lesson-modal-meta"><div class="lesson-modal-plat" style="color:'+l.color+'">'+l.plat+'</div><div class="lesson-modal-title">'+l.title+'</div><div class="lesson-modal-badges"><span class="lesson-level '+lvlClass[l.level]+'">'+lvlLabel[l.level]+'</span>'+l.tags.map(t=>'<span class="lesson-tag">'+t+'</span>').join('')+'<span class="lesson-tag">'+l.steps.length+' passos</span></div><div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:'+initialProgress+'%;background:'+l.color+'" id="lesson-progress-bar"></div></div><div class="progress-label" id="lesson-progress-label">1 / '+l.steps.length+' passos</div></div><button class="lesson-modal-close" onclick="closeLesson()">✕</button>';
+  document.getElementById('lesson-modal-header').innerHTML='<div class="lesson-modal-icon" style="background:'+l.bg+'">'+brandLogo(l.cat)+'</div><div class="lesson-modal-meta"><div class="lesson-modal-plat" style="color:'+l.color+'">'+l.plat+'</div><div class="lesson-modal-title">'+l.title+'</div><div class="lesson-modal-badges"><span class="lesson-level '+lvlClass[l.level]+'">'+lvlLabel[l.level]+'</span>'+l.tags.map(t=>'<span class="lesson-tag">'+t+'</span>').join('')+'<span class="lesson-tag">'+l.steps.length+' passos</span></div><div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:'+initialProgress+'%;background:'+l.color+'" id="lesson-progress-bar"></div></div><div class="progress-label" id="lesson-progress-label">1 / '+l.steps.length+' passos</div></div><button class="lesson-modal-close" onclick="closeLesson()">✕</button>';
   const body=document.getElementById('lesson-modal-body');
   body.innerHTML='';
   const sw=document.createElement('div'); sw.className='lesson-steps'; sw.style.marginTop='0';
@@ -2402,7 +2911,10 @@ function renderLessonModal(l) {
 function escHtml(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
 function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth' 
+  });
 }
 
 function toggleHamburger() {
