@@ -2223,15 +2223,15 @@ function setPlat(plat, btn) {
 
   if (btn) btn.classList.add('active');
 
-  if (plat === 'tiktok-shop' && adState.obj !== 'vendas') {
-    adState.obj = 'vendas';
+  if (plat === 'tiktok-shop' && adState.obj !== 'conversoes') {
+    adState.obj = 'conversoes';
 
     document.querySelectorAll('#obj-filter .filter-btn').forEach(b => {
       b.classList.remove('active', 'selected');
     });
 
-    const vendasBtn = document.querySelector('#obj-filter .filter-btn[data-obj="vendas"]');
-    if (vendasBtn) vendasBtn.classList.add('active');
+    const conversoesBtn = document.querySelector('#obj-filter .filter-btn[data-obj="conversoes"]');
+    if (conversoesBtn) conversoesBtn.classList.add('active');
   }
 
   updateObjectiveAvailability();
@@ -2239,7 +2239,7 @@ function setPlat(plat, btn) {
 }
 
 function setObj(obj, btn) {
-  if (adState.plat === 'tiktok-shop' && obj !== 'vendas') {
+  if (adState.plat === 'tiktok-shop' && obj !== 'conversoes') {
     return;
   }
 
