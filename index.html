@@ -1170,6 +1170,70 @@
   transform: none !important;
 }
 
+/* Botões principais da Hero */
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+  animation: fadeUp .7s .25s ease both;
+}
+
+.hero-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 46px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  transition: all .2s ease;
+  white-space: nowrap;
+}
+
+.hero-action-primary {
+  background: #ffffff;
+  color: var(--ink);
+  box-shadow: 0 12px 32px rgba(0,0,0,.22);
+}
+
+.hero-action-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px rgba(0,0,0,.28);
+}
+
+.hero-action-secondary {
+  background: rgba(255,255,255,.08);
+  color: #ffffff;
+  border-color: rgba(255,255,255,.22);
+  backdrop-filter: blur(8px);
+}
+
+.hero-action-secondary:hover {
+  background: rgba(255,255,255,.16);
+  border-color: rgba(255,255,255,.36);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+  .hero-actions {
+    width: 100%;
+    gap: 10px;
+  }
+
+  .hero-action-btn {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1182,7 +1246,22 @@
   </div>
   <div class="hero-badge"><span></span> 7 Plataformas · 4 Objetivos · Criação + Remarketing + Otimização + GA4</div>
   <h1>Roteiro de<br><em>Anúncios Digitais</em></h1>
-  <p class="hero-sub">Guia completo para Meta, Google, TikTok, TikTok Shop, YouTube, LinkedIn Ads e Google Analytics 4.</p>
+
+<p class="hero-sub">
+  Guia completo com roteiro estratégico de campanhas, GA4 e um Espaço Educacional com tutoriais práticos para Meta, Google, TikTok, TikTok Shop, YouTube e LinkedIn Ads.
+</p>
+<p class="hero-sub">
+  Guia completo com roteiro estratégico de campanhas, GA4 e um Espaço Educacional com tutoriais práticos para Meta, Google, TikTok, TikTok Shop, YouTube e LinkedIn Ads.
+</p>
+<div class="hero-actions">
+  <button class="hero-action-btn hero-action-primary" onclick="navTo('roteiro')">
+    📊 Ver Roteiro de Anúncios
+  </button>
+
+  <button class="hero-action-btn hero-action-secondary" onclick="navTo('aprenda')">
+    📚 Acessar Espaço Educacional
+  </button>
+</div>
   <div class="platform-pills">
     <div class="pill pill-meta" onclick="goToTutorial('criacao', 'meta', 'vendas')">
   <img class="brand-logo brand-logo-pill" src="https://cdn.simpleicons.org/meta/FFFFFF" alt="Meta Ads">
