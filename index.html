@@ -2075,16 +2075,17 @@ let ga4State = { tab: Object.keys(GA4_TABS)[0], phase: Object.keys(Object.values
 // ADS RENDER
 // ─────────────────────────────────────────────
 function renderAds(){
-  const col = PLATFORMS[adState.plat].color;
+  const p = PLATFORMS[adState.plat];
+  const o = OBJS[adState.obj];
+  const col = p.color;
   const phases = AD_PHASES[adState.mode] || [];
   const container = document.getElementById('all-phases');
   container.innerHTML = '';
 
   phases.forEach((phase, phIdx) => {
     const steps = adState.plat === 'tiktok-shop'
-  ? tiktokShopSteps(adState.obj, adState.mode, ph)
-  : genericSteps(p.name, p.color, o.name, o.color, adState.mode, ph);
-    if(!steps.length) return;
+      ? tiktokShopSteps(adState.obj, adState.mode, phase)
+      : genericSteps(p.name, p.color, o.name, o.color, adState.mode, phase);
 
     // Phase block
     const block = document.createElement('div');
