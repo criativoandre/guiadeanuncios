@@ -1139,6 +1139,21 @@
   filter: brightness(0) invert(1);
 }
 
+/* Objetivos bloqueados para TikTok Shop */
+#obj-filter .filter-btn.disabled-obj {
+  opacity: 0.35 !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+  filter: grayscale(1);
+}
+
+#obj-filter .filter-btn.disabled-obj:hover {
+  background: #ffffff !important;
+  color: #111827 !important;
+  border-color: #d9d9d9 !important;
+  transform: none !important;
+}
+
 </style>
 </head>
 <body>
@@ -2181,46 +2196,62 @@ function iconSrc(plat, color) {
     : '';
 }
 
-function setPlat(plat, el) {
-  adState.plat = plat;
+function updateObjectiveAvailability() {
+  const objButtons = document.querySelectorAll('#obj-filter .filter-btn');
 
-  document.querySelectorAll('#plat-filter .filter-btn').forEach(btn => {
-    const btnPlat = btn.dataset.plat;
-    const img = btn.querySelector('img');
+  objButtons.forEach(btn => {
+    const obj = btn.dataset.obj;
 
-    btn.classList.remove('active');
-    btn.style.background = '#fff';
-    btn.style.borderColor = '#e0e0e0';
-    btn.style.color = '#000';
-
-    if (img) {
-      img.src = iconSrc(btnPlat, '000');
+    if (adState.plat === 'tiktok-shop' && obj !== 'vendas') {
+      btn.classList.add('disabled-obj');
+      btn.setAttribute('aria-disabled', 'true');
+      btn.title = 'TikTok Shop disponível apenas para Vendas / Conversões';
+    } else {
+      btn.classList.remove('disabled-obj');
+      btn.removeAttribute('aria-disabled');
+      btn.removeAttribute('title');
     }
   });
-
-  el.classList.add('active');
-  el.style.background = platColors[plat];
-  el.style.borderColor = platColors[plat];
-  el.style.color = '#fff';
-
-  const activeImg = el.querySelector('img');
-  if (activeImg) {
-    activeImg.src = iconSrc(plat, 'FFFFFF');
-  }
-
-  renderAds();
 }
-function setObj(obj, btn){
-  adState.obj = obj;
 
-  document.querySelectorAll('#obj-filter .filter-btn').forEach(b => {
+function setPlat(plat, btn) {
+  adState.plat = plat;
+
+  document.querySelectorAll('#plat-filter .filter-btn').forEach(b => {
     b.classList.remove('active');
   });
 
-  if (btn) {
-    btn.classList.add('active');
+  if (btn) btn.classList.add('active');
+
+  if (plat === 'tiktok-shop' && adState.obj !== 'vendas') {
+    adState.obj = 'vendas';
+
+    document.querySelectorAll('#obj-filter .filter-btn').forEach(b => {
+      b.classList.remove('active', 'selected');
+    });
+
+    const vendasBtn = document.querySelector('#obj-filter .filter-btn[data-obj="vendas"]');
+    if (vendasBtn) vendasBtn.classList.add('active');
   }
 
+  updateObjectiveAvailability();
+  renderAds();
+}
+
+function setObj(obj, btn) {
+  if (adState.plat === 'tiktok-shop' && obj !== 'vendas') {
+    return;
+  }
+
+  adState.obj = obj;
+
+  document.querySelectorAll('#obj-filter .filter-btn').forEach(b => {
+    b.classList.remove('active', 'selected');
+  });
+
+  if (btn) btn.classList.add('active');
+
+  updateObjectiveAvailability();
   renderAds();
 }
 
@@ -2286,6 +2317,7 @@ function navTo(id,btn){
 // ─────────────────────────────────────────────
 // INIT
 // ─────────────────────────────────────────────
+updateObjectiveAvailability();
 renderAds();
 renderGA4();
 </script>
