@@ -311,29 +311,45 @@
   /* FOOTER */
   .footer { background:var(--ink);color:rgba(255,255,255,.5);text-align:center;padding:40px 24px;font-size:13px; }
   .footer strong { color:#fff; }
-  .footer-top-btn {
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    gap:8px;
-    margin-top:18px;
-    padding:10px 20px;
-    border-radius:999px;
-    border:1px solid rgba(255,255,255,.18);
-    background:rgba(255,255,255,.08);
-    color:#ffffff;
-    font-family:'DM Sans',sans-serif;
-    font-size:13px;
-    font-weight:600;
-    cursor:pointer;
-    transition:all .2s ease;
+
+  .floating-top-btn {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 999;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  background: var(--ink);
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 12px 28px rgba(0,0,0,.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.floating-top-btn:hover {
+  background: #000000;
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px rgba(0,0,0,.28);
+}
+
+@media (max-width: 768px) {
+  .floating-top-btn {
+    right: 16px;
+    bottom: 16px;
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
   }
-  .footer-top-btn:hover {
-    background:#ffffff;
-    border-color:#ffffff;
-    color:var(--ink);
-    transform:translateY(-1px);
-  }
+}
+
   @keyframes pulse {
     0%,100% { box-shadow: 0 0 0 3px rgba(74,222,128,.3); }
     50%      { box-shadow: 0 0 0 7px rgba(74,222,128,.1); }
@@ -1496,7 +1512,9 @@
 <footer class="footer">
   <strong>Guia de Anúncios Digitais + GA4</strong> · 7 Plataformas · 4 Objetivos · Criação, Remarketing e Otimização
   <br>
-  <button class="footer-top-btn" type="button" onclick="scrollToTop()">↑ Voltar ao topo</button>
+  <button class="floating-top-btn" onclick="scrollToTop()" aria-label="Voltar ao topo">
+  ↑
+</button>
 </footer>
 
 <script>
@@ -2816,9 +2834,14 @@ function renderLessonModal(l) {
 
 function escHtml(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
+<script>
 function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
 }
+</script>
 
 function toggleHamburger() {
   const btn = document.getElementById('nav-hamburger');
